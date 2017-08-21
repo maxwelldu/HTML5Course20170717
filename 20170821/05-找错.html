@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .choose {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <!-- emeet -->
+  <li><input type="checkbox">1</input></li>
+  <li><input type="checkbox">2</input></li>
+  <li><input type="checkbox">3</input></li>
+  <li><input type="checkbox">4</input></li>
+  <script>
+    var oInputs = document.getElementsByTagName('input');
+    for (var i = 0; i <= oInputs.length; i++) {
+      oInputs[i].parentNode.className = oInputs[i].checked === true ? 'choose' : '';
+    }
+  </script>
+</body>
+</html>

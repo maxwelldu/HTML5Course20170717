@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .choose {
+      color: yellowgreen;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">
+    <ul>
+      <li><input type="checkbox" checked>吃饭</li>
+      <li><input type="checkbox" checked=false>睡觉</li>
+      <li><input type="checkbox" checked=true>打LOL</li>
+      <li><input type="checkbox" checked='true'>打LOL</li>
+      <li><input type="checkbox" checked='false'>打LOL</li>
+    </ul>
+  </div>
+  <script>
+    var oInputs = document.getElementsByTagName('input');
+    for (var i = 0; i < oInputs.length; i++) {
+      oInputs[i].parentNode.className = oInputs[i].checked ? 'choose' : '';
+      oInputs[i].onclick = function() {
+        // console.log(oInputs[i-1]);
+        // this实际上是指向调用当前方法的对象, this是谁关键是看谁调用的
+        console.log(this.checked);
+        //如果某个复选框被勾选，那么它的爸爸就是choose类
+        this.parentNode.className = this.checked === true ? 'choose' : '';
+      }
+    }
+  </script>
+</body>
+</html>

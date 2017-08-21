@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DOM Demo</title>
+</head>
+<body>
+  <img src="http://f12.baidu.com/it/u=1981748892,3031683197&fm=72" alt="" title='小花'>
+  <script>
+    var oImg = document.getElementsByTagName('img')[0];
+    oImg.src = 'http://img0.imgtn.bdimg.com/it/u=3434671155,3476540791&fm=200&gp=0.jpg';
+    oImg.title = '小虫';
+    console.log(document.title);
+    console.dir(document);//打印出对象的详情
+  </script>
+</body>
+</html>

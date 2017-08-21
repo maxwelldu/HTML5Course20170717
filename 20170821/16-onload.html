@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      width: 200px;
+      height: 200px;
+      background-color: yellowgreen;
+    }
+  </style>
+  <script>
+    window.onload = function() {
+      // 延迟加载。这个函数的执行时间，是将页面中所有的HTML结构加载完毕
+      //所以执行的时候，也就认识了页面上的box盒子
+      var oBox = document.getElementById('box');
+      console.log(oBox);
+      console.log(1);
+      oBox.onmouseover = function() {
+        console.log('over');
+      }
+      oBox.onmouseout = function() {
+        console.log('out');
+      }
+
+      oBox.onmouseover = null;//移除已经添加的事件
+    }
+  </script>
+</head>
+<body>
+  <div id="box">1111</div>
+  <script>
+    console.log(2);
+  </script>
+</body>
+</html>

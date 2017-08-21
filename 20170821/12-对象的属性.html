@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="box" class="test" abc="123"></div>
+  <script>
+    var oDiv = document.getElementById('box');
+    console.log(oDiv.id); // console.log(oDiv.getAttribute('id'))
+    console.log(oDiv.className);
+    //自定义的属性，不是W3C的属性，都不能用点语法
+    console.log(oDiv.abc);//undefined
+
+    //设置oDiv对象的abc属性为456
+    oDiv.setAttribute('abc', '456');
+    //获得oDiv的abc属性
+    console.log(oDiv.getAttribute('abc'));
+  </script>
+</body>
+</html>

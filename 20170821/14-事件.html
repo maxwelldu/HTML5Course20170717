@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #box {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="box"></div>
+  <script>
+    //得到元素
+    var oBox = document.getElementById('box');
+
+    //添加事件
+    oBox.onclick = function() {
+      alert('你好，点我干嘛，我烦着呢!');
+    }
+
+    oBox.onmouseover = function() {
+      //我自己的样式改变，写this这个词
+      this.style.backgroundColor = 'blue';
+    }
+    oBox.onmouseout = function() {
+      this.style.backgroundColor = 'yellowgreen';
+    }
+  </script>
+</body>
+</html>

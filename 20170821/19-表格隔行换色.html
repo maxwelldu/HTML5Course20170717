@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    table, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    td {
+      width: 120px;
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <thead></thead>
+    <tbody>
+      <tr><td></td></tr>
+      <tr><td></td></tr>
+      <tr><td></td></tr>
+      <tr><td></td></tr>
+      <tr><td></td></tr>
+    </tbody>
+    <tfoot></tfoot>
+  </table>
+  <script>
+    var oTrs = document.getElementsByTagName('tr');
+    //如果有n行，n/2次
+    // for (var i = 0; i < oTrs.length; i+=2) {
+    //   oTrs[i].style.backgroundColor = 'red';
+    // }
+
+    //如果有n行，执行n次循环
+    for (var i = 0; i < oTrs.length; i++) {
+      if (i % 2 === 0) {
+        oTrs[i].style.backgroundColor = 'blue';
+      }
+    }
+  </script>
+</body>
+</html>

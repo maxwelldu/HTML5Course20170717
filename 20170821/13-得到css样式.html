@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="box" style="width: 200px; height: 200px; background-color: red; border: 1px solid green;"></div>
+  <script>
+    var oBox = document.getElementById('box');
+    //只能得到行内样式，不能得到内联或者外部样式
+    console.log(oBox.style.backgroundColor);
+    console.log(oBox.style.border);
+    console.log(oBox.style.fontSize); //只能够获取到元素的style属性里面的样式
+
+    // CSSOM  CSS Object Model
+    //获取oBox对象的CSS计算后样式
+    console.log(getComputedStyle(oBox).fontSize);
+
+    //层叠样式表
+    /*
+    浏览器样式
+    用户针对浏览器自定义样式
+    页面中的CSS样式
+
+    user agent 用户代理
+    */
+
+  </script>
+</body>
+</html>

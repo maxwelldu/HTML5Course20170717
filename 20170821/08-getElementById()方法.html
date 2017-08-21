@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #box {
+      width: 200px;
+      height: 200px;
+      background-color: yellowgreen;
+    }
+  </style>
+</head>
+<body>
+  <div id="box"></div>
+  <form action="">
+    <input type="text" name="username">
+  </form>
+  <script>
+    //通过id得到页面中的元素，保存到oBox, 为什么加o, 表示对象
+    var oBox = document.getElementById('box');
+    oBox.style.backgroundColor = 'red';
+    //变量命名只能有数字，字母，下划线，$符号，不能以数字开头
+    // var background-color = 1;
+    // console.log(background-color);
+    var kaiyu = 18;
+    // console.log(kaiyu);
+    // console.log(window.kaiyu);
+
+    //IE7及较低版本还有一个BUG, 表单元素name特性也会被当做id. 为了避免这个问题，所以页面上的name最好不要和任何id相同
+    alert(document.getElementById('username'));
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .border {
+      border: 1px solid red;
+    }
+    .color {
+      color: yellowgreen;
+    }
+  </style>
+</head>
+<body>
+  <input type="text" class="border">
+  <input type="button" value='点击设置内容和CSS'>
+  <script>
+    var oBtn = document.getElementsByTagName('input')[1];
+    var oTxt = document.getElementsByTagName('input')[0];
+    oBtn.onclick = function() {
+      oTxt.value = 'web1707';
+      oTxt.className += ' color';
+    }
+  </script>
+</body>
+</html>

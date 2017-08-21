@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text">
+  <input type="text">
+  <input type="text">
+  <script>
+    var oInput = document.getElementsByTagName('input')[0];
+    oInput.onfocus = function() {
+      console.log('我得到了焦点');
+    }
+    oInput.onblur = function() {
+      console.log('失去焦点');
+      //可以校验一下用户名是否合法，各种验证
+    }
+  </script>
+</body>
+</html>

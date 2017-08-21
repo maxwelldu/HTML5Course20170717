@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+  <p>这是一些内容</p>
+  <button>皮肤1</button>
+  <button>皮肤2</button>
+  <script>
+    var oFirstBtn = document.getElementsByTagName('button')[0];
+    var oSecondBtn = document.getElementsByTagName('button')[1];
+    var oLink = document.getElementsByTagName('link')[0];
+    oFirstBtn.onclick = function() {
+      oLink.href = 'style1.css';
+    }
+    oSecondBtn.onclick = function() {
+      oLink.href = 'style2.css';
+    }
+  </script>
+</body>
+</html>

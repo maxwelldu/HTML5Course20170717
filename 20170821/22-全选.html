@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="box">
+    <p><input type="checkbox"></p>
+    <p><input type="checkbox"></p>
+    <p><input type="checkbox"></p>
+    <p><input type="checkbox"></p>
+    <p><input type="checkbox"></p>
+  </div>
+  <input type="button" value="选择" id="btn">
+  <script>
+    var oBtn = document.getElementById('btn');
+    var inputs = document.getElementById('box').getElementsByTagName('input');
+
+    var state = 0; //信号量，0表示未选中，1表示都选中了
+    oBtn.onclick = function() {
+      //信号量是0则变1，否则变0
+      state = state === 0 ? 1 : 0;
+      //checked的状态，是"" 或者是 "checked"
+      var str = state === 0 ? "" : "checked";
+      //按钮文本
+      this.value = state === 0 ? "全选" : "全不选";
+
+      for (var i = 0; i < inputs.length; i++) {
+        inputs[i].checked = str;
+      }
+    }
+
+  </script>
+</body>
+</html>

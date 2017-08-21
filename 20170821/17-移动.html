@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    img {
+      position: absolute;
+      top: 100px;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1503312347677&di=3b22c6a7f14af545b2bd08e82b5fc1de&imgtype=0&src=http%3A%2F%2Fupload-images.jianshu.io%2Fupload_images%2F4209319-f797a13bf56106bf.jpg%3FimageMogr2%2Fauto-orient%2Fstrip%257CimageView2%2F2%2Fw%2F1240" alt="">
+  <button>右</button>
+  <button>左</button>
+  <script>
+    var oRight = document.getElementsByTagName('button')[0];
+    var oLeft = document.getElementsByTagName('button')[1];
+    var oImg = document.getElementsByTagName('img')[0];
+
+    //全局的变量，可以称为“信号量”
+    var nowLeft = 0;
+
+    oLeft.onclick = function() {
+      nowLeft -= 10;
+      move();
+    }
+    oRight.onclick = function() {
+      nowLeft += 10;
+      move();
+    }
+    function move() {
+      oImg.style.left = nowLeft + 'px';
+    }
+  </script>
+</body>
+</html>
