@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .tips {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <p>
+    <label>
+      <input type="checkbox">
+      十天内免登录
+    </label>
+  </p>
+  <div class="tips" id="tips">
+    为了您的信息安全，请不要在网吧或公共电脑上使用此功能！
+  </div>
+  <script>
+    var oLabel = document.getElementsByTagName('label')[0];
+    var oTips = document.getElementById('tips');
+    oLabel.onmouseover = function() {
+      oTips.style.display = 'block';
+    }
+    oLabel.onmouseout = function() {
+      oTips.style.display = 'none';
+    }
+  </script>
+</body>
+</html>

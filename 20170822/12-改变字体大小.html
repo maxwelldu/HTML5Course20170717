@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="button" id="plus" value="字号增加">
+  <input type="button" id="minus" value="字号减小">
+  <div id="box">
+    <p>wweb1707web1707web1707web1707web1707web1707web1707web1707web1707web1707eb1707</p>
+    <p>wweb1707web1707web1707web1707web1707web1707web1707web1707web1707web1707eb1707</p>
+    <p>wweb1707web1707web1707web1707web1707web1707web1707web1707web1707web1707eb1707</p>
+    <p>wweb1707web1707web1707web1707web1707web1707web1707web1707web1707web1707eb1707</p>
+  </div>
+  <script>
+    var oPlusBtn = document.getElementById('plus');
+    var oMinusBtn = document.getElementById('minus');
+    var oBox = document.getElementById('box');
+    var fontSize = parseInt(getComputedStyle(oBox).fontSize);
+    var maxFontSize = 30;
+    var minFontSize = 10;
+    var fontSizeStep = 3;
+
+    oPlusBtn.onclick = function() {
+      fontSize += fontSizeStep;
+      if (fontSize > maxFontSize) {
+        fontSize = maxFontSize;
+      }
+      changeFontSize();
+    }
+    oMinusBtn.onclick = function() {
+      fontSize -= fontSizeStep;
+      if (fontSize < minFontSize) {
+        fontSize = minFontSize;
+      }
+      changeFontSize();
+    }
+    //业务逻辑方法
+    function changeFontSize() {
+      // if (fontSize === 30) {
+      //   oPlusBtn.disabled = true;
+      // } else {
+      //   oPlusBtn.disabled = false;
+      // }
+      //下面是简写
+      oPlusBtn.disabled = fontSize === maxFontSize;
+      // if (fontSize === 10) {
+      //   oMinusBtn.disabled = true;
+      // } else {
+      //   oMinusBtn.disabled = false;
+      // }
+      oMinusBtn.disabled = fontSize === minFontSize;
+      oBox.style.fontSize = fontSize + 'px';
+      //表达式，通常赋值运算符是最后执行的
+    }
+  </script>
+</body>
+</html>

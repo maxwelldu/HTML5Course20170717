@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    img {
+      position: absolute;
+      top: 100px;
+      left: 577px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+  <input type="button" value="move">
+  <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1297268239,2246224922&fm=200&gp=0.jpg" alt="">
+  <script>
+    var oImg = document.getElementsByTagName('img')[0];
+    var oBtn = document.getElementsByTagName('input')[0];
+    //信号量
+    // var nowleft = 577;
+    var nowleft = parseInt(getComputedStyle(oImg).left);
+    oBtn.onclick = function() {
+      console.log(nowleft);
+      // if (nowleft < 0) {
+      //   nowleft = 0;
+      // } else {
+      //   nowleft -= 40;
+      // }
+      nowleft -= 40;
+      if (nowleft < 0) {
+        nowleft = 0;
+      }
+      oImg.style.left = nowleft + 'px';
+    }
+  </script>
+</body>
+</html>

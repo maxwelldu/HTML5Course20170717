@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <p>1</p>
+  <p>2</p>
+  <p>3</p>
+  <p>4</p>
+  <p>5</p>
+  <script>
+    var oPs = document.getElementsByTagName('p');
+    for (var i = 0; i < oPs.length; i++) {
+      (function(j){
+        oPs[j].onclick = function() {
+          console.log('我是第' + j + '个元素');
+        }
+      })(i);
+      // oPs[i].onclick = (function(j){
+      //   return function(){
+      //     console.log('我是第' + j + '个元素');
+      //   };
+      // })(i);
+      //IIFE 闭包  循环 事件
+    }
+
+    
+  </script>
+</body>
+</html>

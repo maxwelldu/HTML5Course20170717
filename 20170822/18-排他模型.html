@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    p {
+      float: left;
+      margin-right: 10px;
+      width: 100px;
+      height: 100px;
+      background-color: gray;
+    }
+    .light {
+      background-color: orange;
+    }
+  </style>
+</head>
+<body>
+  <p>1</p>
+  <p>2</p>
+  <p>3</p>
+  <p>4</p>
+  <p>5</p>
+  <script>
+    var oPs = document.getElementsByTagName('p');
+    //方法一
+    /*
+    for (var i = 0; i < oPs.length; i++) {
+      oPs[i].index = i;
+      oPs[i].onclick = function() {
+        for (var j = 0; j < oPs.length; j++) {
+          if (j === this.index) {
+            this.className = 'light';
+          } else {
+            oPs[j].className = '';
+          }
+        }
+      }
+    }
+    */
+
+    //排他模型
+    for (var i = 0; i < oPs.length; i++) {
+      oPs[i].onclick = function() {
+        for (var j = 0; j < oPs.length; j++) {
+          oPs[j].className = '';
+        }
+        this.className = 'light';
+      }
+    }
+
+  </script>
+</body>
+</html>

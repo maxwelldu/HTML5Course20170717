@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		img{
+			position: absolute;
+			top: 150px;
+			left: 150px;
+		}
+
+	</style>
+	<body>
+		<table>
+			<tr>
+				<td><button>上左</button></td>
+				<td><button>上</button></td>
+				<td><button>上右</button></td>
+			</tr>
+			<tr>
+				<td><button>左</button></td>
+				<td></td>
+				<td><button>右</button></td>
+			</tr>
+			<tr>
+				<td><button>下左</button></td>
+				<td><button>下</button></td>
+				<td><button>下右</button></td>
+			</tr>
+		</table>
+
+
+
+
+
+
+
+
+		<img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2160288628,2636772625&fm=175&s=D52D98543E633480019B2D9703009098&w=500&h=282&img.JPEG">
+	</body>
+
+	<script>
+//		动态加载多个js,js 文件路径写在数组中
+//			var button=document.createElement('button');
+//			button.onclick=function(){
+//				var Script=document.createElement('script');
+//				var script={daingong.js,day1.js}
+//				for(i=0,i<script.length<2,i++){
+//					Script.src="Script.src[i]";
+//					document.body.appendChild(Script);
+//				}
+//			}
+//			八个方向移动元素
+		var img=document.getElementsByTagName('img')[0];
+//		var left=document.getElementsByTagName('button')[0];
+//		var right= document.getElementsByTagName('button')[1];
+//		var top=document.getElementsByTagName('button')[2];
+//		var Under =document.getElementsByTagName('button')[3];
+//		var	righttop=document.getElementsByTagName('button')[4];
+//		var	rightUnder=document.getElementsByTagName('button')[5];
+//		var leftUnder=document.getElementsByTagName('button')[6];
+//		var lefttop=document.getElementsByTagName('button')[7];
+//
+//		var left=document.getElementsByClassName('button');
+		var lefttop=document.getElementsByTagName('button');
+		var left=0;
+		var nowTop=0;
+		lefttop[0].onclick=function(){
+			left-=20;
+			move();
+		}
+		lefttop[1].onclick=function(){
+			left+=20;
+			move();
+		}
+		lefttop[2].onclick=function(){
+			nowTop-=20;
+			mover();
+		}
+		lefttop[3].onclick=function(){
+			nowTop+=20;
+			mover();
+		}
+		lefttop[4].onclick=function(){
+			left+=20;
+			nowTop+=20;
+			move();
+			mover();
+		}
+		lefttop[5].onclick=function(){
+			left-=20;
+			nowTop-=20;
+			move();
+			mover();
+		}
+		lefttop[6].onclick=function(){
+			left+=20;
+			nowTop+=20;
+			move();
+			mover();
+		}
+		lefttop[7].onclick=function(){
+			left-=20;
+			nowTop-=20;
+			mover();
+			move();
+		}
+		function mover(){
+			img.style.top= nowTop+"px";
+		}
+		function move(){
+			img.style.left=left+"px";
+		}
+
+	</script>
+</html>

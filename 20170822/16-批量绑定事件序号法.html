@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <p>1</p>
+  <p>2</p>
+  <p>3</p>
+  <p>4</p>
+  <p>5</p>
+  <p>6</p>
+  <script>
+    var oPs = document.getElementsByTagName('p');
+    for (var i = 0; i < oPs.length; i++) {
+      //给oPs[i] 设置一个属性
+      oPs[i].index = i;
+      oPs[i].onclick = function() {
+        //this表示当前的元素
+        //读取当前元素的index属性值
+        console.log('我是第' + this.index + '个元素');
+      }
+    }
+  </script>
+</body>
+</html>

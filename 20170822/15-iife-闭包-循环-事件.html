@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="button">
+  <script>
+      // 晕的要命 完全不懂
+      //IIFE 闭包  循环 事件
+
+      //这就是一个IIFE，立即执行函数，自执行函数
+      var age = 20;
+      (function(){
+        var age = 10;
+        console.log(age);//10
+      })();
+
+      (function(newage){
+        console.log(newage);//20
+      })(age);
+
+      //闭包
+      var f;
+      //函数是一个闭包
+      function fun() {
+        //age = 15在fun闭包里面
+        var age = 15;
+        //f 也是在fun这个闭包里面
+        f = function() {
+          //当前函数里面没有age值，找上一级fun闭包
+          console.log(age);
+        }
+      }
+      fun();
+      f();
+
+      var oBtn = document.getElementsByTagName('input')[0];
+      (function(){
+        var j = 1;
+        oBtn.onclick = function(){
+          console.log(j);
+        }
+      })();
+
+      var i = 2;
+      (function(j){
+        oBtn.onclick = function(){
+          console.log(j);
+        }
+      })(i);
+
+  </script>
+</body>
+</html>

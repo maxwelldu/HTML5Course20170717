@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="button" value='上一张'>
+  <img src="" alt="">
+  <input type="button" value='下一张'>
+  <script>
+    var imgs = [
+      'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=867763555,3368538948&fm=200&gp=0.jpg',
+      'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3227881778,1024920219&fm=200&gp=0.jpg',
+      'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=401698397,2488925180&fm=200&gp=0.jpg',
+      'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1297268239,2246224922&fm=200&gp=0.jpg'
+    ];
+    var oImg = document.getElementsByTagName('img')[0];
+    //设置设置第一张图片
+    oImg.src = imgs[0];
+    //信号量
+    var index = 0;
+    //得到左按钮
+    var oLeftBtn = document.getElementsByTagName('input')[0];
+    //得到右按钮
+    var oRightBtn = document.getElementsByTagName('input')[1];
+    //绑定左边按钮的事件
+    oLeftBtn.onclick = function() {
+      //改变信号量
+      // if (index <= 0) {
+      //   index = imgs.length - 1;
+      // } else {
+      //   index--;
+      // }
+      index--;
+      //超过边界值则修正一下即可
+      if (index < 0) {
+        index = imgs.length-1;
+      }
+      //执行业务
+      changePic();
+    }
+    //绑定右边按钮的事件
+    oRightBtn.onclick = function() {
+      //改变信号量
+      index++;
+      if (index > imgs.length-1) {
+        index = 0;
+      }
+      //执行业务
+      changePic();
+    }
+    //业务逻辑方法
+    function changePic() {
+      oImg.src = imgs[index];
+    }
+
+
+  </script>
+</body>
+</html>

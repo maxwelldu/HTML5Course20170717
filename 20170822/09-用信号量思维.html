@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #box {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <input type="button" value="左" id="btn1">
+  <input type="button" value="左" id="btn2">
+  <div id="box" style="left: 100px"></div>
+
+  <script>
+    var oBtn1 = document.getElementById('btn1');
+    var oBtn2 = document.getElementById('btn2');
+    var oBox = document.getElementById('box');
+
+    //信号量：这个值的初始值，根据实际情况来决定
+    var left = 100;
+    oBtn1.onclick = function () {
+      left -= 10;
+      move();
+    }
+    oBtn2.onclick = function () {
+      left += 10;
+      move();
+    }
+    function move() {
+      oBox.style.left = left + 'px';
+    }
+  </script>
+</body>
+</html>
