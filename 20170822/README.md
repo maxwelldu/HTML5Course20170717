@@ -1,3 +1,23 @@
+代码提交：
+
+git status
+cd ..
+ls
+git status
+git diff
+git add 20170822/
+git status
+git add .
+git status
+git commit -am '20170822'
+git status
+git push origin master
+git remote
+history
+
+拉取今天的代码
+git pull
+
 作业：
 1.
 frameset  过时的技术，通常用作网站后台的布局
