@@ -1,6 +1,7 @@
 # HTML5Course20170717
 
 ##20170821
+```
 //获取元素
 document.getElementById()  //一个DOM对象
 DOM对象.getElementById()  
@@ -64,7 +65,9 @@ URL地址包括：http://www.baidu.com:80/news/index.php?username=a#fa
 //技巧
 state = !state //通常用来做toggle效果，或者开关
 class设置样式，id属性用来给js使用
+```
 
+```
 //git是一个版本控制工具：针对修改(变化)的版本控制工具，历史管理，最主要的功能是备份和团队协作
 下载git工具，到这个网址下载对应的版本 https://git-scm.com/downloads
 //命令行操作(最主要的是心态，第一你能够意识当前学的这个东西非常有用，或者能提升效率；第二个你就会拼命的去把他学好;意味着你能够节省很多的时间，enjoy your life!) https://guoyongfeng.github.io/book/21/21/04-shell%20%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8.html
@@ -96,6 +99,7 @@ touch a.js b.css index.html .gitignore
 操作的时候一定要特别的小心谨慎，知道自己的命令会发生什么事；误操作有可能会把系统整崩，有可能删除数据库
 通常编程中的目录和文件名最好全部是英文名，并且是小写
 安装软件，有时候装到中文名的目录，也会发生问题
+```
 
 ```
 1.cd 目录切换
@@ -185,6 +189,7 @@ $ grep string filename
 $ grep -rn '====' a.js
 ```
 
+```
 vim: 链接: http://pan.baidu.com/s/1hr2W8RE 密码: qay8
 vim 05-vim.html
 ESC 在不同模式之间切换
@@ -209,6 +214,8 @@ w e b 单词之间跳转
 字符选择，按v
 复制 y 复制一行yy 复制10行 10yy  复制当前光标到末尾 y$ 复制当前光标到文件末尾yG
 粘贴 p
+```
+
 ```
 命令状态：
 
@@ -242,6 +249,7 @@ ex命令状态
 ：wq! 存盘退出
 ```
 
+```
 github
 程序员的社交网站 没有妹子，只有代码  开源项目的集中地
 注册一个github帐号，需要在邮箱中进行验证
@@ -263,7 +271,11 @@ git commit -m '描述'
 git push origin master
 
 正负性的值 http://www.cnblogs.com/snandy/p/3589517.html
+```
+
+
 IIFE
+
 ```
 // 最常用的两种写法
 (function(){ /* code */ }()); // 老道推荐写法
