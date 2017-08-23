@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <form action="">
+    <p><label>姓名：<input type="text" placeholder="请输入姓名"></label></p>
+    <p><label>年龄：<input type="text" placeholder="请输入年龄"></label></p>
+    <p><label>手机号：<input type="text" placeholder="请输入手机号"></label></p>
+    <p><label>邮箱：<input type="text" placeholder="请输入邮箱"></label></p>
+    <p>
+      <input type="submit">
+    </p>
+  </form>
+  <script>
+    var oForm = document.getElementsByTagName('form')[0];
+    var oName = document.getElementsByTagName('input')[0];
+    var oAge = document.getElementsByTagName('input')[1];
+    var oMobile = document.getElementsByTagName('input')[2];
+    var oEmail = document.getElementsByTagName('input')[3];
+    oForm.onsubmit = function(){
+      //各种验证
+      if (!/^[\u4e00-\u9fa5]{2,4}$/.test(oName.value)) {
+        alert('错误的姓名');
+        return false;
+      }
+      if (!/^\d{1,3}$/.test(oAge.value)) {
+        alert('年龄错误');
+        return false;
+      }
+      if (parseInt(oAge.value) < 10 || parseInt(oAge.value) > 104) {
+        alert('年龄不在范围');
+        return false;
+      }
+      if (!/^1[3578]\d{9}$/.test(oMobile.value)) {
+        alert('手机号不合法');
+        return false;
+      }
+      if (!/^\w+@\w+\.\w+$/.test(oEmail.value)) {
+        alert('不合法的邮箱');
+        return false;
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>

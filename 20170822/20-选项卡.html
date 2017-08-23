@@ -10,15 +10,16 @@
       margin: 0;
       padding: 0;
     }
+    /*需要使用reset.css去重置*/
     .tab {
       margin: 100px auto;
       width: 310px;
       border-top: 2px solid #206F96;
     }
-    .tab .hd {
+    .tab > .hd {
       overflow: hidden;
     }
-    .tab .hd span {
+    .tab > .hd > span {
       float: left;
       width: 102px;
       line-height: 29px;
@@ -28,31 +29,31 @@
       text-align: center;
       font-size: 14px;
     }
-    .tab .hd span.last {
+    .tab > .hd > span.last {
       border-right: 1px solid #CFCFCF;
     }
-    .tab .hd span.current {
+    .tab > .hd > span.current {
       border-bottom-color: white;
       font-weight: bold;
       background-color: white;
     }
-    .tab .hd span a {
+    .tab > .hd > span > a {
       color: #252525;
       text-decoration: none;
     }
-    .tab .hd span a:hover {
+    .tab > .hd > span > a:hover {
       color: #a00;
       text-decoration: underline;
     }
-    .tab .bd {
+    .tab > .bd {
       padding-top: 15px;
       pdading-left: 8px;
       overflow: hidden;
     }
-    .tab .bd div {
+    .tab > .bd > div {
       display: none;
     }
-    .tab .bd div.current {
+    .tab > .bd > div.current {
       display: block;
     }
   </style>
@@ -60,12 +61,14 @@
 <body>
   <div class="tab">
     <div class="hd" id="tab_hd">
-      <span class="current"> <a href="">新闻</a> </span>
+      <span class="current"> <a href=""><span>&gt;></span>新闻</a> </span>
       <span> <a href="">图片</a> </span>
       <span class="last"> <a href="">军事</a> </span>
     </div>
     <div class="bd" id="tab_bd">
-      <div class="current"> 123 </div>
+      <div class="current"> 123
+        <div>456</div>
+      </div>
       <div> <img width="100" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1503312348044&di=4f129e77d8567f68fcb98f2621f90a80&imgtype=0&src=http%3A%2F%2Fupload-images.jianshu.io%2Fupload_images%2F4209319-f797a13bf56106bf.jpg%3FimageMogr2%2Fauto-orient%2Fstrip%257CimageView2%2F2%2Fw%2F1240"/> </div>
       <div> <h1>abc</h1> </div>
     </div>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .carousel {
+      width: 780px;
+      height: 350px;
+      margin: 50px auto;
+      position: relative;
+      overflow: hidden;
+    }
+    .carousel ul {
+      list-style: none;
+    }
+    .carousel ul li {
+      display: none;
+    }
+    .carousel ul li.current {
+      display: block;
+    }
+    .carousel span {
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      top: 130px;
+      cursor: pointer;
+    }
+    .carousel .leftBtn {
+      left: 10px;
+    }
+    .carousel .rightBtn {
+      right: 10px;
+    }
+    .carousel .circles {
+      position: absolute;
+      bottom: 0px;
+      width: 200px;
+      height: 17px;
+      left: 50%;
+      margin-left: -100px;
+    }
+    .carousel .circles ol {
+      list-style: none;
+    }
+    .carousel .circles ol li {
+      float: left;
+      width: 17px;
+      height: 17px;
+      margin-right: 13px;
+      background-color: gold;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .carousel .circles ol li.current {
+      background-color: purple;
+    }
+  </style>
+</head>
+<body>
+  <div class="carousel">
+    <div class="imagesList" id="imagesList">
+      <ul>
+        <li class="current"> <a href=""> <img src="images/0.jpg" alt=""> </a> </li>
+        <li> <a href=""> <img src="images/1.jpg" alt=""> </a> </li>
+        <li> <a href=""> <img src="images/2.jpg" alt=""> </a> </li>
+        <li> <a href=""> <img src="images/3.jpg" alt=""> </a> </li>
+        <li> <a href=""> <img src="images/4.jpg" alt=""> </a> </li>
+      </ul>
+    </div>
+    <div class="btns">
+      <span class="leftBtn" id="carousel_leftBtn">左</span>
+      <span class="rightBtn" id="carousel_rightBtn">右</span>
+    </div>
+    <div class="circles" id="circles">
+      <ol>
+        <li class="current"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ol>
+    </div>
+  </div>
+  <script>
+    //信号量，表示当前播放到第几张图片
+    var index = 0;
+    var oRightBtn = document.getElementById('carousel_rightBtn');
+    var oLeftBtn = document.getElementById('carousel_leftBtn');
+    var oImagesLists = document.getElementById('imagesList').getElementsByTagName('li');
+    var oCirclesLists = document.getElementById('circles').getElementsByTagName('li');
+    oRightBtn.onclick = function(){
+      index++;
+      if (index >= oImagesLists.length) {
+        index = 0;
+      }
+      move();
+    }
+    oLeftBtn.onclick = function(){
+      index--;
+      if (index < 0) {
+        index = oImagesLists.length-1;
+      }
+      move();
+    }
+    for (var i = 0; i < oCirclesLists.length; i++) {
+      (function(i){
+        oCirclesLists[i].onmouseover = function() {
+          index = i;
+          move();
+        }
+      })(i);
+    }
+    function move() {
+      for (var i = 0; i < oImagesLists.length; i++) {
+        oImagesLists[i].className = '';
+      }
+      oImagesLists[index].className = 'current';
+
+      for (var i = 0; i < oCirclesLists.length; i++) {
+        oCirclesLists[i].className = '';
+      }
+      oCirclesLists[index].className = 'current';
+    }
+  </script>
+</body>
+</html>

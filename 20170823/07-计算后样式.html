@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      width: 200px;
+      height: 200px;
+      background: black;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <script>
+    var oDiv = document.getElementsByTagName('div')[0];
+    // alert(getComputedStyle(oDiv).fontSize);
+    // //引号里面的不是驼峰
+    // alert(getComputedStyle(oDiv).getPropertyValue('font-size'));
+    // //可以不写getPropertyValue, 写方括号
+    // alert(getComputedStyle(oDiv)['padding-left']);
+    //
+    // //所谓计算后样式，就是不一定显式的在CSS里面罗列
+    // alert(getComputedStyle(oDiv)['margin-left']);
+
+    //上面写的IE6,7,8全部视为错误
+    alert(oDiv.currentStyle.width);
+    alert(oDiv.currentStyle.height);
+    alert(oDiv.currentStyle.paddingTop);
+    alert(oDiv.currentStyle['paddingTop']);
+  </script>
+</body>
+</html>

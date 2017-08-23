@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var str = 'a   b    c';
+    console.log(str.split(''));
+    console.log(str.split(/\s+/));
+
+    var str = 'bbaacaaaadddaeeeeeaaf';
+    console.log(str.split(/a+/));
+
+    var str = 'abcde';
+    console.log(str.indexOf('cd'));
+    console.log(str.search('cd'));
+    console.log(str.search(/cd/));
+    //search方法就是可以使用正则的indexOf方法
+
+    var str = 'abbccccbbbbbddbbbdabbbsbb';
+    //用正则匹配目标字符串, 返回匹配的结果
+    console.log(str.match(/b+/g));
+    console.log(str.match('bb'));
+
+    var str = 'maxwell';
+    // console.log(str.replace('maxwell', 'max'));
+    // console.log(str.replace(/maxwell/, 'max'))
+    console.log(str.replace(/maxwell/, function() {
+      return 'max';
+    }));
+
+    var property = 'borderTopWidth';//border-top-width
+    console.log(property.replace(/[A-Z]/g, function(match){
+      // console.log(arguments);
+      return '-' + match.toLowerCase();
+    }));
+
+    var property = 'border-top-width';//borderTopWidth
+    console.log(property.replace(/-([a-z])/g, function(match, $1){
+      // console.log(arguments);
+      return $1.toUpperCase();
+    }));
+
+    
+
+
+  </script>
+</body>
+</html>

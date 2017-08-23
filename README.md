@@ -41,7 +41,7 @@ DOM对象.on事件名 = function() {
 }
 //取消绑定事件
 DOM对象.on事件名 = null;
-常用事件名 click, mouseover, mouseout, focus, blur, load
+常用事件名 click, mouseover, mouseout, focus, blur, load, submit, invalid
 load事件是指当前页面结构加载完成，并且里面的所有资源都加载完成
 //变量
 全局变量其实就是把当前变量名放到window当中的一个属性
@@ -298,3 +298,83 @@ true && function(){ /* code */ }();
 new function(){ /* code */ }
 new function(){ /* code */ }() // 带参数
 ```
+
+##20170822
+onload事件在window对象，还有图片对象，音视频
+vim 中写代码，按大小写的aio都可以进入插入模式
+按ESC，然后输入  :wq!  保存并强制退出
+ZZ 也保存退出
+:w 保存
+:q 退出
+
+reset.css
+```
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+```
+
+实体字符：
+&nbsp; 空格
+&gt;   >
+&lt;   <
+&copy; 版权号
+&reg;  
+&quot; "
+&amp;  &
+
+##组件化思想
+将一个小组件的css写好之后放到一个css文件
+组件对应的js放到一个js文件中
+在需要使用的页面将css和js引入；写上对应的html结构就搞定了
+
+##伪代码|画图
+假的代码，能够指导你的开发思想
+可以用中文加上你会写的代码，描述性的
+好处：让你从没思路到有思路
+如果伪代码也写不出来，在图纸上多画一画, 光去想想不出来的时候写出来画出来，慢慢思路就有了

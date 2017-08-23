@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .has-error {
+      display: block;
+    }
+    span {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <form action="">
+    密码：<input type="password" placeholder="请输入密码" id="password">
+    <span id="error-message" class="">密码长度为6-18位</span>
+  </form>
+  <script>
+    var oPassword = document.getElementById('password');
+    var oErrorMessage = document.getElementById('error-message');
+    var reg = /^\w{6,18}$/;
+    oPassword.onblur = function(){
+      var password = this.value;
+      if (reg.test(password)) {
+        oErrorMessage.className = '';
+      } else {
+        oErrorMessage.className = 'has-error';
+      }
+    }
+  </script>
+</body>
+</html>

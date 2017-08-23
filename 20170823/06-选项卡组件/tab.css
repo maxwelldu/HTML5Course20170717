@@ -1,0 +1,45 @@
+.tab {
+  margin: 0 auto;
+  width: 310px;
+  border-top: 2px solid #206F96;
+}
+.tab > .hd {
+  overflow: hidden;
+}
+.tab > .hd > span {
+  float: left;
+  width: 102px;
+  line-height: 29px;
+  border-left: 1px solid #CFCFCF;
+  border-bottom: 1px solid #CFCFCF;
+  background-color: #EFEFEF;
+  text-align: center;
+  font-size: 14px;
+}
+.tab > .hd > span.last {
+  border-right: 1px solid #CFCFCF;
+}
+.tab > .hd > span.current {
+  border-bottom-color: white;
+  font-weight: bold;
+  background-color: white;
+}
+.tab > .hd > span > a {
+  color: #252525;
+  text-decoration: none;
+}
+.tab > .hd > span > a:hover {
+  color: #a00;
+  text-decoration: underline;
+}
+.tab > .bd {
+  padding-top: 15px;
+  pdading-left: 8px;
+  overflow: hidden;
+}
+.tab > .bd > div {
+  display: none;
+}
+.tab > .bd > div.current {
+  display: block;
+}

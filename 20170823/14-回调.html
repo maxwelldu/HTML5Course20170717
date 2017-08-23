@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //回调函数
+    function f(fun) {
+      console.log(1);
+      console.log(2);
+      console.log(3);
+      fun();
+    }
+    f(function(){
+      console.log('这是回调函数');
+    });
+
+    //两个回调函数加上参数的情况
+    function f1(succ, fail) {
+      var num = Math.random();
+      if (num > 0.5) {
+        succ('你赢了', num);
+      } else {
+        fail('你输了', num);
+      }
+    }
+    f1(function(msg, num){
+      console.log(msg, num);
+    }, function(msg, num){
+      console.log(msg, num);
+    });
+
+
+  </script>
+</body>
+</html>

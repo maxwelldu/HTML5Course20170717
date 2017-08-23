@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var str = "marginTop"; // margin-top
+    var str = "paddingRight"; // margin-top
+    // console.log(str.replace('T', '-t'));
+    var str = str.replace(/[A-Z]/g, function(match){
+      console.log(arguments);
+      return '-' + match.toLowerCase();
+    });
+    console.log(str);
+    //下午讲正则，回调函数，然后再回过头来看这个示例
+  </script>
+</body>
+</html>
