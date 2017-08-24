@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <img src="http://timgsa.baidu.com/timg?image&quality=80&size=b10000_10000&sec=1504169849&di=733101f6e319d901d726229b520bb62f&imgtype=jpg&src=http%3A%2F%2Fimg6.bdstatic.com%2Fimg%2Fimage%2Fxiaolu%2Fchenmomo.jpg" alt="">
+  <img src="http://timgsa.baidu.com/timg?image&quality=80&size=b10000_10000&sec=1504169849&di=733101f6e319d901d726229b520bb62f&imgtype=jpg&src=http%3A%2F%2Fimg6.bdstatic.com%2Fimg%2Fimage%2Fxiaolu%2Fchenmomo.jpg" alt="">
+  <script>
+    //可以得到图片的数量
+    //知道图片加载完成之后会调用onload事件
+    //如何判断图片加载完成了？
+    var oImgs = document.getElementsByTagName('img');
+    var count = 0;
+    for (var i = 0; i < oImgs.length; i++) {
+      oImgs[i].onload = function(){
+        count++;
+        if (count >= oImgs.length) {
+          alert('图片加载完成');
+        }
+      }
+    }
+  </script>
+</body>
+</html>

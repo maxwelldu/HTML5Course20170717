@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    img {
+      width: 250px;
+      height: 250px;
+    }
+    .i1 {
+      filter: xray;
+    }
+    .i2 {
+      filter:  wave(Add="0", Phase="4", Freq="5", LightStrength="5", Strength="2")
+    }
+    .i3 {
+      filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#B5CCFA', EndColorStr='#B5CCFA');
+    }
+    .i4 {
+      filter:Shadow (Color="#6699CC", Direction="135")
+    }
+    .i5 {
+      filter:Mask (Color="#FFFFE0")
+    }
+    .i6 {
+      filter: Invert;
+    }
+    .i7 {
+      filter: FlipV;
+    }
+    .i8 {
+      filter: FlipH;
+    }
+  </style>
+</head>
+<body>
+  <img src="images/1.jpg" alt="">
+  <img class="i1" src="images/1.jpg" alt="">
+  <img class="i2" src="images/1.jpg" alt="">
+  <img class="i3" src="images/1.jpg" alt="">
+  <img class="i4" src="images/1.jpg" alt="">
+  <img class="i5" src="images/1.jpg" alt="">
+  <img class="i6" src="images/1.jpg" alt="">
+  <img class="i7" src="images/1.jpg" alt="">
+  <img class="i8" src="images/1.jpg" alt="">
+</body>
+</html>

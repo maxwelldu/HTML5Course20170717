@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      padding: 10px 20px 30px;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <script>
+    // getComputedStyle
+    var oDiv = document.getElementsByTagName('div')[0];
+    alert(fetchComputedStyle(oDiv, 'padding-top'));
+    alert(fetchComputedStyle(oDiv, 'paddingLeft'));
+    function fetchComputedStyle(obj, property) {
+      if (window.getComputedStyle) {
+        // paddingLeft 需要转换成padding-left
+        property = property.replace(/[A-Z]/g, function(match){
+          return '-' + match.toLowerCase();
+        });
+        // return widow.getComputedStyle(obj).property; //表示属性名就叫property
+        return window.getComputedStyle(obj)[property]; //中括号里面可以是变量
+      } else {
+        //padding-top -> paddingTop
+        property = property.replace(/-([a-z])/g, function(match, $1){
+          return $1.toUpperCase();
+        });
+        return obj.currentStyle[property];
+      }
+    }
+  </script>
+</body>
+</html>

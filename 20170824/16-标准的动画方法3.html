@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      left: 0px;
+      top: 0px;
+      background: orange;
+    }
+    .d2 {
+      top: 150px;
+    }
+    .d3 {
+      top: 300px;
+    }
+    .d4 {
+      left: 450px;
+    }
+    .d5 {
+      left: 600px;
+    }
+  </style>
+</head>
+<body>
+  <div class="d1"></div>
+  <div class="d2"></div>
+  <div class="d3"></div>
+  <div class="d4"></div>
+  <div class="d5">div</div>
+  <script>
+    var oDiv1 = document.querySelectorAll('div')[0];
+    var oDiv2 = document.querySelectorAll('div')[1];
+    var oDiv3 = document.querySelectorAll('div')[2];
+    var oDiv4 = document.querySelectorAll('div')[3];
+    var oDiv5 = document.querySelectorAll('div')[4];
+
+    animate(oDiv1, 'top', 5000, 400);
+    animate(oDiv2, 'left', 4000, 400);
+    animate(oDiv3, 'width', 3000, 400);
+    animate(oDiv4, 'height', 2000, 400);
+    animate(oDiv5, 'fontSize', 1000, 98);
+    function animate(obj, property, time, distance) {
+      //动画总时长
+      var time = time || 1000;
+      //每帧动画运动的时长，帧频
+      var interval = 20;
+      //总帧数
+      var frames = time / interval;//150
+      //总距离
+      var distance = distance || 450;
+      //步长
+      var step = distance / frames; //3
+      //信号量：当前是第几帧
+      var frame = 0;
+      //信号量：起始位置
+      var nowLeft = parseInt(getComputedStyle(obj)[property]);
+      //开启一个定时器
+      var timer = setInterval(function(){
+        //改变帧数信号量
+        frame++;
+        obj.style[property]= nowLeft + (step * frame) + 'px';
+        if (frame >= frames) {
+          clearInterval(timer);
+        }
+      }, interval);
+    }
+  </script>
+</body>
+</html>

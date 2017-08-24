@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var kaiyu = {
+      name: '凯玉',
+      age: 19,
+      sex: '男',
+      cart: [
+        {
+          name: '牙膏',
+          price: 10,
+          number: 1
+        },
+        {
+          name: '黄瓜',
+          price: 10,
+          number: 3
+        }
+      ]
+    }
+    console.log(kaiyu);
+    function addGoods(obj) {
+      kaiyu.cart.push(obj);
+    }
+    addGoods({
+      name: '香蕉',
+      price: 10,
+      number: 1
+    });
+    console.log(kaiyu);
+    delete kaiyu.sex; //删除kaiyu对象的sex属性
+    console.log(kaiyu);
+
+    //遍历
+    for (var k in kaiyu) {
+      console.log(k + '的值是：' + kaiyu[k]);
+    }
+  </script>
+</body>
+</html>

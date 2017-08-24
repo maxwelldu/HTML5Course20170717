@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      position: absolute;
+      top: 100px;
+      left: 100px;
+      width: 100px;
+      height: 100px;
+      background-color: orange;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <button name="start">开始</button>
+  <button name="stop">结束</button>
+  <script>
+    var oDiv = document.querySelector('div');
+    var oStart = document.querySelector('button[name=start]');
+    var oStop = document.querySelector('button[name=stop]');
+    var nowLeft = oDiv.offsetLeft;
+    var timer;
+
+    oStart.onclick = function(){
+      //设表先关
+      //关闭一个定时器
+      clearInterval(timer);
+      //开启一个定时器
+      timer = setInterval(function(){
+        nowLeft += 2;
+        oDiv.style.left = nowLeft + 'px';
+      }, 20);
+    }
+    oStop.onclick = function() {
+      clearInterval(timer);
+    }
+  </script>
+</body>
+</html>

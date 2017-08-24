@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    ul,li {
+      list-style: none;
+    }
+    .rolling {
+      width: 800px;
+      height: 130px;
+      border: 10px solid #ccc;
+      margin: 100px auto;
+      position: relative;
+      overflow: hidden;
+    }
+    .rolling .m_unit {
+      /*//这是运动的单元*/
+      position: absolute;
+      width: 5000px;
+      top: 0;
+      left: 0;
+    }
+    .rolling ul li {
+      float: left;
+      margin-right: 10px;
+    }
+    .rolling ul li img {
+      height: 130px;
+    }
+  </style>
+</head>
+<body>
+  <div class="rolling" id="rolling">
+    <div class="m_unit" id="m_unit">
+      <ul>
+        <li><a href=""><img src="images/0.jpg" alt=""></a></li>
+        <li><a href=""><img src="images/1.jpg" alt=""></a></li>
+        <li><a href=""><img src="images/2.jpg" alt=""></a></li>
+        <li><a href=""><img src="images/3.jpg" alt=""></a></li>
+        <li><a href=""><img src="images/4.jpg" alt=""></a></li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    var oRolling = document.getElementById('rolling');
+    var oMUnit = document.getElementById('m_unit');
+    var oListUl = document.getElementsByTagName('ul')[0];
+    var listlength = oListUl.getElementsByTagName('li').length;
+
+    oListUl.innerHTML += oListUl.innerHTML;
+
+    var nowLeft = 0;
+    var timer;
+    move();
+
+    oRolling.onmouseover = function() {
+      clearInterval(timer);
+    }
+    oRolling.onmouseout = function(){
+      move();
+    }
+
+    function move() {
+      clearInterval(timer);
+      timer = setInterval(function(){
+        nowLeft -= 3;
+        if (nowLeft < -317 * listlength) {
+          nowLeft = 0;
+        }
+        oMUnit.style.left = nowLeft + 'px';
+      }, 20);
+    }
+
+  </script>
+
+  <!-- <marquee>凯玉同学在干嘛<img src="http://assets.jq22.com/plugin/pc-76003a60-7633-11e4-bbf2-00163e001348.png" alt=""> <img src="http://assets.jq22.com/plugin/pc-76003a60-7633-11e4-bbf2-00163e001348.png" alt=""></marquee>
+  http://www.jq22.com/yanshi1077 效果参考 -->
+
+</body>
+</html>

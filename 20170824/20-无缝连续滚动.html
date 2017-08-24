@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    ul,li {
+      list-style: none;
+    }
+    .rolling {
+      width: 800px;
+      height: 130px;
+      border: 10px solid #ccc;
+      margin: 100px auto;
+      position: relative;
+      overflow: hidden;
+    }
+    .rolling .m_unit {
+      /*//这是运动的单元*/
+      position: absolute;
+      width: 5000px;
+      top: 0;
+      left: 0;
+    }
+    .rolling ul li {
+      float: left;
+      margin-right: 10px;
+    }
+    .rolling ul li img {
+      height: 130px;
+    }
+  </style>
+</head>
+<body>
+  <div class="rolling" id="rolling">
+    <div class="m_unit" id="m_unit">
+      <ul>
+        <li><a href=""><img src="images/shuzi/0.png" alt=""></a></li>
+        <li><a href=""><img src="images/shuzi/1.png" alt=""></a></li>
+        <li><a href=""><img src="images/shuzi/pangzi.png" alt=""></a></li>
+        <li><a href=""><img src="images/shuzi/pangzi.png" alt=""></a></li>
+        <li><a href=""><img src="images/shuzi/pangzi.png" alt=""></a></li>
+        <li><a href=""><img src="images/shuzi/2.png" alt=""></a></li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    var oRolling = document.getElementById('rolling');
+    var oMUnit = document.getElementById('m_unit');
+    var oListUl = document.getElementsByTagName('ul')[0];
+    var oImgs = oListUl.getElementsByTagName('img');
+    var oLis = oListUl.getElementsByTagName('li');
+    var listlength = oLis.length;
+
+    //折返点
+    var retracingPoint;
+    var count = 0;
+
+    oListUl.innerHTML += oListUl.innerHTML;
+    //现在要计算折返点，但是每个li的宽度不一样，所以现在第二个火车头的开头元素的offsetLeft就是折返点。这个元素是oLis[listlength], 我们知道offset的一些值，需要等图片加载完成之后才有，如果要读取offsetLeft值必须保证图片加载完成
+    for (var i = 0; i < oImgs.length; i++) {
+      oImgs[i].onload = function() {
+        count++;
+        if (count >= oImgs.length) {
+          //所有图片加载完成这个时候可以得到offsetLeft的值
+          retracingPoint = oLis[listlength].offsetLeft;
+          //图片加载完成，再开始运动
+          move();
+        }
+      }
+    }
+
+    var nowLeft = 0;
+    var timer;
+
+    oRolling.onmouseover = function() {
+      clearInterval(timer);
+    }
+    oRolling.onmouseout = function(){
+      move();
+    }
+
+    function move() {
+      clearInterval(timer);
+      timer = setInterval(function(){
+        nowLeft -= 3;
+        if (nowLeft < -retracingPoint) {
+          nowLeft = 0;
+        }
+        oMUnit.style.left = nowLeft + 'px';
+      }, 20);
+    }
+
+  </script>
+
+  <!-- <marquee>凯玉同学在干嘛<img src="http://assets.jq22.com/plugin/pc-76003a60-7633-11e4-bbf2-00163e001348.png" alt=""> <img src="http://assets.jq22.com/plugin/pc-76003a60-7633-11e4-bbf2-00163e001348.png" alt=""></marquee>
+  http://www.jq22.com/yanshi1077 效果参考 -->
+
+</body>
+</html>

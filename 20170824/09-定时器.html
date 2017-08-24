@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1></h1>
+  <script>
+    //fps frame percent second
+    //flash
+    //gif
+    //漫画
+    //胶片电影
+
+    //BOM    Browser Object Model     window
+    //DOM    Document Object Model    document,html文档; window.document
+    //CSSOM  Cascading Style Sheet Object Model css对象表示法
+
+    var oH1 = document.querySelector('h1');
+    var i = 0;
+    //开启一个定时器
+    var timer = setInterval(function(){
+      var now = (new Date()).toLocaleString();
+      // console.log(now);
+      oH1.innerText = now;
+    }, 1000);
+
+    //1000毫秒
+    //定时器返回的就是当前窗口定时器的序号，表示第几个定时器
+    console.log(timer);
+    console.log(setInterval(function(){
+      console.log(i++);
+    }, 1000));
+    clearInterval(timer);
+    //定时器的时间没有设置时会发生什么
+    //如何清除页面上N多个不知道定时器ID的定时器
+    for (var i = 0; i < 9999; i++) {
+      clearInterval(i);
+    }
+
+
+
+  </script>
+</body>
+</html>

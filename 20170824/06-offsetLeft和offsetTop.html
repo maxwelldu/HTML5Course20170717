@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .box1 {
+      margin: 0 auto;
+      width: 500px;
+      height: 300px;
+      padding: 50px;
+      border: 10px solid red;
+    }
+    .box2 {
+      width: 380px;
+      height: 180px;
+      padding: 50px;
+      background-color: yellow;
+      border: 10px solid yellowgreen;
+      position: relative;
+    }
+    .box3 {
+      width: 260px;
+      height: 60px;
+      padding: 50px;
+      border: 10px solid green;
+    }
+    p {
+      width: 40px;
+      height: 40px;
+      background-color: gold;
+      border: 10px solid purple;
+      position: relative;
+    }
+  </style>
+</head>
+<body class="body">
+  <!-- div.box1>div.box2>div.box3>p -->
+  <div class="box1">box1
+    <div class="box2">box2
+      <div class="box3">box3
+        <p>p</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var oP = document.getElementsByTagName('p')[0];
+    alert(oP.offsetParent.className);
+    alert(oP.offsetLeft);
+    alert(oP.offsetTop);
+    //offsetLeft是自己左边相对于离自己最近的已经定位的元素的边框内部的距离；如果找不到定位元素则offsetParent是body
+
+  </script>
+</body>
+</html>

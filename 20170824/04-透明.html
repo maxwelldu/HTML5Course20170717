@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      width: 200px;
+      height: 200px;
+      background-color: black;
+      opacity: .2;
+      filter: alpha(opacity=20)
+    }
+    span {
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <span></span>
+  <script>
+    var oDiv = document.getElementsByTagName('div')[0];
+    if (window.getComputedStyle) {
+      alert(getComputedStyle(oDiv).opacity);
+    } else {
+      alert(oDiv.currentStyle.opacity);
+    }
+
+    var oSpan = document.getElementsByTagName('span')[0];
+    var opacity = 0.1;
+    oSpan.style.opacity = opacity;
+    oSpan.style.filter = "alpha(opacity=" + opacity*100 + ")"
+  </script>
+</body>
+</html>

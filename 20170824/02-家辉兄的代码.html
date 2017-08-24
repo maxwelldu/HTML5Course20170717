@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        i{
+            font-style: normal;
+        }
+        #registerForm{
+            margin: 50px;
+        }
+        #registerForm label>span {
+            display: inline-block;
+            width: 100px;
+            text-align: right;
+        }
+        #registerForm label>i.hidden {
+            display: none;
+        }
+        #registerForm label>i.show {
+            display: inline-block;
+        }
+        #registerForm div:last-child{
+            width: 100px;
+            margin-left: 105px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id="register">
+        <form id="registerForm" action="">
+            <div>
+                <label>
+                    <span>用户名：</span>
+                    <input type="text" placeholder="输入你的用户名" name="name">
+                    <i id="name" class="hidden">用户名必须以字母开头，6-12位，不能包含中文字符</i>
+                </label>
+            </div>
+            <div>
+                <label>
+                    <span>密码：</span>
+                    <input type="password" placeholder="输入你的密码" name="password">
+                    <i id="password" class="hidden">必须是6-12位，</i>
+                </label>
+            </div>
+            <div>
+                <label>
+                    <span>确认密码：</span>
+                    <input type="password" placeholder="输入你的密码" name="rePassword">
+                    <i id="rePassword" class="hidden">两次密码不一致</i>
+                </label>
+            </div>
+            <div>
+                <label>
+                    <input id="sub" type="submit" value="提交" disabled>
+                </label>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        var oInput = document.getElementsByTagName('input');     //注意这里将最后一个sub提交按钮也获取到了
+        var sub = document.getElementById('sub');
+
+        for (var i = 0, len = oInput.length; i < len; i++){
+            oInput[i].flag = false;
+            oInput[i].onblur = function () {
+                this.flag=check(this);
+                canClick(oInput,sub);
+            }
+        }
+
+        function check (obj) {
+            switch (obj.name
+
+) {
+                case "name" :
+                    var regName = /^[a-zA-Z](\w){5,11}$/;
+
+                    /*
+                      由于每个判断其实都是利用了reg.test这个方法,所以这里我可以写一个函数，
+                      将要判断的对象传进去，同时将相应的正则表达式也传进去
+                    */
+                    return checked(obj,regName);
+                case "password" :
+                    var regPass = /^\w{6,16}$/;
+                    return checked(obj,regPass);
+                case "rePassword" :
+                    var regPs = document.getElementsByName('password')[0].value;
+                    return checked(obj,regPs);
+                default : alert("没有这个输入框");
+            }
+        }
+
+        //判断输入的是否符合正则表达式的函数
+        function checked(obj,reg) {
+            var flag;
+            if (reg.test){    //由于rePassword和其他的判断方式是不同的所以这里应该使用if...else来判断
+                flag = reg.test(obj.value);
+            } else {
+                flag = reg === obj.value;
+            }
+
+            if (!flag) {
+                document.getElementById(obj.name
+
+).className = 'show';    //这里偷懒将name和Id的值定义的相同了
+            } else {
+                document.getElementById(obj.name
+
+).className = 'hidden';
+            }
+            return flag;
+        }
+
+        //控制按钮是否可以点击的函数
+        function canClick (obj,sub) {
+            var count = true;
+            for(var i = 0; i < obj.length - 1; i++){
+                if (!obj[i].flag) {
+                    count = false;
+                    break;
+                }
+            }
+
+            sub.disabled = count;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //JSON JavaScript Object Notation 对象表示法
+    var obj = {}
+    var o = [];
+
+    //数组是一系列值的集合
+    var o = [
+      '1',2,3
+    ]
+    //对象是一系列 键值对 的集合
+    var obj = {
+      name: '凯玉同学',
+      age: 19,
+      eat: function(){ console.log('凯玉吃蛋糕了'); },
+      gf: {
+        name: '李龙',
+        age: 26
+      }
+    }
+    console.log(obj.name);
+    console.log(obj['name']);
+    // console.log(obj[name]); 错误的写法，中括号中的变量，上面没定义
+    obj.eat();
+    console.log(obj.gf.name);
+    console.log(obj.gf['age']);
+
+    obj.gf.sex = "男";
+    console.log(obj);
+  </script>
+</body>
+</html>
