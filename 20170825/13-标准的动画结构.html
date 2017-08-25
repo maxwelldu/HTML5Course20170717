@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      left: 100px;
+      background: orange;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <script>
+    var oDiv = document.querySelector('div');
+
+    //动画总时长
+    var time = 3000;
+    //每帧动画运动的时长，帧频
+    var interval = 20;
+    //总帧数
+    var frames = time / interval;//150
+    //总距离
+    var distance = 450;
+    //步长
+    var step = distance / frames; //3
+    //信号量：当前是第几帧
+    var frame = 0;
+    //信号量：起始位置
+    var nowLeft = oDiv.offsetLeft;
+    //开启一个定时器
+    var timer = setInterval(function(){
+      //改变帧数信号量
+      frame++;
+      oDiv.style.left = nowLeft + (step * frame) + 'px';
+      if (frame >= frames) {
+        clearInterval(timer);
+      }
+    }, interval);
+  </script>
+</body>
+</html>

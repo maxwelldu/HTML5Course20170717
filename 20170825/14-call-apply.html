@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  div {
+    width: 200px;
+    height: 200px;
+    background-color: greenyellow;
+  }
+  </style>
+</head>
+<body>
+  <div></div>
+  <script>
+    var oDiv = document.querySelector('div');
+    oDiv.onclick = function() {
+      console.dir(this);
+    }
+
+    //=========================
+    function fun() {
+      console.log(this);
+    }
+    fun();
+    window.fun();
+
+    //=========================
+    function showInfo() {
+      console.log(this.name);
+    }
+    var obj = {
+      "name": "凯玉同学"
+    }
+    //这个call有两层含义：
+    // 1.调用showInfo这个函数
+    // 2.同时这个函数内部的this指向到call方法的第一个参数 obj
+    showInfo.call(obj);
+    showInfo.apply(obj);
+  </script>
+</body>
+</html>

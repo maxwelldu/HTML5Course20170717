@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background-color: yellowgreen;
+      top: 100px;
+      left: 100px;
+    }
+    span {
+      display: block;
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      top: 200px;
+      left: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <span></span>
+  <script src="animate.js" charset="utf-8"></script>
+  <script>
+    var oDiv = document.getElementsByTagName('div')[0];
+    var oSpan = document.querySelector('span');
+    move(oSpan);
+    move(oDiv);
+    function move(dom) {
+      animate(dom, {"left":600}, 300, function(){
+        //希望回调函数里面的this的值是我们第一个参数oDiv
+        console.log(this);
+        animate(this, {"top": 300}, 300, function(){
+          animate(this, {"left": 100}, 300, function(){
+            animate(this, {"top": 100}, 300, function(){
+              move(this);
+            })
+          })
+        })
+      });
+    }
+  </script>
+</body>
+</html>

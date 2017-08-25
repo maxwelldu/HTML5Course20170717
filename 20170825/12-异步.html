@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //同步
+    /*
+    console.log(1);
+    console.log(2);
+    console.log(3);
+    for (var i = 0; i < 10; i++) {
+      console.log(i);
+    }
+    console.log(20);
+    */
+
+    //异步, 后面还有ajax调用等都是异步执行
+    /*
+    console.log(1);
+    setInterval(function(){
+      console.log("*");
+    },1000); //浏览器有关于定时器的最小时间间隔，现代浏览器5-10毫秒；IE 50毫秒
+    console.log(4);
+    */
+
+    //回调
+    var count = 0;
+    var timer = setInterval(function(){
+      count ++;
+      console.log(count);
+      if (count === 3) {
+        clearInterval(timer);
+        callback();
+      }
+    }, 1000);
+
+    //回调函数
+    function callback() {
+      console.log('程序执行结束');
+    }
+
+
+
+  </script>
+</body>
+</html>

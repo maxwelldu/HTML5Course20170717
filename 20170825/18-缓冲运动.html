@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      left: 100px;
+      background-color: yellowgreen;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <script src="tween.js" charset="utf-8"></script>
+  <script>
+    var oDiv = document.querySelector('div');
+    var frame = 0;
+    var timer = setInterval(function(){
+      frame ++;
+      if (frame >= 150) {
+        clearInterval(timer);
+      }
+      // oDiv.style.left = Tween.Linear(frame, 100, 400, 150) + 'px';
+      // oDiv.style.left = Tween.Quad.easeIn(frame, 100, 400, 150) + 'px';
+      // oDiv.style.left = Tween.Cubic.easeIn(frame, 100, 400, 150) + 'px';
+      // oDiv.style.left = Tween.Quart.easeIn(frame, 100, 400, 150) + 'px';
+      // oDiv.style.left = Tween.Back.easeOut(frame, 100, 400, 150) + 'px';
+      oDiv.style.left = Tween.Bounce.easeOut(frame, 100, 400, 150) + 'px';
+    }, 20);
+  </script>
+</body>
+</html>

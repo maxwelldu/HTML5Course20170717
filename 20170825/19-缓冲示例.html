@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      top: 100px;
+      left: 100px;
+      background-color: orange;
+    }
+    .no0 { top: 0px; }
+    .no1 { top: 100px; }
+    .no2 { top: 200px; }
+    .no3 { top: 300px; }
+    .no4 { top: 400px; }
+    .no5 { top: 500px; }
+  </style>
+</head>
+<body>
+  <div class="no0"></div>
+  <div class="no1"></div>
+  <div class="no2"></div>
+  <div class="no3"></div>
+  <div class="no4"></div>
+  <div class="no5"></div>
+  <script src="tween.js" charset="utf-8"></script>
+  <script>
+    var oDiv = document.getElementsByTagName('div');
+    var frame = 0;
+    var timer = setInterval(function(){
+      frame ++;
+      if (frame >= 150) {
+        clearInterval(timer);
+      }
+      oDiv[0].style.left = Tween.Linear(frame, 100, 400, 150) + 'px';
+      oDiv[1].style.left = Tween.Quad.easeIn(frame, 100, 400, 150) + 'px';
+      oDiv[2].style.left = Tween.Cubic.easeIn(frame, 100, 400, 150) + 'px';
+      oDiv[3].style.left = Tween.Quart.easeIn(frame, 100, 400, 150) + 'px';
+      oDiv[4].style.left = Tween.Back.easeOut(frame, 100, 400, 150) + 'px';
+      oDiv[5].style.left = Tween.Bounce.easeOut(frame, 100, 400, 150) + 'px';
+    }, 20);
+  </script>
+</body>
+</html>

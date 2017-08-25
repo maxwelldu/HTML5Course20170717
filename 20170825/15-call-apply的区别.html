@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var obj = {
+      "name": "凯玉"
+    };
+    function showInfo(a, b, c) {
+      console.log(this.name);
+      console.log(a + b + c);
+    }
+    showInfo.call(obj, 1, 2, 3); //obj => this 2 => a 3 => b 4 => c
+    showInfo.apply(obj, [1,2,3]);
+    //call的函数传参需要是参数列表
+    //apply的函数传参需要是参数数组
+  </script>
+</body>
+</html>

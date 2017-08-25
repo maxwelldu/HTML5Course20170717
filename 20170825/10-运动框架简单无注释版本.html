@@ -34,65 +34,28 @@
     var oDiv1 = document.getElementById('box1');
     var oDiv2 = document.getElementById('box2');
     var oDiv3 = document.getElementById('box3');
-    //调用函数
     animate(oDiv1, {"left": 500, "top": 200, "opacity": 1}, 1600);
     animate(oDiv2, {"left": 200, "top": 800, "opacity": 1}, 2600);
     animate(oDiv3, {"left": 500, "top": 300, "opacity": 1}, 3600);
 
     function animate(elem, targetJSON, time) {
-      /*
-      //开启一个定时器
-      var timer = setInterval(function(){
-        //改变帧数信号量
-        frame++;
-        oDiv.style.left = nowLeft + (step * frame) + 'px';
-        if (frame >= frames) {
-          clearInterval(timer);
-        }
-      }, interval);
-      */
-      //动画间隔要根据不同的浏览器来设置：能够在user agent中找MSIE，代表IE浏览器；设置最小时间间隔为50毫秒
-      // if (navigator.userAgent.indexOf("MSIE") != -1) {//当前浏览器是IE
-      //   var interval = 50;
-      // } else {
-      //   var interval = 10;
-      // }
       var interval = 50;
       var frames = time / interval;
       var frame = 0; //当frame >= frames的时候表示动画结束
-      //我们要得到现在的状态，当做信号量，这个信号量是所有要变化的属性的集合
       var semaphoreJSON = {};
-      //给信号量对象添加属性，添加什么属性，目标对象中有什么属性，这里就添加什么属性
-      //值就是当前的计算样式
       for (var k in targetJSON) {//left top opacity
         semaphoreJSON[k] = parseInt(fetchComputedStyle(elem, k));
-        /*
-        semaphoreJSON['left'] = 10;
-        semaphoreJSON['top'] = 10;
-        semaphoreJSON['opacity'] = 10;
-        */
       }
 
 
-      //步长是多个属性的步长集合
       var stepJSON = {};
       for (var k in targetJSON) {
         stepJSON[k] = (parseFloat(targetJSON[k]) - semaphoreJSON[k]) / frames;
       }
 
-      //非常重要的三个JSON有了
-      // 信号量JSON semaphoreJSON
-      // 终点JSON   targetJSON
-      // 步长JSON   stepJSON
-      // console.log(semaphoreJSON);
-      // console.log(targetJSON);
-      // console.log(stepJSON);
-
       var timer = setInterval(function(){
-        //让所有的信号量发生变化
         for (var k in semaphoreJSON) {
           semaphoreJSON[k] += stepJSON[k];
-          //动：
           if (k != "opacity") {
             elem.style[k] = semaphoreJSON[k] + 'px';
           } else {
@@ -106,9 +69,7 @@
           clearInterval(timer);
         }
       }, interval);
-
     }
-
 
     function fetchComputedStyle(obj, property) {
       if (window.getComputedStyle) {
