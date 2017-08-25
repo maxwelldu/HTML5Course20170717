@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var obj = {
+      "name": "凯玉",
+      "gf": {
+         "name": "李龙"
+      }
+    }
+    console.log(obj.gf.name);//点后面跟的是一个确定的属性，不能有变量
+    console.log(obj["gf"]["name"]);//因为中括号里面是写字符串，所以也可以放变量
+
+    var arr = [
+      [ '凯玉', '李龙' ],
+      [ '桂康' ],
+      [ '欣颐' ],
+      [ '徐佳' ],
+      [ '姚顺予' ]
+    ];
+    console.log(arr[0][0]);
+    console.log(arr[0][1]);
+    console.log(arr[1][0]);
+    console.log(arr[2][0]);
+    console.log(arr[3][0]);
+    console.log(arr[4][0]);
+
+    var data = {
+      "status": 0,
+      "data": [
+        { "name": "凯玉" },
+        { "name": "李龙" },
+        { "name": "桂康" },
+        { "name": "欣颐" },
+        { "name": "徐佳" },
+        { "name": "姚顺予" }
+      ],
+      "error": "数据获取成功"
+    }
+    console.log(data.data[0].name);
+    console.log(data["data"][1]["name"]);
+  </script>
+</body>
+</html>

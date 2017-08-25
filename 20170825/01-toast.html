@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .toast {
+      width: 200px;
+      text-align: center;
+      border-radius: 10px;
+      position: absolute;
+      left: 50%;
+      margin-left: -100px;
+      top: 50%;
+      background-color: black;
+      opacity: .2;
+      filter: alpha(opacity=20);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    /*
+    toast 模拟 alert方法
+    alert('ok')
+    */
+    /**
+      content 表示弹出的内容
+      delay 延迟多少毫秒
+    */
+    function toast(content, delay) {
+      delay = delay || 3000;
+      //创建元素
+      var oDiv = document.createElement('div');
+      oDiv.className = 'toast';
+      oDiv.innerText = content;
+      document.body.appendChild(oDiv);
+      // console.log(parseInt(fetchComputedStyle(oDiv, 'height')));
+      oDiv.style.marginTop = - parseInt(fetchComputedStyle(oDiv, 'height')) / 2 + 'px';
+      var timer = setInterval(function(){
+        document.body.removeChild(oDiv);
+        console.log(1);
+        clearInterval(timer);
+      }, delay);
+    }
+    toast('用户名不合法');
+
+    function fetchComputedStyle(obj, property) {
+      if (window.getComputedStyle) {
+        property = property.replace(/[A-Z]/g, function(match){
+          return '-' + match.toLowerCase();
+        });
+        return window.getComputedStyle(obj)[property]; //中括号里面可以是变量
+      } else {
+        property = property.replace(/-([a-z])/g, function(match, $1){
+          return $1.toUpperCase();
+        });
+        return obj.currentStyle[property];
+      }
+    }
+  </script>
+</body>
+</html>

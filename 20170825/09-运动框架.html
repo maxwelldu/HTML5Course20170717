@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      width: 200px;
+      height: 200px;
+      position: absolute;
+      left: 0;
+      background-color: #ccc;
+      opacity: 0;
+    }
+    #box2 {
+      top: 250px;
+      background-color: red;
+    }
+    #box3 {
+      top: 500px;
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+  <div id="box1"></div>
+  <div id="box2"></div>
+  <div id="box3"></div>
+
+  <script>
+    var oDiv1 = document.getElementById('box1');
+    var oDiv2 = document.getElementById('box2');
+    var oDiv3 = document.getElementById('box3');
+    //调用函数
+    animate(oDiv1, {"left": 500, "top": 200, "opacity": 1}, 1600);
+    animate(oDiv2, {"left": 200, "top": 800, "opacity": 1}, 2600);
+    animate(oDiv3, {"left": 500, "top": 300, "opacity": 1}, 3600);
+
+    function animate(elem, targetJSON, time) {
+      //动画间隔要根据不同的浏览器来设置：能够在user agent中找MSIE，代表IE浏览器；设置最小时间间隔为50毫秒
+      if (navigator.userAgent.indexOf("MSIE") != -1) {//当前浏览器是IE
+        var interval = 50;
+      } else {
+        var interval = 10;
+      }
+      //我们要得到现在的状态，当做信号量，这个信号量是所有要变化的属性的集合
+      var semaphoreJSON = {};
+      //给信号量对象添加属性，添加什么属性，目标对象中有什么属性，这里就添加什么属性
+      //值就是当前的计算样式
+      for (var k in targetJSON) {
+        semaphoreJSON[k] = parseInt(fetchComputedStyle(elem, k));
+      }
+
+      var frames = time / interval;
+      var frame = 0; //当frame >= frames的时候表示动画结束
+
+      //步长是多个属性的步长集合
+      var stepJSON = {};
+      for (var k in targetJSON) {
+        stepJSON[k] = (parseFloat(targetJSON[k]) - semaphoreJSON[k]) / frames;
+      }
+
+      //非常重要的三个JSON有了
+      // 信号量JSON semaphoreJSON
+      // 终点JSON   targetJSON
+      // 步长JSON   stepJSON
+      console.log(semaphoreJSON);
+      console.log(targetJSON);
+      console.log(stepJSON);
+
+      var timer = setInterval(function(){
+        //让所有的信号量发生变化
+        for (var k in semaphoreJSON) {
+          semaphoreJSON[k] += stepJSON[k];
+          //动：
+          if (k != "opacity") {
+            elem.style[k] = semaphoreJSON[k] + 'px';
+          } else {
+            elem.style[k] = semaphoreJSON[k];
+            elem.style.filter = "alpha(opactiy=" + (semaphoreJSON[k] * 100 ) + ")";
+          }
+        }
+
+        frame++;
+        if (frame >= frames) {
+          clearInterval(timer);
+        }
+      }, interval);
+
+    }
+
+
+    function fetchComputedStyle(obj, property) {
+      if (window.getComputedStyle) {
+        // paddingLeft 需要转换成padding-left
+        property = property.replace(/[A-Z]/g, function(match){
+          return '-' + match.toLowerCase();
+        });
+        // return widow.getComputedStyle(obj).property; //表示属性名就叫property
+        return window.getComputedStyle(obj)[property]; //中括号里面可以是变量
+      } else {
+        //padding-top -> paddingTop
+        property = property.replace(/-([a-z])/g, function(match, $1){
+          return $1.toUpperCase();
+        });
+        return obj.currentStyle[property];
+      }
+    }
+  </script>
+</body>
+</html>

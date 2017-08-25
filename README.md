@@ -380,6 +380,7 @@ table {
 如果伪代码也写不出来，在图纸上多画一画, 光去想想不出来的时候写出来画出来，慢慢思路就有了
 
 #20170823
+```
 html,css,js代码缩进使用2个空格，不要使用tab或四个空格
 html元素中的id主要给js用，不要给css用
 写方法的话，尽可能让一个方法只完成一件事情
@@ -426,6 +427,7 @@ html元素中的id主要给js用，不要给css用
   ? 0或1次
   + 1或多次
   * 0或多次
+  ```
 
   CSS透明度：
   ```
@@ -446,3 +448,102 @@ html元素中的id主要给js用，不要给css用
   opacity: 0.5;
 }
 ```
+
+#20170824
+表单验证的方式：
+  - 在表单的submit事件中：验证失败返回false,  表单将不会提交；全部通过返回true, 正常提交表单
+  - 在form的input元素blur事件，当验证失败给当前input元素的状态设置为false, 并将整个表单的一个状态进行重新计算，当表单的状态为可用，让提交按钮可用；
+  表单状态信号 = input1.状态信号 === true && input2.状态信号 === true ...
+  表单状态信号 = input1.状态信号 && input2.状态信号 ...
+
+  造轮子：把基础的东西我们要自己写出来；以后需要开发类似的功能，可以直接使用
+  包括了
+    - js验证库（写一堆校验的方法)
+    - css库（写一堆方便使用的class样式)
+    - web组件库（写一堆有界面有交互的小挂件，小组件）组件就是我们网页中经常会出现的一些小模块（包括了html,css,js)
+
+透明度：
+  opacity: .2;
+  filter: alpha(opacity=20);
+
+js设置透明度：
+  var oSpan = document.getElementsByTagName('span')[0];
+  var opacity = 0.1;
+  oSpan.style.opacity = opacity;
+  oSpan.style.filter = "alpha(opacity=" + opacity*100 + ")"
+
+针对最新的浏览器：
+offsetParent    找到离自己最近的已定位的元素为参考元素
+offsetLeft      自身的border外侧到offsetParent元素的内边框
+offsetTop
+offsetWidth     width + padding + border
+offsetHeight    height + padding + border
+clientWidth     width + padding
+clientHeight    height + padding
+
+开启定时器
+var timer = setInterval(函数, 间歇时间); //函数的地方不要去调用，直接给函数
+//方式一
+var timer = setInterval(function(){
+}, 1000);
+//方式二
+function fun() {
+}
+var timer = setInterval(fun, 1000);
+停止定时器
+clearInterval(timer);
+
+定时器的注意事项：在你开启定时器之前最好先关闭定时器：设表先关
+
+##标准的动画
+```
+//配置参数
+var oDiv = document.getElementById('odiv');
+var time = 1000;
+var interval = 20;
+var frames = time / interval;
+var distance = 400;
+var step = distance / frames;
+
+//信号量
+var startLeft = 100;//起始位置信号量
+var frame = 0; //当前帧信号量
+
+var timer = setInterval(function(){
+  frame++;
+  oDiv.style.left = startLeft + step * frame + 'px';
+  if (frame >= frames) {
+    clearInterval(timer);
+  }
+}, interval);
+```
+
+图片的load事件，表示图片已经下载完成
+offsetLeft, offsetWidth, clientWidth这些值都需要等图片下载完成之后才能获得
+
+//当页面上所有的资源都加载完成之后再执行, 这个方法只能绑定一次，绑定多次会覆盖
+window.onload = function(){
+
+}
+//这个事件是当页面内容加载完成的时候会执行，可以绑定多次，会依次执行
+document.addEventListener('DOMContentLoaded', function(){
+
+})
+//jquery的写法，当DOM内容加载完成的时候执行
+$(function(){
+
+})
+
+如何判断页面上所有的图片都加载完成
+`通过一个加载完成的个数信号量，加载完一张就把信号量+1， 当信号量的值和图片标签的个数相等时，表示页面中的所有图片加载完成`
+在图片加载完成之后就可以让无缝滚动的功能开始工作
+
+通用的技术点：
+正则
+JSON
+
+JSON编码格式必须是UTF-8, 如果是GBK或其他则需要先转换后再生成JSON
+
+前后端的区分：
+前端是指工作在浏览器上面的所有事情都是前端负责(html, css, js[动态效果，和后端打交道，获取数据])
+后端是工作在服务器上的所有事情：动态编程语言（java,php,python,ruby)+数据库（mysql,mongodb,redis)

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var data = {
+      "status": 0,
+      "data": [
+        { "name": "凯玉" },
+        { "name": "李龙" },
+        { "name": "桂康" },
+        { "name": "欣颐" },
+        { "name": "徐佳" },
+        { "name": "姚顺予" }
+      ],
+      "error": "数据获取成功"
+    };
+    for (var i = 0; i < data.data.length; i++) {
+      var oH2 = document.createElement('h2');
+      oH2.innerText = data.data[i].name;
+      document.body.appendChild(oH2);
+      console.log(data.data[i].name);
+    }
+
+
+    //json对象遍历
+    var obj = {
+      "name": "凯玉",
+      "age": 19
+    };
+    for (var k in obj) {
+      console.log(k, obj[k]);
+    }
+
+
+  </script>
+</body>
+</html>

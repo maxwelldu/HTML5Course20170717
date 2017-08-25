@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var obj = {
+      "name": "凯玉",
+      "age": 18
+    };
+    var arr = [
+      "凯玉",
+      "桂康"
+    ];
+    //直接写对象的时候，键可以是没有引号的
+    console.log(obj);
+    console.log(arr);
+
+    console.log(obj.age); //18
+    var a = 'age';
+    console.log(obj[a]); //18
+
+    console.log(obj["age"]); //18
+  </script>
+</body>
+</html>
