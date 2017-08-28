@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var obj1 = {
+			"name" : "考拉",
+			"age" : 18,
+			"sex" : "男"
+		}
+
+		var obj2 = {
+			"name" : "树懒",
+			"age" : 16,
+			"sex" : "男"
+		}
+
+		function showInfo(){
+			alert(this.name);
+		}
+
+		//下面这个call语句的含义有两层：
+		//1. showInfo函数将被调用
+		//2. 同时这个函数内部的this就是obj2了
+		showInfo.call(obj2);
+	</script>
+</body>
+</html>

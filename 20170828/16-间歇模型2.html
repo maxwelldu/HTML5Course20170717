@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    div {
+      width: 600px;
+      height: 200px;
+      line-height: 40px;
+      border: 1px solid red;
+      margin: 100px;
+      position: relative;
+      overflow: hidden;
+    }
+    div ul {
+      position: absolute;
+      top: 0;
+      left: 0;
+      list-style: none;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <ul>
+      <li>凯玉同学在睡觉</li>
+      <li>桂康同学在认真听课</li>
+      <li>凯玉同学醒了</li>
+      <li>赵*玉 北京666网络科技有限公司  18k</li>
+      <li>张* 北京666网络科技有限公司  28k</li>
+      <li>*桂康 北京666网络科技有限公司  38k</li>
+    </ul>
+  </div>
+  <script src="animate.js" charset="utf-8"></script>
+  <script>
+    var oUl = document.querySelector('ul');
+    var oLi = document.querySelectorAll('li');
+    var length = oLi.length;
+
+    // oUl.appendChild(oLi[0].cloneNode(true));
+    oUl.innerHTML += oUl.innerHTML;
+    var index = 0;
+    function move() {
+      index++;
+      animate(oUl, {"top": -40*index}, 800, function(){
+        if (index > length -1) {
+          index = 0;
+          this.style.top = "0px";
+        }
+      });
+    }
+    //调用动画函数的间隔时间，要远大于动画运行时间
+    //这时就给人感觉是一个间歇的过程
+    setInterval(move, 1800);
+
+  </script>
+</body>
+</html>

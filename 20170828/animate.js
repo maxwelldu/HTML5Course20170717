@@ -75,6 +75,8 @@ function animate(elem, targetJSON, time, tweenString, callback) {
   var frame = 0;
   //当前的值
   var v;
+  //当前动画正在执行
+  elem.isAnimated = true;
   //定时器
   var timer = setInterval(function(){
     //要让所有的属性发生变化
@@ -104,6 +106,7 @@ function animate(elem, targetJSON, time, tweenString, callback) {
         }
       }
       clearInterval(timer);
+      elem.isAnimated = false;
       //回调函数
       callback && callback.apply(elem);
     }

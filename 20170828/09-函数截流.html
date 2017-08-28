@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="button" value="烈波斩">
+  <script>
+    //这个技能需要3秒钟之后才能放
+    var oBtn = document.querySelector('input');
+    //需要有一个锁的信号量
+    var lock = true; //锁 true表示打开
+    oBtn.onclick = function() {
+      //1.检查锁的开关状态，，如果是false就执行返回， 不执行这个操作
+      if (!lock) return;
+      //2.关锁
+      lock = false;
+      //3. 3秒后开锁
+      setTimeout(function(){
+        lock = true;
+      }, 3000);
+      //4.业务逻辑
+      console.log('click');
+    }
+  </script>
+</body>
+</html>

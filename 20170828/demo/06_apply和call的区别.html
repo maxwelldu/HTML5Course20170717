@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var obj = {
+			"name" : "考拉",
+			"age" : 18,
+			"jiehun" : false
+		}
+
+
+//		 function showInfo(a,b,c){
+//		 	console.log(this.name);
+//		 	console.log(a + b + c);
+//		 }
+//
+//		 showInfo.call(obj,2,3,4);
+//		 showInfo.apply(obj,[2,3,4]);
+
+		function showInfo(n){
+			for(var i = 1 ; i <= n ; i++){
+				console.log(this.name);
+			}
+		}
+		showInfo.call(obj,10);
+		showInfo.apply(obj,[10]);
+	</script>
+</body>
+</html>

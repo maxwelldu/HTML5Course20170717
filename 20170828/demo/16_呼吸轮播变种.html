@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.carousel{
+			width: 560px;
+			height: 300px;
+			margin: 100px auto;
+			border: 1px solid #333;
+			position: relative;
+			background-color: black;
+		}
+		.carousel ul{
+			list-style: none;
+		}
+		.carousel ul li{
+			position: absolute;
+			top: 0;
+			left: 0;
+			opacity: 0;
+			filter:alpha(opacity = 0);
+		}
+		.carousel ul li.first{
+			opacity: 1;
+			filter:alpha(opacity = 0);
+		}
+		.btns a{
+			position: absolute;
+			width: 40px;
+			height: 40px;
+			top: 50%;
+			margin-top: -20px;
+			background-color: orange;
+			font-size: 30px;
+			line-height: 40px;
+			text-align: center;
+			border-radius: 50%;
+			font-weight: bold;
+			cursor: pointer;
+			z-index: 999;
+		}
+		.btns a:hover{
+			background-color: gold;
+		}
+		.leftBtn{
+			left: 10px;
+		}
+		.rightBtn{
+			right: 10px;
+		}
+		.circles{
+			position: absolute;
+			width: 150px;
+			height: 16px;
+			bottom: 10px;
+			right: 10px;
+		}
+		.circles ol{
+			list-style: none;
+		}
+		.circles ol li{
+			float: left;
+			width: 16px;
+			height: 16px;
+			background-color: orange;
+			margin-right: 6px;
+			border-radius: 50%;
+			cursor: pointer;
+		}
+		.circles ol li.cur{
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<h1>就做了右按钮。小圆点、左按钮请自己补全。</h1>
+	<div class="carousel" id="carousel">
+		<div class="btns">
+			<a class="leftBtn"  id="leftBtn"></a>
+			<a class="rightBtn" id="rightBtn"></a>
+		</div>
+		<div class="imageslist" id="imageslist">
+			<ul>
+				<li class="first"><a><img src="images/0.jpg" alt="" /></a></li>
+				<li><a><img src="images/1.jpg" alt="" /></a></li>
+				<li><a><img src="images/2.jpg" alt="" /></a></li>
+				<li><a><img src="images/3.jpg" alt="" /></a></li>
+				<li><a><img src="images/4.jpg" alt="" /></a></li>
+			</ul>
+		</div>
+		<div class="circles" id="circles">
+			<ol>
+				<li class="cur"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ol>
+		</div>
+	</div>
+	
+	<script type="text/javascript" src="animate-2.0.1.js"></script>
+	<script type="text/javascript">
+		//得到carousel
+		var carousel = document.getElementById("carousel");
+		//得到li
+		var lis = document.getElementById("imageslist").getElementsByTagName("li");
+		//得到按钮
+		var leftBtn = document.getElementById("leftBtn");
+		var rightBtn = document.getElementById("rightBtn");
+		//得到小圆点
+		var circlesLi = document.getElementById("circles").getElementsByTagName("li");
+		//图片数量
+		var imgLength = lis.length;
+		//图片宽度
+		var width = 560;
+		//滚动速度
+		var animatetime = 600;
+		//缓冲描述
+		var tween = "Linear";
+		//间隔时间
+		var interval = 2000;
+		 
+		var idx = 0;
+ 		
+ 		//右按钮的监听
+ 		rightBtn.onclick = function(){
+ 			//函数截流
+ 			if(lis[idx].isanimated) return;
+
+ 			//原来的信号量的图片淡出
+ 			animate(lis[idx],{"opacity" : 0},animatetime,function(){
+ 				//信号量改变
+	 			idx++;
+	 			if(idx > imgLength - 1){
+	 				idx = 0;
+	 			}
+	 			//新信号量的图片淡入
+	 			animate(lis[idx],{"opacity" : 1},animatetime);
+	 			changeCircle();
+ 			});			
+ 		}
+ 
+
+ 		//更换小圆点函数
+		function changeCircle(){
+			//去掉所有小圆点的cur
+			for (var i = 0; i < circlesLi.length; i++) {
+				circlesLi[i].className = "";
+			}
+			//第信号量这个小圆点加cur
+			circlesLi[idx].className = "cur";
+		}
+	</script>
+</body>
+</html>

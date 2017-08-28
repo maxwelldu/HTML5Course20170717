@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+      *{
+          padding: 0;
+          margin: 0;
+      }
+      div{
+          width: 190px;
+          height: 190px;
+          background: url(images/jian.png) no-repeat;
+          background-position: 0 0;
+          position: absolute;
+          top: 100;
+          left: 100;
+          bottom: 0;
+          right: 0;
+      }
+      span {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        background-color: orange;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 100px;
+      }
+  </style>
+  <body>
+    <span>放大招</span>
+    <div id="div"></div>
+    <script>
+      var div = document.getElementById("div");
+      var oSpan = document.querySelector('span');
+      console.log(oSpan);
+      var lock = true;
+      oSpan.onclick = function(){
+        if (!lock) return;
+        lock = false;
+        setTimeout(function(){
+          lock = true;
+        }, 3000);
+        attack();
+      }
+      function attack() {
+        var x = 0;
+        var y = 0;
+        var n = 0;
+        var timer = setInterval(function(){
+          n++;
+          x -= 190;
+          console.log(x, y);
+          div.style.backgroundPosition = x + "px" + " " + y + "px";
+          if(x <= -760){
+              x = 0;
+              y -= 190;
+          }
+          if(y <= -2000){
+              x = 0;
+              y = 0;
+          }
+          if (n >= 9) {
+            clearInterval(timer);
+          }
+        }, 200);
+      }
+  </script>
+</body>
+</html>

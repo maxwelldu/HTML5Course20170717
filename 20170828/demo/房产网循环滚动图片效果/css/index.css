@@ -1,0 +1,61 @@
+@charset "utf-8";
+body{ margin:20px auto; width:100%; height:auto;}
+#dHomePageCarousel { 
+	background:url("../images/pic_bg.gif") no-repeat scroll 0 0 transparent;
+	height:221px;
+	width:670px;
+	position:relative;
+	margin:40px auto;
+}
+#dLocalHomesCarousel {
+	height:131px;
+	margin:0px 2px 3px 1px;
+	overflow:hidden;
+	position:relative;
+}
+.divCarouselInfo {
+	color:#3C404E;
+	font-size:12px;
+	width:639px;
+	height:64px;
+	line-height:16px;
+	margin-right:15px;
+	padding-top:10px;
+	position:relative;
+}
+.imgBorder{
+	border:2px solid #fff;
+	position:absolute;
+	cursor:pointer;
+}
+.imgBorder:hover {
+	border:2px solid #FFAA55;
+	cursor:pointer;
+	position:absolute;
+}
+.btnCarouselLT {
+	background:url("../images/btn_nav_carousel.png") no-repeat scroll left top transparent;
+	display:block;
+	height:41px;
+	overflow:hidden;
+	position:absolute;
+	cursor:pointer;
+	top:17px;
+	width:40px;
+}
+.btnCarouselRT {
+	background:url("../images/btn_nav_carousel.png") no-repeat scroll right top transparent;
+	display:block;
+	height:41px;
+	overflow:hidden;
+	position:absolute;
+	cursor:pointer;
+	top:17px;
+	width:40px;
+}
+
+img {
+	border:medium none;
+}
+
+.author{ width:700px; margin:0 auto; height:auto; text-align:center;}

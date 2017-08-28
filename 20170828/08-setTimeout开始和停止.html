@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>开始</div>
+  <span>停止</span>
+  <script>
+    var oStart = document.querySelector('div');
+    var oStop = document.querySelector('span');
+    var timer;
+    oStart.onclick = function(){
+      timer = setTimeout(function(){
+        console.log('延时器');
+      }, 3000);
+    }
+    oStop.onclick = function(){
+      clearTimeout(timer);
+    }
+    //在函数中的变量，如果不使用var关键字，默认会声明一个全局变量
+  </script>
+</body>
+</html>

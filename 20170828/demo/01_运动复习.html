@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		div{
+			width: 80px;
+			height: 80px;
+			background-color: skyblue;
+			position: absolute;
+			left: 100px;
+			top:100px;
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+
+	<script type="text/javascript">
+		//得到盒子
+		var oDiv = document.getElementsByTagName("div")[0];
+
+		//semaphore
+		var nowleft = 100;
+		//盒子从100 → 700 ， 一共3000毫秒
+		//3000，而我们现在interval是20毫秒，所以3000毫秒就要度过150帧
+		//150变化量是600，所以每帧变化4
+		//定时器
+		// 方法1：
+		// var t = new Date();
+		// var timer = setInterval(function(){
+		// 	nowleft += 4;
+		// 	if(nowleft > 700){
+		// 		nowleft = 700;
+		// 		clearInterval(timer);
+		// 		alert(new Date() - t);
+		// 	}
+		// 	oDiv.style.left = nowleft + "px";
+		// },20);
+
+		// 方法2：
+		// 利用帧编号，帧的英语frame。帧编号frameNumber
+		var target = 1000;				//要移动到的位置
+		var time = 10000;				//动画总时间
+		var interval = 20;				//间隔时间
+		var maxFrame = time / interval;		//总帧数
+		var step = (target - nowleft) / maxFrame;	//步长
+		var frameNumber = 0;			//帧编号
+		
+
+		var timer = setInterval(function(){
+			nowleft += step;
+			frameNumber++;
+			if(frameNumber == maxFrame){
+				clearInterval(timer);
+			}
+			oDiv.style.left = nowleft + "px";
+		},interval);
+	</script>
+</body>
+</html>

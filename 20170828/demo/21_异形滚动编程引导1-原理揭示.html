@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.yixing{
+			width: 670px;
+			height: 221px;
+			background: url(images/pic_bg.gif);
+			margin: 100px auto;
+			border: 1px solid #000;
+			position: relative;
+		}
+		.yixing ul{
+			list-style: none;
+		}
+		.yixing ul li{
+			position: absolute;
+		}
+		/*img这个元素不会根据父亲来设置宽度、高度，所以我们就要写：*/
+		.yixing ul li img{
+			width: 100%;
+			height: 100%;
+		}
+		.yixing ul li.stateA{width: 55px;height: 37px;left:-55px;top: 84px;}
+		.yixing ul li.stateB{width: 71px;height: 54px;left:16px;top: 67px;}
+		.yixing ul li.stateC{width: 122px;height: 86px;left:104px;top: 35px;}
+		.yixing ul li.stateD{width: 161px;height: 112px;left:247px;top: 16px;}
+		.yixing ul li.stateE{width: 122px;height: 86px;left:436px;top: 35px;}
+		.yixing ul li.stateF{width: 71px;height: 54px;left:583px;top: 67px;}
+		.yixing ul li.stateG{width: 55px;height: 37px;left:678px;top: 84px;}
+	
+		.rightBtn{
+			position: absolute;
+			top: 151px;
+			right: 20px;
+			width: 40px;
+			height: 40px;
+			background-color: red;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="yixing">
+		<ul>
+			<li class="stateA"><img src="images/shuzi/0.png" alt="" /></li>
+			<li class="stateB"><img src="images/shuzi/1.png" alt="" /></li>
+			<li class="stateC"><img src="images/shuzi/2.png" alt="" /></li>
+			<li class="stateD"><img src="images/shuzi/3.png" alt="" /></li>
+			<li class="stateE"><img src="images/shuzi/4.png" alt="" /></li>
+			<li class="stateF"><img src="images/shuzi/5.png" alt="" /></li>
+			<li class="stateG"><img src="images/shuzi/6.png" alt="" /></li>
+		</ul>
+		<div class="btns">
+			<a href="javascript:;" id="rightBtn" class="rightBtn"></a>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="animate-2.0.1.js"></script>
+	<script type="text/javascript">
+		var lis = document.getElementsByTagName("li");
+		var rightBtn =  document.getElementById("rightBtn");
+
+		var JSONC = {"width": 122,"height": 86,"left":104,"top": 35};
+		var JSOND = {"width": 161,"height": 112,"left":247,"top": 16};
+		//理论上我们可以不厌其烦写JSONA、JSONB
+
+		rightBtn.onclick = function(){
+			//理论上我们可以不厌其烦写
+			animate(lis[3],JSONC,1000,"BounceEaseOut");
+			animate(lis[4],JSOND,1000,"BounceEaseOut");
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		img{
+			border:none;
+		}
+		.carousel{
+			width: 560px;
+			height: 300px;
+			margin: 100px auto;
+			border: 1px solid #000;
+			position: relative;
+			overflow: hidden;
+		}
+		.carousel .imageList ul{
+			list-style: none;
+		}
+		.carousel .imageList ul li{
+			display: none;
+		}
+		.carousel .imageList ul li.first{
+			left: 0;
+		}
+		.btns a{
+			position: absolute;
+			width: 40px;
+			height: 40px;
+			top: 50%;
+			margin-top: -20px;
+			background-color: yellow;
+			z-index: 999;
+		}
+		.btns a.leftBtn{
+			left: 10px;
+		}
+		.btns a.rightBtn{
+			right: 10px;
+		}
+		.circles{
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+			width: 150px;
+			height: 18px;
+		}
+		.circles ol{
+			list-style: none;
+		}
+		.circles ol li{
+			float: left;
+			width: 18px;
+			height: 18px;
+			margin-right: 10px;
+			border-radius: 50%;
+			background-color: pink;
+			cursor: pointer;
+		}
+		.circles ol li.cur{
+			background-color: purple;
+		}
+		.m_unit{
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 1120px;
+			height: 300px;
+			border: 1px solid red;
+		}
+		.m_unit ul{
+			list-style: none;
+		}
+		.m_unit ul li{
+			float: left;
+		}
+	</style>
+</head>
+<body>
+	<h1>小demo</h1>
+	
+	<div class="carousel" id="carousel">
+		<div class="btns">
+			<a href="javascript:;" class="leftBtn" id="leftBtn"></a>
+			<a href="javascript:;" class="rightBtn" id="rightBtn"></a>
+		</div>
+		<div class="imageList" id="imageList">
+			<ul>
+				<li><a href="#"><img width="560px" src="images/shuzi/0.png" alt="" /></a></li>
+				<li><a href="#"><img width="560px" src="images/shuzi/1.png" alt="" /></a></li>
+				<li><a href="#"><img width="560px" src="images/shuzi/2.png" alt="" /></a></li>
+				<li><a href="#"><img width="560px" src="images/shuzi/3.png" alt="" /></a></li>
+				<li><a href="#"><img width="560px" src="images/shuzi/4.png" alt="" /></a></li>
+			</ul>
+		</div>
+		<div class="m_unit" id="m_unit">
+			<ul>
+				
+			</ul>
+		</div>
+		<div class="circles" id="circles">
+			<ol>
+				<li class="cur"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ol>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="animate-2.0.1.js"></script>
+	<script type="text/javascript">
+		//得到元素
+		var carousel = document.getElementById("carousel");
+		var leftBtn = document.getElementById("leftBtn");
+		var rightBtn = document.getElementById("rightBtn");
+		var circles = document.getElementById("circles");
+		var imageList = document.getElementById("imageList");
+		var imageUL = imageList.getElementsByTagName("ul")[0];
+		var imageLis = imageUL.getElementsByTagName("li");
+		var circlesLis = circles.getElementsByTagName("li");
+		var m_unit = document.getElementById("m_unit");
+		var m_unitUL = m_unit.getElementsByTagName("ul")[0];
+
+		//我们就要让前两个li克隆追加到m_unitUL
+		m_unitUL.appendChild(imageLis[0].cloneNode(true));
+		m_unitUL.appendChild(imageLis[1].cloneNode(true));
+
+
+		var idx = 0;
+
+		rightBtn.onclick = function(){
+			m_unit.style.left = "0px";
+			//准备新的图片，清空里面的图片
+			m_unitUL.innerHTML = "";
+
+			//追加原来信号的图片
+			m_unitUL.appendChild(imageLis[idx].cloneNode(true));
+			idx++;
+			if(idx > 4){
+				idx = 0;
+			}
+			//追加新的信号量的图片
+			m_unitUL.appendChild(imageLis[idx].cloneNode(true));
+			//拉动这个输送带
+			animate(m_unit,{"left" : -560} , 800);
+
+			changeCircles();
+		}
+
+
+		//根据信号量设置小圆点
+		function changeCircles(){
+			//排他
+			for (var i = 0; i < circlesLis.length; i++) {
+				circlesLis[i].className = "";
+			}
+			circlesLis[idx].className = "cur";
+		}
+	</script>
+</body>
+</html>

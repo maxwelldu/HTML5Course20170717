@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" value="按我" />
+
+	<script type="text/javascript">
+		var input = document.getElementsByTagName("input")[0];
+
+		var lock = true;	//锁
+
+		//我们规定，按钮最小的间隔是1000毫秒
+		input.onclick = function(){
+			//检查锁的开关情况，如果是false就执行返回，不执行这个事件
+			if(!lock) return;
+
+			console.log(Math.random());
+
+			//关掉锁
+			lock = false;	
+			//1000毫秒之后再开锁
+			setTimeout(function(){
+				lock = true;
+			}, 3000);
+		}
+	</script>
+
+
+	<input id="search" type="text" name="search">
+	<script>
+		function queryData(text){
+			console.log("搜索：" + text);
+		}
+		var input = document.getElementById("search");
+//		input.addEventListener("keyup", function(event){ queryData(this.value) });
+
+		input.addEventListener("keyup", function(event){
+            throttle(queryData, null, 500, this.value);
+		});
+		function throttle(fn,context,delay,text){
+			clearTimeout(fn.timeoutId);
+			fn.timeoutId = setTimeout(function(){
+				fn.call(context,text);
+			},delay);
+		}
+	</script>
+
+
+	<style>
+		body{
+			height: 2000px;
+		}
+	</style>
+	<script>
+//	window.onscroll = function (argument) {
+//	console.log("函数调用");
+//	}
+
+	window.onscroll = function(){
+		console.log("scroll滑动");
+		throttleScroll(count);
+	}
+
+	function count(){
+		console.log("函数调用");
+	}
+
+	function throttleScroll(method, context){
+		clearTimeout(method.tId)
+		method.tId = setTimeout(function(){
+			method.call(context);
+		}, 300);
+	}
+	</script>
+</body>
+</html>

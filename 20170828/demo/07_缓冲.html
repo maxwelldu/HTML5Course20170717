@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		div{
+			width: 60px;
+			height: 60px;
+			background-color: orange;
+			position: absolute;	
+			top: 100px;
+			left: 100px;
+		}
+		.no0{top: 0px;}
+		.no1{top: 100px;}
+		.no2{top: 200px;}
+		.no3{top: 300px;}
+		.no4{top: 400px;}
+		.no5{top: 500px;}
+		.no6{top: 900px;}
+
+	</style>
+</head>
+<body>
+	<div class="no0"></div>
+	<div class="no1"></div>
+	<div class="no2"></div>
+	<div class="no3"></div>
+	<div class="no4"></div>
+	<div class="no5"></div>
+	<div class="no6"></div>
+	
+	<script type="text/javascript" src="tween.js"></script>
+	<script type="text/javascript">
+		var oDivs = document.getElementsByTagName("div");
+		//第一个参数t表示当前帧编号
+		//第二个参数b表示起始位置
+		//第三个参数c表示变化量
+		//第四个参数d表示总帧数
+
+		//注意，我们现在盒子的初始位置是100，我们想让这个盒子用3000毫秒的时候，移动到700
+		//间隔时间20毫秒。所以总帧数就是150帧。
+		//这个函数，就能帮你算出这个盒子，在每一帧的状态。
+		// function linear(t , b , c , d){ 
+		// 	return c * t / d + b; 
+		// }
+		// function easeIn(t,b,c,d){
+  //           return c * ( t /= d) * t + b;
+  //       }
+  //       function easeOut(t,b,c,d){
+  //           return -c *(t/=d)*(t-2) + b;
+  //       }
+  //       function taotiao(t,b,c,d){
+  //           if ((t/=d) < (1/2.75)) {
+  //               return c*(7.5625*t*t) + b;
+  //           } else if (t < (2/2.75)) {
+  //               return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
+  //           } else if (t < (2.5/2.75)) {
+  //               return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
+  //           } else {
+  //               return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
+  //           }
+  //       }
+
+
+        //实验一下上面的函数
+		var frameNumber = 0;
+
+		var timer = setInterval(function(){
+			frameNumber++;
+			if(frameNumber == 150){
+				clearInterval(timer);
+			}
+
+			oDivs[0].style.left = Tween.Linear(frameNumber , 100 , 900 , 150) + "px";
+			oDivs[1].style.left = Tween.QuadEaseIn(frameNumber , 100 , 900 , 150) + "px";
+			oDivs[2].style.left = Tween.CubicEaseIn(frameNumber , 100 , 900 , 150) + "px";
+			oDivs[3].style.left = Tween.QuartEaseIn(frameNumber , 100 , 900 , 150) + "px";
+			oDivs[4].style.left = Tween.BackEaseOut(frameNumber , 100 , 900 , 150 , 3) + "px";
+			oDivs[5].style.left = Tween.BounceEaseOut(frameNumber , 100 , 900 , 150) + "px";
+		},20);
+	</script>
+</body>
+</html>

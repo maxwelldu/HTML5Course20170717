@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    p {
+      width: 100px;
+      height: 100px;
+      float: left;
+      margin-right: 10px;
+      background-color: gray;
+    }
+    .box2 {
+      clear: both;
+    }
+    .light {
+      background: orange;
+      border: 1px solid red;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="box1" class="box1">
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p>
+    <p>5</p>
+  </div>
+  <div id="box2" class="box2">
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p>
+    <p>5</p>
+  </div>
+  <script>
+  var oPs = document.getElementsByTagName('p');
+  for (var i = 0; i < oPs.length; i++) {
+    (function(i){
+
+      oPs[i].onclick = function(){
+        for(var j = 0;j<oPs.length;j++){
+          oPs[j].className = '';
+        }
+        oPs[i].className = 'light';
+      }
+    })(i);
+  }
+
+  </script>
+</body>
+</html>

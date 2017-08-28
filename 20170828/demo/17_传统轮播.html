@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.carousel{
+			width: 560px;
+			height: 300px;
+			margin: 100px auto;
+			border: 1px solid #000;
+			position: relative;
+			overflow: hidden;
+		}
+		.carousel .m_unit{
+			width: 9000px;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.carousel .m_unit ul{
+			list-style: none;
+		}
+		.carousel .m_unit ul li{
+			float: left;
+			width: 560px;
+			height: 300px;
+			overflow: hidden;
+		}
+		.btns a{
+			position: absolute;
+			width: 40px;
+			height: 40px;
+			top: 50%;
+			margin-top: -20px;
+			background-color: yellow;
+			z-index: 999;
+		}
+		.btns a.leftBtn{
+			left: 10px;
+		}
+		.btns a.rightBtn{
+			right: 10px;
+		}
+		.circles{
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+			width: 150px;
+			height: 18px;
+		}
+		.circles ol{
+			list-style: none;
+		}
+		.circles ol li{
+			float: left;
+			width: 18px;
+			height: 18px;
+			margin-right: 10px;
+			border-radius: 50%;
+			background-color: pink;
+			cursor: pointer;
+		}
+		.circles ol li.cur{
+			background-color: purple;
+		}
+	</style>
+</head>
+<body>
+	<div class="carousel" id="carousel">
+		<div class="btns">
+			<a href="javascript:;" class="leftBtn" id="leftBtn"></a>
+			<a href="javascript:;" class="rightBtn" id="rightBtn"></a>
+		</div>
+		<div class="m_unit" id="m_unit">
+			<ul>
+				<li><a href="#"><img src="images/0.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="images/1.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="images/2.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="images/3.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="images/4.jpg" alt="" /></a></li>
+			</ul>
+		</div>
+		<div class="circles" id="circles">
+			<ol>
+				<li class="cur"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ol>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="animate-2.0.1.js"></script>
+	<script type="text/javascript">
+		//配置
+		var options = {
+			"interval" : 2000,	//间隔时间
+			"animatetime" : 500,
+			"tween" : "QuadEaseOut",
+			"width" : 560
+		}
+		//得到元素
+		var carousel = document.getElementById("carousel");
+		var leftBtn = document.getElementById("leftBtn");
+		var rightBtn = document.getElementById("rightBtn");
+		var circles = document.getElementById("circles");
+		var m_unit = document.getElementById("m_unit");
+		var imageUL = m_unit.getElementsByTagName("ul")[0];
+		var imageLis = imageUL.getElementsByTagName("li");
+		var circlesLis = circles.getElementsByTagName("li");
+
+		//克隆前我们得到个数
+		var length = imageLis.length;
+
+		//魔术的准备就是克隆第一张li，放到最后
+		imageUL.appendChild(imageLis[0].cloneNode(true));
+
+		//信号量
+		var idx = 0;
+
+		//自动轮播
+		var timer = setInterval(rightBtnHandler,options.interval);
+		//鼠标进入停止，离开继续
+		carousel.onmouseover = function(){
+			clearInterval(timer);
+		}
+		carousel.onmouseout = function(){
+			timer = setInterval(rightBtnHandler,options.interval);
+		}
+
+		//监听
+		rightBtn.onclick = rightBtnHandler;
+
+		//右按钮的事件处理函数
+		function rightBtnHandler(){
+			//函数截流
+			if(m_unit.isanimated) return;
+
+			//信号量的变化
+			idx++;
+
+			//改变小圆点
+			changeCircles();
+
+			//运动机构的移动
+			animate(m_unit,{"left" : -options.width * idx},options.animatetime,options.tween,function(){
+				if(idx > length - 1){
+					idx = 0;
+					m_unit.style.left = "0px";
+				}
+			});
+		}
+
+		//监听
+		leftBtn.onclick = function(){
+			//函数截流
+			if(m_unit.isanimated) return;
+
+			//信号量的变化
+			idx--;
+			if(idx < 0){
+				idx = length - 1;
+				m_unit.style.left = -options.width * length + "px";
+			}
+
+			//改变小圆点
+			changeCircles();
+			
+			animate(m_unit,{"left" : -options.width * idx},options.animatetime,options.tween);
+		}
+
+		//小圆点的监听
+		for (var i = 0; i < circlesLis.length; i++) {
+			circlesLis[i].index = i;
+			circlesLis[i].onclick = function(){
+				//信号量就是自己的序号
+				idx = this.index;
+				//拉动
+				animate(m_unit,{"left" : -options.width * idx},options.animatetime,options.tween);
+				//改变小圆点
+				changeCircles();
+			}
+		}
+
+
+		//根据信号量设置小圆点
+		function changeCircles(){
+			//idx可能是5，但是我们的小圆点下标最大是4，所以用n过渡一下：
+			var n = idx > length - 1 ? 0 : idx;
+			//排他
+			for (var i = 0; i < circlesLis.length; i++) {
+				circlesLis[i].className = "";
+			}
+			circlesLis[n].className = "cur";
+		}
+	</script>
+</body>
+</html>

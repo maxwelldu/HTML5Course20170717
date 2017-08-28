@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		img{
+			border:none;
+		}
+		.carousel{
+			width: 560px;
+			height: 300px;
+			margin: 100px auto;
+			border: 1px solid #000;
+			position: relative;
+			overflow: hidden;
+		}
+		.carousel .imageList ul{
+			list-style: none;
+			position: relative;
+		}
+		.carousel .imageList ul li{
+			position: absolute;
+			top: 0;
+			left: 560px;
+			width: 560px;
+			height: 300px;
+		}
+		.carousel .imageList ul li.first{
+			left: 0;
+		}
+		.btns a{
+			position: absolute;
+			width: 40px;
+			height: 40px;
+			top: 50%;
+			margin-top: -20px;
+			background-color: yellow;
+			z-index: 999;
+		}
+		.btns a.leftBtn{
+			left: 10px;
+		}
+		.btns a.rightBtn{
+			right: 10px;
+		}
+		.circles{
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+			width: 150px;
+			height: 18px;
+		}
+		.circles ol{
+			list-style: none;
+		}
+		.circles ol li{
+			float: left;
+			width: 18px;
+			height: 18px;
+			margin-right: 10px;
+			border-radius: 50%;
+			background-color: pink;
+			cursor: pointer;
+		}
+		.circles ol li.cur{
+			background-color: purple;
+		}
+	</style>
+</head>
+<body>
+	<div class="carousel" id="carousel">
+		<div class="btns">
+			<a href="javascript:;" class="leftBtn" id="leftBtn"></a>
+			<a href="javascript:;" class="rightBtn" id="rightBtn"></a>
+		</div>
+		<div class="imageList" id="imageList">
+			<ul>
+				<li class="first"><a href="#"><img src="images/0.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="images/1.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="images/2.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="images/3.jpg" alt="" /></a></li>
+				<li><a href="#"><img src="images/4.jpg" alt="" /></a></li>
+			</ul>
+		</div>
+		<div class="circles" id="circles">
+			<ol>
+				<li class="cur"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ol>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="animate-2.0.1.js"></script>
+	<script type="text/javascript">
+		//得到元素
+		var carousel = document.getElementById("carousel");
+		var leftBtn = document.getElementById("leftBtn");
+		var rightBtn = document.getElementById("rightBtn");
+		var circles = document.getElementById("circles");
+		var imageList = document.getElementById("imageList");
+		var imageUL = imageList.getElementsByTagName("ul")[0];
+		var imageLis = imageUL.getElementsByTagName("li");
+		var circlesLis = circles.getElementsByTagName("li");
+ 		
+
+		var idx = 0;
+
+		rightBtn.onclick = function(){
+			//节流
+			if(imageLis[idx].isanimated) return;
+			//原信号量的图片移动到-560
+			animate(imageLis[idx],{"left":-560},700,"QuadEaseOut");
+			//信号量改变
+			idx++;
+			if(idx > 4){
+				idx = 0;
+			}
+			//新信号量的这个图片先瞬移到560 standby等待
+			imageLis[idx].style.left = "520px";
+			//拉！新信号量运动
+			animate(imageLis[idx],{"left":0},700,"QuadEaseOut");
+			//改变小圆点
+			changeCircles();
+		}
+
+		leftBtn.onclick = function(){
+			//节流
+			if(imageLis[idx].isanimated) return;
+			//原信号量的图片移动到-560
+			animate(imageLis[idx],{"left":560},700,"QuadEaseOut");
+			//信号量改变
+			idx--;
+			if(idx < 0){
+				idx = 4;
+			}
+			//新信号量的这个图片先瞬移到-560 standby等待
+			imageLis[idx].style.left = "-520px";
+			//拉！新信号量运动
+			animate(imageLis[idx],{"left":0},700,"QuadEaseOut");
+			//改变小圆点
+			changeCircles();
+		}
+
+		//小圆点的监听
+		for (var i = 0; i < circlesLis.length; i++) {
+			
+
+			circlesLis[i].index = i;
+			circlesLis[i].onclick = function(){
+				//节流
+				if(imageLis[idx].isanimated) return;
+				//判断点击的小圆点和当前的信号量的关系
+				if(this.index > idx){
+					//点的小圆点比信号量大，所以 ←←
+					animate(imageLis[idx],{"left":-560},700,"QuadEaseOut");
+					idx = this.index;
+					//新的信号量这个图，瞬移过来，就位，等待上场
+					imageLis[idx].style.left = "560px";
+					animate(imageLis[idx],{"left":0},700,"QuadEaseOut");
+				}else if(this.index < idx){
+					animate(imageLis[idx],{"left":560},700,"QuadEaseOut");
+					idx = this.index;
+					//新的信号量这个图，瞬移过来，就位，等待上场
+					imageLis[idx].style.left = "-560px";
+					animate(imageLis[idx],{"left":0},700,"QuadEaseOut");
+				}else{
+					alert("就是这个图，点个屁啊！");
+				}
+
+				changeCircles();
+			}
+		};
+
+		//根据信号量设置小圆点
+		function changeCircles(){
+			//排他
+			for (var i = 0; i < circlesLis.length; i++) {
+				circlesLis[i].className = "";
+			}
+			circlesLis[idx].className = "cur";
+		}
+	</script>
+</body>
+</html>

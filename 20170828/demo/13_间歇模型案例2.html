@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		div{
+			width: 600px;
+			height: 200px;
+			line-height: 40px;
+			border: 1px solid blue;
+			margin: 100px;
+			position: relative;
+			overflow: hidden;
+		}
+		div ul{
+			position: absolute;
+			top: 0;
+			left: 0;
+			list-style: none;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<ul>
+			<li>邱*健 北京*狐网络有线公司 16k</li>
+			<li>李*波 北京*东网络有线公司 26k</li>
+			<li>王* 北京*60网络有线公司 36k</li>
+			<li>赵* 北京*60网络有线公司 36k</li>
+			<li>马* 北京*60网络有线公司 36k</li>
+			<li>刘* 北京*60网络有线公司 36k</li>
+			<li>李* 北京*60网络有线公司 36k</li>
+			<li>李** 北京*60网络有线公司 36k</li>
+		</ul>
+	</div>
+
+	
+	<script type="text/javascript" src="animate-2.0.1.js"></script>
+	<script type="text/javascript">
+		//得到所有元素
+		var ul = document.getElementsByTagName("ul")[0];
+		var lis = document.getElementsByTagName("li");
+
+		var length = lis.length;
+
+		//复制所有li，追加到ul里
+		ul.innerHTML += ul.innerHTML;
+
+		//信号量
+		var idx = 0;
+		//模拟右按钮的业务
+		function move(){
+			idx++;
+			animate(ul,{"top":-40 * idx},800,function(){
+				if(idx > length - 1){
+					idx = 0;
+					this.style.top = "0px";
+				}
+			});
+		}
+ 	
+
+		//调用动画函数的间隔时间，要远大于动画运行时间
+		//这时就给人感觉一个间歇的过程
+ 		setInterval(move, 1800);
+	</script>
+</body>
+</html>

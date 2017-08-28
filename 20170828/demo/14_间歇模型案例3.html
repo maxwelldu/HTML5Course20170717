@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.rolling{
+			width: 800px;
+			height: 130px;
+			border: 10px solid #ccc;
+			margin: 100px auto;
+			position: relative;
+			overflow: hidden;
+		}
+		.rolling .m_unit{
+			/*这是运动的单位*/
+			/*这个宽度足以致命，为了让所有的li能够并排*/
+			/*这个宽度随便取，大一点*/
+			width: 5000px;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.rolling ul{
+			list-style: none;
+		}
+		.rolling ul li{
+			float: left;
+			margin-right: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="rolling" id="rolling">
+		<div class="m_unit" id="m_unit">
+			<ul>
+				<li><a href=""><img src="images/shuzi/0.png" alt="" /></a></li>
+				<li><a href=""><img src="images/shuzi/1.png" alt="" /></a></li>
+				<li><a href=""><img src="images/shuzi/2.png" alt="" /></a></li>
+				<li><a href=""><img src="images/shuzi/3.png" alt="" /></a></li>
+				<li><a href=""><img src="images/shuzi/4.png" alt="" /></a></li>
+				<li><a href=""><img src="images/shuzi/5.png" alt="" /></a></li>
+				<li><a href=""><img src="images/shuzi/6.png" alt="" /></a></li>
+				<li><a href=""><img src="images/shuzi/7.png" alt="" /></a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<script type="text/javascript" src="animate-2.0.1.js"></script>
+	<script type="text/javascript">
+		//得到元素
+		var rolling = document.getElementById("rolling");
+		var m_unit = document.getElementById("m_unit");
+		var listul = m_unit.getElementsByTagName("ul")[0];
+		//得到图片的数量，计算折返点用的，折返点就是210 * 图片数量
+		var lislength = listul.getElementsByTagName("li").length;
+
+		//复制一倍的li
+		listul.innerHTML += listul.innerHTML;
+ 		
+		//信号量
+		var idx = 0;
+		//模拟右按钮的业务
+		function move(){
+			idx++;
+			animate(m_unit,{"left":-210 * idx},800,function(){
+				if(idx > lislength - 1){
+					idx = 0;
+					this.style.left = "0px";
+				}
+			});
+		}
+ 	
+		//调用动画函数的间隔时间，要远大于动画运行时间
+		//这时就给人感觉一个间歇的过程
+ 		var timer = setInterval(move, 2000);
+
+ 		rolling.onmouseover = function(){
+ 			clearInterval(timer);
+ 		}
+
+ 		rolling.onmouseout = function(){
+ 			timer = setInterval(move, 2000);
+ 		}
+	</script>
+</body>
+</html>

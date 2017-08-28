@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		 console.log(1);
+		 console.log(2);
+		 console.log(3);
+		 for (var i = 0; i < 5; i++) {
+		 	console.log("★");
+		 }
+		 console.log(4);
+
+
+		//==========================
+//		 console.log(1);
+//		 console.log(2);
+//		 console.log(3);
+//		 setInterval(function(){
+//		 	console.log("★");
+//		 },1000);
+//		 console.log(4);
+
+
+		//======================
+		//控制台中每20毫秒输出一个星星，一共输出300个星星，全部输出完之后，alert()窗口
+
+		var count = 0;
+		var timer = setInterval(function(){
+			console.log("★");
+			count++;
+			if(count == 3){
+				clearInterval(timer);
+				callback();
+			}
+		},20);
+
+
+		//回调函数
+		function callback(){
+			alert("全部星星输出完毕");
+		}
+
+	</script>
+</body>
+</html>

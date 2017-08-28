@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta name="keywords" content="JS代码,{keyword},JS广告代码,JS特效代码" />
+<meta name="description" content="此代码内容为{title}，属于站长常用代码，更多{keyword}代码请访问懒人图库JS代码频道。" />
+<title>{title}_懒人图库</title>
+<link href="css/index.css" type=text/css rel=stylesheet>
+<script type="text/javascript" src="js/action.js"></script>
+</head>
+<body>
+<!-- 代码 开始 -->
+<div id="dHomePageCarousel" style="padding-left:15px">
+	<div id=dLocalHomesCarousel>
+		<img id="imgSmallLeft" class="imgBorder"  style="height:50px; width:70px; left:10px; bottom:5px;" onclick="clearInterval(autoplay);moveD('l');"/>
+		<img id="imgMiddleLeft" class="imgBorder"  style="height:75px; width:100px; left:110px; bottom:5px;" onclick="clearInterval(autoplay);move('l');"/>
+		<img id="imgBig" class="imgBorder"  style="height:105px;	width:140px; left:240px; bottom:5px;" onclick="openNewPage();"/>
+		<img id="imgMiddleRight" class="imgBorder"  style="height:75px; width:100px;	left:410px;	bottom:5px;" onclick="clearInterval(autoplay);move('r');"/>
+		<img id="imgSmallRight" class="imgBorder"  style="width:70px; height:50px; left:540px; bottom:5px;" onclick="clearInterval(autoplay);moveD('r');"/>
+		<img id="imgHidden" class="imgBorder"  style="width:10px; height:10px; left:-90px; bottom:5px;"/>
+	</div>
+	<div id=divCarouselInfo class="divCarouselInfo">
+		<div class=divCarouselInfoLt>
+			<a id="btnCarouselLt" class="btnCarouselLT" style="left: 10px;" onclick="clearInterval(autoplay);move('l');"></a>
+			<table id=fadeSec align=center>
+				<tbody>
+					<tr>
+						<td align=center><a id="adname" class="name" href="#"></a>&nbsp;&nbsp;&nbsp;&nbsp;售楼热线：<span id="adtel" class="tel"></span></td>
+					</tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr>
+						<td align=center><span id="adaddr"></span>&nbsp;&nbsp;&nbsp;&nbsp;价格：<span id="adprice" class="org"></span>&nbsp;&nbsp;&nbsp;&nbsp;开盘时间：<span id="adtime" class="org"></span></td>
+					</tr>
+				</tbody>
+			</table>
+			<a id="btnCarouselRt" class="btnCarouselRT" style="right: 10px;" onclick="clearInterval(autoplay);move('r');"></a>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function AdItem(name,phone,address,Photo,price,time,url) {
+			this.name = name;
+			this.phone = phone;
+			this.address = address;
+			this.Photo = Photo;
+			this.url = url;
+			this.price = price;
+			this.time = time;
+		}
+		var ad = new Array();
+		ad[0] = new AdItem('远中风华园（城宝）','4006887777-770162','静安区新闸路1068号 ','images/1.jpg','80000元/平方','2010年5月','#'); 
+		ad[1] = new AdItem('莱茵美墅','4006887777-770183','浦东区南六公路567弄','images/2.jpg','3300000元起','2010-04','#'); 
+		ad[2] = new AdItem('临港蓝色城邦(蓝色家园)','400-666-3572','浦东区临港新城分城区泥城霞光路78弄','images/3.jpg','8000元/平方','2010年4月','#'); 
+		ad[3] = new AdItem('尼德兰北岸(高桥新城3期)','4006887777-770765','浦东区溪兰路169弄','images/4.jpg','6500000元起','2010-04','#'); 
+		ad[4] = new AdItem('南郊中华园（两河流域）','4006887777-770511','南汇区航头镇航鹤路1699号','images/5.jpg','19000元/平方','2010-04','#'); 
+		ad[5] = new AdItem('保利湖畔阳光苑','4006887777-770455','裕民南路336弄','images/6.jpg','16000元/平方','2010-04','#'); ;
+		var img = new Array();
+		img[0] = document.getElementById("imgSmallLeft");
+		img[1] = document.getElementById("imgMiddleLeft");
+		img[2] = document.getElementById("imgBig");
+		img[3] = document.getElementById("imgMiddleRight");
+		img[4] = document.getElementById("imgSmallRight");
+		img[5] = document.getElementById("imgHidden");
+	
+		var position = 0;
+		for(i=0;i<img.length;i++){
+			img[i].src = ad[i].Photo;
+		}
+
+		var adname = document.getElementById("adname");
+		var adtel = document.getElementById("adtel");
+		var adaddr = document.getElementById("adaddr");
+		var adprice = document.getElementById("adprice");
+		var adtime = document.getElementById("adtime");
+
+		var cur = 2;
+		adname.href = ad[2].url;
+		if(navigator.userAgent.indexOf("Firefox")>0){
+			adname.textContent = ad[2].name;
+			adtel.textContent = ad[2].phone;
+			adaddr.textContent = ad[2].address;
+			adprice.textContent = ad[2].price;
+			adtime.textContent = ad[2].time;
+		} else {
+			adname.innerText = ad[2].name;
+			adtel.innerText = ad[2].phone;
+			adaddr.innerText = ad[2].address;
+			adprice.innerText = ad[2].price;
+			adtime.innerText = ad[2].time;
+		}
+	</script>
+</div>
+<!-- 代码 结束 -->
+<div style="text-align:center">
+<p>代码整理：<a href="http://www.lanrentuku.com/" target="_blank">懒人图库</a>　感谢：<a href="http://www.lanrentuku.com/" target="_blank">傻帽儿</a></p>
+<p>＊尊重他人劳动成果，转载请自觉注明出处！注：此代码仅供学习交流，请勿用于商业用途。</p>
+<p>{download}</p>
+<p>{content}</p>
+<p>{google_729x90}</p>
+</div>
+</body>
+</html>

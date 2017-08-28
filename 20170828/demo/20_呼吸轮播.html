@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		img{
+			border:none;
+		}
+		.carousel{
+			width: 560px;
+			height: 300px;
+			margin: 100px auto;
+			border: 1px solid #000;
+			position: relative;
+		}
+		.carousel .imageList ul{
+			list-style: none;
+			position: relative;
+		}
+		.carousel .imageList ul li{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 560px;
+			height: 300px;
+			display: none;
+		}
+		.carousel .imageList ul li.first{
+			opacity: 1;
+			display: block;
+		}
+		.btns a{
+			position: absolute;
+			width: 40px;
+			height: 40px;
+			top: 50%;
+			margin-top: -20px;
+			background-color: yellow;
+			z-index: 999;
+		}
+		.btns a.leftBtn{
+			left: 10px;
+		}
+		.btns a.rightBtn{
+			right: 10px;
+		}
+		.circles{
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+			width: 150px;
+			height: 18px;
+		}
+		.circles ol{
+			list-style: none;
+		}
+		.circles ol li{
+			float: left;
+			width: 18px;
+			height: 18px;
+			margin-right: 10px;
+			border-radius: 50%;
+			background-color: pink;
+			cursor: pointer;
+		}
+		.circles ol li.cur{
+			background-color: purple;
+		}
+	</style>
+</head>
+<body>
+	<div class="carousel" id="carousel">
+		<div class="btns">
+			<a href="javascript:;" class="leftBtn" id="leftBtn"></a>
+			<a href="javascript:;" class="rightBtn" id="rightBtn"></a>
+		</div>
+		<div class="imageList" id="imageList">
+			<ul>
+				<li class="first"><a href="000"><img width="560px" src="images/shuzi/0.png" alt="" /></a></li>
+				<li><a href="111"><img width="560px" src="images/shuzi/1.png" alt="" /></a></li>
+				<li><a href="222"><img width="560px" src="images/shuzi/2.png" alt="" /></a></li>
+				<li><a href="333"><img width="560px" src="images/shuzi/3.png" alt="" /></a></li>
+				<li><a href="444"><img width="560px" src="images/shuzi/4.png" alt="" /></a></li>
+			</ul>
+		</div>
+		<div class="circles" id="circles">
+			<ol>
+				<li class="cur"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ol>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="animate-2.0.1.js"></script>
+	<script type="text/javascript">
+		//配置
+		var options = {
+			"interval" : 2000,	//间隔时间
+			"animatetime" : 500,
+			"width" : 560
+		}
+		//得到元素
+		var carousel = document.getElementById("carousel");
+		var leftBtn = document.getElementById("leftBtn");
+		var rightBtn = document.getElementById("rightBtn");
+		var circles = document.getElementById("circles");
+		var imageList = document.getElementById("imageList");
+		var imageUL = imageList.getElementsByTagName("ul")[0];
+		var imageLis = imageUL.getElementsByTagName("li");
+		var circlesLis = circles.getElementsByTagName("li");
+
+		//图片个数
+		var imageLength = imageLis.length;
+ 		
+ 		//信号量
+ 		var idx = 0;
+
+ 		//自动轮播
+		var timer = setInterval(rightBtnHandler,options.interval);
+		//鼠标进入停止，离开继续
+		carousel.onmouseover = function(){
+			clearInterval(timer);
+		}
+		carousel.onmouseout = function(){
+			timer = setInterval(rightBtnHandler,options.interval);
+		}
+
+ 		//右按钮监听
+ 		rightBtn.onclick = rightBtnHandler;
+ 		
+ 		function rightBtnHandler(){
+ 			//函数节流
+ 			if(imageLis[idx].isanimated) return;
+ 			//老图淡出
+ 			animate(imageLis[idx],{"opacity":0},options.animatetime,function(){
+ 				//淡出完毕之后，直接让节点不显示
+ 				this.style.display = "none";
+ 			});
+ 			//信号量的变化
+ 			idx ++;
+ 			if(idx > imageLength - 1){
+ 				idx = 0;
+ 			}
+ 			//新图淡入之前，先让新图显示，并且让新图瞬间把opacity置为0
+ 			imageLis[idx].style.display = "block";
+ 			imageLis[idx].style.opacity = "0";
+ 			imageLis[idx].style.filter = "alpha(opacity=0)";
+ 			animate(imageLis[idx],{"opacity":1},options.animatetime);
+ 			//设置小圆点
+ 			changeCircles();
+ 		}
+
+ 		//左按钮监听
+ 		leftBtn.onclick = function(){
+ 			//函数节流
+ 			if(imageLis[idx].isanimated) return;
+ 			//老图淡出
+ 			animate(imageLis[idx],{"opacity":0},options.animatetime,function(){
+ 				this.style.display = "none";
+ 			});
+ 			//信号量的变化
+ 			idx --;
+ 			if(idx < 0){
+ 				idx = imageLength - 1;
+ 			}
+ 			//新图淡入之前，先让新图显示，并且让新图瞬间把opacity置为0
+ 			imageLis[idx].style.display = "block";
+ 			imageLis[idx].style.opacity = "0";
+ 			imageLis[idx].style.filter = "alpha(opacity=0)";
+ 			animate(imageLis[idx],{"opacity":1},options.animatetime);
+ 			//设置小圆点
+ 			changeCircles();
+ 		}
+
+
+ 		//小圆点监听
+ 		for (var i = 0; i < circlesLis.length; i++) {
+ 			circlesLis[i].index = i;
+ 			circlesLis[i].onclick = function(){
+				//函数节流
+	 			if(imageLis[idx].isanimated) return;
+	 			//老图淡出
+	 			animate(imageLis[idx],{"opacity":0},options.animatetime,function(){
+	 				this.style.display = "none";
+	 			});
+	 			//信号量的变化
+	 			idx = this.index;
+	 			//新图淡入之前，先让新图显示，并且让新图瞬间把opacity置为0
+	 			imageLis[idx].style.display = "block";
+	 			imageLis[idx].style.opacity = "0";
+	 			imageLis[idx].style.filter = "alpha(opacity=0)";
+	 			animate(imageLis[idx],{"opacity":1},options.animatetime);
+	 			//设置小圆点
+	 			changeCircles();
+ 			}
+ 		}
+
+
+ 		//根据信号量设置小圆点
+		function changeCircles(){
+			//排他
+			for (var i = 0; i < circlesLis.length; i++) {
+				circlesLis[i].className = "";
+			}
+			circlesLis[idx].className = "cur";
+		}
+	</script>
+</body>
+</html>
