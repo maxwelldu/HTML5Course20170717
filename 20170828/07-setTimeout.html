@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 200px;
+      height: 40px;
+      background-color: yellowgreen;
+    }
+    .tip {
+      width: 600px;
+      height: 300px;
+      background-color: #ccc;
+      opacity: 0;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="box" id="box"></div>
+  <div class="tip" id="tip"></div>
+  <script src="animate.js"></script>
+  <script>
+  /*
+    var timer = setTimeout(function(){
+      document.body.innerHTML = '页面爆炸了';
+    }, 3000);
+    */
+    var oBox = document.querySelector('#box');
+    var oTip = document.querySelector('#tip');
+    oBox.onmouseover = function(){
+      oTip.style.display = "block";
+      animate(oTip, {"opacity": 1}, 300);
+    }
+    oBox.onmouseout = function() {
+      setTimeout(function(){
+        animate(oTip, {"opacity": 0}, 300, function(){
+          oTip.style.display = 'none';
+        });
+      }, 600);
+    }
+  </script>
+</body>
+</html>

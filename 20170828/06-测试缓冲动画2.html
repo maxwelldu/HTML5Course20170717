@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      top: 30px;
+      left: 0px;
+      background-color: orange;
+    }
+    .no0 { top: 0px; }
+    .no1 { top: 30px; }
+    .no2 { top: 60px; }
+    .no3 { top: 90px; }
+    .no4 { top: 120px; }
+    .no5 { top: 150px; }
+    .no6 { top: 180px; }
+    .no7 { top: 210px; }
+    .no8 { top: 240px; }
+    .no9 { top: 270px; }
+    .no10 { top: 300px; }
+  </style>
+</head>
+<body>
+  <div class="no0"></div>
+  <div class="no1"></div>
+  <div class="no2"></div>
+  <div class="no3"></div>
+  <div class="no4"></div>
+  <div class="no5"></div>
+  <div class="no6"></div>
+  <div class="no7"></div>
+  <div class="no8"></div>
+  <div class="no9"></div>
+  <div class="no10"></div>
+  <script src="animate.js" charset="utf-8"></script>
+  <script>
+    var oDiv = document.getElementsByTagName('div');
+    animate(oDiv[0], {"left":400}, 3000, "Linear");
+    // animate(oDiv[1], {"left":400}, 3000, "QuadEaseIn");
+    // animate(oDiv[2], {"left":400}, 3000, "CubicEaseIn");
+    // animate(oDiv[3], {"left":400}, 3000, "QuartEaseIn");
+    // animate(oDiv[4], {"left":400}, 3000, "QuintEaseIn");
+    // animate(oDiv[5], {"left":400}, 3000, "SineEaseIn");
+    // animate(oDiv[6], {"left":400}, 3000, "ExpoEaseIn");
+    // animate(oDiv[7], {"left":400}, 3000, "CircEaseIn");
+    // animate(oDiv[8], {"left":400}, 3000, "BackEaseIn");
+    // animate(oDiv[9], {"left":400}, 3000, "ElasticEaseIn");
+    // animate(oDiv[10], {"left":400}, 3000, "BounceEaseIn");
+
+    // animate(oDiv[1], {"left":400}, 3000, "QuadEaseOut");
+    // animate(oDiv[2], {"left":400}, 3000, "CubicEaseOut");
+    // animate(oDiv[3], {"left":400}, 3000, "QuartEaseOut");
+    // animate(oDiv[4], {"left":400}, 3000, "QuintEaseOut");
+    // animate(oDiv[5], {"left":400}, 3000, "SineEaseOut");
+    // animate(oDiv[6], {"left":400}, 3000, "ExpoEaseOut");
+    // animate(oDiv[7], {"left":400}, 3000, "CircEaseOut");
+    // animate(oDiv[8], {"left":400}, 3000, "BackEaseOut");
+    // animate(oDiv[9], {"left":400}, 3000, "ElasticEaseOut");
+    // animate(oDiv[10], {"left":400}, 3000, "BounceEaseOut");
+
+    animate(oDiv[1], {"left":400}, 3000, "QuadEaseInOut");
+    animate(oDiv[2], {"left":400}, 3000, "CubicEaseInOut");
+    animate(oDiv[3], {"left":400}, 3000, "QuartEaseInOut");
+    animate(oDiv[4], {"left":400}, 3000, "QuintEaseInOut");
+    animate(oDiv[5], {"left":400}, 3000, "SineEaseInOut");
+    animate(oDiv[6], {"left":400}, 3000, "ExpoEaseInOut");
+    animate(oDiv[7], {"left":400}, 3000, "CircEaseInOut");
+    animate(oDiv[8], {"left":400}, 3000, "BackEaseInOut");
+    animate(oDiv[9], {"left":400}, 3000, "ElasticEaseInOut");
+    animate(oDiv[10], {"left":400}, 3000, "BounceEaseInOut");
+  </script>
+</body>
+</html>

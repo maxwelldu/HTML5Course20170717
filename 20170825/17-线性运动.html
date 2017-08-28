@@ -39,6 +39,7 @@
       //改变帧数信号量
       frame++;
       // oDiv.style.left = nowLeft + (step * frame) + 'px';
+      //                nowLeft + (distance / frames * frame)
       oDiv.style.left = nowLeft + (distance * frame/frames) + 'px';
       // c*t/d + b   //b => nowLeft c => distance t => frame d => frames
 

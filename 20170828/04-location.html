@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <!-- <meta http-equiv="refresh" content="3" /> -->
+  <!-- <meta http-equiv="refresh" content="3; url=http://www.baidu.com" /> -->
+</head>
+<body>
+  <span>点击跳转到百度</span>
+  <span>页面刷新</span>
+  <script>
+    var oSpan = document.querySelector('span');
+    oSpan.onclick = function(){
+      // location.href = 'http://www.baidu.com';
+      // location.assign("http://www.baidu.com");
+      location.replace("http://www.baidu.com");
+    }
+
+    var oReload = document.querySelectorAll('span')[1];
+    oReload.onclick = function(){
+      // location.reload();
+      location.href = location.href;
+    }
+    //如果想让页面每3秒钟刷新一次
+
+  /*
+    setInterval(function(){
+      location.reload();
+    }, 3000);
+    */
+
+    // HTML的方式刷新页面
+  </script>
+</body>
+</html>

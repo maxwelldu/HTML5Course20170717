@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  div {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: yellowgreen;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+  }
+  </style>
+</head>
+<body>
+  <div></div>
+  <script src="animate.js" charset="utf-8"></script>
+  <script>
+    var oDiv = document.querySelector('div');
+    //只传递3个参数
+    // animate(oDiv, {"left": 400}, 3000);
+    // animate(oDiv, {"left": 400}, 3000, "BounceEaseOut");
+    // animate(oDiv, {"left": 400}, 3000, function(){
+    //   this.style.display = 'none';
+    // });
+    animate(oDiv, {"left": 300, "top": 200, "opacity": 1}, 3000, "BackEaseIn", function(){
+    });
+    /*
+      animate(this, {"left": 0, "top": 0, "opacity": 0.5}, 3000, "ElasticEaseIn", function(){
+      });
+      */
+  </script>
+</body>
+</html>

@@ -547,3 +547,98 @@ JSON编码格式必须是UTF-8, 如果是GBK或其他则需要先转换后再生
 前后端的区分：
 前端是指工作在浏览器上面的所有事情都是前端负责(html, css, js[动态效果，和后端打交道，获取数据])
 后端是工作在服务器上的所有事情：动态编程语言（java,php,python,ruby)+数据库（mysql,mongodb,redis)
+
+##20170825
+系统的难看的各种组件，在以后的工作中基本上都需要去自己封装一个类似的，比如：
+alert   警告框
+confirm 确认框
+prompt  输入框，可以在里面输入内容
+和html,css相关的有：特殊的是checkbox, radio, select
+
+onload事件只能绑定一个，重复绑定会使用最后一个
+页面的DOM结构加载完成的事件是：  document.addEventListener('DOMContentLoaded', function(){
+    console.log(2);
+  });
+这个事件可以绑定多次，当HTML结构被解析完成之后就会调用当前事件
+
+XML
+<obj>
+  <name>凯玉同学</name>
+  <age>18</age>
+</obj>
+
+JSON
+对象{}
+数组[]
+
+访问值 对象.属性名    对象[属性名变量或字符串]
+二维数组：
+```
+var arr = [];
+// arr[0][0] = '凯玉'; //这个是会报错
+//如果需要使用二维数组，需要先把数组中的项变成一个数组
+
+for (var i = 0; i < 3; i++) {
+  arr[i] = [];
+  for (var j = 0; j < 3; j++) {
+    arr[i][j] = j;
+  }
+}
+console.log(arr);
+```
+删除属性：
+delete obj.property;
+delete后面跟变量，不会报错，但是无法删除变量(实际上就是无法删除window中的属性)；只能够用来删除自定义对象中的属性
+
+window对象是宿主对象
+对象的遍历：(会遍历到原型上面的允许枚举的属性)
+for (var k in obj) {
+  console.log(k, obj[k]);
+}
+
+BOM对象中有定时器，navigator对象， location对象
+navigator就是浏览器对象，里面最主要的一个属性是userAgent, 标识了浏览器；我们可以使用userAgent区分出IE，FF，Chrome, Safari, Opera或者手机上面的浏览器，像UC, 微信浏览器等等; 这个属性还可以被后端利用，可以让手机访问网站的时候直接跳转到手机站
+alert(navigator.userAgent);
+
+比如访问此地址： 03-navigator.html#username=kaiyu
+location.hash 的值就是我们之前所学的锚点的内容#username=kaiyu
+比如访问此地址：03-navigator.html?age=10
+location.search 的值是 ?age=10   后面学习表单和AJAX的时候就知道这个也叫queryString, 就是GET请求时候的参数
+location.href属性可以让页面跳转
+location.reload() 刷新当前页面
+location.assign() 相当于修改 location.href属性, 是可以通过历史记录后退到之前的页面
+location.replace()  把当前页面替换成目标页面，不能通过历史记录后退到之前的页面
+
+<meta http-equiv="refresh" content="3" />  //每3秒刷刷新当前页面
+<meta http-equiv="refresh" content="3; url=http://www.baidu.com" /> //3秒之后跳转到百度页面
+
+回调函数：通常就是调用函数的时候传递函数作为参数；在调用的函数内部会自动调用我们传递进去的函数;
+可以有效的通知我们事情完成的情况，是成功了，失败了，还是在什么状态
+我们可以定制当程序在不同阶段的时候执行我们自定义的函数
+function a(cb) {
+  cb && cb();
+}
+a(function(){
+  console.log('回调函数里面的内容');
+});
+
+异步：
+就是程序不会立即执行：比如setTimeout, setInterval, 绑定事件，ajax
+
+call和apply都可以执行函数，并且第一个参数是改变函数内部this的指向
+call在执行函数的时候，如果函数有参数，传递参数是以逗号分隔的参数列表
+apply在执行有参数的函数时，第二个参数传递一个数组，数组中的值依次传递到调用函数的中
+
+函数的默认值写法
+callback = callback || function(){};
+和下面的语句一样
+if (!callback) {
+  callback = function(){}
+}
+
+//相当于判断callback有值的时候执行
+callback && callback();
+和下面的语句一样
+if (callback) {
+  callback();
+}
