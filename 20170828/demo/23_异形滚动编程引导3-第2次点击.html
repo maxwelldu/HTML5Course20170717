@@ -37,7 +37,7 @@
 		.yixing ul li.stateE{width: 122px;height: 86px;left:436px;top: 35px;}
 		.yixing ul li.stateF{width: 71px;height: 54px;left:583px;top: 67px;}
 		.yixing ul li.stateG{width: 55px;height: 37px;left:678px;top: 84px; opacity: 1;filter:alpha(opacity=0);}
-	
+
 		.rightBtn{
 			position: absolute;
 			top: 151px;
@@ -114,12 +114,12 @@
 
 			//交换身份！！
 			liArray.push(liArray.shift());
- 
+
 		}
 
 		//左按钮的监听
 		leftBtn.onclick = function(){
-			 
+
 			for(var i = 0 ; i <= 5 ; i++){
 				animate(liArray[i],JSONarr[i + 1],600,"BounceEaseOut");
 			}
@@ -130,7 +130,7 @@
 
 			//交换身份！！
 			liArray.unshift(liArray.pop());
- 
+
 		}
 	</script>
 </body>

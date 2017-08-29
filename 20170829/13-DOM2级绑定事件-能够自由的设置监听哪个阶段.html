@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #box1 {
+      width: 400px;
+      height: 400px;
+      background-color: yellowgreen;
+    }
+    #box2 {
+      width: 300px;
+      height: 300px;
+      background-color: pink;
+    }
+    #box3 {
+      width: 200px;
+      height: 200px;
+      background-color: gold;
+    }
+  </style>
+</head>
+<body>
+  <div id="box1">
+    <div id="box2">
+      <div id="box3"></div>
+    </div>
+  </div>
+  <script>
+    var oBox1 = document.getElementById('box1');
+    var oBox2 = document.getElementById('box2');
+    var oBox3 = document.getElementById('box3');
+
+    oBox1.addEventListener('click', function(){
+      alert('box1被点击，捕获阶段');
+    }, true);
+    oBox2.addEventListener('click', function(){
+      alert('box2被点击，捕获阶段');
+    }, true);
+    oBox3.addEventListener('click', function(){
+      alert('box3被点击，捕获阶段');
+    }, true);
+
+    oBox1.addEventListener('click', function(){
+      alert('box1被点击，冒泡阶段');
+    }, false);
+    oBox2.addEventListener('click', function(){
+      alert('box2被点击，冒泡阶段');
+    }, false);
+    oBox3.addEventListener('click', function(){
+      alert('box3被点击，冒泡阶段');
+    }, false);
+
+    document.body.addEventListener('click', function(){
+      alert('body捕获');
+    }, true);
+    document.addEventListener('click', function(){
+      alert('document捕获');
+    }, true);
+    window.addEventListener('click', function(){
+      alert('window捕获');
+    }, true);
+
+    document.body.addEventListener('click', function(){
+      alert('body冒泡');
+    }, false);
+    document.addEventListener('click', function(){
+      alert('document冒泡');
+    }, false);
+    window.addEventListener('click', function(){
+      alert('window冒泡');
+    }, false);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="box">凯玉同学</div>
+  <script>
+    //事件的冒泡阶段，父元素上面绑定了点击事件的话，会冒泡到父元素，一直冒泡到window
+    document.body.onclick = function() {
+      console.log('你点击到了 body');
+    }
+    document.getElementById('box').onclick = function(){
+      console.log('你点击到了box元素');
+    }
+  </script>
+</body>
+</html>

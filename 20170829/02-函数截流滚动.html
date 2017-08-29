@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html,body{
+      height: 5000px;
+    }
+  </style>
+</head>
+<body>
+
+  <script>
+    function throttle(fn, delay, context){
+      clearTimeout(fn.timeoutId);
+      fn.timeoutId = setTimeout(function(){
+        fn.call(context);
+      }, delay);
+    }
+    window.onscroll = function() {
+      throttle(count, 300, null);
+    }
+    var i = 0;
+    function count(){
+      console.log(i++);
+    }
+  </script>
+</body>
+</html>

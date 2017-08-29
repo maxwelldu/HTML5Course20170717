@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="txt">
+  <input type="button" value="添加一项todo" id="btn">
+  <h2>待办事项</h2>
+  <ul>
+    <li>监督凯玉睡觉</li>
+  </ul>
+  <script>
+    var oBtn = document.querySelector('#btn');
+    var oTxt = document.querySelector('#txt');
+    var oUl = document.querySelector('ul');
+    oBtn.onclick = function(){
+      var oLi = document.createElement('li');
+      oLi.innerText = oTxt.value;
+      oUl.appendChild(oLi);
+      oTxt.value = '';
+    }
+  </script>
+</body>
+</html>

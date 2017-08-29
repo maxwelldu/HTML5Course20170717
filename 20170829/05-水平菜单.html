@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .nav {
+      width: 960px;
+      height: 40px;
+      border: 1px solid #000;
+      margin: 50px auto;
+    }
+    .nav>ul {
+      list-style: none;
+    }
+    .nav>ul>li {
+      width: 120px;
+      height: 40px;
+      line-height: 40px;
+      float: left;
+    }
+    .nav>ul>li>a{
+      display: block;
+      width: 120px;
+      line-height: 40px;
+      text-align: center;
+      background-color: orange;
+    }
+    .nav>ul>li>a:hover {
+      background-color: yellow;
+    }
+    .nav>ul>li>.dropbox{
+      width: 160px;
+      overflow: hidden;
+      display: none;
+    }
+    .nav>ul>li>.dropbox>p>a{
+      display: block;
+      width: 160px;
+      height: 30px;
+      line-height: 30px;
+      background-color: #ccc;
+    }
+    .nav>ul>li>.dropbox>p>a:hover{
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+  <div id="nav" class="nav">
+    <ul>
+      <li>
+        <a href="">首页</a>
+      </li>
+      <li>
+        <a href="">网站栏目</a>
+        <div class="dropbox">
+          <p><a href="">子栏目1</a></p>
+          <p><a href="">子栏目2</a></p>
+          <p><a href="">子栏目3</a></p>
+          <p><a href="">子栏目4</a></p>
+          <p><a href="">子栏目5</a></p>
+          <p><a href="">子栏目6</a></p>
+        </div>
+      </li>
+      <li>
+        <a href="">网站栏目</a>
+        <div class="dropbox">
+          <p><a href="">子栏目1</a></p>
+          <p><a href="">子栏目2</a></p>
+          <p><a href="">子栏目3</a></p>
+          <p><a href="">子栏目4</a></p>
+          <p><a href="">子栏目5</a></p>
+          <p><a href="">子栏目6</a></p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <script src="animate.js" charset="utf-8"></script>
+  <script>
+    var oLis = document.querySelectorAll('#nav>ul>li');
+    console.log(oLis);
+
+    for (var i = 0; i < oLis.length; i++) {
+      oLis[i].onmouseenter = function(){
+        var self = this;
+        //得到当前的子元素dropbox
+        var mydropbox = (function(){
+          for (var i = 0; i < self.childNodes.length; i++) {
+            if (self.childNodes[i].className === 'dropbox') {
+              return self.childNodes[i];
+            }
+          }
+        })();
+
+        //得到子菜单的个数
+        var oPs = mydropbox.getElementsByTagName('p');
+        if (mydropbox) {
+          mydropbox.style.display = 'block';
+          mydropbox.style.height = '1px';
+          animate(mydropbox, {"height": oPs.length * 30}, 300);
+        }
+      }
+      oLis[i].onmouseleave = function(){
+        var self = this;
+        var mydropbox = (function(){
+          for (var i = 0; i < self.childNodes.length; i++) {
+            if (self.childNodes[i].className === 'dropbox') {
+              return self.childNodes[i];
+            }
+          }
+        })();
+
+        if (mydropbox) {
+          animate(mydropbox, {"height": 0}, 300, function(){
+            this.style.display = 'none';
+          });
+        }
+      }
+    }
+  </script>
+</body>
+</html>

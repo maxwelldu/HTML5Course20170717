@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<style>
+  #box1 {
+    width: 400px;
+    height: 400px;
+    background-color: yellowgreen;
+  }
+  #box2 {
+    width: 300px;
+    height: 300px;
+    background-color: pink;
+  }
+  #box3 {
+    width: 200px;
+    height: 200px;
+    background-color: gold;
+  }
+</style>
+</head>
+<body>
+  <div id="box1">
+    <div id="box2">
+      <div id="box3"></div>
+    </div>
+  </div>
+  <script>
+    var oBox1 = document.getElementById('box1');
+    var oBox2 = document.getElementById('box2');
+    var oBox3 = document.getElementById('box3');
+
+    oBox1.attachEvent('onclick', function(){
+      alert('box1');
+    });
+    oBox2.attachEvent('onclick', function(){
+      alert('box2');
+    });
+    oBox3.attachEvent('onclick', function(){
+      alert('box3');
+    });
+  </script>
+</body>
+</html>

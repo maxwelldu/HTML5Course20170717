@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>非火车无缝滚动</title>
+		<style type="text/css">
+		    *{
+		    	margin:0px;
+		    	padding: 0px;
+		    }
+			.lunbo{
+				width:500px;
+				height: 200px;
+				margin: auto;
+				border: 4px solid #ccc;
+				margin-top: 50px;
+				position: relative;
+				overflow: hidden;
+			}
+			 .lunbo>span{
+			 	 float: left;
+			 	 width: 30px;
+			 	 height: 50px;
+			 	 position:absolute;
+			 	 background: red;
+			 	 line-height: 50px;
+			 	 text-align: center;
+			 	 color:white;
+			 	 opacity: 0.4;
+			 	 filter: alpha(opacity=40);
+			 	 font-size: 30px;
+			 }
+			.lunbo>span:hover{
+			 	opacity:0.8;
+			 	filter: alpha(opacity=80);
+			 }
+			 .span1{
+			 	left: 0px;
+			 	top: 75px;
+			 }
+			 .span2{
+			 	right: 0px;
+			 	top: 75px;
+			 }
+			.ul1{
+				list-style: none;
+				width: 5000px;
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				z-index: -10;
+			}
+			.ul1>li{
+				float:left;
+				display: inline-block;
+			}
+			.ul1>li>img{
+			   height:200px;
+			}
+			.ul2{
+				float: left;
+				list-style: none;
+				width: ;
+				position: absolute;
+				left: 140px;
+				top:170px
+			}
+			.ul2>li{
+				float: left;
+				margin-left: 15px;
+				width: 20px;
+				height: 20px;
+				background:red;
+				border-radius: 50%;
+				opacity: 0.6;
+				filter: alpha(opacity=60);
+			}
+			.ul2li{
+				background: purple;
+				opacity:1;
+				filter: alpha(opacity=100);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="lunbo">
+			<span class="span1"><</span>
+			<ul class="ul1" id="ul1">
+				<li><img src="images/0.jpg"/></li>
+				<li><img src="images/1.jpg"/></li>
+				<li><img src="images/2.jpg"/></li>
+				<li><img src="images/3.jpg"/></li>
+				<li><img src="images/4.jpg"/></li>
+			</ul>
+			<ul class="ul2">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<span class="span2">></span>
+		</div>
+		<script>
+			var img=document.getElementsByTagName("img");
+			var ul=document.querySelector(".ul1");
+			var li=document.getElementsByTagName("li");
+			var x=ul.firstElementChild;
+//			ul.removeChild(ul.firstElementChild);
+//			ul.appendChild(x);
+//			console.log(li[0])
+
+			//图片加载完成再移动
+			var count=0;
+			for(var i=0;i<img.length;i++){
+				count++;
+				if(count==img.length){
+					move();
+				}
+			}
+			//移动位置信号量,控制移动点的
+			var yidong=0;
+			function move(){
+//				console.log(ul.style.left)
+				var timer=setInterval(function(){
+					yidong-=3;
+					tihuan();
+				},20)
+			}
+			//信号量，控制当前点
+			var dangqian=0;
+			//业务逻辑
+		    function tihuan(){
+					//致命的问题，用这个语句每次删除屏幕要闪一下
+					if(yidong<=-(li[0].clientWidth)){
+						    dangqian++;
+						  	var x=ul.firstElementChild;
+			                ul.removeChild(ul.firstElementChild);
+			                ul.appendChild(x);
+			                yidong=0;
+					}
+		    		ul.style.left=yidong+"px";
+		    }
+
+
+
+		</script>
+	</body>
+</html>

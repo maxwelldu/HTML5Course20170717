@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="search">
+  <script>
+    /**
+    @param fn表示需要限制频率执行的方法
+    @param delay 延迟多久之后执行
+    @param context 是指定调用函数中的this的值是谁 可选
+    context就是指函数当中的this,我们叫他上下文
+    */
+    function throttle(fn, delay, context) {
+      context = context || null;
+      clearTimeout(fn.timeoutId);
+      fn.timeoutId = setTimeout(function(){
+        fn.call(context);
+      }, delay);
+    }
+    function queryData() {
+      console.log('搜索：' + this.value);
+    }
+    var oInput = document.querySelector('#search');
+    oInput.onkeyup = function(){
+      throttle(queryData, 500, this);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .carousel {
+      position: relative;
+      width: 780px;
+      height: 330px;
+      margin: 100px auto;
+      border: 1px solid #333;
+      overflow: hidden;
+    }
+    .carousel .m_unit {
+      width: 5000px;
+      height: 330px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .carousel ul {
+      list-style: none;
+    }
+    .carousel ul li {
+      float: left;
+      width: 780px;
+      height: 330px;
+    }
+
+    .btns a {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      top: 50%;
+      margin-top: -20px;
+      background-color: orange;
+      font-size: 30px;
+      line-height: 40px;
+      text-align: center;
+      border-radius: 50%;
+      font-weight: bold;
+      z-index: 999;
+    }
+    .btns a:hover {
+      background-color: gold;
+    }
+    .leftBtn {
+      left: 10px;
+    }
+    .rightBtn {
+      right: 10px;
+    }
+    .circles {
+      position: absolute;
+      width: 150px;
+      height: 16px;
+      bottom: 10px;
+      left: 50%;
+      margin-left: -75px;
+    }
+    .circles ol {
+      list-style: none;
+    }
+    .circles ol li {
+      float: left;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      cursor: pointer;
+      background-color: orange;
+      margin-right: 6px;
+    }
+    .circles ol li.current {
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="carousel" class="carousel">
+    <div id="m_unit" class="m_unit">
+      <ul>
+        <li><a href=""><img src="images/0.jpg" alt=""></a></li>
+        <li><a href=""><img src="images/1.jpg" alt=""></a></li>
+        <li><a href=""><img src="images/2.jpg" alt=""></a></li>
+        <li><a href=""><img src="images/3.jpg" alt=""></a></li>
+        <li><a href=""><img src="images/4.jpg" alt=""></a></li>
+      </ul>
+    </div>
+    <div class="btns">
+      <a href="javascript:" class="leftBtn" id="leftBtn"></a>
+      <a href="javascript:" class="rightBtn" id="rightBtn"></a>
+    </div>
+    <div class="circles" id="circles">
+      <ol>
+        <li class="current"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ol>
+    </div>
+  </div>
+
+  <script src="animate.js" charset="utf-8"></script>
+  <script>
+    var oRightBtn = document.querySelector('#rightBtn');
+    var oCirclesLi = document.querySelector("#circles").querySelectorAll('li');
+    var oMUnit = document.querySelector("#m_unit");
+    var oUl = oMUnit.querySelector('ul');
+    var oLi = oUl.querySelectorAll('li');
+
+    var imgLength = oLi.length;
+    var width = 780;
+    var animatetime = 600;
+    var tweenString = "BounceEaseOut";
+    var interval = 2000;
+    var index = 0; //0 1 2 3 4
+
+    //把0号li克隆，然后添加到carouseUL的最后
+    oUl.appendChild(oLi[0].cloneNode(true));
+
+    oRightBtn.onclick = rightBtnHandler;
+    function rightBtnHandler() {
+      //如果本身在运动，则不做任何事
+      if (oMUnit.isAnimated) return;
+
+      index++;
+      changeCircles();
+      //幻数
+      // animate(oMUnit, {"left":-780*index}, animatetime, tweenString, function(){
+      animate(oMUnit, {"left":-width*index}, animatetime, tweenString, function(){
+        if (index == imgLength) {
+          index = 0;
+          this.style.left = "0px";
+        }
+      });
+    }
+
+    //更换小圆点
+    function changeCircles() {
+      //n是信号量的副本
+      var n = index;
+      if (n === imgLength) {
+        n = 0;
+      }
+
+      for (var i = 0; i < oCirclesLi.length; i++) {
+        oCirclesLi[i].className = "";
+      }
+      oCirclesLi[n].className = "current";
+    }
+  </script>
+</body>
+</html>

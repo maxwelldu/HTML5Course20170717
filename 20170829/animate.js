@@ -103,7 +103,7 @@ function animate(elem, targetJSON, time, tweenString, callback) {
     if (frame >= frames) {
       //次数够了，停止定时器
       //强行让elem跑到targetJSON那个位置
-      for (var k in originalJSON) {
+      for (var k in targetJSON) {
         if (k != "opacity") {
           elem.style[k] = targetJSON[k] + 'px';
         } else {

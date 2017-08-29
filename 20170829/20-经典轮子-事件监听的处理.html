@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+      background-color: yellowgreen;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <script>
+    //绑定事件，三个参数
+    // obj 需要绑定事件的元素
+    // eventtype 事件名，没有on
+    // fn 事件处理函数
+    function addEvent(obj, eventtype, fn) {
+      if (obj.addEventListener) {
+        obj.addEventListener(eventtype, fn, false);
+      } else if(obj.attachEvent){
+        obj.attachEvent("on" + eventtype, function(){
+          fn.call(obj);
+        });
+      } else {
+        obj["on" + eventtype] = fn;
+      }
+    }
+
+    var oDiv = document.querySelector('div');
+    addEvent(oDiv, 'click', function(){
+      this.style.backgroundColor = 'red';
+    });
+  </script>
+</body>
+</html>

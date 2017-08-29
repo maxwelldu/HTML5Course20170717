@@ -643,10 +643,131 @@ if (callback) {
   callback();
 }
 
+##20170828
+var timer = setTimeout(function(){
+}, 3000);
+clearTimeout(timer);
+
+逐帧动画：（原理是使用定时器周期性的更改雪碧图[精灵图]{sprit}的背景定位)
+var x = 0;
+var y = 0;
+var n = 0;
+var timer = setInterval(function(){
+  n++;
+  x -= 190;
+  console.log(x, y);
+  div.style.backgroundPosition = x + "px" + " " + y + "px";
+  if(x <= -760){
+      x = 0;
+      y -= 190;
+  }
+  if(y <= -2000){
+      x = 0;
+      y = 0;
+  }
+  if (n >= 9) {
+    clearInterval(timer);
+  }
+}, 1000)
+
+函数截流一：
+var lock = true;
+oDiv.onclick = function(){
+  if (!lock) return;
+  lock = false;
+  setTimeout(function(){
+    lock = true;
+  }, 3000);
+  //执行具体的业务逻辑,3秒钟之后能够再次点击
+}
+函数截流二：
+<!-- @param fn表示需要限制频率执行的方法 -->
+<!-- @param delay 延迟多久之后执行 -->
+<!-- @param context 是指定调用函数中的this的值是谁 可选 -->
+function throttle(fn, delay, context) {
+  context = context || null;
+  clearTimeout(fn.timeoutId);
+  fn.timeoutId = setTimeout(function(){
+    fn.call(context);
+  }, delay);
+}
+function queryData() {
+  console.log('搜索：' + this.value);
+}
+var oInput = document.querySelector('#search');
+oInput.onkeyup = function(){
+  throttle(queryData, 500, this);
+}
+
+轮播图核心
+var oRightBtn = document.querySelector('#rightBtn');
+var oCirclesLi = document.querySelector("#circles").querySelectorAll('li');
+var oMUnit = document.querySelector("#m_unit");
+var oUl = oMUnit.querySelector('ul');
+var oLi = oUl.querySelectorAll('li');
+
+var imgLength = oLi.length;
+var width = 780;
+var animatetime = 600;
+var tweenString = "BounceEaseOut";
+var interval = 2000;
+var index = 0; //0 1 2 3 4
+
+//把0号li克隆，然后添加到carouseUL的最后
+oUl.appendChild(oLi[0].cloneNode(true));
+
+oRightBtn.onclick = rightBtnHandler;
+function rightBtnHandler() {
+  //如果本身在运动，则不做任何事
+  if (oMUnit.isAnimated) return;
+
+  index++;
+  changeCircles();
+  animate(oMUnit, {"left":-width*index}, animatetime, tweenString, function(){
+    if (index > imgLength - 1) {
+      index = 0;
+      this.style.left = "0px";
+    }
+  });
+}
+
+//更换小圆点
+function changeCircles() {
+  //n是信号量的副本
+  var n = index;
+  if (n === imgLength) {
+    n = 0;
+  }
+
+  for (var i = 0; i < oCirclesLi.length; i++) {
+    oCirclesLi[i].className = "";
+  }
+  oCirclesLi[n].className = "current";
+}
+
+###间歇模型
+var oUl = document.querySelector('ul');
+var oLi = document.querySelectorAll('li');
+var length = oLi.length;
+
+oUl.appendChild(oLi[0].cloneNode(true));
+var index = 0;
+function move() {
+  index++;
+  animate(oUl, {"top": -40*index}, 800, function(){
+    if (index > length -1) {
+      index = 0;
+      this.style.top = "0px";
+    }
+  });
+}
+//调用动画函数的间隔时间，要远大于动画运行时间
+//这时就给人感觉是一个间歇的过程
+setInterval(move, 1800);
 
 
 
 ##5点后的练习计划
-20170828 练习批量绑定事件和对应模型：发10元起的红包
-20170829 练习函数截流
-20170829 练习基础轮播图
+20170828 练习批量绑定事件和对应模型
+20170829 练习函数截流滚动或者延迟搜索
+20170830 轮播图右按钮的业务逻辑

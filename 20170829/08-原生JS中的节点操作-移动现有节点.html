@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #box1 { height: 60px; border: 1px solid red; }
+    #box2 { border: 1px solid green; }
+  </style>
+</head>
+<body>
+  <input type="button" value="挪动凯玉">
+  <div id="box1">
+    <p id="kaiyu">凯玉</p>
+  </div>
+  <div id="box2">
+    <p id="guikang">桂康</p>
+  </div>
+  <script>
+    var oBtn = document.querySelector('input');
+    var oKaiyu = document.querySelector("#kaiyu");
+    var oGuikang = document.querySelector('#guikang');
+    var oBox2 = document.querySelector('#box2');
+
+    oBtn.onclick = function() {
+      // oBox2.appendChild(oKaiyu);
+      oBox2.insertBefore(oKaiyu, oGuikang);
+    }
+    //值传递和引用传递
+
+    //基础数据类型和对象数据类型
+    //数字 字符串 布尔值 undefined
+    //对象：null 数组 函数 对象(dom对象) Math Date
+  </script>
+</body>
+</html>
