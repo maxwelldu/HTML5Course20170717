@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text">
+  <input type="button" value="添加一项">
+  <h2>待办事项</h2>
+  <ul>
+    <li>买css杯子</li>
+    <li>买js鼠标垫</li>
+    <li>买git的衣服</li>
+  </ul>
+  <script>
+    var oTxt = document.querySelector('input[type=text]');
+    var oBtn = document.querySelector('input[type=button]');
+    var oUl = document.querySelector('ul');
+
+    var oLis = oUl.querySelectorAll('li');
+    for (var i = 0; i < oLis.length; i++) {
+      oLis[i].onclick = function() {
+        this.parentNode.removeChild(this);
+      }
+    }
+
+    oBtn.addEventListener('click', function() {
+      //当你把元素中的innerHTML内容重置之后，之前绑定的事件全部失效
+      oUl.innerHTML += `<li>${oTxt.value}</li>`;
+    });
+  </script>
+
+</body>
+</html>

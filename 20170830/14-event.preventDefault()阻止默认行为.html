@@ -22,12 +22,22 @@
   <script>
     //当鼠标滚轮滚动的时候
     document.querySelector('div').onmousewheel = function(event) {
-      event.preventDefault();
+      event = event || window.event;
+      if (event.preventDefault) {
+        event.preventDefault();
+      } else {
+        event.returnValue = false;
+      }
     }
 
     //当右击的时候阻止弹出的默认菜单
     document.oncontextmenu = function(event) {
-      event.preventDefault();
+      event = event || window.event;
+      if (event.preventDefault) {
+        event.preventDefault();
+      } else {
+        event.returnValue = false;
+      }
     }
   </script>
 </body>

@@ -22,9 +22,10 @@
     var oEmailError = document.getElementById('email-error');
     oEmail.oninvalid = function(event) {
       event.preventDefault();
+      
       console.log(event);
-      console.log(event.detail);
       oEmailError.style.display = "block";
+      oEmailError.innerText = this.validationMessage;
     }
   </script>
 </body>

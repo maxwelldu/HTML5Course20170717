@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 200px;
+      background-color: orange;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <script>
+    var oDiv = document.querySelector('div');
+    oDiv.onmousedown = function(){
+      //鼠标按下去的时候，就要记录鼠标在盒子中的位置，这个位置实际上就是误差
+      var deltaX = event.clientX - this.offsetLeft;
+      var deltaY = event.clientY - this.offsetTop;
+      //整个文档添加 mousemove事件，鼠标移动的时候触发
+      document.onmousemove = function(event) {
+        event = event || window.event;
+        //减去误差
+        oDiv.style.left = event.clientX - deltaX + 'px';
+        oDiv.style.top = event.clientY - deltaY + 'px';
+      }
+    }
+
+    document.onmouseup = function() {
+      document.onmousemove = null;
+    }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      width: 200px;
+      height: 200px;
+      background: orange;
+    }
+    p {
+      height: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <script>
+    var oDiv = document.querySelector('div');
+    oDiv.onmousemove = function(event) {
+      console.log('client :' + event.clientX, event.clientY);
+      console.log('screen: ' + event.screenX, event.screenY);
+    }
+  </script>
+</body>
+</html>

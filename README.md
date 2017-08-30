@@ -42,6 +42,9 @@ DOM对象.on事件名 = function() {
 //取消绑定事件
 DOM对象.on事件名 = null;
 常用事件名 click, mouseover, mouseout, focus, blur, load, submit, invalid, mouseenter, mouseleave
+键盘：keyup, keydown, keypress, input
+鼠标事件：click, dblclick, contextmenu, mouseover, mouseout, mousedown, mouseup, mouseenter, mouseleave, mousemove, mousewheel
+input框：invalid
 mouseenter和mouseleave不会冒泡，mouseover, mouseout会冒泡
 load事件是指当前页面结构加载完成，并且里面的所有资源都加载完成
 //变量
@@ -846,6 +849,95 @@ function addEvent(obj, eventtype, fn) {
 
 修改函数中this的指向可以使用call, apply, bind
 
+##20170830
+基础数据类型都是值传递
+对象都是引用传递, 传递的是对象的内存地址，这个地址能够访问到真实的对象
+
+自定义事件一：
+```
+var elem = document.querySelector('div');
+//创建一个基于Event类型的事件
+var eve = document.createEvent('Event');
+//给事件定义一个名字
+// initEvent(自定义事件名称，是否冒泡,true能冒泡，是否能被取消,false不能取消)
+eve.initEvent('build', true, true);
+//添加build事件
+//e.target 表示当前的元素
+elem.addEventListener('build', function (e) {
+  console.log(this);
+  console.log(e.target);
+}, false);
+
+var oSpan = document.querySelector('span');
+oSpan.onclick = function() {
+  elem.dispatchEvent(eve);
+}
+```
+
+自定义事件二：
+```
+//创建一个自定义事件,事件名称为kaiyu
+var eve = new Event('kaiyu');
+var elem = document.querySelector('div');
+var oSpan = document.querySelector('span');
+elem.addEventListener('kaiyu', function () {
+  console.log(this.innerText);
+});
+oSpan.onclick = function(){
+  elem.dispatchEvent(eve);
+}
+```
+
+//浏览器会向所有的事件方法中传递一个实际的事件对象，在方法中写一个 event接收
+oDom.onclick = function(event) {
+  event = event || window.event;
+  event.type //通用的事件类型
+  var target = event.target || event.srcElement; //事件目标,在冒泡中，依然是触发事件的那个元素
+
+  event.currentTarget //在冒泡中，当前的对象
+}
+
+阻止冒泡
+event.stopPropagation();
+
+阻止默认行为：
+if (event.preventDefault) {
+  event.preventDefault();
+} else {
+  event.returnValue = false;
+}
+
+模拟元素点击：
+oDom.click(); //点击oDom
+oDom.focus(); //获得焦点
+
+获取当前input框的验证信息（html5的input类型)
+oDom.validationMessage
+
+设置自定义的错误信息：
+oDom.validationMessage = '自定义值';
+
+鼠标移动事件相关的：
+event.clientX, event.clientY
+event.screenX, event.screenY
+
+键盘事件，得到输入的键码：
+event.keyCode
+event.key
+
+事件委托：
+```
+oUl.onclick = function(event) {
+  event = event || window.event;
+  var t = event.target || event.srcElement;
+  // console.dir(t);
+  if (t.nodeName === 'LI') {
+    t.parentNode.removeChild(t);
+  }
+}
+```
+
+contentEditable设置为 true,当前元素可以编辑
 
 ##5点后的练习计划
 20170828 练习批量绑定事件和对应模型
