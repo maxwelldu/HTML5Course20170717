@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="search">
+  <script>
+  var oinput = document.querySelector("#search");
+  function queryData(text){
+    console.log(text);
+  }a
+  function touch(fun,delay,text){
+    clearTimeout(fun.timeoutId);
+    fun.timeoutId=setTimeout(function(){
+      fun(text);
+    },delay);
+  }
+  oinput.onkeyup=function(){
+    touch(queryData,400,this.value)
+  }
+  </script>
+</body>
+</html>

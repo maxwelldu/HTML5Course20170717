@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>div</div>
+  <span>触发build事件</span>
+  <script>
+    var elem = document.querySelector('div');
+    //创建一个基于Event类型的事件
+    var eve = document.createEvent('Event');
+    //给事件定义一个名字
+    // initEvent(自定义事件名称，是否冒泡,true能冒泡，是否能被取消,false不能取消)
+    eve.initEvent('build', true, true);
+    //添加build事件
+    //e.target 表示当前的元素
+    elem.addEventListener('build', function (e) {
+      console.log(this);
+      console.log(e.target);
+    }, false);
+
+    var oSpan = document.querySelector('span');
+    oSpan.onclick = function() {
+      elem.dispatchEvent(eve);
+    }
+
+  </script>
+</body>
+</html>

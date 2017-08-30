@@ -41,7 +41,8 @@ DOM对象.on事件名 = function() {
 }
 //取消绑定事件
 DOM对象.on事件名 = null;
-常用事件名 click, mouseover, mouseout, focus, blur, load, submit, invalid
+常用事件名 click, mouseover, mouseout, focus, blur, load, submit, invalid, mouseenter, mouseleave
+mouseenter和mouseleave不会冒泡，mouseover, mouseout会冒泡
 load事件是指当前页面结构加载完成，并且里面的所有资源都加载完成
 //变量
 全局变量其实就是把当前变量名放到window当中的一个属性
@@ -553,7 +554,7 @@ JSON编码格式必须是UTF-8, 如果是GBK或其他则需要先转换后再生
 alert   警告框
 confirm 确认框
 prompt  输入框，可以在里面输入内容
-和html,css相关的有：特殊的是checkbox, radio, select
+和html,css相关的有：特殊的是checkbox, radio, select, file文件上传
 
 onload事件只能绑定一个，重复绑定会使用最后一个
 页面的DOM结构加载完成的事件是：  document.addEventListener('DOMContentLoaded', function(){
@@ -765,9 +766,89 @@ function move() {
 //这时就给人感觉是一个间歇的过程
 setInterval(move, 1800);
 
+##20170829
+函数中的函数想要使用绑定事件的对象；需要先在外层声明一个变量保存this
+var self = this;
+oLis[i].onmouseenter = function(){
+  var self = this;
+  //得到当前的子元素dropbox
+  var mydropbox = (function(){
+    for (var i = 0; i < self.childNodes.length; i++) {
+      if (self.childNodes[i].className === 'dropbox') {
+        return self.childNodes[i];
+      }
+    }
+  })();
+}
+
+ES6的模板字面量
+`<span>${i}</span>`
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String
+
+特定的DOM元素移动（原因是一个页面上，特定的DOM对象只有一个，所以说你把他添加到其他位置，那之前的就会消失）
+
+DOM0级事件只能够监听冒泡阶段
+<span onclick="fun"></span>
+oSpan.onclick = function(){
+
+}
+事件移除
+var oDiv = document.querySelector('div');
+oDiv.onclick = function(){
+  console.log(1);
+  this.onclick = null;
+}
+
+DOM2级事件
+oSpan.addEventListener('click', function(){
+}, false); //true表示捕获阶段，false表示冒泡阶段
+如何移除事件
+var oSpan = document.querySelector('span');
+function cli() {
+  console.log(2);
+  this.removeEventListener('click', cli);
+}
+oSpan.addEventListener('click', cli);
+
+低版本IE的事件删除
+var oDiv = document.querySelector('div');
+function fn(){
+  alert(1);
+  oDiv.detachEvent('onclick', fn);
+}
+oDiv.attachEvent('onclick', fn);
+低版本IE中事件中的this是指window对象
+oBox1.attachEvent('onclick', function(){
+  change.call(oBox1);
+});
+
+
+DOM0级事件不能重复绑定，因为只是给一个属性赋值
+DOM2级事件的addEventListener重复绑定事件会按照先后顺序执行
+低版本IE事件能够重复绑定，执行顺序是倒序
+
+对于点击目标对象来说，给他添加的事件监听，是否捕获对当前对象无效，都只是绑定事件而已，按照先后顺序执行
+
+添加事件的轮子
+function addEvent(obj, eventtype, fn) {
+  if (obj.addEventListener) {
+    obj.addEventListener(eventtype, fn, false);
+  } else if(obj.attachEvent){
+    obj.attachEvent("on" + eventtype, function(){
+      fn.call(obj);
+    });
+  } else {
+    obj["on" + eventtype] = fn;
+  }
+}
+
+删除事件的轮子
+
+修改函数中this的指向可以使用call, apply, bind
 
 
 ##5点后的练习计划
 20170828 练习批量绑定事件和对应模型
 20170829 练习函数截流滚动或者延迟搜索
-20170830 轮播图右按钮的业务逻辑
+20170830 添加事件的轮子
+20170831 轮播图右按钮的业务逻辑

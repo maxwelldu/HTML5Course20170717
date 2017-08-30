@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      width: 200px;
+      height: 200px;
+      background-color: yellowgreen;
+    }
+    p {
+      width: 100px;
+      height: 100px;
+      background-color: orange;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <p></p>
+  </div>
+  <script>
+    var oDiv = document.querySelector('div');
+    var count = 0;
+    oDiv.onmouseover = function(event) {
+      console.log(event);
+      console.log(++count);
+    }
+    // oDiv.onmouseenter = function(event) {
+    //   console.log(event);
+    //   console.log(++count);
+    // }
+
+  </script>
+</body>
+</html>

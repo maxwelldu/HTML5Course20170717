@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //值传递，基础数据类型都是值传递
+    function fun(str) {
+      str = "2";
+      console.log(str);
+    }
+    var s = "1";
+    fun(s);
+    console.log(s);
+
+    //引用传递，对象类型都是引用传递
+    function fun1(arr) {
+      arr.push('凯玉同学');
+      console.log(arr);
+    }
+    var array = ['桂康同学'];
+    fun1(array);
+    console.log(array);
+
+  </script>
+</body>
+</html>

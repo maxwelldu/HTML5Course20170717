@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>div</div>
+  <div>删除事件绑定</div>
+  <script>
+    var oDiv = document.querySelectorAll('div')[0];
+    var oDel = document.querySelectorAll('div')[1];
+
+    function cli(){
+      console.log(1);
+    }
+    oDiv.addEventListener('click', cli);//只有非匿名函数才可以取消绑定,因为匿名函数在删除事件的时候无法找到
+    oDel.addEventListener('click', function(){
+      oDiv.removeEventListener('click', cli);
+    });
+
+  </script>
+</body>
+</html>

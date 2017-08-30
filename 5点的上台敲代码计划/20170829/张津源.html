@@ -1,0 +1,15 @@
+
+function datatext(){
+    console.log(text)
+}
+var timedata;
+function timedatas(fun,time){
+  clearInterval(timedata);
+    timedata=setInterval(function(){
+      fun();
+    },time)
+}
+oDiv=document.getElementById('div');
+oDiv.onclick=function(){
+
+}

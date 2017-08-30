@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>div</div>
+  <span>span</span>
+  <script>
+    //创建一个自定义事件,事件名称为kaiyu
+    var eve = new Event('kaiyu');
+
+    var elem = document.querySelector('div');
+    var oSpan = document.querySelector('span');
+    elem.addEventListener('kaiyu', function () {
+      console.log(this.innerText);
+    });
+    oSpan.onclick = function(){
+      elem.dispatchEvent(eve);
+    }
+  </script>
+</body>
+</html>

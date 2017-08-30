@@ -34,18 +34,23 @@
     var oBox2 = document.getElementById('box2');
     var oBox3 = document.getElementById('box3');
 
-    oBox2.addEventListener('click', function(){
-      alert(3);
-    }, false);//冒泡,从内到外
-
-    oBox1.onclick = function(){
-      alert(2);
-    }//冒泡,从内到外
-
-    oBox2.addEventListener('click', function(){
-      alert(1);
-    }, true);//捕获,从外到内
-
+    // event.target 是表示我们点击的目标对象，在冒泡的方法中也表示这个对象
+    // event.currentTarget 表示当前对象，在冒泡中比较有用
+    oBox1.onclick = function(event) {
+      console.log('我是box1');
+      // console.log(event.target.id);
+      console.log(event.currentTarget.id);
+    }
+    oBox2.onclick = function(event) {
+      console.log('我是box2');
+      // console.log(event.target.id);
+      console.log(event.currentTarget.id);
+    }
+    oBox3.onclick = function(event) {
+      console.log('我是box3');
+      // console.log(event.target.id);
+      console.log(event.currentTarget.id);
+    }
   </script>
 </body>
 </html>

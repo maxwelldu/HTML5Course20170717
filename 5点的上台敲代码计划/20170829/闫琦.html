@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+</head>
+<body>
+  <input type="text">
+  <script>
+
+    var oInput=document.querySelector("input");
+    oInput.onkeyup=function(){
+      throttle(queryData,500,this.value)
+    }
+    function queryData(text){
+      console.log(text);
+    }
+    var timer;
+    function throttle(fn,delay,text){
+      clearTimeout(timer);
+      timer=setTimeout(function(){
+        fn(text);
+      },delay)
+    }
+
+  </script>
+
+</body>
+</html>

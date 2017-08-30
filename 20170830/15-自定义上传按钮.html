@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    input[type=file] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+    <input type="file">
+    <input type="button" value="上传">
+    <script>
+      var oFile = document.querySelector('input[type=file]');
+      var oBtn = document.querySelector('input[type=button]');
+      oBtn.onclick = function() {
+        oFile.click();
+      }
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+</head>
+<body>
+  <input type="text">
+</body>
+<script>
+function queryData(text){
+  console.log("搜索:"+text)
+}
+var timeoutId;
+function throttle(fn,delay,text){
+  clearTimeout(timeoutId);
+  timeoutId=setTimeout(function(){
+    fn(text)
+  },delay)
+}
+var oninpit=document.querySelector("input")
+oninpit.onkeyup=function(){
+  throttle(queryData,500,this.value)
+}
+</script>
+</html>

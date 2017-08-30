@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #email-error {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <form action="">
+    <input type="email">
+    <span id="email-error">邮箱格式不正确</span>
+    <input type="submit">
+  </form>
+  <script>
+    var oEmail = document.querySelector('input[type=email]');
+    var oEmailError = document.getElementById('email-error');
+    oEmail.oninvalid = function(event) {
+      event.preventDefault();
+      console.log(event);
+      console.log(event.detail);
+      oEmailError.style.display = "block";
+    }
+  </script>
+</body>
+</html>

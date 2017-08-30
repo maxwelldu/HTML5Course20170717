@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>div</div>
+  <span>span</span>
+  <script>
+    var oDiv = document.querySelector('div');
+    oDiv.onclick = function(){
+      console.log(1);
+      this.onclick = null;
+    }
+
+    var oSpan = document.querySelector('span');
+    function cli() {
+      console.log(2);
+      this.removeEventListener('click', cli);
+    }
+    oSpan.addEventListener('click', cli);
+
+  </script>
+</body>
+</html>

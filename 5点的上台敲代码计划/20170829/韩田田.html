@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="search">
+  <script>
+    function throttle(fn, delay, text) {
+      clearTimeout(fn.timeoutId);
+      fn.timeoutId=setTimeout(function(){
+        fn(text);
+      },delay)
+    }
+    function queryData(text) {
+      console.log(text);
+    }
+    var oInput = document.querySelector('#search');
+    oInput.onkeyup = function(){
+      throttle(queryData,500,this.value);
+    }
+  </script>
+</body>
+</html>
