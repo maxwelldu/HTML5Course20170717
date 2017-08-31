@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box{
+			width: 760px;
+			height: 150px;
+			margin: 100px auto;
+			border: 1px solid #ccc;
+			position: relative;
+		}
+		.box .leftBtn{
+			float: left;
+			width: 30px;
+			height: 150px;
+			position: relative;
+		}
+		.box .leftBtn a{
+			position: absolute;
+			left: 0;
+			top: 20px;
+			width: 20px;
+			height: 65px;
+			background: url(images/bg05.png) no-repeat;
+		}
+		.box .imageList{
+			float: left;
+			width: 700px;
+			height: 130px;
+			position: relative;
+			overflow: hidden;
+		}
+		.box .imageList ul{
+			list-style: none;
+			width: 5000px;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.box .imageList ul li{
+			float: left;
+			width: 200px;
+			height: 130px;
+			margin-right: 10px;
+		}
+		.box .imageList ul li img{
+			width: 100%;
+			height: 100%;
+		}
+		.box .rightBtn{
+			float: left;
+			width: 30px;
+			height: 150px;
+			position: relative;
+		}
+		.box .rightBtn a{
+			position: absolute;
+			top: 20px;
+			right: 0;
+			width: 20px;
+			height: 65px;
+			background: url(images/bg05.png) no-repeat -42px 0;
+		}
+		.box .bar{
+			position: absolute;
+			bottom: 0;
+			left: 30px;
+			width: 700px;
+			height: 20px;
+			background-color: #2b2b2b;
+		}
+		.span1{
+			position: absolute;
+			top: 3px;
+			left: 0;
+			width: 81px;
+			height: 15px;
+			background: url(images/bg07.png) 0 -32px;
+		}
+		.span2{
+			position: absolute;
+			width:11px;
+			height: 15px;
+			background: url(images/bg07.png);
+		}
+		.span3{
+		    position: absolute;
+		    top: 0;
+		    right: 0px;
+		    width: 11px;
+		    height: 15px;
+		    background: url(images/bg07.png) -24px 0;
+		}
+		.span4{
+		    position: absolute;
+		    top: 0;
+		    left: 50%;
+		    margin-left: -5px;
+		    width: 10px;
+		    height: 15px;
+		    background: url(images/bg07.png) -14px 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="leftBtn">
+			<a href="javascript:;" id="leftBtn"></a>
+		</div>
+		<div class="imageList" id="imageList">
+			<ul id="m_unit">
+				<li><img src="images/number/0.png" alt="" /></li>
+				<li><img src="images/number/1.png" alt="" /></li>
+				<li><img src="images/number/2.png" alt="" /></li>
+				<li><img src="images/number/3.png" alt="" /></li>
+				<li><img src="images/number/4.png" alt="" /></li>
+				<li><img src="images/number/5.png" alt="" /></li>
+				<li><img src="images/number/6.png" alt="" /></li>
+				<li><img src="images/number/7.png" alt="" /></li>
+				<li><img src="images/number/8.png" alt="" /></li>
+			</ul>
+		</div>
+		<div class="rightBtn">
+			<a href="javascript:;" id="rightBtn"></a>
+		</div>
+		<div class="bar">
+			<span class="span1" id="barB">
+				<span class="span2"></span>
+				<span class="span3"></span>
+				<span class="span4"></span>
+			</span>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var leftBtn = document.getElementById("leftBtn");
+		var rightBtn = document.getElementById("rightBtn");
+		var m_unit = document.getElementById("m_unit");
+		var barB = document.getElementById("barB");
+
+		//图片总个数
+		var lislength = m_unit.getElementsByTagName("li").length;
+		//图片总宽度
+		var allwidth = lislength * 210 - 10;		//200宽度+10的margin - 最后一张图的margin
+		
+
+		//图片列表当前的left
+		var nowimageleft = 0;
+		//滑块当前的left
+		var nowbarbleft = 0;
+
+		//比例
+		var rate = 700 / allwidth;
+		//滑块的初始的宽度
+		var barBwidth = 700 * rate
+		barB.style.width = barBwidth + "px";
+
+		//右按钮
+		rightBtn.onclick = function(){
+			
+			//两个信号量的改变
+			nowimageleft -= 50;
+			nowbarbleft += 50 * rate ;
+			//验收
+			if(nowimageleft < -allwidth + 700){
+				nowimageleft = -allwidth + 700;
+				nowbarbleft = 700 - barBwidth;
+			}
+
+			m_unit.style.left = nowimageleft + "px";
+			barB.style.left = nowbarbleft + "px";
+		}
+
+		leftBtn.onclick = function(){
+			
+			//两个信号量的改变
+			nowimageleft += 50;
+			nowbarbleft -= 50 * rate ;
+			//验收
+			if(nowimageleft > 0){
+				nowimageleft = 0;
+				nowbarbleft = 0;
+			}
+
+			m_unit.style.left = nowimageleft + "px";
+			barB.style.left = nowbarbleft + "px";
+		}
+
+
+		barB.onmousedown = function(event){
+			event = event || window.event;
+			//计算一下误差
+			var deltaX = event.clientX - barB.offsetLeft;
+
+			document.onmousemove = function(event){
+				event = event || window.event;
+				nowbarbleft = event.clientX - deltaX;
+				//验收
+				if(nowbarbleft < 0){
+					nowbarbleft = 0;
+				}else if(nowbarbleft > 700 - barBwidth){
+					nowbarbleft = 700 - barBwidth
+				}
+
+				nowimageleft = -nowbarbleft / rate;
+				barB.style.left = nowbarbleft + "px";
+				m_unit.style.left = nowimageleft + "px";
+				return false;
+			}
+
+			document.onmouseup = function(){
+				document.onmousemove = null;
+			}
+		}
+	</script>
+</body>
+</html>

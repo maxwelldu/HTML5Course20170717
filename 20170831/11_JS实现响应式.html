@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>响应式的演示</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="css/index1200.css" />
+	<link rel="stylesheet" href="" id="rwdlink" />
+	<script type="text/javascript">
+		var rwdlink = document.getElementById("rwdlink");
+
+		setCSS();
+		window.onresize = setCSS;
+
+		function setCSS(){
+			var windowWidth = document.documentElement.clientWidth || document.body.clientWidth;
+
+			if(windowWidth >= 1200){
+				rwdlink.href = "";
+			}else if(windowWidth >= 980){
+				rwdlink.href = "css/index980.css";
+			}else if(windowWidth >= 640){
+				rwdlink.href = "css/index640.css";
+			}else{
+				rwdlink.href = "css/index320.css";
+			}
+		}
+	</script>
+</head>
+<body>
+	<header>
+		<div class="logo"></div>
+		<nav>
+			<ul>
+				<li><a href="#">网站栏目</a></li>
+				<li><a href="#">网站栏目</a></li>
+				<li><a href="#">网站栏目</a></li>
+				<li><a href="#">网站栏目</a></li>
+				<li><a href="#">网站栏目</a></li>
+				<li><a href="#">网站栏目</a></li>
+				<li class="s"><a href="#">网站栏目</a></li>
+				<li class="s"><a href="#">网站栏目</a></li>
+				<li class="s"><a href="#">网站栏目</a></li>
+				<li class="s"><a href="#">网站栏目</a></li>
+			</ul>
+		</nav>
+		<div class="tools"></div>
+		<div class="btns"></div>
+	</header>
+
+	<section class="main">
+		<div class="col">1</div>
+		<div class="col">2</div>
+		<div class="col">3</div>
+		<div class="col">4</div>
+		<div class="col">5</div>
+		<div class="col hide-980">6</div>
+	</section>
+
+</body>
+</html>

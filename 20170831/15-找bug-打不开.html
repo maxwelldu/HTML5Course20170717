@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            height: 500px;
+            width: 500px;
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div> </div>
+    <script>
+        var oDiv = document.querySelector('div');
+        oDiv.onmousemove = function(event) {
+            event = event || window.event;
+            var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            var x = event.clientX - (getAllLeft(oDiv));
+            var y = event.clientY - (getAllTop(oDiv) - scrollTop);
+            this.innerText = x + ' ' + y;
+        }
+
+        function getAllTop(obj) {
+            var allTop = obj.offsetTop;
+            var currentTarget = obj;
+            while (currentTarget = currentTarget.offsetParent) {
+                allTop += currentTarget.offsetTop;
+            }
+            return allTop;
+        }
+
+        function getAllLeft(obj) {
+            var allLeft = obj.offsetLeft;
+            var currentTarget = obj;
+            while (currentTarget = currentTarget.offsetParent) {
+                allLeft += currentTarget.offsetLeft;
+            }
+            return allLeft;
+        }
+    </script>
+</body>
+
+</html>

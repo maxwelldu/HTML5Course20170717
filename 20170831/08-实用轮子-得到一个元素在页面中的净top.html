@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #box1 {
+      position: relative;
+      width: 500px;
+      height: 500px;
+      background-color: yellowgreen;
+      padding-top: 300px;
+    }
+    #box2 {
+      position: relative;
+      width: 300px;
+      padding-top: 100px;
+      margin-top: 100px;
+      background-color: skyblue;
+    }
+    #box3 {
+      position: relative;
+      width: 60px;
+      height: 60px;
+      top: 20px;
+      background-color: gold;
+    }
+  </style>
+</head>
+<body>
+  <div id="box1">
+    <div id="box2">
+      <p>文字</p>
+      <div id="box3"></div>
+    </div>
+  </div>
+  <script>
+    var oBox1 = document.querySelector('#box1');
+    var oBox2 = document.querySelector('#box2');
+    var oBox3 = document.querySelector('#box3');
+
+    //返回这个元素在页面中的净位置
+    //就是这个元素所有的offsetParent的offsetTop值的和
+    function getAllTop(obj) {
+      //累加器，累加器的初始为自己现在的offsetTop值
+      var allTop = obj.offsetTop;
+      //当前正在计算高度的元素
+      var currentObj = obj;
+      while (currentObj = currentObj.offsetParent) {
+        allTop += currentObj.offsetTop;
+      }
+      return allTop;
+    }
+
+    console.log(getAllTop(oBox1));
+    console.log(getAllTop(oBox2));
+    console.log(getAllTop(oBox3));
+  </script>
+</body>
+</html>

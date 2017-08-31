@@ -38,18 +38,18 @@
     // event.currentTarget 表示当前对象，在冒泡中比较有用
     oBox1.onclick = function(event) {
       console.log('我是box1');
-      // console.log(event.target.id);
-      console.log(event.currentTarget.id);
+      // console.log(event.target.id); //box3
+      console.log(event.currentTarget.id); //box1
     }
     oBox2.onclick = function(event) {
       console.log('我是box2');
-      // console.log(event.target.id);
-      console.log(event.currentTarget.id);
+      // console.log(event.target.id); //box3
+      console.log(event.currentTarget.id); //box2
     }
     oBox3.onclick = function(event) {
       console.log('我是box3');
-      // console.log(event.target.id);
-      console.log(event.currentTarget.id);
+      // console.log(event.target.id); //box3
+      console.log(event.currentTarget.id); //box3
     }
   </script>
 </body>

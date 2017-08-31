@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <form action="">
+    <p><label>用户名：<input type="text"></label></p>
+    <p><label>密码：<input type="psasword"></label></p>
+    <p><label>确认密码：<input type="password"></label></p>
+    <input type="submit">
+  </form>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      var oInput = document.querySelectorAll('input');
+
+      for (var i = 0; i < oInput.length; i++) {
+        (function(i){
+          oInput[i].addEventListener('keydown', function(event){
+            event = event || window.event;
+            //当前元素不是提交按钮，并且按回车
+            if (this.type != "submit" && event.keyCode === 13) {
+              event.preventDefault();//默认行为会提交表单
+              oInput[i+1].focus();//让下一个元素获得焦点
+            }
+          });
+        })(i);
+      }
+    })
+  </script>
+</body>
+</html>

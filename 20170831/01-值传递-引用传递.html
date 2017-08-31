@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //值传递
+    var name = "凯玉";
+    var name2 = name;  //相当于把name的值 "凯玉" 拷贝了一份给了name2
+    name2 = "桂康";
+    console.log(name);
+    console.log(name2);
+
+    //引用传递
+    var arr = [1];
+    var arr2 = arr;//相当于把arr的内存地址 拷贝了一份给arr2, arr 和 arr2是同一个对象，只是名称不一样
+    arr2.push(2);
+    console.log(arr);
+    console.log(arr2);
+
+    var obj = {name:"桂康"};
+    var obj2 = obj;
+    obj2.name = "凯玉";
+    console.log(obj);
+    console.log(obj2);
+
+    var fun = function() {}
+    fun.username = "凯玉";
+    var fun2 = fun;
+    fun2.username = "桂康";
+    console.dir(fun);
+    console.dir(fun2);
+  </script>
+</body>
+</html>

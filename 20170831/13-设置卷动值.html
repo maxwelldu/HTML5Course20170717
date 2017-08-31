@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body {
+      height: 5000px;
+    }
+  </style>
+</head>
+<body>
+  <input type="button" value="点我去3000的位置">
+  <script>
+    document.querySelector('input').onclick = function(){
+      document.body.scrollTop = document.documentElement.scrollTop = 3000;
+    }
+  </script>
+</body>
+</html>

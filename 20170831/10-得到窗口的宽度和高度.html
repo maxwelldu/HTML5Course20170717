@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //resize事件可以用来做响应式，根据不同的窗口大小设置不同的CSS的src
+    window.addEventListener('resize', function(){
+      var w = document.documentElement.clientWidth || document.body.clientWidth;
+      var h = document.documentElement.clientHeight || document.body.clientHeight;
+      console.log(w,h);
+    })
+  </script>
+</body>
+</html>

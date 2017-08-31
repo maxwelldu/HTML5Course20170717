@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .box {
+      width: 800px;
+      height: 400px;
+      border: 1px solid #000;
+      margin: 50px auto;
+      position: relative;
+      overflow: hidden;
+    }
+    .box .content {
+      position: absolute;
+      width: 740px;
+      left: 0;
+      top: 0;
+      line-height: 150%;
+      font-size: 16px;
+      padding: 20px;
+      background-color: #e4e4e4;
+    }
+    .box .content p {
+      margin-bottom: 20px;
+    }
+    .box .bar {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 20px;
+      height: 400px;
+      background-color: #ccc;
+      cursor: default;
+    }
+    .box .bar b {
+      position: absolute;
+      width: 20px;
+      height: 34px;
+      background-color: orange;
+      cursor: default;
+    }
+  </style>
+</head>
+<body>
+  <div id="box" class="box">
+    <div id="bar" class="bar">
+      <b id="barB"></b>
+    </div>
+    <div id="content" class="content">
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var oBox = document.querySelector('#box');
+      var oContent = document.querySelector('#content');
+      var oBarb = document.querySelector("#barB");
+
+      //当开始选择的时候返回false， 禁止选择
+      oContent.onselectstart = function(){
+        return false;
+      }
+
+      //内容和盒子高度比
+      var rate = oBox.clientHeight / oContent.clientHeight;
+      console.log(rate);
+      //设置滑块初始的高度
+      oBarb.style.height = oBox.clientHeight * rate + "px";
+
+      //拖拽模型
+      oBarb.onmousedown = function(event){
+        event = event || window.event;
+        var deltaY = event.clientY - this.offsetTop;
+        document.onmousemove = function(event) {
+          event = event || window.event;
+          var y = event.clientY - deltaY;
+          if (y < 0) y = 0;
+          if (y > oBox.clientHeight - oBarb.clientHeight) {
+            y = oBox.clientHeight - oBarb.clientHeight;
+          }
+          oBarb.style.top = y + 'px';
+          //内容按比例升高，内容跑得比滑块快。滑动1px, 内容走 1 / rate像素
+          oContent.style.top = -y / rate + 'px';
+          //给这个事件返回一个false值，就不能选文字了
+          return false;
+        }
+      }
+
+      document.onmouseup = function() {
+        this.onmousemove = null;
+      }
+    });
+  </script>
+</body>
+</html>

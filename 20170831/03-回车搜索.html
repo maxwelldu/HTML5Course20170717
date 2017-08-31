@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <form action="https://www.baidu.com/s">
+    <input type="text" name="wd" placeholder="百度一下,你就知道">
+    <input type="submit">
+  </form>
+
+  <form action="https://www.baidu.com/s">
+    <input type="text" name="wd" placeholder="百度一下,你就知道">
+    <input type="button" value="搜索">
+  </form>
+
+  <form action="https://www.baidu.com/s">
+    <input type="text" name="wd" placeholder="百度一下,你就知道">
+    <button>搜索</button>
+  </form>
+
+  <input type="text" name="wd" placeholder="百度一下,你就知道, 回车搜索" id="search">
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      var oInput = document.querySelector('#search');
+      oInput.addEventListener('keyup', function(event) {
+        event = event || window.event;
+        console.log(event.keyCode);
+        if (event.keyCode === 13) {
+          location.href = "https://www.baidu.com/s?wd="+this.value;
+        }
+      });
+    });
+    /*
+    获取元素
+    元素绑定keyup事件 = function(event){
+      event = event || window.event;
+      console.log(event.keyCode);
+      if (判断输入的键码是回车键) {
+          location.href = "https://www.baidu.com/s?wd="+this.value
+        }
+      }
+    */
+  </script>
+
+
+</body>
+</html>

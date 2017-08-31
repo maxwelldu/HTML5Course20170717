@@ -41,9 +41,11 @@ DOM对象.on事件名 = function() {
 }
 //取消绑定事件
 DOM对象.on事件名 = null;
-常用事件名 click, mouseover, mouseout, focus, blur, load, submit, invalid, mouseenter, mouseleave
+常用事件名 click, mouseover, mouseout, focus(不冒泡), blur(不冒泡), load, invalid, mouseenter, mouseleave
+表单事件：submit, reset
 键盘：keyup, keydown, keypress, input
 鼠标事件：click, dblclick, contextmenu, mouseover, mouseout, mousedown, mouseup, mouseenter, mouseleave, mousemove, mousewheel
+窗口相关：scroll, resize
 input框：invalid
 mouseenter和mouseleave不会冒泡，mouseover, mouseout会冒泡
 load事件是指当前页面结构加载完成，并且里面的所有资源都加载完成
@@ -558,6 +560,7 @@ alert   警告框
 confirm 确认框
 prompt  输入框，可以在里面输入内容
 和html,css相关的有：特殊的是checkbox, radio, select, file文件上传
+和js相关：html5的验证错误提示信息要能够接收并处理; 滚动条
 
 onload事件只能绑定一个，重复绑定会使用最后一个
 页面的DOM结构加载完成的事件是：  document.addEventListener('DOMContentLoaded', function(){
@@ -897,8 +900,12 @@ oDom.onclick = function(event) {
   event.currentTarget //在冒泡中，当前的对象
 }
 
-阻止冒泡
-event.stopPropagation();
+阻止事件传播（包括捕获和冒泡阶段）及兼容处理：
+if (event.stopPropagation) {
+  event.stopPropagation();
+} else {
+  event.cancelBubble = true;
+}
 
 阻止默认行为：
 if (event.preventDefault) {
@@ -939,8 +946,14 @@ oUl.onclick = function(event) {
 
 contentEditable设置为 true,当前元素可以编辑
 
+##20170831
+keyCode对照表 http://www.cnblogs.com/shyy/archive/2012/04/09/2453029.html
+
+
 ##5点后的练习计划
 20170828 练习批量绑定事件和对应模型
 20170829 练习函数截流滚动或者延迟搜索
 20170830 添加事件的轮子
-20170831 轮播图右按钮的业务逻辑
+20170831 写事件委托删除ul中的li子元素
+20170901 写拖拽模型
+20170902 getAllTop方法
