@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    ul,li{
+      list-style: none;
+    }
+    .menu {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100px;
+      background-color: #ccc;
+      display: none;
+    }
+    .menu > ul > li {
+      cursor: pointer;
+      padding: 10px;
+      border-bottom: 1px solid white;
+    }
+    .menu > ul > li:hover {
+      color: red;
+      border: 1px solid white;
+    }
+    .red {
+      color: red;
+    }
+    .border {
+      border: 1px solid green;
+    }
+    .background {
+      background-color: yellowgreen;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>凯玉</h1>
+  <div id="menu" class="menu">
+    <ul>
+      <li id="toRed">变红</li>
+      <li id="addBorder">加边框</li>
+      <li id="changeBackground">改背景</li>
+      <li id="clear">清除样式</li>
+    </ul>
+  </div>
+
+  <script>
+    var oH1 = document.querySelector('h1');
+    var oMenu = document.querySelector('#menu');
+    document.oncontextmenu = function(event) {
+      event = event || window.event;
+      if (event.preventDefault) {
+        event.preventDefault();
+      } else {
+        event.returnValue = false;
+      }
+      oMenu.style.display  = 'block';
+      var windowWidth = document.documentElement.clientWidth || document.body.clientWidth;
+      var windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+      var x = event.clientX;
+      var y = event.clientY;
+      if (event.clientX > windowWidth - oMenu.offsetWidth) {
+        x = event.clientX - oMenu.offsetWidth;
+      }
+      if (event.clientY > windowHeight - oMenu.offsetHeight) {
+        y = event.clientY - oMenu.offsetHeight;
+      }
+      oMenu.style.left = x + 'px';
+      oMenu.style.top = y + 'px';
+    }
+
+    document.onclick = function() {
+      oMenu.style.display = 'none';
+    }
+
+    oMenu.onclick = function(event) {
+      event = event || window.event;
+      if (event.target.nodeName === 'LI') {
+        switch (event.target.id) {
+          case 'toRed':
+            oH1.className += ' red';
+            break;
+          case 'addBorder':
+            oH1.className += ' border';
+            break;
+          case 'changeBackground':
+            oH1.className += ' background';
+            break;
+          case 'clear':
+            oH1.className = '';
+            break;
+          default:
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
