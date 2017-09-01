@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .box {
+      width: 800px;
+      height: 400px;
+      border: 1px solid #000;
+      margin: 50px auto;
+      position: relative;
+      overflow: hidden;
+    }
+    .box .content {
+      position: absolute;
+      width: 740px;
+      left: 0;
+      top: 0;
+      line-height: 150%;
+      font-size: 16px;
+      padding: 20px;
+      background-color: #e4e4e4;
+    }
+    .box .content p {
+      margin-bottom: 20px;
+    }
+    .box .bar {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 20px;
+      height: 400px;
+      background-color: #ccc;
+      cursor: default;
+    }
+    .box .bar b {
+      position: absolute;
+      width: 20px;
+      height: 34px;
+      background-color: orange;
+      cursor: default;
+    }
+  </style>
+</head>
+<body>
+  <div id="box" class="box">
+    <div id="bar" class="bar">
+      <b id="barB"></b>
+    </div>
+    <div id="content" class="content">
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+      <p>金砖国家领导人第九次会晤将于9月3-5日在厦门举行</p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var oBox = document.querySelector('#box');
+      var oContent = document.querySelector('#content');
+      var oBarb = document.querySelector("#barB");
+	  
+
+      //当开始选择的时候返回false， 禁止选择
+      oContent.onselectstart = function(){
+        return false;
+      }
+
+      //内容和盒子高度比
+      var rate = oBox.clientHeight / oContent.clientHeight;
+      console.log(rate);
+	  //信号量，滑块的top值
+      var nowbarBtop = 0;
+	  //信号量，内容的top值
+	  var nowcontenttop = 0;
+	  
+	  //设置滑块初始的高度
+      oBarb.style.height = oBox.clientHeight * rate + "px";
+
+      //拖拽模型
+      oBarb.onmousedown = function(event){
+        event = event || window.event;
+        var deltaY = event.clientY - this.offsetTop;
+        document.onmousemove = function(event) {
+          event = event || window.event;
+          nowbarBtop = event.clientY - deltaY;
+          if (nowbarBtop < 0) nowbarBtop = 0;
+          if (nowbarBtop > oBox.clientHeight - oBarb.clientHeight) {
+            nowbarBtop = oBox.clientHeight - oBarb.clientHeight;
+          }
+          oBarb.style.top = nowbarBtop + 'px';
+          //内容按比例升高，内容跑得比滑块快。滑动1px, 内容走 1 / rate像素
+		  nowcontenttop = -nowbarBtop / rate;
+          oContent.style.top = nowcontenttop + 'px';
+          //给这个事件返回一个false值，就不能选文字了
+          return false;
+        }
+      }
+
+      document.onmouseup = function() {
+        this.onmousemove = null;
+      }
+	  
+	  function mousewheelHandler (event) {
+		event = event || window.event;
+		if (event.preventDefault) {
+			event.preventDefault();
+		} else {
+			event.returnValue = false;
+		}
+		//规范一下方向
+		if (event.wheelDelta) {
+			var direction = event.wheelDelta > 0 ? 1 : -1;
+		} else {
+			var direction = event.detail > 0 ? -1 : 1;
+		}
+		
+		//当我们鼠标滚轮往下滚的时候，此时direction是-1
+		//然后我们期望内容往上跑，滑块往下跑
+		nowbarBtop += -20 * direction;
+		if (nowbarBtop < 0) {
+			nowbarBtop = 0;
+		} else if(nowbarBtop > oBox.clientHeight - oBarb.clientHeight) {
+			nowbarBtop = oBox.clientHeight - oBarb.clientHeight;
+		}
+		//内容的信号量，滑块的移动方向和内容 的滑动方向是相反的
+		nowcontenttop = -nowbarBtop / rate;
+		//动：
+		oBarb.style.top = nowbarBtop + 'px';
+		oContent.style.top = nowcontenttop + 'px';
+	  }
+	  
+	  oBox.onmousewheel = mousewheelHandler;
+	  if (oBox.addEventListener) {
+		oBox.addEventListener('DOMMouseScroll', mousewheelHandler, false);
+	  }
+	  
+    });
+  </script>
+</body>
+</html>

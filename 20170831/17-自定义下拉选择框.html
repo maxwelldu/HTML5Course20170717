@@ -30,6 +30,12 @@
   </style>
 </head>
 <body>
+  <select name="" id="">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+  </select>
+
   <div class="select">
     <input type="hidden" name="age">
     <span id="select">请选择</span>
@@ -62,8 +68,6 @@
     function setSelectColor() {
       var oLis = oUl.querySelectorAll('li');
       for (var i = 0; i < oLis.length; i++) {
-        console.log(oLis[i].innerText);
-        console.log(oAge.value);
         if (oLis[i].innerText === oAge.value) {
           oLis[i].className = 'current';
         } else {

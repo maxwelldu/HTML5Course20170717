@@ -1,0 +1,54 @@
+/*用于初始化样式*/
+*{
+	margin:0;
+	padding:0;
+}
+h1,h2,h3,h4,h5,h6,i,em,b,strong,s,del,u,sup,sub{
+	font-weight:normal;
+	font-style:normal;
+}
+img{ 
+	vertical-align:bottom;     /*可以去除图片和外面包裹的块元素在底部的一个小空白bug,将图片转为块元素也可以除去这个bug,但是,这样的话就要占满整行了*/
+} 
+a{
+	text-decoration:none;
+}
+ul{
+	list-style:none;
+}
+input{
+	outline:none;
+}
+.fr{
+	float:right;
+}
+.fl{
+	float:left;
+}
+.tc{
+	text-align:center;
+}
+.tl{
+	text-align:left;
+}
+.tr{
+	text-align:right;
+}
+body{
+	/*font:12px/1.5 tahoma,arial,'Hiragino Sans GB','\5b8b\4f53',sans-serif;*/
+	font:12px/1.5em "微软雅黑";
+}
+.clearfix::before,.clearfix::after{
+	content:" ";
+	display:table;
+}
+.clearfix::after{
+	clear:both;
+}
+.w{
+	width:1190px;
+	margin:0 auto;
+}
+
+  
+  

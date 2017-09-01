@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+	<head>
+		<style>
+			div {
+				width: 200px;
+				height: 200px;
+				background-color: skyblue;
+			}
+		</style>
+	</head>
+	<body>
+		<h2></h2>
+		<div></div>
+		<script>
+			var oH2 = document.querySelector('h2');
+			var oDiv = document.querySelector('div');
+			/*
+			oDiv.onmousewheel = function(event){
+				event = event || window.event;
+				oH2.innerText = event.wheelDelta;
+			}
+			
+			if (oDiv.addEventListener) {			
+				oDiv.addEventListener('DOMMouseScroll', function(event){
+					event = event || window.event;
+					oH2.innerText = event.detail;
+				});
+			}
+			*/
+			oDiv.onmousewheel = mousewheelHandler;
+			if (oDiv.addEventListener) {
+				oDiv.addEventListener('DOMMouseScroll', mousewheelHandler, false);
+			}
+			
+			function mousewheelHandler(event) {
+				event = event || window.event;
+				if (event.wheelDelta) {
+					var direction = event.wheelDelta > 0 ? 1 : -1;
+				} else if (event.detail) {
+					var direction = event.detail > 0 ? -1 : 1;
+				}
+				oH2.innerText = direction;
+			}
+			
+		</script>
+	</body>
+</html>

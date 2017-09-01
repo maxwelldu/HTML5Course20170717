@@ -1,0 +1,30 @@
+<script>
+	try {
+		var a = b;
+	} catch (err) {
+		console.log(err);
+	}
+	//在什么时候会使用，比如我们处理的数据是来自外部的
+	
+	//把JSON对象转换成字符串，我们叫做序列化
+	var obj = {
+		"name": "kaiyu"
+	};
+	
+	var str = JSON.stringify(obj);
+	console.log(str);
+	console.log(typeof str);
+	
+	//把字符串转换成对象，叫反序列化
+	var strobj = JSON.parse('{"name":"kaiyu"}');
+	console.log(strobj);
+	
+	//对于未知的json字符串，不一定能够正常转换成对象
+	try {
+		//当遇到不合法的json对象时会报错，可以加到try语句中
+		var oobj = JSON.parse('<html>{"name":"kaiyu"}');	
+	} catch(err) {
+		var oobj = JSON.parse('{"name":"kaiyu"}');
+	}
+	console.log(oobj);
+</script>

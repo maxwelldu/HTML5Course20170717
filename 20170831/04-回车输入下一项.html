@@ -8,12 +8,13 @@
 </head>
 <body>
   <form action="">
-    <p><label>用户名：<input type="text"></label></p>
-    <p><label>密码：<input type="psasword"></label></p>
-    <p><label>确认密码：<input type="password"></label></p>
+    <p><label>用户名：<input id="i1" type="text"></label></p>
+    <p><label>密码：<input id="i2" type="psasword"></label></p>
+    <p><label>确认密码：<input id="i3" type="password"></label></p>
     <input type="submit">
   </form>
   <script>
+  /*
     document.addEventListener('DOMContentLoaded', function(){
       var oInput = document.querySelectorAll('input');
 
@@ -30,6 +31,27 @@
         })(i);
       }
     })
+    */
+
+    document.addEventListener('DOMContentLoaded', function(){
+      var oForm = document.querySelector('form');
+      oForm.onkeydown = function(event) {
+        event = event || window.event;
+        var target = event.target || event.srcElement;
+        if (target.nodeName === 'INPUT') {
+          if (target.type != "submit" && event.keyCode === 13) {
+            if (event.preventDefault) {
+              event.preventDefault();
+            } else {
+              event.returnValue = false;
+            }
+            var inputid = parseInt(target.id.substr(1));
+            var input = document.querySelector("#i"+(inputid+1));
+            input && input.focus();
+          }
+        }
+      }
+    });
   </script>
 </body>
 </html>

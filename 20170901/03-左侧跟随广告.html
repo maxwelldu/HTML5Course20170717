@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+	<head>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			html, body {
+				height: 5000px;
+			}
+			#box {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100px;
+				height: 300px;
+				background-color: gold;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div id="box"></div>
+		<script src="animate.js"></script>
+		<script>
+			var oBox = document.querySelector('#box');
+			
+			var windowHeight = document.documentElement.clientHeight 
+			|| document.body.clientHeight;
+			var boxHeight = oBox.offsetHeight;
+			scroll();
+			window.onscroll = scroll;
+			window.onresize = scroll;
+			
+			function scroll() {
+				var scrollTop = document.documentElement.scrollTop 
+				|| document.body.scrollTop;
+				var target = scrollTop + (windowHeight - boxHeight) / 2;
+				throttle(move, 200, target);
+			}
+			function throttle(fn, delay, target) {
+				clearTimeout(fn.timeoutId);
+				fn.timeoutId = setTimeout(function(){
+					fn(target);
+				}, delay);
+			}
+			function move(target) {
+				animate(oBox, {"top": target}, 600);
+			}
+		</script>
+	</body>
+</html>

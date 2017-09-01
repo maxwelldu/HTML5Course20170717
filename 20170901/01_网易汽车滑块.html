@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.car_pic{
+			width: 500px;
+			height: 421px;
+			border: 1px solid #000;
+			margin-left:100px;
+			position: relative;
+		}
+		.car_pic ul{
+			list-style: none;
+		}
+		.car_pic ul li{
+			display: none;
+			width: 500px;
+			height: 375px;
+		}
+		.car_pic ul li img{
+			width: 500px;
+			height: 375px;
+		}
+		.car_pic ul li.cur{
+			display: block;
+		}
+		.car_pic_ctr{
+			width: 405px;
+			height: 26px;
+			line-height: 26px;
+			font-size: 12px;
+			margin: 0 auto;
+			background: url(images/h1/car_pic_ctr.png) repeat-x 0 -26px;
+		}
+		.car_pic_ctr .ctr_l{
+			float: left;
+			width: 0px;
+			height: 26px;
+			padding-left: 20px;
+			background: url(images/h1/car_pic_ctr.png) no-repeat 0 0px;
+		}
+		.car_pic_ctr .ctr_r{
+			float: right;
+			width: 0px;
+			height: 26px;
+			padding-right: 45px;
+			background: url(images/h1/car_pic_ctr.png) no-repeat 25px -78px;
+		}
+		.car_pic_ctr .ctr_center{
+			float: left;
+			width: 300px;
+			height: 26px;
+			background: url(images/h1/car_pic_ctr.png) repeat-x 0px -52px;
+			margin: 0 20px;
+			position: relative;
+			cursor: pointer;
+		}
+		.car_pic_ctr .ctr_center b{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 21px;
+			height: 26px;
+			background: url(images/h1/car_pic_ctr.png) repeat-x 0px -104px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="car_pic">
+		<div class="imglist" id="imglist">
+			<ul>
+				<li class="cur"><img src="images/h1/0.jpg" alt="" /></li>
+				<li><img src="images/h1/1.jpg" alt="" /></li>
+				<li><img src="images/h1/2.jpg" alt="" /></li>
+				<li><img src="images/h1/3.jpg" alt="" /></li>
+				<li><img src="images/h1/4.jpg" alt="" /></li>
+			</ul>
+		</div>
+		<div class="car_pic_ctr">
+			<div class="ctr_l">0°</div>
+			<div class="ctr_center" id="ctr_center">
+				<b id="barB"></b>
+			</div>
+			<div class="ctr_r">180°</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		//得到元素
+		var barB = document.getElementById("barB");	//滑块
+		var ctr_center = document.getElementById("ctr_center"); //滑道
+		var imglistlis = document.getElementById("imglist").getElementsByTagName("li");
+
+		//计算一下滑块最大的left值
+		var maxLeft = ctr_center.clientWidth - barB.clientWidth;
+		var step = maxLeft / 4;
+		//信号量，当前显示的图片编号
+		var idx = 0;
+		//拖拽模型
+		barB.onmousedown = function(event){
+			//兼容处理
+			event = event || window.event;
+			//计算点击的那一瞬间的误差
+			var deltaX = event.clientX - this.offsetLeft;
+
+			document.onmousemove = function(event){
+				//兼容处理
+				event = event || window.event;
+				//计算此时滑块应该在的位置
+				var x = event.clientX - deltaX;
+				//步长100
+				x = parseInt(x / step) * step;
+				//验收
+				if(x < 0){
+					x = 0;
+				}else if(x > maxLeft){
+					x = maxLeft;
+				}
+
+				//当发生了信号量改变，现在滑块位置和原来不一样了
+				if(idx != parseInt(x / step)){
+					//让老信号量的图去掉cur
+					imglistlis[idx].className = "";
+					//信号量改变
+					idx = parseInt(x / step);
+					//改变滑块位置
+					barB.style.left = x + "px";
+					//让新信号量的图加上cur
+					imglistlis[idx].className = "cur";
+				}
+
+				//阻止默认的事件，比如圈选文字 	
+				return false;
+			}
+
+			document.onmouseup = function(){
+				document.onmousemove = null;
+			}
+		}
+
+
+		//在滑道上点击
+		ctr_center.onmousedown = function(event){
+			//兼容处理
+			event = event || window.event;
+			//你鼠标点击的x位置
+			var x = event.clientX - getAllLeft(ctr_center);
+			//让老信号量的图去掉cur
+			imglistlis[idx].className = "";
+			//信号量改变
+			idx = Math.round(x / step);
+			//改变滑块位置
+			barB.style.left = idx * step + "px";
+			//让新信号量的图加上cur
+			imglistlis[idx].className = "cur";
+		}
+
+		function getAllLeft(obj){
+			var allleft = obj.offsetLeft;
+
+			while(obj = obj.offsetParent){
+				allleft += obj.offsetLeft;
+			}
+			return allleft;
+		}
+	</script>
+</body>
+</html>
