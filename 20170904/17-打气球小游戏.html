@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8"/>
+	<title></title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		html {
+			height: 100%;
+		}
+		body {
+			height: 100%;
+			background: url(images/bg.jpg);
+			background-size: cover;
+			overflow: hidden;
+		}
+		.ballon {
+			width: 81px;
+			height: 119px;
+			background: url(images/ballon.png) no-repeat;
+			position: absolute;
+			cursor: crosshair;
+		}
+		h1 {
+			color: white;
+			font-size: 60px;
+		}
+	</style>
+</head>
+<body>
+	<h1>0</h1>
+    <script type="text/javascript">
+      /*
+		气球：
+			属性：
+			dom
+			top
+			left
+			timer
+			score
+			方法：
+			init
+			fly
+			destroy
+		游戏：
+			属性：
+			score
+			time
+			timer
+			ballons气球数组
+			方法：
+			init
+			start
+			stop
+		启动游戏：
+			var game = new Game();
+			game.start();
+	  */
+	  
+	  function Ballon() {
+		this.dom = null;
+		this.top = 600;
+		this.left = Math.random() * 1200;
+		this.score = parseInt(Math.random() * 7) + 1;
+		this.timer = 0;
+		this.init();
+		this.fly();
+	  }
+	  Ballon.prototype.init = function() {
+			this.dom = document.createElement('div');
+			this.dom.className = 'ballon';
+			document.body.appendChild(this.dom);
+			this.dom.style.left = this.left + 'px';
+			this.dom.style.top = this.top + 'px';
+			//设置背景定位，背景定位要根据自己的分数来设置。
+			//精灵图有bug, 分数和自己的真实用图差1
+			var x = -(this.score - 1) % 4 * 96;
+			var y = -parseInt((this.score - 1) / 4) * 120;
+			this.dom.style.backgroundPositionX = x + 'px';
+			this.dom.style.backgroundPositionY = y + 'px';
+			
+			var self = this;
+			//绑定事件
+			this.dom.onclick = function() {
+				//爆炸
+				self.destroy();
+				//分数累加
+				oScore.innerText = parseInt(oScore.innerText) + self.score;
+				//音效
+			}
+	  }
+	Ballon.prototype.fly  = function() {
+		var self = this;
+		this.timer = setInterval(function() {
+			self.top -= 2 * self.score;
+			if (self.top < -100) {
+				//爆炸
+				self.destroy();
+			}
+			self.dom.style.top = self.top + 'px';
+		}, 50);
+	}
+	Ballon.prototype.destroy = function() {
+		clearInterval(this.timer);
+		this.dom.parentNode.removeChild(this.dom);
+	}
+	
+	var oScore = document.querySelector('h1');
+	
+	setInterval(function(){
+		new Ballon();
+	}, 1000);
+    </script>
+</body>
+</html>

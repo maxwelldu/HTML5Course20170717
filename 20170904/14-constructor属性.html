@@ -1,0 +1,23 @@
+<meta charset="utf-8">
+<script>
+	function Dog() {}
+	console.log(Dog.prototype.constructor);
+	
+	var xiaobai = new Dog();
+	console.log(xiaobai.constructor);
+	console.log(xiaobai.__proto__.constructor);
+	//原型对象的原型对象
+	console.log(xiaobai.__proto__.__proto__);
+	console.log(xiaobai.__proto__.__proto__.constructor);
+	
+	//Object.prototype是所有对象的原形链的终点，
+	//所以我们直接给Object.prototype增加一个方法，
+	//那么js世界里所有的对象都能调用这个方法
+	Object.prototype.kaiyu = function() {
+		console.log('我是凯玉，我今天请假了');
+	}
+	xiaobai.kaiyu();
+	
+	var arr = [1,2,3];
+	arr.kaiyu();
+</script>

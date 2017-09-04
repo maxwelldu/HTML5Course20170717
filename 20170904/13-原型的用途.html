@@ -1,0 +1,52 @@
+<meta charset="utf-8">
+
+<script>
+	/*
+	function Person(name, age) {
+		this.name = name;
+		this.age = age;
+		this.sayHi = function() {
+			console.log("你好，我是" + this.name 
+			+ " 我今年" + this.age + "岁");
+		}
+	}
+	var kaiyu = new Person("凯玉", 18);
+	var guikang = new Person("桂康", 18);
+	kaiyu.sayHi();
+	guikang.sayHi();
+	console.log(kaiyu.sayHi === guikang.sayHi);
+	*/
+	
+	
+	
+	
+	
+	
+	//把方法写到原型上面，可以复用，方法只会有一个
+	//把方法写到构造函数里面，创建多少个对象，就会生成多少个方法
+	//比如一个构造函数里面方法，我生成十个实例对象，一共会有100个方法
+	//比如把方法写到原型上面，我生成100,1000个实例对象，一共只会有10个方法
+	
+	//构造函数里面，负责定义一些属性，随着构造函数的执行，这些属性将
+	//绑定到new出来的对象身上
+	//方法因为都是一样的，我们可以放到构造函数的原型上
+	function Person(name, age) {
+		this.name = name;
+		this.age = age;
+	}
+	Person.prototype.sayHi  = function() {
+		//方法中的this值，是根据调用的，谁调用，this就是谁
+		console.log("你好，我是" + this.name 
+		+ " 我今年" + this.age + "岁");
+	}
+	var kaiyu = new Person("凯玉", 18);
+	var guikang = new Person("桂康", 18);
+	kaiyu.sayHi();
+	guikang.sayHi();
+	console.log(kaiyu.sayHi === guikang.sayHi);//访问的是同一个方法
+	
+	//prototype我们称为“原型”，只有函数有原型
+	//__proto__我们称为“原型对象”，任何对象都有原型对象
+	//所有的对象都是通过构造函数构造出来
+	//每次new关键字调用构造函数的时候，函数内部所有代码都会执行一次
+</script>

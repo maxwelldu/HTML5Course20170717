@@ -1,0 +1,41 @@
+<meta charset="utf-8">
+<script>
+	//任何函数都有原型，如果函数是普通函数，那么它的原形没什么用
+	function fun() {
+		console.log('hi');
+	}
+	console.dir(fun);
+	console.log(fun.prototype);//函数的原型
+	console.log(typeof fun.prototype); //对象
+	
+	
+	
+	
+	
+	
+	//构造函数，构造函数里面有一句话，相当于创建了一个，并且给对象添加
+	//了一个name属性，最后把创建出来的这个对象给返回
+	function Person() {
+		this.name = "凯玉";
+	}
+	//构造函数的原型，我们更改为一个新对象
+	Person.prototype = {
+		name: "赵凯玉",
+		age: 18
+	};
+	
+	//当一个对象被new出来的时候，不仅仅执行了构造函数里面的语句，也会把
+	//这个对象的__proto__指向构造函数的prototype
+	var kaiyu = new Person();
+	console.log(kaiyu.__proto__);
+	console.log(kaiyu.__proto__ === Person.prototype);
+	
+	console.log(kaiyu.name);//name自己有，找自己对象身上的
+	console.log(kaiyu.age);//自己没有，找原型对象
+	
+	//构造函数有prototype属性，这个属性是一个对象，我们叫原型
+	//构造函数.prototype === 实例.__proto__
+	//构造函数Person的prototype共享给所有Person类的实例
+	//针对属性和方法来说，当前对象不具有的属性和方法会在原型上面去找
+	
+</script>

@@ -1,0 +1,31 @@
+<meta charset="utf-8">
+<script>
+	//当调用基本数据类型的方法时，会临时的用包装对象将这个数据包装起来，
+	//调用包装对象的方法
+	//方法调用完毕卸掉
+	var str = "凯玉";
+	console.log(str.indexOf('凯'));//String
+	
+	console.log(1..toString());
+	
+	var str = new String("Hello");
+	console.log(str);
+	
+	var str1 = "Hi";
+	var str2 = "Hi";
+	console.log(str1 === str2);
+	
+	var str = "Hi";
+	console.log(str.__proto__.__proto__.constructor);
+	
+	var num = 123;
+	console.log(num.__proto__.constructor);
+	
+	var a = true;
+	console.log(a.__proto__.constructor);
+	
+	
+	var b = null; //null里面没有任何对象
+	var b = undefined;//undefined里面也没有
+	console.log(b.__proto__.constructor);
+</script>

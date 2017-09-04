@@ -1,0 +1,49 @@
+<meta charset="utf-8">
+<script>
+	//现在是一个数组字面量
+	var arr = [1,2,3];
+	
+	//寻找原型链的终点
+	console.log(arr.__proto__.__proto__.constructor);
+	
+	//函数也是对象
+	function Dog() {}
+	console.log(Dog.__proto__.constructor);
+	console.log(Dog.__proto__.__proto__.constructor);
+	
+	//给Function增加一个方法：
+	Function.prototype.guikang = function(){
+		console.log('我是桂康');
+	}
+	//所有的函数都能调用这个方法
+	Dog.guikang();
+	
+	
+	
+	
+	
+	
+	
+	
+	//数组
+	var arr = [45, 34, 23, 45, 65, 76, 45];
+	//我们可以利用原型链的机制，给数组对象增加方法
+	Array.prototype.max = function() {
+		var maxvalue = this[0];
+		for (var i = 1; i < this.length; i++) {
+			if (this[i] > maxvalue) {
+				maxvalue = this[i];
+			}
+		}
+		return maxvalue;
+	}
+	console.log(arr.max());
+	//有一个JavaScript库，叫prototype, 就是充分的发挥这个特性；
+	//但是不建议修改系统内置对象的原型，除非是垫片
+	//什么是垫片：就是高版本浏览器有的方法，低版本中没有，为了给低版本
+	//浏览器中增加这个方法，我们在原型上面添加；
+	//比如JSON对象的垫片(shim 或 prolify)  
+	//https://github.com/douglascrockford/JSON-js/blob/master/json2.js
+	//HTML5： https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.js
+	jQuery, underscore, lodash, zepto
+</script>

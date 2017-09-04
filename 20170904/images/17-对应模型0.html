@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    p {
+      width: 100px;
+      height: 100px;
+      float: left;
+      margin-right: 10px;
+      background-color: gray;
+    }
+    .box2 {
+      clear: both;
+    }
+    .light {
+      background: orange;
+      border: 1px solid red;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="box1" class="box1">
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p>
+    <p>5</p>
+  </div>
+  <div id="box2" class="box2">
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p>
+    <p>5</p>
+  </div>
+  <script>
+    var oBox1Ps = document.getElementById('box1').getElementsByTagName('p');
+    var oBox2Ps = document.getElementById('box2').getElementsByTagName('p');
+    /*
+    for (var i = 0; i < oBox1Ps.length; i++) {
+      (function(i){
+        oBox1Ps[i].onclick = function() {
+          oBox2Ps[i].className = 'light';
+          // oBox2Ps[i].style.backgroundColor = 'orange';
+          //区别在于维护的时候：当需要修改为其他的样式或者添加，你需要再修改js代码
+          // 如果使用类名的话，只需要修改css就搞定了
+        }
+      })(i);
+    }
+    */
+
+    //编号法
+    for (var i = 0; i < oBox1Ps.length; i++) {
+      oBox1Ps[i].index = i;
+      oBox1Ps[i].onclick = function() {
+        oBox2Ps[this.index].className = 'light';
+      }
+    }
+
+  </script>
+</body>
+</html>
