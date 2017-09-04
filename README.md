@@ -1293,7 +1293,9 @@ Object是对象
 包装对象上去，然后调用包装对象上的方法，当调用结束立即销毁包装对象
 
 基础数据类型其实是对象.primitiveValue
-原始值
+原始值  http://www.w3school.com.cn/js/pro_js_value.asp
+
+JavaScript秘密花园：http://bonsaiden.github.io/JavaScript-Garden/zh/#core.semicolon
 ```
 
 	
