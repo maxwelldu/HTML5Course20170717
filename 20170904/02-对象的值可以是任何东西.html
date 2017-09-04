@@ -1,0 +1,47 @@
+<meta charset="utf-8">
+<script>
+	var obj = {
+		data: [
+			1,2,3
+		],
+		e: function() {
+			
+		}
+	};
+	
+	/**
+	var 声明一个变量，值为非函数类型
+	function 声明一个变量，值为函数
+	
+	对象当中的属性值如果是非函数的话我们叫属性
+	如果对象当中属性值是函数，我们叫方法
+	*/
+	
+	//Object.defineProperty()
+	//可以用来做面向数据编程
+	
+	
+	
+	
+	
+	
+	
+	function fun() {
+		console.log(this);//相当于这个函数是放在window上面 
+	}
+	fun();
+	
+	//要对this关键字加深理解，知道this是指谁
+	var guikang = {
+		name: "桂康",
+		sayHi: function(){
+			console.log('Hi, my name is ' + this.name);
+		},
+		intro: function() {
+			this.sayHi();
+			console.log(this.name, this);//是指guikang这个对象
+		}
+	};
+	guikang.intro();
+	
+</script>

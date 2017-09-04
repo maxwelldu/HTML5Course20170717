@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    div{
+        width: 190px;
+        height: 190px;
+        background: url(images/jian.png) no-repeat;
+        background-position: 0 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+    }
+</style>
+<body>
+<div id="div"></div>
+<script>
+/*
+一个角色对象：
+	属性：
+		dom
+		left
+		top
+		x
+		y
+		n
+		timer
+	方法：
+		init 出生 
+		attack 攻击 
+		destroy 消失
+*/
+	function Role(top, left) {
+		this.dom = null;
+		this.left = left;
+		this.top = top;
+		this.x = 0;
+		this.y = 0;
+		this.n = 0; 
+		this.timer = 0;
+		this.init = function() {
+			this.dom = document.createElement('div');
+			document.body.appendChild(this.dom);
+			this.dom.style.left = this.left + "px";
+			this.dom.style.top = this.top + 'px';
+		}
+		this.attack = function() {
+			//备份一下this
+			var self = this;
+			this.timer = setInterval(function(){
+			  self.n++;
+			  self.x -= 190;
+			  console.log(self.x, self.y);
+			  self.dom.style.backgroundPosition = self.x + "px" + " " + self.y + "px";
+			  if(self.x <= -760){
+				  self.x = 0;
+				  self.y -= 190;
+			  }
+			  if(self.y <= -2000){
+				  self.x = 0;
+				  self.y = 0;
+			  }
+			  if (self.n >= 9) {
+				self.destroy();
+			  }
+			}, 300);
+		}
+		this.destroy = function() {
+			clearInterval(this.timer);
+		}
+		this.init();
+		this.attack();
+	}
+	
+	//分析一下，一个角色对象有哪些特征和行为
+	//每1秒钟创建出一个角色
+	setInterval(function() {
+		new Role(Math.random() * 1000, Math.random() * 500);
+	}, 1000);
+	
+</script>
+</body>
+</html>
+	

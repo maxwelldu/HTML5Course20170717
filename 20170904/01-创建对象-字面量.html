@@ -1,0 +1,29 @@
+<meta charset="utf-8">
+<script>
+	//创建对象字面量的方法，k不需要加引号
+	var obj = {
+		name: "桂康",
+		age: 18,
+		sex: "男"
+	};
+	console.log([obj, obj.name, typeof obj]);
+	
+	//特殊形式的k, 必须要加上引号，检索属性的时候，必须用方括号
+	var obj = {
+		"!1qazXSW@": "桂康",
+		"gui kang": "桂康同学",
+		"var": "声明"
+	};
+	var gk = "gui kang";
+	console.log(obj["!1qazXSW@"], obj[gk], obj["var"]);
+	
+	
+	
+	//通过new关键字创建对象, Object实际上是一个函数，也叫他构造函数，构造函数首字母大写
+	var obj = new Object();
+	console.log(obj);//{}
+	obj.name = "桂康";
+	console.log(obj);
+	obj["var"] = "声明";
+	console.log(obj);
+</script>

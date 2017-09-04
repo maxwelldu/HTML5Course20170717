@@ -1,0 +1,48 @@
+<meta charset="utf-8">
+<script>
+	//构造函数里面没有了this, 那么这个就相当于是一个普通函数，就不能给隐秘
+	//新创建出来的对象添加属性。但是里面的语句能够执行！
+	/*
+	function Person() {
+		for (var i = 1, sum = 0; i <= 100; i++) {
+			sum += i;
+		}
+		console.log(sum);
+	}
+	var zjy = new Person();
+	console.log(zjy);
+	*/
+	
+	//构造函数中，不允许出现return语句，出现return语句了
+	//分两种情况：1，如果返回的是基础数据类型则会忽略
+	//2.如果返回的对象，则会将对象真实返回
+	/*
+	function Person(name, age, sex) {
+		this.name = name;
+		this.age = age;
+		this.sex = sex;
+		//return name;
+		return [];
+	}
+	var kaiyu = new Person("凯玉", 18, "男");
+	console.log(kaiyu);
+	*/
+	
+	//JS没有支付宝构造函数中的语句的规范，想怎么写就怎么写
+	function Person(name, age) {
+		this.name = name;
+		this.age = age;
+		/*
+		if (this.age >= 18) {
+			this.state = "成年人";
+		} else {
+			this.state = "未成年";
+		}
+		*/
+		this.state = this.age >= 18 ? "成年人" : "未成年";
+	}
+	var zjy = new Person('张津源', 18);
+	console.log(zjy);
+	
+	
+</script>

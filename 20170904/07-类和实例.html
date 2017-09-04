@@ -1,0 +1,28 @@
+<meta charset="utf-8">
+<script>
+	//构造函数又叫类
+	function Person(name, sex, age) {
+		this.name = name;
+		this.sex = sex;
+		this.age = age;
+		this.sayHello = function(){
+			console.log('我是' + this.name);
+		}
+	}
+	
+	function Dog(name, type, age, sex) {
+		this.name = name;
+		this.type = type;
+		this.age = age;
+		this.sex = sex;
+		this.bark = function() {
+			console.log("我是" + type + "狗， " + this.name + "在汪汪")
+		}
+	}
+	//通过new关键字构造出来的对象叫实例，zjy是Person类的一个实例
+	var zjy = new Person('张津源', '男', 18);
+	zjy.sayHello();
+	
+	var xiaobai = new Dog('小白', "单身", 2, "公的");
+	xiaobai.bark();
+</script>

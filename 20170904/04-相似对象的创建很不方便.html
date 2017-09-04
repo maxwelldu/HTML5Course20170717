@@ -1,0 +1,37 @@
+<meta charset="utf-8">
+
+<script>
+	var kaiyu = {
+		name: "凯玉",
+		age: 18,
+		sex: "男",
+		sayHello: function() {
+			console.log("你好， 我是" + this.name);
+			console.log("今年: " + this.age + "岁");
+			console.log("我是" + this.sex + "生");
+		},
+		growup: function() {
+			this.age ++;
+		}
+	};
+	kaiyu.growup();
+	kaiyu.growup();
+	kaiyu.sayHello();
+	
+	var zjy = {
+		name: "张津源",
+		age: 18,
+		sex: "男",
+		sayHello: function() {
+			console.log("你好， 我是" + this.name);
+			console.log("今年: " + this.age + "岁");
+			console.log("我是" + this.sex + "生");
+		},
+		growup: function() {
+			this.age ++;
+		}
+	};
+	zjy.growup();
+	zjy.growup();
+	zjy.sayHello();
+</script>

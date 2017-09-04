@@ -1,0 +1,36 @@
+<meta charset="utf-8">
+<script>
+//构造函数首字母大写是人为规定，不是说大写开头的一定是构造函数
+//构造函数里面要能够返回一个对象
+//构造函数的使用方式一定是new 构造函数()这种方式调用
+
+//类，Person类
+//Person这个函数一会儿将用new关键字来调用，所以称为构造函数。
+//构造函数里面的语句会执行，并且将返回一个对象。所以new多少次，
+//里面的语句就会执行多少次，就会返回多少个对象
+function Person(name, age, sex) {
+		//创建一个空对象 var obj = {};
+		//把this同时指向到了这个空对象 this = obj;
+		this.name = name;
+		this.age = age;
+		this.sex = sex;
+		this.sayHello = function() {
+			console.log("你好， 我是" + this.name);
+			console.log("今年: " + this.age + "岁");
+			console.log("我是" + this.sex + "生");
+		};
+		this.growup = function() {
+			this.age ++;
+		};
+		//return this;
+	};
+	//使用new关键字调用函数，那么函数就叫构造函数。将返回一个对象
+	var kaiyu = new Person("凯玉", 19, "男");
+	kaiyu.growup();
+	kaiyu.growup();
+	kaiyu.sayHello();
+	
+	var zjy = new Person("张津源", 18, "男");
+	zjy.growup();
+	zjy.sayHello();
+</script>

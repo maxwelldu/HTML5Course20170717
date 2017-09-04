@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    div{
+        width: 190px;
+        height: 190px;
+        background: url(images/jian.png) no-repeat;
+        background-position: 0 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+    }
+</style>
+<body>
+
+<script>
+	function Role(top, left) {
+		this.top = top;
+		this.left = left;
+		this.dom = null;
+		this.x = 0;
+		this.y = 0;
+		this.n = 0;
+		this.timer = 0;
+		
+		//定义一个初始化方法
+		this.init = function() {
+			//创建一个div,然后添加到页面
+			//修改div的位置
+			this.dom = document.createElement('div');
+			document.body.appendChild(this.dom);
+			this.dom.style.top = this.top + 'px';
+			this.dom.style.left = this.left + 'px';
+		}
+		//定时一个攻击的方法
+		this.attack = function(){
+			//this表示调用的这个对象
+			var self = this;
+			clearInterval(this.timer);
+			this.timer = setInterval(function(){
+			//定时器里面的this表示window
+			  self.n++;
+			  self.x -= 190;
+			  console.log(self.x, self.y);
+			  self.dom.style.backgroundPosition = self.x + "px" + " " + self.y + "px";
+			  if(self.x <= -760){
+				  self.x = 0;
+				  self.y -= 190;
+			  }
+			  if(self.y <= -2000){
+				  self.x = 0;
+				  self.y = 0;
+			  }
+			  if (self.n >= 9) {
+				clearInterval(self.timer);
+			  }
+			}, 300);
+		}
+		
+		//调用初始化方法
+		this.init();
+		this.attack();
+	}
+	var ra = new Role(0, 0);
+	var rb = new Role(0, 300);
+	var rb = new Role(300, 0);
+	var rb = new Role(300, 300);
+	//分析一下，一个角色对象有哪些特征和行为
+	//方法有生命周期方法，比如出生，死亡，更新数据等
+</script>
+</body>
+</html>

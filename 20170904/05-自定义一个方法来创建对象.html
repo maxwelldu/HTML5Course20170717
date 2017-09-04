@@ -1,0 +1,31 @@
+<meta charset="utf-8">
+<script>
+	//我们发现创建一个对象，通常需要三步，第一步初始化一个空对象
+	//第二步给对象设置属性和方法
+	//第三步返回这个对象
+	
+	//工厂方法：设计模式中的一种，就是这个方法就是用来创建对象的
+	function createObject(name, age, sex) {
+		var obj = {};
+		obj.name = name;
+		obj.age = age;
+		obj.sex = sex;
+		obj.sayHello = function() {
+			console.log("你好， 我是" + this.name);
+			console.log("今年: " + this.age + "岁");
+			console.log("我是" + this.sex + "生");
+		};
+		obj.growup = function() {
+			this.age ++;
+		};
+		return obj;
+	};
+	var kaiyu = createObject("凯玉", 19, "男");
+	kaiyu.growup();
+	kaiyu.growup();
+	kaiyu.sayHello();
+	
+	var zjy = createObject("张津源", 18, "男");
+	zjy.growup();
+	zjy.sayHello();
+</script>

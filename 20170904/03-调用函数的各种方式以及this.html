@@ -1,0 +1,41 @@
+<meta charset="utf-8">
+<style>
+	div {
+		width: 200px;
+		height: 200px;
+		background-color: gray;
+	}
+</style>
+<div></div>
+<script>
+	function fun() {
+		console.log(this);
+	}
+	//直接用()调用函数，函数里面的this指的是window对象
+	fun();
+	
+	//函数绑定给了一个事件，那么事件发生的时候函数将执行，this就是触发事件的那个HTML对象
+	var oDiv = document.querySelector('div');
+	oDiv.onclick = fun;
+	
+	//用定时器来调用函数，函数里面的this是window
+	//setInterval(fun, 1500);
+	
+	//创建一个对象，将这个对象的intro属性，设置为刚才的fun函数。
+	//那么用对象的方式来调用，函数里面的this就是当前对象
+	var obj = {
+		name: "桂康",
+		intro: fun
+	};
+	obj.intro();
+	
+	//我们调用一个函数的时候，也可以通过apply、call来调用这个函数。此时能够人工设置函数里面的this值
+	var obj = {
+		name: "凯玉"
+	}
+	fun.apply(obj);
+	fun.call(obj);
+	
+	//函数中this的值表示谁，不是看定义的时候，是看谁调用的
+	//闭包函数中的一些变量，是看定义的时候
+</script>
