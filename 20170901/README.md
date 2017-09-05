@@ -2,7 +2,7 @@
 写一个模态框组件
 
 后面的计划：
-面向对象3天
+面向对象2天
 PHP+MySQL 2天
 Ajax：1天
 商城项目：5天
@@ -20,5 +20,5 @@ AngularJS: 5天
 微信小程序：1天
 
 自己扩展：
-jade, handlebar, less, sass, stylus, typescript, grunt, 
+jade, handlebar, less, sass, stylus, typescript, grunt,
 prepack, markdown

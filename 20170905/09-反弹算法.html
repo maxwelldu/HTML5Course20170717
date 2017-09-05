@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    #box {
+      width: 600px;
+      height: 400px;
+      border: 1px solid #000;
+      position: relative;
+      margin: 100px;
+    }
+    p {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-color: red;
+      border-radius: 50%;
+      top: 100px;
+      left: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div id="box"></div>
+  <script>
+    var oBox = document.querySelector('#box');
+    function Ballon(top, left, color, speed) {
+      this.top = top;
+      this.left = left;
+      this.dom = null;
+      this.color = color;
+      this.speed = speed;
+      this.timer = 0;
+      this.deltaX = Math.random()*100;
+      this.deltaY = Math.random()*100;
+      this.init();
+      this.render();
+      this.move();
+    }
+    Ballon.prototype.init = function() {
+      this.dom = document.createElement('p');
+      this.dom.style.backgroundColor = this.color;
+      oBox.appendChild(this.dom);
+    }
+    Ballon.prototype.render = function() {
+      this.dom.style.left = this.left + 'px';
+      this.dom.style.top = this.top + 'px';
+    }
+    Ballon.prototype.move = function() {
+      var self = this;
+      this.timer = setInterval(function() {
+        self.top += self.deltaY;
+        self.left += self.deltaX;
+        //if后验证把小球限定在盒子内部
+        if (self.top <= 0)  self.top = 0;
+        if (self.left <= 0)  self.left = 0;
+        if (self.top >= oBox.clientHeight - self.dom.offsetHeight) {
+          self.top = oBox.clientHeight - self.dom.offsetHeight;
+        }
+        if (self.left >= oBox.clientWidth - self.dom.offsetWidth)  {
+          self.left = oBox.clientWidth - self.dom.offsetWidth;
+        }
+
+        //碰到边界的时候改变方向
+        if (self.top >= oBox.clientHeight - self.dom.offsetHeight || self.top<=0) {
+          self.deltaY = -self.deltaY;
+        }
+        if (self.left >= oBox.clientWidth - self.dom.offsetWidth || self.left <= 0) {
+          self.deltaX = -self.deltaX;
+        }
+        self.render();
+      }, this.speed);
+    }
+
+    new Ballon(0, 0, 'red', 5);
+    new Ballon(10, 150, 'green', 10);
+    new Ballon(20, 250, 'blue', 20);
+    new Ballon(30, 350, 'orange', 40);
+    new Ballon(40, 450, 'purple', 60);
+  </script>
+</body>
+</html>

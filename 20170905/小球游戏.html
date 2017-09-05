@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小球游戏</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html, body{
+            width: 100%;
+            height: 100%;
+        }
+        div{
+            /*color: royalblue;*/
+            position: absolute;
+            width:50px;
+            height: 50px;
+            border-radius:50%;
+        }
+        p{
+            width: 300px;
+            height: 20px;
+            background-color: darkorange;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+分数：<h1 id="score">0</h1>
+难度：<h2 id="level">1</h2>
+<script>
+    function Ball(left, top, speed, color, deltaX, deltaY) {
+        this.deltaX = deltaX || 5;
+        this.deltaY = deltaY || 5;
+        this.left = left;
+        this.top = top;
+        this.color = color;
+        this.speed = speed;
+        this.dom = null;
+        this.time = 0;
+        this.d = 50;
+        this.init();
+        this.move();
+    }
+    Ball.prototype.init = function () {
+        this.dom = document.createElement('div');
+        this.dom.style.backgroundColor = this.color;
+        document.body.appendChild(this.dom);
+    };
+//    画出来 render
+    Ball.prototype.render = function () {
+      this.dom.style.left = this.left + "px";
+      this.dom.style.top = this.top + "px";
+    };
+    Ball.prototype.move = function () {
+        var self = this;
+        var width = document.documentElement.clientWidth || document.body.clientWidth;
+//        var height = document.documentElement.clientHeight || document.body.clientHeight;
+        self.deltaX = self.deltaY = game.delta[game.level];
+        this.time = setInterval(function () {
+              self.top += self.deltaY;
+              self.left += self.deltaX;
+
+              if(self.left <= 0 || self.left >= width - self.d){
+                  self.deltaX = -self.deltaX;
+              }
+              if(self.top <= 0 || self.top >= 600-50){//板的TOP值，
+                  //如果在板上则反弹，如果在地上就结束
+//                  50是直径
+                  if(self.top === 600-50 && ( (self.left +50) < board.dom.offsetLeft || self.left > board.dom.offsetLeft + 300)){
+                      clearInterval(self.time);
+                      alert("GAME OVER");
+                      document.body.removeChild(self.dom);
+                  } else {
+                      self.deltaY = -self.deltaY;
+//                      加分
+                      if(self.top === 600 - 50) {
+                          game.addScore();
+                      }
+                  }
+              }
+              self.render();
+        },this.speed);
+    };
+//    挡板
+    function Board () {
+        this.dom = null;
+        this.left = 100;
+        this.top = 600;
+        this.init();
+        this.render();
+        this.bindEvent();
+    }
+    Board.prototype.init = function () {
+      this.dom = document.createElement('p');
+      document.body.appendChild(this.dom);
+    };
+    Board.prototype.render = function () {
+      this.dom.style.left = this.left + "px";
+      this.dom.style.top = this.top + "px";
+//      定位的移动
+    };
+    Board.prototype.bindEvent = function () {
+        var self = this;
+        document.onmousemove = function (event) {
+            event = event || window.event;
+            self.left = event.clientX-300;
+            self.render();
+        }
+    };
+    var board = new Board();
+
+
+    function  Game() {
+        this.score = 0;
+        this.scoreDom = null;
+        this.level = 1;
+        this.levelDom = null;
+        this.deltaScores = [0, 1, 5, 10, 15, 20, 25];//加的分数
+        this.delta = [0, 5, 10, 15, 20, 25, 30];
+        this.scores = [0, 0, 3, 20,50,100,160]
+    }
+    Game.prototype.init = function () {
+        this.scoreDom = document.getElementById('score');
+        this.levelDom = document.getElementById('level');
+        new Ball(100,100,10,"red",5,5);
+    };
+    Game.prototype.addScore = function () {
+        this.score += this.deltaScores[this.level];
+        for(var i = this.scores.length-1; i > 0; i--){
+            if(this.score >= this.scores[i]) {
+                this.level = i;
+                break;
+            }
+        }
+        this.render();
+    };
+    Game.prototype.render = function () {
+        this.scoreDom.innerText = this.score;
+        this.levelDom.innerText = this.level;
+    };
+    var game = new Game();
+    game.init();
+</script>
+</body>
+</html>

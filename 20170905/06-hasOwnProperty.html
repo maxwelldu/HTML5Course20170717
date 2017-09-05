@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var obj = {
+      a: 1,
+      b: 2,
+      c: false
+    };
+    obj.__proto__ = {
+      d: 4
+    };
+    Object.prototype.e = 5;
+    console.log(obj.hasOwnProperty("a"));//t
+    console.log(obj.hasOwnProperty("b"));//t
+    console.log(obj.hasOwnProperty("c"));//t
+    console.log(obj.hasOwnProperty("d"));//f
+    console.log(obj.hasOwnProperty("e"));//f
+
+    //只打印对象自身的属性, hasOwnProperty验证属性是否是自身的，如果是则返回true
+    for (var k in obj) {
+      obj.hasOwnProperty(k) && console.log(k, obj[k]);
+    }
+  </script>
+</body>
+</html>

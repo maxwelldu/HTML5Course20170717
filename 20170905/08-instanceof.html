@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function Dog() {
+      this.name = 'dog';
+    }
+    var d = new Dog();
+    console.log(d instanceof Dog);
+
+    function Cat() {
+      this.firstName = 'cat';
+    }
+    Cat.prototype = new Dog();
+    var hellokitty = new Cat();
+    console.log(hellokitty.constructor);
+    console.log(hellokitty instanceof Cat);//true
+    console.log(hellokitty instanceof Dog);//true
+    console.log(hellokitty instanceof Object);//true
+
+    var arr = [];
+    console.log(typeof arr);//'object'
+
+    var f = function(){}
+    console.log(typeof f);//'function'
+
+    var obj = {}
+    console.log(typeof obj);//'object'
+
+    var obj2 = /a/g;
+    console.log(typeof obj2);//'object'
+
+    //判断是否是数组，面试可能会考到
+    var arr = [];
+    console.log(arr instanceof Array);
+    console.log(Array.isArray(arr));
+  </script>
+</body>
+</html>

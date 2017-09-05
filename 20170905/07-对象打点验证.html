@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var obj = {
+      a: 1,
+      b: 2,
+      c: false
+    };
+    obj.__proto__ = {
+      d: 4
+    };
+    Object.prototype.e = 5;
+
+    console.log(obj.f);//undefined
+    console.log(obj.a);//1
+    console.log(obj.b);//2
+    console.log(obj.c);//false
+
+    //用于做能力检索
+    if (obj.f && typeof obj.f === 'function') {
+      obj.f();
+    }
+  </script>
+</body>
+</html>

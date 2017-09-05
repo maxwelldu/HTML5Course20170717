@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //Person，Student
+    function Person(name, age, sex) {
+      this.name = name;
+      this.age = age;
+      this.sex = sex;
+    }
+    Person.prototype.eat = function() {
+      console.log('person eatting');
+    }
+    function Student(name, age, sex, xuehao) {
+      // this.name = name;
+      Person.apply(this, arguments);
+      this.xuehao = xuehao;
+    }
+    /*
+    //这样学生继承了人类的原型上的内容, 继承不了人类的属性
+    Student.prototype = Person.prototype;
+    var kaiyu = new Student("凯玉", 18, "男", 101);
+    console.log(kaiyu.name, kaiyu.age, kaiyu.sex, kaiyu.xuehao);//属性是自己的
+    kaiyu.eat(); //这个方法是继承自Person的
+    */
+
+    //继承父类的属性及原型上的所有内容
+    Student.prototype = new Person();
+    var kaiyu = new Student("凯玉", 18, "男", 101);
+    console.log(kaiyu.name, kaiyu.age, kaiyu.sex, kaiyu.xuehao);
+    kaiyu.eat();
+
+  </script>
+</body>
+</html>

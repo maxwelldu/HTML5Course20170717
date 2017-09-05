@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8"/>
+  <title></title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    i{
+      font-style: normal;
+    }
+    html {
+      height: 100%;
+    }
+    body {
+      height: 100%;
+      background: url(images/bg.jpg);
+      background-size: cover;
+      overflow: hidden;
+    }
+    .ballon {
+      width: 81px;
+      height: 119px;
+      background: url(images/ballon.png) no-repeat;
+      position: absolute;
+      cursor: crosshair;
+    }
+    .infor{
+      width: 150px;
+      height: 150px;
+      padding: 20px 0 0 20px;
+    }
+    .score,.miss,.speed{
+      height: 50px;
+      font-size: 20px;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<div class="infor">
+  <div id="score" class="score"><span>score：</span><i>0</i></div>
+  <div id="miss" class="miss"><span>miss：</span><i>0</i></div>
+  <div id="speed" class="speed"><span>speed: </span><i>1</i></div>
+</div>
+<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>

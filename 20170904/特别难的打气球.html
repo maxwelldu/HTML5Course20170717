@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>打气球小游戏</title>
+	<style type="text/css">
+		*{
+			margin : 0;
+			padding : 0;
+		}
+		html,
+		body{
+			width : 100%;
+			height : 100%;
+			background-image: url("images/bg.jpg");
+			background-size: 100% 100%;
+			overflow: hidden;
+		}
+		.balloon{
+			width : 96px;
+			height: 120px;
+			position : absolute;
+			background-image: url("images/ballon.png");
+		}
+		h3{
+			color : red;
+		}
+	</style>
+</head>
+<body>
+	<h2>0</h2>
+	<h3>0</h3>
+	<h1>红字到100就结束，看你能打多少分？</h1>
+	<h1 class = "funny">打到200我就发红包</h1>
+</body>
+	<script type="text/javascript">
+		let newGame = new Game();
+		//使用构造函数及原型做出打气球游戏，先写写伪代码吧
+		//创造balloon构造器，定义基本的dom信息，气球运行的函数
+		//然后用原型创造方法，主要有创造，飞行，销毁函数
+		let oH2 = document.querySelector("h2");
+		let oH3 = document.querySelector("h3");
+		let oH1 = document.querySelector(".funny");
+		// 初始化继承
+		Balloon.prototype = new Game();
+		//定义balloon构造器
+		function Balloon(){
+			this.width = this.oWidth;
+			this.height = this.oHeight;
+			this.dom = null;
+			this.top = this.oTop;
+			this.left = this.oLeft * Math.random();
+			//计分部分
+			this.score = Math.ceil(Math.random()*8);
+			this.backgroundPositionTop = Math.floor(this.score/4.01) * this.oHeight * (-1);
+			this.backgroundPositionLeft = ((this.score-1)%4) * this.oWidth * (-1);
+
+
+			this.init();
+			this.fly();
+		}
+
+		Balloon.prototype.init = function(){
+			//创建并且初始化气球
+			this.dom = document.createElement("div");
+			document.body.appendChild(this.dom);
+			this.dom.className = "balloon";
+			this.dom.style.width = this.width + "px";
+			this.dom.style.height = this.height + "px";
+			this.dom.style.top = this.top + "px";
+			this.dom.style.left = this.left + "px";
+			//计分面板设置
+			this.dom.style.backgroundPositionX = this.backgroundPositionLeft + "px";
+			this.dom.style.backgroundPositionY = this.backgroundPositionTop + "px";
+			//等会在这里写点击事件
+			this.dom.onclick = ()=>{
+				clearInterval(this.timer);
+				this.dom.parentNode.removeChild(this.dom);
+				this.highScore = parseInt(oH2.innerText)+this.score;
+				oH2.innerText = this.highScore;
+			}
+		}
+
+		Balloon.prototype.fly = function(){
+			this.randomC = 0;
+			this.timer = null;
+			this.counter = 1;
+			this.randomC = 1;
+			clearInterval(this.timer);
+			this.timer = setInterval(() => {
+				//摇摆的随机数
+				// 控制帧数，避免鬼畜
+				this.counter++;
+				if(this.counter > this.guichu){
+					this.counter = 0;
+					this.randomC = Math.random() > 0.5 ?1:-1;
+				}
+				else{
+					this.counter++;
+				}
+				//改变位置
+				this.dom.style.top = parseInt(this.dom.style.top) -3 + "px";
+				this.dom.style.left = parseInt(this.dom.style.left) + 3*this.randomC + "px";
+				//判断是否停止运动
+				if(parseInt(this.dom.style.top)<(-100)){
+					clearInterval(this.timer);
+					this.missed++;
+					oH3.innerText = parseInt(oH3.innerText)+1;
+					this.dom.parentNode.removeChild(this.dom);
+					
+				}
+			},10);
+		}
+
+		function Game(){
+			//改变prototype的继承值
+
+			this.timer2 = null;
+			clearInterval(this.timer2);
+			this.timer2 = setInterval(()=>{
+				console.log(this);
+				new Balloon();
+				if(parseInt(oH3.innerText)>100){
+					console.log(this.gameOver());
+				}
+			},500);
+			//先定义信号变量
+			this.oWidth = 96;
+			this.oHeight = 120;
+			this.oTop = 700;
+			this.oLeft = 1200;
+			this.highScore = 0;
+			this.missed = 0;
+			//鬼畜值
+			this.guichu = 60;
+
+		}
+
+		Game.prototype.gameOver = function(){
+			clearInterval(this.timer2);
+			oH1.innerText= "八嘎八嘎，好气吧啊哈哈哈哈"; 	
+		}
+	</script>
+</html>

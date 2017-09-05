@@ -1,0 +1,153 @@
+<meta charset="utf-8">
+<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html{
+				height:100%;
+			}
+			body{
+				height:100%;
+				background:url(images/bg.jpg);
+				background-size:cover;
+				overflow: hidden;
+			}
+			.ballon{
+				width:81px;
+				height:119px;
+				background:url(images/ballon.png) no-repeat;
+				position: absolute;
+				cursor: crosshair;
+			}
+			h1{
+				color:white;
+				font-size: 60px;
+			}
+		</style>
+		
+		<h1 class="score">0</h1>
+		<h2 class="miss">0</h2>
+		<h3 class="level">1</h3>
+<script>
+	(function(){
+		
+		//气球类
+		function Ballon() {
+			//肉身
+			this.dom = null;
+			//位置
+			this.top = 600;
+			this.left = Math.random() * 1200;
+			//分数信号量
+			this.score = parseInt(Math.random() * 7) + 1;//1-7
+			//精灵图坐标
+			this.x = -(this.score - 1) % 4 * 96;
+			this.y = -parseInt((this.score - 1) / 4) * 120;
+			
+			this.init();
+			this.bindEvent();
+		}
+		//初始化
+		Ballon.prototype.init = function() {
+			//创建DOM，并且给这个对象的dom属性
+			this.dom = document.createElement('div');
+			//添加到页面上
+			document.body.appendChild(this.dom);
+			//更改类名
+			this.dom.className = 'ballon';
+			//设置位置
+			this.dom.style.top = this.top + 'px';
+			this.dom.style.left = this.left + 'px';
+			//设置精灵图位置
+			this.dom.style.backgroundPositionX = this.x + 'px';
+			this.dom.style.backgroundPositionY = this.y + 'px';
+		}
+		//绑定事件
+		Ballon.prototype.bindEvent = function() {
+			var self = this;
+			this.dom.addEventListener('click', function(){
+				self.destroy();
+				
+				//累加分数
+				game.score += self.score;
+				game.oScore.innerText = game.score;
+				//根据分数值，每增加50分加一级
+				game.level = parseInt(game.score / 10) + 1;
+				game.oLevel.innerText = game.level;
+				//根据等级，修改速度
+				game.speed = 1000 - 300 * (game.level-1);
+				game.init();
+				
+			}, false);
+		}
+		
+		//气球销毁
+		Ballon.prototype.destroy = function() {
+			this.dom.parentNode.removeChild(this.dom);
+			game.removeBallon(this);//把当前气球删除
+		}
+		
+		//游戏对象,只会创建一次
+		function Game() {
+			this.score = 0; //总分数
+			this.oScore = document.querySelector('.score');
+			this.miss = 0;//未打中的
+			this.oMiss = document.querySelector('.miss');
+			this.level = 1;//等级
+			this.oLevel = document.querySelector('.level');
+			this.speed = 1000;//生产气球的速度,如果升一级速度值-100
+			this.timer = 0;//定期的产生气球
+			this.updateTimer = 0;//更新所有气球的定时器
+			this.ballons = [];//将所有的气球放入其中
+			this.init();
+		}
+		Game.prototype.init = function() {
+			clearInterval(this.timer);
+			var self = this;
+			this.timer = setInterval(function(){
+				self.ballons.push(new Ballon());
+			}, this.speed);
+			clearInterval(this.updateTimer);
+			this.updateTimer = setInterval(function(){		
+				for (var i = 0; i < self.ballons.length; i++) {
+					var ballon = self.ballons[i];
+					ballon.top -= ballon.score;
+					if (ballon.top < -100) {//当气球飞出屏幕
+						ballon.destroy();
+						
+						//修改miss的值
+						game.miss++;
+						game.oMiss.innerText = game.miss;
+						//如果miss值等于10游戏结束
+						if (game.miss >= 10) {
+							game.gameover();
+						}
+					}
+					ballon.dom.style.top = ballon.top + 'px';
+				}
+			}, 20);
+		}
+		Game.prototype.removeBallon = function(obj) {
+			for (var i = 0; i < this.ballons.length; i++) {
+				if (this.ballons[i] === obj) {
+					this.ballons.splice(i,1);
+				}
+			}
+		}
+		Game.prototype.gameover = function() {
+			alert("您的得分是：" + this.score + " 游戏结束！");
+			//先强制的刷新页面，如果想要很好的控制，可以在页面上只生成一个定时器，到时候控制这一个就好
+			//location.reload();
+			clearInterval(this.timer);
+			clearInterval(this.updateTimer);
+			//清空所有的气球
+			
+			for (var i = 0; i < this.ballons.length; i++) {
+				this.ballons[i].destroy();
+			};
+			
+		}
+		var game = new Game();
+	})();
+</script>
