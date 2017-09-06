@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    li {
+      float: left;
+      list-style: none;
+      margin-right: 10px;
+      background-color: orange;
+      padding: 10px;
+      color: white;
+    }
+    a {
+      text-decoration: none;
+      color: white;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h2></h2>
+  <ul></ul>
+  <script src="myajax.js" charset="utf-8"></script>
+  <script>
+    var oH2 = document.querySelector('h2');
+    var oUl = document.querySelector('ul');
+    myajax.get('http://h6.duchengjiu.top/shop/api_cat.php', {}, function(error, responseText){
+        var json = JSON.parse(responseText);//返回的整个json对象
+        var data = json.data;//json对象当中的data是一个数组
+
+        for (var i = 0; i < data.length; i++) {
+          var obj = data[i];//数组里面的每一项是一个商品分类的对象
+          oUl.innerHTML += '<li><a href="#">' + obj.cat_name + '</a></li>';
+        }
+    });
+  </script>
+</body>
+</html>

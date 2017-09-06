@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    li {
+      float: left;
+      list-style: none;
+      margin-right: 10px;
+      background-color: orange;
+      padding: 10px;
+      color: white;
+    }
+    a {
+      text-decoration: none;
+      color: white;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h2></h2>
+  <ul></ul>
+  <script>
+    var oH2 = document.querySelector('h2');
+    var oUl = document.querySelector('ul');
+
+    //创建一个ajax对象
+    var xhr = new XMLHttpRequest();
+    //绑定准备状态改变事件
+    xhr.onreadystatechange = function() {
+      //当内容加载完成
+      // if (xhr.readyState === 4) {
+      if (xhr.readyState === xhr.DONE) {
+        //把内容放到页面上
+        // oH2.innerHTML = xhr.responseText;
+        try {
+          var json = JSON.parse(xhr.responseText);//返回的整个json对象
+          var data = json.data;//json对象当中的data是一个数组
+          for (var i = 0; i < data.length; i++) {
+            var obj = data[i];//数组里面的每一项是一个商品分类的对象
+            /*
+            var oLi = document.createElement('li');
+            var oA = document.createElement('a');
+            oA.innerText = obj.cat_name;
+            oA.href = "#";
+            oLi.appendChild(oA);
+            oUl.appendChild(oLi);
+            */
+            // oUl.innerHTML += `<li><a href="#">${obj.cat_name}</a></li>`;
+            oUl.innerHTML += '<li><a href="#">' + obj.cat_name + '</a></li>';
+          }
+        } catch (error) {
+
+        }
+      }
+    }
+    //请求资源
+    xhr.open('GET', 'http://h6.duchengjiu.top/shop/api_cat.php');
+    //发送请求
+    xhr.send();
+  </script>
+</body>
+</html>

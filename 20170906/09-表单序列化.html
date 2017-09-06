@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <form id="biaodan">
+		<p>
+			请输入姓名：
+			<input type="text" name="xingming" />
+		</p>
+		<p>
+			请选择性别：
+			<input type="radio" name="sex" value="男"/> 男
+			<input type="radio" name="sex" value="女"/> 女
+			<input type="radio" name="sex" value="保密"/> 保密
+		</p>
+		<p>
+			请选择国籍：
+			<input type="radio" name="nationality" value="中国"/> 中国
+			<input type="radio" name="nationality" value="外国"/> 外国
+		</p>
+		<p>
+			请选择你的爱好：
+			<input type="checkbox" name="hobby" value="足球"/> 足球
+			<input type="checkbox" name="hobby" value="篮球"/> 篮球
+			<input type="checkbox" name="hobby" value="吃饭"/> 吃饭
+			<input type="checkbox" name="hobby" value="睡觉"/> 睡觉
+			<input type="checkbox" name="hobby" value="打豆豆"/> 打豆豆
+		</p>
+		<p>
+			选择你的省份：
+			<select name="hometown" >
+				<option value="北京">北京</option>
+				<option value="上海">上海</option>
+				<option value="东莞">东莞</option>
+				<option value="广州">广州</option>
+			</select>
+		</p>
+		<p>
+			密码：
+			<input type="password" name="password" />
+		</p>
+		<p>
+			留言：
+			<textarea name="message" id="" cols="30" rows="10"></textarea>
+		</p>
+		<p>
+			<input type="button" value="点击提交" id="btn"/>
+		</p>
+	</form>
+  <script>
+    var oForm = document.querySelector('form');
+    var oBtn = document.querySelector('input[type=button]');
+    oBtn.onclick = function() {
+      //得到所有的元素
+      var elems = oForm.elements;
+      //结果数组
+      var arr = [];
+      for (var i = 0; i < elems.length; i++) {
+        //当前遍历的小元素
+        var e = elems[i];
+        //分类讨论
+        switch(e.type) {
+          //如果控件的类型是按钮，那么没有任何返回值
+          case 'button':
+          case 'submit':
+          case 'reset':
+            break;
+          //如果是文本框，得到value
+          case 'text':
+          case 'password':
+          case 'textarea':
+            arr.push(e.name + '=' + e.value);
+            break;
+          //如果是单选或复选
+          case 'radio':
+          case 'checkbox':
+            e.checked && arr.push(e.name + '=' + e.value);
+            break;
+          case "select-one":
+            var options = e.querySelectorAll('option');
+            console.log(options);
+            for (var j = 0; j < options.length; j++) {
+              if (options[j].selected) {
+                arr.push(e.name + '=' + options[j].value);
+              }
+            }
+            break;
+        }
+      }
+      console.log( arr.join('&') );
+    }
+  </script>
+
+
+</body>
+</html>

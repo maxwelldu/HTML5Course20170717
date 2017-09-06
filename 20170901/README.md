@@ -3,13 +3,13 @@
 
 后面的计划：
 面向对象2天
-PHP+MySQL 2天
 Ajax：1天
 商城项目：5天
 jQuery：2天
 bootStrap: 1天
 h5c3+响应式：5天
 移动端项目：5天
+PHP+MySQL 2天
 NodeJS+MongoDB: 3天
 ES6:1天
 gulp: 1天

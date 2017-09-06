@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="button" value="异步读取">
+  <script>
+    var oInput = document.querySelector('input');
+    oInput.addEventListener('click', function(){
+
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === xhr.DONE) {
+          console.log(xhr.responseText);
+        }
+      };
+      xhr.open('GET', 'http://h6.duchengjiu.top/shop/api_cat.php', true);
+      xhr.send();
+
+      console.log('1');
+      console.log('2');
+      console.log('3');
+    });
+  </script>
+</body>
+</html>

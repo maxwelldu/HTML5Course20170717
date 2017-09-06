@@ -1,0 +1,506 @@
+{
+	"id": "29857cba-5c97-a0a8-8a01-8614e74b4722",
+	"name": "shop",
+	"description": "shop API",
+	"order": [
+		"00f09f20-54d0-6abf-0c44-fef0b446072c",
+		"81fc109b-18b4-9c56-748e-e556e2f7812e",
+		"30358c99-2c09-ad34-7ee7-c329e2e04202",
+		"8f79bf68-6d17-4bd5-107b-35696ce2789c",
+		"c31d9500-0125-1488-a6de-cc4fc03b1d01",
+		"0e5b8c90-fcd6-51e4-db47-b982e3e4f233",
+		"7c55df60-1101-05c9-94e3-3514091225e8",
+		"00ea6e61-80ab-3d98-4958-489c841641bd",
+		"9bd1730a-a87b-4c30-5dff-4761b060bf1d",
+		"7a679b2b-ad21-ce44-0ba2-decaf7ae4482",
+		"d890c2db-e25a-df51-b5da-c9cdff224575",
+		"3c88ba6f-9b6c-33f6-6993-586b540f4dd3",
+		"7a2068cb-d6e7-0d0d-c9d0-3c9e80fe7f57",
+		"fb195ab3-8dbd-f4ea-9571-2fef9df2cc1d"
+	],
+	"folders": [],
+	"timestamp": 1490017693438,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "00ea6e61-80ab-3d98-4958-489c841641bd",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"url": "http://h6.duchengjiu.top/shop/api_user.php",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "29857cba-5c97-a0a8-8a01-8614e74b4722",
+			"data": [
+				{
+					"key": "status",
+					"value": "login",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "username",
+					"value": "maxwelldu999000",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "123456",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "登录",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1498533285294,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "00f09f20-54d0-6abf-0c44-fef0b446072c",
+			"headers": "",
+			"url": "http://h6.duchengjiu.top/shop/api_cat.php",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "29857cba-5c97-a0a8-8a01-8614e74b4722",
+			"data": null,
+			"dataMode": "params",
+			"name": "获取商品分类",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1498533320308,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "0e5b8c90-fcd6-51e4-db47-b982e3e4f233",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"url": "http://h6.duchengjiu.top/shop/api_user.php",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "29857cba-5c97-a0a8-8a01-8614e74b4722",
+			"data": [
+				{
+					"key": "status",
+					"value": "check",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "username",
+					"value": "furong111",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "1234561",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "检查用户名是否被占用",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1498530986819,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "30358c99-2c09-ad34-7ee7-c329e2e04202",
+			"headers": "",
+			"url": "http://h6.duchengjiu.top/shop/api_goods.php?goods_id=33710",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "29857cba-5c97-a0a8-8a01-8614e74b4722",
+			"data": null,
+			"dataMode": "params",
+			"name": "获取一个具体的商品详情",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1498533444948,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "3c88ba6f-9b6c-33f6-6993-586b540f4dd3",
+			"headers": "Content-Type: application/x-www-form-urlencoded\ntoken: 2981ff78523df287f7bac8554a309d7d\n",
+			"url": "http://h6.duchengjiu.top/shop/api_useraddress.php",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "29857cba-5c97-a0a8-8a01-8614e74b4722",
+			"data": [
+				{
+					"key": "goods_id",
+					"value": "33704",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "number",
+					"value": "3",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "查看用户地址信息",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1498534264172,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "7a2068cb-d6e7-0d0d-c9d0-3c9e80fe7f57",
+			"headers": "Content-Type: application/x-www-form-urlencoded\ntoken: 2981ff78523df287f7bac8554a309d7d\n",
+			"url": "http://h6.duchengjiu.top/shop/api_useraddress.php?status=add",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "29857cba-5c97-a0a8-8a01-8614e74b4722",
+			"data": [
+				{
+					"key": "address_name",
+					"value": "3",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "consignee",
+					"value": "1",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "country",
+					"value": "2",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "province",
+					"value": "3",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "city",
+					"value": "4",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "district",
+					"value": "5",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "address",
+					"value": "6",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "zip_code",
+					"value": "7",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "mobile",
+					"value": "8",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "9",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "tel",
+					"value": "10",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "besttime",
+					"value": "11",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "sign_building",
+					"value": "12",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "添加用户地址信息",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1498534405519,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "7a679b2b-ad21-ce44-0ba2-decaf7ae4482",
+			"headers": "Content-Type: application/x-www-form-urlencoded\ntoken: 2981ff78523df287f7bac8554a309d7d\n",
+			"url": "http://h6.duchengjiu.top/shop/api_cart.php",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "29857cba-5c97-a0a8-8a01-8614e74b4722",
+			"data": [
+				{
+					"key": "goods_id",
+					"value": "33704",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "number",
+					"value": "3",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "查看购物车",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1498533932396,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "7c55df60-1101-05c9-94e3-3514091225e8",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"url": "http://h6.duchengjiu.top/shop/api_user.php",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "29857cba-5c97-a0a8-8a01-8614e74b4722",
+			"data": [
+				{
+					"key": "status",
+					"value": "register",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "username",
+					"value": "furong",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "123456",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "注册",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1490018152318,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "81fc109b-18b4-9c56-748e-e556e2f7812e",
+			"headers": "",
+			"url": "http://h6.duchengjiu.top/shop/api_goods.php?cat_id=45",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1498533416432,
+			"name": "获取商品分类中的商品列表",
+			"description": "",
+			"collectionId": "29857cba-5c97-a0a8-8a01-8614e74b4722",
+			"responses": []
+		},
+		{
+			"id": "8f79bf68-6d17-4bd5-107b-35696ce2789c",
+			"headers": "",
+			"url": "http://h6.duchengjiu.top/shop/api_goods.php",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "29857cba-5c97-a0a8-8a01-8614e74b4722",
+			"data": null,
+			"dataMode": "params",
+			"name": "获取热门商品",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1498533515443,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "9bd1730a-a87b-4c30-5dff-4761b060bf1d",
+			"headers": "Content-Type: application/x-www-form-urlencoded\ntoken: 2981ff78523df287f7bac8554a309d7d\n",
+			"url": "http://h6.duchengjiu.top/shop/api_cart.php",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "goods_id",
+					"value": "33912",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "number",
+					"value": "3",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1498533983424,
+			"name": "更新购物车",
+			"description": "",
+			"collectionId": "29857cba-5c97-a0a8-8a01-8614e74b4722",
+			"responses": []
+		},
+		{
+			"id": "c31d9500-0125-1488-a6de-cc4fc03b1d01",
+			"headers": "",
+			"url": "http://h6.duchengjiu.top/shop/api_goods.php?search_text=热",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "29857cba-5c97-a0a8-8a01-8614e74b4722",
+			"data": null,
+			"dataMode": "params",
+			"name": "搜索商品",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1498533558686,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "d890c2db-e25a-df51-b5da-c9cdff224575",
+			"headers": "Content-Type: application/x-www-form-urlencoded\ntoken: 2981ff78523df287f7bac8554a309d7d\n",
+			"url": "http://h6.duchengjiu.top/shop/api_order.php",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "29857cba-5c97-a0a8-8a01-8614e74b4722",
+			"data": [
+				{
+					"key": "goods_id",
+					"value": "33704",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "number",
+					"value": "3",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "查看订单列表",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1498534171850,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "fb195ab3-8dbd-f4ea-9571-2fef9df2cc1d",
+			"headers": "Content-Type: application/x-www-form-urlencoded\ntoken: 2981ff78523df287f7bac8554a309d7d\n",
+			"url": "http://h6.duchengjiu.top/shop/api_useraddress.php?status=delete&address_id=19",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "29857cba-5c97-a0a8-8a01-8614e74b4722",
+			"data": [
+				{
+					"key": "goods_id",
+					"value": "33704",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "number",
+					"value": "3",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "删除用户地址信息",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1498534468358,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		}
+	]
+}
