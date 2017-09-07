@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>商品详情页</title>
+</head>
+<body>
+  <script src="myajax.js" charset="utf-8"></script>
+  <script>
+    var goods_id = getQueryString('goods_id');
+    console.log(goods_id);
+    myajax.get('http://h6.duchengjiu.top/shop/api_goods.php', {
+      // goods_id: goods_id ES5
+      goods_id //ES6
+    }, function(err, responseText){
+      var json = JSON.parse(responseText);
+      var obj = json.data[0];
+      console.log(json);
+      document.body.innerHTML = `
+      <div>
+        <div><img src="${obj.goods_thumb}"></div>
+        <div>${obj.goods_name}</div>
+        <div>${obj.price}</div>
+        <div><input type="button" id="add-to-cart" value="添加到购物车"></div>
+      </div>
+      `;
+    });
+
+    document.body.onclick = function(event) {
+      event = event || window.event;
+      var target = event.target || event.srcElement;
+      if (target.id === 'add-to-cart') {
+        console.log('添加到购物车');
+        myajax.post('http://h6.duchengjiu.top/shop/api_cart.php?token='+localStorage.token,
+        {goods_id, number:1},
+        function(err, responseText) {
+          var json = JSON.parse(responseText);
+          console.log(json);
+          if (json.code === 0) {
+            alert('添加到购物车成功');
+          }
+        })
+      }
+    }
+  </script>
+</body>
+</html>

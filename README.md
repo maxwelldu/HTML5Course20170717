@@ -63,7 +63,7 @@ DOM对象.on事件名 = null;
 
 常用事件名：
 鼠标：click, dblclick, mouseover, mouseout, mousedown, mouseup, mousemove,
-contextmenu, mouseenter, mouseleave, mousewheel, DOMMouseScroll(Firefox), 
+contextmenu, mouseenter, mouseleave, mousewheel, DOMMouseScroll(Firefox),
 mouseenter和mouseleave不会冒泡，mouseover, mouseout会冒泡
 表单事件：submit, reset
 键盘：keyup, keydown, keypress, input
@@ -108,7 +108,7 @@ class设置样式，id属性用来给js使用
 ```
 
 ```
-http://bbs.duchengjiu.top/read.php?tid=42 
+http://bbs.duchengjiu.top/read.php?tid=42
 web6期时候的视频，包括git等：
 链接: https://pan.baidu.com/s/1eS099sA 密码: du7w
 命令行，工程化视频：链接: https://pan.baidu.com/s/1bpMuxXH 密码: ambq
@@ -512,7 +512,7 @@ html元素中的id主要给js用，不要给css用
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 	```
-  
+
   CSS透明度：
   css hack
   ```
@@ -628,7 +628,7 @@ document.addEventListener('DOMContentLoaded', function(){
 })
 //jquery的写法，当DOM内容加载完成的时候执行
 $(function(){
-	
+
 });
 ```
 
@@ -926,7 +926,7 @@ for (let i = 0; i < 10; i++) {
 }
 console.log(i);
 
-ES6的模板字面量,支持换行，单引号，双引号，变量: ${变量的名称}  ${对象.属性} 
+ES6的模板字面量,支持换行，单引号，双引号，变量: ${变量的名称}  ${对象.属性}
 `<span>${i}</span>`
 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String
 ```
@@ -939,7 +939,7 @@ https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects
 DOM0级事件只能够监听冒泡阶段
 <span onclick="fun"></span>
 oSpan.onclick = function(){
-	
+
 }
 事件移除
 var oDiv = document.querySelector('div');
@@ -1078,7 +1078,7 @@ oDom.focus(); //获得焦点
 oForm.submit(); //提交表单
 oForm.reset(); //重置表单，让表单元素里面的值恢复默认值
 
-验证错误会触发 invalid事件，这个时候可以自定义错误的显示方式， 
+验证错误会触发 invalid事件，这个时候可以自定义错误的显示方式，
 比如放到一个span元素中，而不是系统默认的弹出样式
 
 获取当前input框的验证信息（html5的input类型)
@@ -1305,6 +1305,100 @@ JavaScript秘密花园：http://bonsaiden.github.io/JavaScript-Garden/zh/#core.s
 	如果原型对象上找不到会一直往上找到Object为止
 	如果Object.prototype上找不到则会报错，提示 对象.属性 is not defined
 
+##20170906
+当你请求一个URL地址，如果返回的是html， 说明这是一个页面
+当你请求一个URL地址，如果返回的是json字符串，我们这是一个API
+在实际工作中拿到API文档之后，仔细阅读，不懂的问后端同事；调试API，配置好对应的参数，使用正确的请求方式，使用模拟API请求的工具（postman)；请求方式，API地址，GET传参，POST传参
+
+经典的AJAX请求代码，这个代码只在学习和面试的时候比较有用，对于你了解底层，实际工作中可能永远接触不到，原因是都被封装起来了
+```
+var xhr = new XMLHttpRequest();
+//绑定准备状态改变事件
+xhr.onreadystatechange = function() {
+  //当内容加载完成
+  // if (xhr.readyState === 4) {
+  if (xhr.readyState === xhr.DONE) {
+    //把内容放到页面上
+    oH2.innerHTML = xhr.responseText;
+  }
+}
+//请求资源
+xhr.open('GET', 'http://h6.duchengjiu.top/shop/api_cat.php?a=1&b=2&c=3');
+//发送请求
+xhr.send();
+```
+
+Ajax请求实际就是在使用XMLHttpRequest这个对象
+xhr.onreadystatechange 当xhr.readyState的值改变的时候会回调这个函数
+xhr.responseText 请求后返回的文本内容
+xhr.open(请求方式，URL); //如果是GET传参URL?a=1&b=2 如果是POST，这个地址可以只有URL，或者URL?a=1&b=2
+xhr.send(POST请求的查询字符串a=1&b=2);
+拿到xhr.responseText之后，由于它是JSON字符串，我们使用JSON.parse将其转为对象
+
+ajax一定要把步骤分清了，第一步是能够顺利的把数据请求回来；
+请求返回的HTTP状态码：
+  200 - 300之间的是成功
+  304 表示资源未改变，使用本地缓存
+  404 表示资源未找到，是客户端请求了不存在的文件；有可能是后端之前给你的，但是最近删除了，这个时候你应该找后端商量
+  500 表示服务器错误，这个你没有办法，直接让后端改；除非你也会写php,java,asp.net,nodejs
+第二步是把拿到的数据充分的利用，根据返回内容在界面上更新DOM元素
+
+异步请求
+xhr.open(请求方式，API地址，是否为异步); true表示异步，false表示同步
+
+商城API
+获取商品分类完成
+验证用户是否可用完成
+显示热门商品
+
+页面之间传值，可以通过get传参
+在需要传递的页面的a链接中写上 目标页面的地址?id=1
+
+web服务器nginx的安装，退出，使用
+http://nginx.org/en/download.html 下载一个版本
+下载完之后解压，解压好了就相当于安装
+解压完了打开目录里面的nginx.exe启动，双击之后看不到任何效果，在浏览器里面输入localhost或者127.0.0.1 打开网站根目录下的index.html
+退出方式1：把浏览器打开localhost的页面关闭；右击任务栏，启动任务管理器，进程，输入nginx进行搜索，右击nginx, 结束进程树，结束进程树  这个时候退出了，浏览器里面打开localhost提示无法网站网站，说明退出成功
+退出方式2：打开nginx.exe所在目录，右击git bash here;
+输入 ./nginx.exe -s quit
+
+IIS是微软提供的一个Web服务器，可以打开控制面板，程序控制，打开和关闭windows功能，找到Internet信息服务，把复选框中的钩去掉，点击确定，这样就关闭了IIS服务器
+
+如果你安装的wamp，能正常使用，把项目放到网站根目录，如果wamp装在C盘，地址是 C:\wamp\www
+如果你安装的nginx能正常使用，把项目放到网站根目录，打开nginx所在目录下的html文件夹，这个文件夹就是网站的根目录
+
+如果没有安装nodejs, 到nodejs官网下载windows版本进行安装，然后再继续下面的操作
+使用nodejs的http server模块来启动一个web服务器
+打开命令行窗口，输入下面这条命令
+npm i -g http-server
+打开你项目所在文件夹，右击git bash here, 输入下面这条命令
+http-server
+打开浏览器，在地址栏中输入 127.0.0.1:8080 敲回车访问即可
+
+浏览器缓存资源的时候是根据一个完整的URL地址来缓存
+调试ajax,可以直接看网络请求
+
+localStorage.属性 = 值 //设置值
+localStorage.属性 //设置值
+<div data-id="">
+obj.dataset.id //获得
+
+```
+function getQueryString(name) {
+  var search = location.search.substr(1);
+  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+  var result = search.match(reg);
+  return result === null ? null : decodeURIComponent(result[2]);
+}
+```
+nextElementSibling
+ES6对象的简写：
+{
+  当属性和值一样的时候，只写一个
+}
+
+箭头函数
+明天说内网穿透，让你的网站能够被其他人看到
 ##5点后的练习计划
 - 20170828 练习批量绑定事件和对应模型
 - 20170829 练习函数截流滚动或者延迟搜索

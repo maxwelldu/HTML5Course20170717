@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" name="username" placeholder="请输入用户名">
+  <input type="password" name="password" placeholder="请输入密码">
+  <input type="submit" value="注册">
+  <script src="myajax.js" charset="utf-8"></script>
+  <script>
+  var oUsername = document.querySelector('input[name=username]');
+  var oPassword = document.querySelector('input[name=password]');
+  var oSubmit = document.querySelector('input[type=submit]');
+  oSubmit.onclick = function(){
+    //先进行js校验用户名和密码符合规范，js校验通过
+    //请求ajax进行校验用户名是否可用,当这个校验通过才能请求注册接口
+
+      myajax.post('http://h6.duchengjiu.top/shop/api_user.php',
+    {
+      status: 'register',
+      username: oUsername.value,
+      password: oPassword.value
+    }, function(err, responseText){
+      var json = JSON.parse(responseText);
+      console.log(json);
+    });
+  }
+  </script>
+</body>
+</html>

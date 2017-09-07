@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    li {
+      list-style: none;
+      float: left;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      /*width: 200px;*/
+      /*height: 350px;*/
+      overflow: hidden;
+    }
+    li img {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <a href="05-register.html">注册</a>
+  <a href="06-login.html">登录</a>
+  <a href="07-cart.html">购物车</a>
+  <script src="myajax.js" charset="utf-8"></script>
+  <input id="search" type="text" placeholder="请输入要搜索的内容">
+  <script>
+    var oSearch = document.querySelector("#search");
+    oSearch.onkeyup = function(event) {
+      if (event.keyCode === 13) {
+        location.href = '04-search.html?search_text='+this.value;
+      }
+    }
+  </script>
+
+  <ul id="cat"></ul>
+  <script>
+  var oCat = document.querySelector('#cat');
+  myajax.get('http://h6.duchengjiu.top/shop/api_cat.php', {}, function(error, responseText){
+      var json = JSON.parse(responseText);//返回的整个json对象
+      var data = json.data;//json对象当中的data是一个数组
+      for (var i = 0; i < data.length; i++) {
+        var obj = data[i];//数组里面的每一项是一个商品分类的对象
+        oCat.innerHTML += `<li><a href="02-商品列表.html?cat_id=${obj.cat_id}">${obj.cat_name}</a></li>`;
+      }
+  });
+  </script>
+
+  <ul id="hot-goods">
+  </ul>
+
+  <script>
+    var oGoods = document.querySelector('#hot-goods');
+    myajax.get('http://h6.duchengjiu.top/shop/api_goods.php', {}, function(err,responseText){
+      var json = JSON.parse(responseText);
+      console.log(json);
+      var data = json.data;
+      for (var i = 0; i < data.length; i++) {
+        var obj = data[i];
+        oGoods.innerHTML += `<li><a href="08-goods.html?goods_id=${obj.goods_id}">
+          <div><img src="${obj.goods_thumb}" /></div>
+          <div>${obj.goods_name}</div>
+          <div>${obj.price}</div></a>
+        </li>`;
+      }
+    });
+  </script>
+</body>
+</html>
