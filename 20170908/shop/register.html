@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="styles/reset.css">
+  <title>Document</title>
+</head>
+<body>
+  <header><div class="header-container">
+    <a href="index.html">首页</a>
+    <a href="register.html" name="register" class="register">注册</a>
+    <a href="login.html" name="login" class="login">登录</a>
+    <a href="#" name="username" class="username">asdfghjkl1</a>
+    <!-- 可以在a链接里面写javascript代码，在href属性中以javascript:开头，后面写js代码 -->
+    <a href="javascript:localStorage.clear(); location.reload();" class="logout">退出</a>
+    <script>
+      //判断用户名如果存在, 则显示用户名并显示退出按钮, 否则显示注册和登录
+      if (localStorage.username) {
+        var oUsername = document.querySelector('a[name=username]');
+        var oLogout = document.querySelector('.logout');
+        oUsername.innerText = localStorage.username;
+        oUsername.style.display = 'inline';
+        oLogout.style.display = 'inline';
+      } else {
+        var oRegister = document.querySelector('.register');
+        var oLogin = document.querySelector('.login');
+        oRegister.style.display = 'inline';
+        oLogin.style.display = 'inline';
+      }
+    </script>
+
+    <a href="cart.html">购物车</a>
+    <a href="order.html">我的订单</a>
+    <script src="js/myajax.js" charset="utf-8"></script>
+    <input id="search" type="text" placeholder="请输入要搜索的内容">
+    <script>
+      var oSearch = document.querySelector("#search");
+      oSearch.onkeyup = function(event) {
+        if (event.keyCode === 13) {
+          location.href = 'search.html?search_text='+this.value;
+        }
+      }
+    </script>
+
+    <ul id="cat" class="cat"></ul>
+    <script>
+    var oCat = document.querySelector('#cat');
+    myajax.get('http://h6.duchengjiu.top/shop/api_cat.php', {}, function(error, responseText){
+        var json = JSON.parse(responseText);//返回的整个json对象
+        var data = json.data;//json对象当中的data是一个数组
+        for (var i = 0; i < data.length; i++) {
+          var obj = data[i];//数组里面的每一项是一个商品分类的对象
+          oCat.innerHTML += `<li><a href="list.html?cat_id=${obj.cat_id}">${obj.cat_name}</a></li>`;
+        }
+    });
+    </script>
+  </div></header>
+
+  <main>
+    <input type="text" name="username" placeholder="请输入用户名">
+    <input type="password" name="password" placeholder="请输入密码">
+    <input type="submit" value="注册">
+  </main>
+  <script src="js/myajax.js" charset="utf-8"></script>
+  <script>
+  var oUsername = document.querySelector('input[name=username]');
+  var oPassword = document.querySelector('input[name=password]');
+  var oSubmit = document.querySelector('input[type=submit]');
+  oSubmit.onclick = function(){
+    //先进行js校验用户名和密码符合规范，js校验通过
+    //请求ajax进行校验用户名是否可用,当这个校验通过才能请求注册接口
+
+      myajax.post('http://h6.duchengjiu.top/shop/api_user.php',
+    {
+      status: 'register',
+      username: oUsername.value,
+      password: oPassword.value
+    }, function(err, responseText){
+      var json = JSON.parse(responseText);
+      console.log(json);
+    });
+  }
+  </script>
+</body>
+</html>

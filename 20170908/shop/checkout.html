@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="styles/reset.css">
+  <link rel="stylesheet" href="styles/modal.css">
+  <style>
+    form {
+      padding-right: 150px;
+    }
+    label {
+      display: block;
+      text-align: right;
+      margin-bottom: 5px;
+    }
+    .address-ul {
+      overflow: hidden;
+      height: 130px;
+    }
+    .address-ul li {
+      width: 250px;
+      height: 120px;
+      overflow: hidden;
+      border: 1px solid #e4e4e4;
+      padding: 5px;
+      background-color: #ccc;
+      line-height: 200%;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+    .address-ul li.selected {
+      border: 1px solid orange;
+    }
+    .delete {
+      float: right;
+      padding-left: 5px;
+      padding-right: 5px;
+      border-radius: 5px;
+      background-color: orange;
+      color: white;
+      cursor: pointer;
+    }
+    .delete:hover {
+      background-color: white;
+      color: orange;
+    }
+    .show-all-address {
+      clear: both;
+      width: 100px;
+      text-align: center;
+      margin-top: 10px;
+      padding: 5px;
+      cursor: pointer;
+      background-color: orange;
+      color: white;
+    }
+    .show-all-address:hover {
+      background-color: white;
+      color: orange;
+    }
+  </style>
+</head>
+<body>
+  <header><div class="header-container">
+    <a href="index.html">首页</a>
+    <a href="register.html" name="register" class="register">注册</a>
+    <a href="login.html" name="login" class="login">登录</a>
+    <a href="#" name="username" class="username">asdfghjkl1</a>
+    <!-- 可以在a链接里面写javascript代码，在href属性中以javascript:开头，后面写js代码 -->
+    <a href="javascript:localStorage.clear(); location.reload();" class="logout">退出</a>
+    <script>
+      //判断用户名如果存在, 则显示用户名并显示退出按钮, 否则显示注册和登录
+      if (localStorage.username) {
+        var oUsername = document.querySelector('a[name=username]');
+        var oLogout = document.querySelector('.logout');
+        oUsername.innerText = localStorage.username;
+        oUsername.style.display = 'inline';
+        oLogout.style.display = 'inline';
+      } else {
+        var oRegister = document.querySelector('.register');
+        var oLogin = document.querySelector('.login');
+        oRegister.style.display = 'inline';
+        oLogin.style.display = 'inline';
+      }
+    </script>
+
+    <a href="cart.html">购物车</a>
+    <a href="order.html">我的订单</a>
+    <script src="js/myajax.js" charset="utf-8"></script>
+    <input id="search" type="text" placeholder="请输入要搜索的内容">
+    <script>
+      var oSearch = document.querySelector("#search");
+      oSearch.onkeyup = function(event) {
+        if (event.keyCode === 13) {
+          location.href = 'search.html?search_text='+this.value;
+        }
+      }
+    </script>
+
+    <ul id="cat" class="cat"></ul>
+    <script>
+    var oCat = document.querySelector('#cat');
+    myajax.get('http://h6.duchengjiu.top/shop/api_cat.php', {}, function(error, responseText){
+        var json = JSON.parse(responseText);//返回的整个json对象
+        var data = json.data;//json对象当中的data是一个数组
+        for (var i = 0; i < data.length; i++) {
+          var obj = data[i];//数组里面的每一项是一个商品分类的对象
+          oCat.innerHTML += `<li><a href="list.html?cat_id=${obj.cat_id}">${obj.cat_name}</a></li>`;
+        }
+    });
+    </script>
+  </div></header>
+
+  <main>
+    收货地址:
+    <input type="button" id="add-address" value="添加收货地址" />
+    <div class="address">
+      <div>
+        <ul class="address-ul">
+        </ul>
+      </div>
+      <div class="show-all-address">显示全部地址</div>
+      <script src="js/animate.js" charset="utf-8"></script>
+      <script>
+        var oShowAllAddress = document.querySelector('.show-all-address');
+        oShowAllAddress.addEventListener('click', function(){
+          var oAddressUl = document.querySelector('.address-ul');
+          var overflow = fetchComputedStyle(oAddressUl, 'overflow');
+          var flag = overflow === 'hidden' ? false : true;
+          oAddressUl.style.overflow = !flag ? 'visible' : 'hidden';
+          this.innerText = flag ? '显示全部地址' : '隐藏地址';
+        });
+      </script>
+    </div>
+    <script>
+      //ajax读取到收货地址并显示
+      function showAddress() {
+        myajax.get('http://h6.duchengjiu.top/shop/api_useraddress.php',
+        {token: localStorage.token},
+        function(error, responseText) {
+          var json = JSON.parse(responseText);
+          console.log(json);
+          var data = json.data;
+          var oAddressUl = document.querySelector('.address-ul');
+          if (data.length === 0) {
+            oAddressUl.innerHTML = '<h2>您还没有收货地址，请点击添加收货地址</h2>';
+            return;
+          }
+          oAddressUl.innerHTML = '';
+          for (var i = data.length - 1; i >= 0; i--) {
+            var obj = data[i];
+            oAddressUl.innerHTML += `
+                            <li data-id="${obj.address_id}">
+                              <span>收货人：${obj.consignee}</span><span name="delete" class="delete" data-id="${obj.address_id}">删除</span><br />
+                              <span>手机：${obj.mobile}</span><br />
+                              <span>地址：${obj.address}</span>
+                            </li>
+            `;
+          }
+        })
+      }
+      showAddress();
+
+      var selected_address_id = 0;//如果这个值为0，无法下订单，当点击一个收货地址时，给这个变量赋值
+      //给收货地址添加一个事件代理
+      var oAddressUl = document.querySelector('.address-ul');
+      oAddressUl.onclick = function(event) {
+        event = event || window.event;
+        var target = event.target || event.srcElement;
+        console.log(target.nodeName);
+        if (target.className === 'delete') {
+          if (!confirm('确认要删除收货地址吗？')) {
+            return;
+          }
+          var address_id = target.dataset.id;
+          console.log(address_id);
+          myajax.get('http://h6.duchengjiu.top/shop/api_useraddress.php',
+          {status: 'delete', address_id, token: localStorage.token}, function(error, responseText){
+            var json = JSON.parse(responseText);
+            if (json.code === 0) {
+              target.parentNode.parentNode.removeChild(target.parentNode);
+            }
+          })
+        } else {
+          //先让所有li元素的样式清空
+          var oAddressLis = oAddressUl.querySelectorAll('li');
+          for (var i = 0; i < oAddressLis.length; i++) {
+            oAddressLis[i].classList.remove('selected');
+          }
+
+          if (target.nodeName === 'LI') {
+            //点击LI元素选择一个收货地址
+            selected_address_id = parseInt(target.dataset.id);
+            target.classList.add('selected');
+          } else if (target.nodeName === 'SPAN'){
+            selected_address_id = parseInt(target.parentNode.dataset.id);
+            target.parentNode.classList.add('selected');
+          }
+
+        }
+      }
+    </script>
+
+    <div id="order">下订单</div>
+    <script>
+      var oOrder = document.querySelector('#order');
+      oOrder.onclick = function() {
+        var address_id = selected_address_id;
+        if (address_id === 0) {
+          alert('请选择一个收货地址');
+          return;
+        }
+        var total_prices = localStorage.sum;
+        myajax.post('http://h6.duchengjiu.top/shop/api_order.php?token='+localStorage.token+'&status=add', {address_id, total_prices}, function(err, responseText){
+            var json = JSON.parse(responseText);
+            console.log(json);
+            if (json.code === 0) {
+              alert('下订单成功');
+              location.href = 'order.html';
+            }
+        });
+
+      }
+    </script>
+  </main>
+
+  <div class="modal register">
+    <div class="container">
+      <div class="hd">添加收货地址<span class="close">关闭</span></div>
+      <div class="bd">
+        <form>
+          <label>
+            地址名称: <input type="text" name="address_name" value="家">
+          </label>
+          <label>
+            收货人: <input type="text" name="consignee" value="maxwelldu">
+          </label>
+          <label>
+            国家: <input type="text" name="country" value="中国">
+          </label>
+          <label>
+            省: <input type="text" name="province" value="北京">
+          </label>
+          <label>
+            市: <input type="text" name="city" value="北京">
+          </label>
+          <label>
+            区: <input type="text" name="district" value="石景山">
+          </label>
+          <label>
+            地址: <input type="text" name="address" value="实兴东街11号朗诚大厦南楼二层">
+          </label>
+          <label>
+            邮编: <input type="text" name="zip_code" value="100000">
+          </label>
+          <label>
+            手机号: <input type="text" name="mobile" value="18518368050">
+          </label>
+          <label>
+            邮箱: <input type="text" name="email" value="dcj3sjt@126.com">
+          </label>
+          <label>
+            电话: <input type="text" name="tel" value="010-91519281">
+          </label>
+          <label>
+            最佳送货时间: <input type="text" name="besttime" value="周一到周五">
+          </label>
+          <label>
+            标志物: <input type="text" name="sign_building" value="">
+          </label>
+          <label>
+            <input type="button" value="添加" class="add">
+          </label>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="js/modal.js" charset="utf-8"></script>
+  <script>
+    var modal = new Modal('#add-address');
+
+    //给添加按钮添加事件
+    var oAdd = document.querySelector('.add');
+    oAdd.onclick = function() {
+      var postobj = serializeForm(document.querySelector('form'));
+      myajax.post('http://h6.duchengjiu.top/shop/api_useraddress.php?status=add&token='+localStorage.token, postobj, function(err, responseText){
+        var json = JSON.parse(responseText);
+        console.log(json);
+        if (json.code === 0) {
+          modal.hide();
+          showAddress();
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

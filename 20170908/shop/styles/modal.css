@@ -1,0 +1,37 @@
+.modal {
+  display: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal .container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 500px;
+  margin: 0 auto;
+  background-color: white;
+  border: 1px solid orange;
+}
+.modal .container .hd {
+  line-height: 40px;
+  text-align: right;
+  padding-right: 10px;
+  background-color: #ccc;
+  border-bottom: 1px solid orange;
+}
+.modal .container .hd span {
+  cursor: pointer;
+  color: orange;
+  padding: 5px;
+  border-radius: 5px;
+}
+.modal .container .hd span:hover {
+  background-color: orange;
+  color: white;
+}
+.modal .container .bd {
+  padding: 10px;
+}

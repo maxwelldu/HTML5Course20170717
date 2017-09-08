@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //sessionStorage用来在浏览器中存储对象，生命周期是当我们关闭浏览器内容就会消失
+    console.log(sessionStorage);
+    //在sessionStorage当中存储一个值
+    // sessionStorage.username = "maxwelldu";
+    // sessionStorage.setItem('age', 18);
+    //获取内容
+    console.log(sessionStorage.username);
+    console.log(sessionStorage.getItem('age'));
+    //移除age
+    // sessionStorage.removeItem('age');
+    // console.log(sessionStorage.getItem('age'));
+    //清除所有
+    // sessionStorage.clear();
+    // console.log(sessionStorage.username);
+
+    // session是一次会话，当你打开浏览器之后打开一上网站，这个时候你就和这个网站进行了一次会话；当你关闭浏览器，关闭当前的页面，那当前页面的这个会话就结束
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      width: 200px;
+      height: 200px;
+      background-color: orange;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    function Person() {
+      this.dom = null;
+      this.init();
+    }
+    Person.prototype.change = function() {
+      this.dom.innerText = "change";
+    }
+    Person.prototype.init = function() {
+      this.dom = document.createElement('div');
+      document.body.appendChild(this.dom);
+      /* var self = this;
+      this.dom.onclick = function() {
+        self.change();
+      } */
+      //箭头函数中的this会指向当前作用域的父级
+      this.dom.onclick = () => {
+        this.change();//这里的this指向父级作用域
+      }
+      setInterval(() => {
+        console.log(this.dom.innerText);
+      }, 1000);
+    }
+    var p = new Person();
+
+    //参数为空
+    var sum = () => 1;
+    //相当于
+    /* function sum() {
+      return 1;
+    } */
+    console.log(sum());
+
+    //只有一个参数
+    var sum1 = a => a * a;
+    //相当于
+    /* function sum1(a) {
+      return a * a;
+    } */
+    console.log(sum1(2));
+
+    //有三个参数时
+    var sum2 = (a,b,c) => a + b + c;
+    console.log(sum2(1,2,3));
+
+    //函数体内容较多的时候
+    var sum3 = a => {
+      return a * 3;
+    }
+    console.log(sum3(3));
+
+  </script>
+</body>
+</html>
