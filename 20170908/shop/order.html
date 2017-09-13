@@ -123,10 +123,18 @@
             </div>
           `;
         }
-        //一件商品的总价
+
+        var status = {
+          5: "未支付",
+          10: "支付成功",
+          15: "支付失败",
+          20: "已完成",
+          25: "已取消"
+        };
+        obj.status = status[obj.order_status];
         oOrder.innerHTML += `
                           <li>
-                            <div class="title">收货人：${obj.consignee} 总价:${obj.total_prices} <span data-id="${obj.order_id}" class="cancel-order">取消订单</span></div>
+                            <div class="title"><span>状态：${obj.status}</span> 收货人：${obj.consignee} 总价:${obj.total_prices} <span data-id="${obj.order_id}" class="cancel-order">取消订单</span></div>
                             <div class="order-goods">
                             ${goodsHTML}
                             </div>

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>js获取隐藏元素的尺寸</title>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+ <div id="test_display_block" style="display:none; border:10px solid #CDCDCD; margin-left: 100px">这是test容器，可见容器<br />这是test容器，可见容器<br />这是test容器，可见容器<br />这是test容器，可见容器<br />这是test容器，<br />这是test容器，<br />这是test容器，<br />这是test容器，<br />这是test容器，<br /></div>
+ <div id="test_display_none" style="display:none; border:10px solid #CDCDCD">这是test容器，这是test容器，<br />这是test容器，<br />这是test容器，<br />这是test容器，<br />这是test容器，<br />这是test容器，<br /></div>
+        <div id="test_display_click">点我</div>
+<script type="text/javascript">
+
+(function(){
+  //判断对象类型
+  function getType(o) {
+    var _t;
+    return ((_t = typeof(o)) == "object" ? o == null && "null" || Object.prototype.toString.call(o).slice(8, -1) : _t).toLowerCase();
+  }
+  //获取元素样式
+  function getStyle(el, styleName) {
+    return el.style[styleName] ? el.style[styleName] : (el.currentStyle ? el.currentStyle[styleName] : window.getComputedStyle(el, null)[styleName]);
+  }
+  //获取不带单位的样式值
+  function getStyleNum(el, styleName) {
+    return parseInt(getStyle(el, styleName).replace(/px|pt|em/ig, ''));
+  }
+  //设置样式
+  function setStyle(el, obj) {
+    if (getType(obj) == "object") {
+      for (var s in obj) {
+        //把中横线的转为驼峰命名
+        var cssArrt = s.split('-');
+        for (var i = 1; i < cssArrt.length; i++) {
+          cssArrt[i] = cssArrt[i].replace(cssArrt[i].charAt(0), cssArrt[i].charAt(0).toUpperCase());
+        }
+        var cssArrtnew = cssArrt.join("");
+        //设置样式
+        el.style[cssArrtnew] = obj[s];
+      }
+    } else {
+      if (getType(obj) == "string") {
+        //style.cssText = "color:red; font-size:13px;";
+        //设置样式字符串
+        el.style.cssText = obj;
+      }
+    }
+  }
+  //得到大小
+  function getSize(el) {
+    //非隐藏元素直接返回
+    if (getStyle(el, "display") != "none") {
+      return {
+        width: el.offsetWidth || getStyleNum(el, "width"),
+        height: el.offsetHeight || getStyleNum(el, "height")
+      };
+    }
+    //准备要添加的样式，只有添加这些样式之后才能够获取元素的宽高
+    var _addCss = { display: "", position: "absolute", visibility: "hidden"};
+    //获得之前旧的这几个样式的值
+    var _oldCss = {};
+    for (var i in _addCss) {
+      //得到样式值放数组中，等获得宽高之后再设置回去
+      _oldCss[i] = getStyle(el, i);
+    }
+    //设置上新的样式
+    setStyle(el, _addCss);
+    //拿到宽高
+    var _width = el.clientWidth || getStyleNum(el, "width");
+    var _height = el.clientHeight || getStyleNum(el, "height");
+    //再设置回去
+    for (var i in _oldCss) {
+      setStyle(el, _oldCss);
+    }
+    //返回宽高
+    return { width: _width, height: _height};
+  }
+  //把这个方法暴露到外面
+  window.getSize = getSize;
+})();
+
+var dd=document.getElementById("test_display_block");
+alert(getSize(dd).height);
+ </script>
+</body>
+</html>

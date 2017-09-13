@@ -49,8 +49,7 @@ function animate(elem, targetJSON, time, tweenString, callback) {
   }
 
   //动画间隔要根据不同浏览器来设置：
-  var IE = navigator.userAgent.indexOf("MSIE") != -1;
-  if (IE) {
+  if (navigator.userAgent.indexOf("MSIE") != -1) {
     var interval = 50;
   } else {
     var interval = 20;
@@ -96,9 +95,7 @@ function animate(elem, targetJSON, time, tweenString, callback) {
         elem.style[k] = v + 'px';
       } else {
         elem.style[k] = v;
-        if (IE) {
-          elem.style.filter = "alpha(opacity=" + (v*100) + ")";
-        }
+        elem.style.filter = "alpha(opacity=" + (v*100) + ")";
       }
     }
 
@@ -111,9 +108,7 @@ function animate(elem, targetJSON, time, tweenString, callback) {
           elem.style[k] = targetJSON[k] + 'px';
         } else {
           elem.style[k] = targetJSON[k];
-          if (IE) {
-            elem.style.filter = "alpha(opacity=" + (targetJSON[k]*100) + ")";
-          }
+          elem.style.filter = "alpha(opacity=" + (targetJSON[k]*100) + ")";
         }
       }
       clearInterval(timer);

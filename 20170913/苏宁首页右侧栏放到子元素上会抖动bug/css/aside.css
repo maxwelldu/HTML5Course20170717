@@ -1,0 +1,192 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+aside{
+	position: fixed;
+	right: 0;
+	width: 35px;
+	height: 100%;
+	background-color: #383838;
+}
+.aside_top{
+	width: 100%;
+	/*position: absolute;*/
+	right: 0px;
+	top: 20%;
+	position: relative;
+	height: 350px;
+}
+.aside_top_top{
+	width: 100%;
+	position: absolute;
+	top: 0;
+}
+.aside_top_top .user,
+.aside_top_top .information,
+.aside_top_bottom .manage,
+.aside_top_bottom .footprint,
+.aside_top_bottom .sign_in,
+.aside_bottom .consult,
+.aside_bottom .feedback,
+.aside_bottom .QR_code,
+.aside_bottom .back_top{
+	width: 100%;
+	height: 30px;
+	margin-bottom: 8px;
+	background: url(../img/sidebaricon.png) no-repeat;
+	position: relative;
+	cursor: pointer;
+}
+
+.aside_top_top .user{
+	background-position: 0px 0px;
+}
+.aside_top_top .user:hover{
+	background-position: -26px 0px;
+	background-color: #FFAA01
+}
+.shopping_cart{
+	padding: 3px 0 10px;
+    border: 1px solid #4D4D4D;
+    border-width: 1px 0;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+    line-height: 20px;
+}
+.shopping_cart:hover{
+	background-color: #FFAA01
+}
+.shopping_cart i{
+	width: 35px;
+	height: 35px;
+	background: url(../img/sidebaricon.png) no-repeat 2px -208px;
+	float: left;
+}
+.aside_top_top .information{
+	margin-top: 8px;
+	background-position: 0px -23px;
+}
+.aside_top_top .information .information_box,
+.aside_top_bottom .manage_box,
+.aside_top_bottom .footprint_box,
+.aside_top_bottom .sign_in_box,
+.aside_bottom .consult_box,
+.aside_bottom .feedback_box,
+.aside_bottom .QR_code_box,
+.aside_bottom .back_top_box{
+	position: absolute;
+    top: 0;
+    left: 30px;
+    background-color: #383838;
+    line-height: 30px;
+    color: #FFAA01;
+    padding: 0 12px;
+    font-size: 12px;
+    cursor: pointer;
+    z-index: -1;
+    /*display: none;*/
+}
+
+/*.aside_top_bottom .manage:hover .manage_box{
+	display: inline-block;
+	transform: translateX(-80px);
+	transition: all 0.2s
+}*/
+.aside_top_top .information:hover{
+	background-position: -26px -23px;
+	background-color: #FFAA01
+}
+.aside_top_top .information:hover .information_box{
+	background-color: #FFAA01;
+	color: #333;
+	
+}
+
+.aside_top_bottom,.aside_bottom{
+	width: 100%;
+	position: absolute;
+	bottom: 5px;
+}
+.aside_top_bottom div,
+.aside_bottom div{
+	margin-bottom: 4px;
+}
+.aside_top_bottom .manage{
+	background-position: 0px -47px;
+}
+.aside_top_bottom .manage:hover{
+	background-position: -26px -47px;
+	background-color: #FFAA01
+}
+.aside_top_bottom .manage:hover .manage_box{
+	background-color: #FFAA01;
+	color: #333;
+}
+.aside_top_bottom .footprint{
+	background-position: 0px -70px;
+}
+.aside_top_bottom .footprint:hover{
+	background-position: -26px -70px;
+	background-color: #FFAA01
+}
+.aside_top_bottom .footprint:hover .footprint_box{
+	background-color: #FFAA01;
+	color: #333;
+}
+.aside_top_bottom .sign_in{
+	background-position: 0px -93px;
+}
+.aside_top_bottom .sign_in:hover{
+	background-position: -26px -93px;
+	background-color: #FFAA01
+}
+.aside_top_bottom .sign_in:hover .sign_in_box{
+	background-color: #FFAA01;
+	color: #333;
+}
+.aside_bottom .consult{
+	background-position: 0px -117px;
+}
+.aside_bottom .consult:hover{
+	background-position: -26px -117px;
+	background-color: #FFAA01
+}
+.aside_bottom .consult:hover .consult_box{
+	background-color: #FFAA01;
+	color: #333;
+}
+.aside_bottom .feedback{
+	background-position: 0px -140px;
+}
+.aside_bottom .feedback:hover{
+	background-position: -26px -140px;
+	background-color: #FFAA01
+}
+.aside_bottom .feedback:hover{
+	background-color: #FFAA01;
+	color: #333;
+}
+.aside_bottom .QR_code{
+	background-position: 0px -163px;
+}
+.aside_bottom .QR_code:hover{
+	background-position: -26px -163px;
+	background-color: #FFAA01
+}
+.aside_bottom .QR_code:hover .QR_code_box{
+	background-color: #FFAA01;
+	color: #333;
+}
+.aside_bottom .back_top{
+	background-position: 0px -186px;
+}
+.aside_bottom .back_top:hover{
+	background-position: -26px -186px;
+	background-color: #FFAA01
+}
+.aside_bottom .back_top:hover .back_top_box{
+	background-color: #FFAA01;
+	color: #333;
+}
