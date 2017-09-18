@@ -1,0 +1,61 @@
+.mainProList>p{
+  text-align: center;
+}
+.mainProList>p>a{
+  color: #333;
+}
+.mainProList>p>a:hover{
+  color: #c8a985;
+}
+.proConList .proContain .mainProList{
+  height: auto;
+}
+
+.pageList{
+  position: relative;
+  height: 30px;
+  margin-bottom: 20px;
+  color: #333;
+}
+.pageListWrap{
+  position: absolute;
+  left: 50%;
+  margin-left: -145px;
+}
+
+.pageListWrap i{
+  height: 20px;
+  line-height: 20px;
+  padding: 0 8px;
+  background: #C69C6D;
+  color: white;
+  margin-right: 6px;
+  cursor: pointer;
+}
+.pageListWrap i:hover{
+  outline: #C69C6D solid 1px;
+}
+.pageList li{
+  float: left;
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+  text-align: center;
+  line-height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 1px;
+  cursor: pointer;
+}
+.pageList span{
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+  text-align: center;
+  line-height: 20px;
+}
+.pageList li.current{
+  border: 1px solid #C69C6D;
+}
+.pageList li:hover{
+  border: 1px solid #C69C6D;
+}

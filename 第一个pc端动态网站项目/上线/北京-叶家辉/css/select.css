@@ -1,0 +1,33 @@
+div.hobby{
+  width: 58px;
+  height: 23px;
+  border: 1px solid #ccc;
+  float: left;
+  margin-bottom:0;
+}
+.hobby >ul {
+  height: 0;
+  position: relative;
+  background: #fff;
+  overflow: hidden;
+}
+
+div.hobby li,div.hobby>span{
+  display: block;
+  width: 60px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  cursor: pointer;
+}
+div.hobby li:hover{
+  background-color: #33b5e5;
+}
+
+select.hobby{
+  display: none;
+}
+
+input[type = 'submit'] {
+  margin-left: 20px;
+}

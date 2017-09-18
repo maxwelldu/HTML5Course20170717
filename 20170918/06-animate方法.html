@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    p {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: orange;
+    }
+    .box2 {
+      top: 150px;
+    }
+  </style>
+</head>
+<body>
+  <p class="box1"></p>
+  <p class="box2"></p>
+  <script src="jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+  /*
+    $('p').animate({"left": 1000}, 2000, function(){
+      $(this).css('background-color', 'red');
+    })
+    */
+
+    //都是box1在动，所以要排队：先横后竖
+    // $('.box1').animate({"left": 1000}, 2000);
+    // $('.box1').animate({"top": 400}, 2000);
+
+    //斜着跑
+    $('.box1').animate({"left": 1000, "top": 400, "opacity": 0.5}, 2000);
+
+    //JS 18岁
+    //jquery 10岁
+  </script>
+</body>
+</html>

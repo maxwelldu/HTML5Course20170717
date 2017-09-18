@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box1 {
+      position: relative;
+      padding-top: 300px;
+    }
+    .box2 {
+      position: relative;
+      padding-top: 100px;
+      border: 10px solid black;
+    }
+    p {
+      margin-top: 100px;
+      background-color: yellowgreen;
+    }
+  </style>
+</head>
+<body>
+  <div class="box1">
+    <div class="box2">
+      <p>1</p>
+    </div>
+  </div>
+  <script src="jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+    console.log($('p').offset().top);
+  </script>
+</body>
+</html>

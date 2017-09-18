@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <div id="box" class="box"></div>
+  <script src="jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+    $('p').html('jquery').css('color', 'red').css({'fontSize': '50px'});
+    console.log($('p').css('width'));
+    $('#box').animate({"left": 500, "width": 300}, 4000, function(){
+      console.log('finish');
+    });
+    //批量添加事件,排他模型
+    // $('p').mouseenter(事件处理函数)
+    $('p').mouseenter(function(){
+      // $(this);//表示的是当前元素的jQuery对象
+      // siblings();//表示当前元素的所有兄弟元素
+      $(this).css("background-color", "red").siblings().css('background-color', 'green');
+    });
+
+    //类数组对象
+    //鸭子类型
+    //jquery对象转成原生对象：实际就是从jquery这个类数组对象当中拿出原生的对象
+    $('p')[1].style.backgroundColor = 'orange';
+
+  </script>
+</body>
+</html>

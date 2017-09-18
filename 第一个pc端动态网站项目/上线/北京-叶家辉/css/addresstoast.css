@@ -1,0 +1,15 @@
+.toast {
+  width: 400px;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 10px;
+  position: absolute;
+  left: 45%;
+  margin-left: -100px;
+  top: 42%;
+  padding: 10px 0;
+  background-color: black;
+  opacity: .6;
+  filter: alpha(opacity=20);
+  color: white;
+}

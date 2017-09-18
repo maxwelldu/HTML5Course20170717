@@ -1,0 +1,98 @@
+.foot{
+  height: 600px;
+  background: url("../image/footer_message_bg.jpg") center no-repeat;
+}
+.footTopList>li{
+  float: left;
+  width: 240px;
+}
+.footTopImg{
+  width: 80px;
+  height: 116px;
+  float: left;
+  vertical-align: middle;
+}
+.footTopList h6,.footTopList p{
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+  color: #333;
+}
+.footTopList h6{
+  font-weight: bold;
+  margin-top: 38px;
+}
+
+.footTopImg01{
+  background: url("../image/footer_message01.jpg") 10px center no-repeat;
+}
+.footTopImg02{
+  background: url("../image/footer_message02.jpg") 10px center no-repeat;
+}
+.footTopImg03{
+  background: url("../image/footer_message03.jpg") 10px center no-repeat;
+}
+.footTopImg04{
+  background: url("../image/footer_message04.jpg") 10px center no-repeat;
+}
+.footTopImg05{
+  background: url("../image/footer_message05.jpg") 10px center no-repeat;
+}
+
+.footCon{
+  height: 242px;
+  padding: 20px 0 20px 20px;
+  border-top: 1px solid #ccc;
+}
+.footCon>dl{
+  width: 180px;
+  float: left;
+}
+.footCon dt{
+  height: 26px;
+  line-height: 26px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+.footCon dl.appAndWeiBo{
+  width: 140px;
+}
+.footCon dd a{
+  color: #333;
+}
+.footCon dd a:hover{
+  color: #edcc61;
+  text-decoration: underline;
+}
+.footCon dd+dd{
+  margin-top: 10px;
+}
+.footBtm{
+  color: white;
+  text-align: center;
+}
+.footNav{
+  margin-top: 27px;
+}
+.footNav>a,.aboutUs>a{
+  color: white;
+}
+.aboutUs{
+  margin-top: 28px;
+}
+.copyRight{
+  height: 24px;
+  line-height: 24px;
+}
+.footNav>a:hover,.aboutUs>a:hover{
+  text-decoration: underline;
+}
+.footNav .line{
+  padding: 0 8px;
+}
+.certificationMark{
+  margin-top: 24px;
+}
+.certificationMark>a+a{
+  padding-left: 3px;
+}

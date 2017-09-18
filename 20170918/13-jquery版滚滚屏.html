@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style type="text/css">
+  		*{
+  			margin: 0;
+  			padding: 0;
+  		}
+  		html,body{
+  			width: 100%;
+  			height: 100%;
+  			overflow: hidden;
+  		}
+  		.container{
+  			width: 100%;
+  			height: 100%;
+  			position: absolute;
+  			top: 0;
+  			left: 0;
+  		}
+  		.page{
+  			width: 100%;
+  			height: 100%;
+  			background: yellowgreen;
+  			position: relative;
+  		}
+  		.page0{background-color: yellowgreen;}
+  		.page1{background-color: orange;}
+  		.page2{background-color: skyblue;}
+  		.page3{background-color: gold;}
+  		.page4{background-color: rgb(111,222,123);}
+
+      .page0 h1 {
+        display: none;
+      }
+  		.page1 .first{
+  			position: absolute;
+  			left: -600px;
+  		}
+
+  		.page1 .second{
+  			position: absolute;
+  			left: -600px;
+  		}
+  	</style>
+  </head>
+  <body>
+  	<div class="container" id="container">
+  		<div class="page page0"><h1>0</h1></div>
+  		<div class="page page1">
+  			<h1>1</h1>
+  			<img src="images/0.jpg" class="first" />
+  			<img src="images/1.jpg" class="second" />
+  		</div>
+  		<div class="page page2"><h1>2</h1></div>
+  		<div class="page page3"><h1>3</h1></div>
+  		<div class="page page4"><h1>4</h1></div>
+  	</div>
+    <script src="jquery-3.2.1.js" charset="utf-8"></script>
+    <script src="jquery.mousewheel.js" charset="utf-8"></script>
+    <script src="jquery.easing.1.3.js" charset="utf-8"></script>
+    <script>
+      //入场动画
+      var INARRAY = [];
+      INARRAY[0] = function(){
+        $(".page0 h1").show();
+      }
+      INARRAY[1] = function(){
+        $('.first').show().animate({"left": 400}, 500);
+        $('.second').show().delay(600).animate({"left": 600, "top":300}, 500);
+      }
+      //出场动画
+      var OUTARRAY = [];
+      OUTARRAY[1] = function() {
+        $(".first").fadeOut(300, function(){
+          $('.first').css("left", -600);
+        });
+        $(".second").fadeOut(300, function(){
+          $(".second").css('left', -600);
+        });
+      }
+
+      //jquery对象，通常我们命名的时候，前面加一个$符号
+      var $container = $('#container');
+      var index = 0;//当前页面
+      $(document).mousewheel(function(event){
+        //判断当前元素正在执行动画，我们则拦截
+        if ($container.is(":animated")) return;
+
+        //向上滚 +1
+        //向下滚 -1
+        var oldIndex = index;
+        index -= event.deltaY;
+        if (index < 0) {
+          index = 0;
+        } else if (index > 4) {
+          index = 4;
+        }
+
+        //判断当index变化的时候，我们去执行动画
+        if (oldIndex !== index) {
+          if (typeof OUTARRAY[oldIndex] === 'function') {
+            OUTARRAY[oldIndex]();
+          }
+          $container.animate({"top": -100 * index + '%'}, 600, function(){
+            if (typeof INARRAY[index] === 'function') {
+              INARRAY[index]();
+            }
+          });
+        }
+      });
+    </script>
+</body>
+</html>

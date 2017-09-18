@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html, body {
+      height: 5000px;
+    }
+    button {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <button>回到顶部</button>
+  <script src="jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+    $('button').click(function(){
+      // $(window).scrollTop(0);
+      $('html,body').animate({
+        "scrollTop": 0
+      }, 1000);
+    });
+
+    $(window).scroll(function(){
+      if ($(window).scrollTop() > 500) {
+        $('button').show();
+      } else {
+        $('button').hide();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+.search{
+  float: right;
+}
+.searchInput{
+  width: 419px;
+}
+.searchBtn{
+  width: 90px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.bcProListTop>h3{
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  font-weight: bold;
+  border-bottom: 2px solid #e6e6e6;
+}
+.bcProListTop>h3 span{
+  display: inline-block;
+  height: 40px;
+  padding: 0 30px 0 24px;
+}
+.bcProListTop>h3 span:first-child{
+  padding-left: 14px;
+}
+.bcProListTop>h3 .line{
+  font-size: 12px;
+  font-weight: 100;
+  padding: 0;
+  color: #e8e8e8;
+}
+.bcProListTop>h3 span.current{
+  border-bottom: 2px solid #c69c6d;
+  color: #c69c6d;
+}
+.bcProListTerm > ul > li{
+  float: left;
+  width: 150px;
+  height: 50px;
+  line-height: 50px;
+}
+.bcProListTerm > ul >li.proInfor{
+  width: 450px;
+  padding-left: 150px;
+}
+
+
+.bcProListItem{
+  height: 80px;
+  padding: 20px 45px;
+  border: 1px solid #ccc;
+  background-color: #fcfcfc;
+  margin-bottom: 30px;
+}
+.bcProListItemPic>img{
+  width: 80px;
+  height: 80px;
+  border: 1px solid #eee;
+}
+.bcProListItemName{
+  width: 200px;
+  margin-left: 10px;
+}
+.bcProListItemName >a{
+  color: #3c3c3c;
+}
+.bcProListItemName >a:hover{
+  color: #c69c6d;
+  text-decoration: underline;
+}
+.colorAndStyle{
+  width: 150px;
+  max-height: 80px;
+  padding-right: 50px;
+  margin-left: 50px;
+  color: #9c9c9c;
+  overflow: hidden;
+}
+.unitPrice,.singleSum{
+  width: 150px;
+  font-weight: bold;
+  color: #3c3c3c;
+}
+.count{
+  width: 150px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.count>strong>i{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  text-align: center;
+  cursor: pointer;
+}
+.count>strong>.countRight{
+  margin-left: -1px;
+}
+.count>strong>.countCon{
+  position: relative;
+  width: 40px;
+  height: 20px;
+  border: 1px solid #aaa;
+  margin-left: -1px;
+  text-align: center;
+}
+
+.gold{
+  color: #c69c6d;
+}
+.operation{
+  width: 115px;
+}
+.operation>a{
+  color: #3c3c3c;
+  line-height: 20px;
+}
+.operation>a:hover{
+  color: #c69c6d;
+}
+.totalAmount{
+  height: 50px;
+  line-height: 50px;
+  background-color: #e5e5e5;
+}
+.totalAmountLeft{
+  padding-left: 45px;
+}
+.totalAmountLeft li{
+  float: left;
+}
+.totalAmountLeft li a{
+  padding: 0 13px;
+  color: #3c3c3c;
+}
+.totalAmountLeft li a:hover{
+  color: #c69c6d;
+}
+.totalAmountLeft>a{
+  display: inline-block;
+  width: 120px;
+  height: 50px;
+  border: none;
+  color: white;
+  background-color: #b0b0b0;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+}
+.totalAmountLeft>a:hover{
+  background-image: linear-gradient(to top, #bcbcbc, #cfcfcf);
+}
+.sumPrice{
+  font-size: 20px;
+  color: #c69c6d;
+  font-weight: bold;
+  padding:0 5px 0 10px;
+}

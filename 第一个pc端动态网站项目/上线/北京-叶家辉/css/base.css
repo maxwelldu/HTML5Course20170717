@@ -1,0 +1,104 @@
+
+/* http://meyerweb.com/eric/tools/css/reset/
+ v2.0 | 20110126
+ License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*用于初始化样式*/
+*{
+	margin:0;
+	padding:0;
+}
+h1,h2,h3,h4,h5,h6,i,em,b,strong,s,del,u,sup,sub{
+	font-weight:normal;
+	font-style:normal;
+}
+img{ 
+	vertical-align:bottom;     /*可以去除图片和外面包裹的块元素在底部的一个小空白bug,将图片转为块元素也可以除去这个bug,但是,这样的话就要占满整行了*/
+} 
+a{
+	text-decoration:none;
+}
+ul,ol{
+	list-style:none;
+}
+input{
+	outline:none;
+}
+.fr{
+	float:right;
+}
+.fl{
+	float:left;
+}
+.tc{
+	text-align:center;
+}
+.tl{
+	text-align:left;
+}
+.tr{
+	text-align:right;
+}
+body{
+	/*font:12px/1.5 tahoma,arial,'Hiragino Sans GB','\5b8b\4f53',sans-serif;*/
+	font:12px/1.5em "微软雅黑";
+}
+.clearfix::before,.clearfix::after{
+	content:" ";
+	display:table;
+}
+.clearfix::after{
+	clear:both;
+}
+a:hover{
+	color: #b28247;
+}
+.w{
+	width:1200px;
+	margin:0 auto;
+}

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>js商城项目</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/banner.css">
+  <link rel="stylesheet" href="css/mainContent.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/selectedCard.css">
+  <link rel="stylesheet" type="text/css" href="css/backtotop.css"/>
+  <link rel="stylesheet" type="text/css" href="css/icon-wrap.css"/>
+  <link rel="stylesheet" type="text/css" href="css/searchOnTop.css"/>
+  <style>
+    body{
+      height: 9000px;
+    }
+    .username,.logout{
+	  display: none;
+	}
+  </style>
+</head>
+<body>
+  <!--header部分-->
+  <header id="ShoppingMallHead" class="ShoppingMallHead">
+    <div class="w">
+      <ul class="SMHLeft fl">
+        <li class="home"><i></i><a href="index.html">第五大道首页</a></li><li class="line">|</li>
+        <li class="gb-tel"><i></i>贵宾专线：4008-6767-38</li>
+      </ul>
+      <ul class="SMHRight fr">
+        <li class="login" data-name="login"><i></i><a href="login.html">登录</a></li><li class="register username" data-name="username"><i></i><a href="login.html">123456</a></li><li class="line">|</li>
+        <li class="register" data-name="register"><i></i><a href="register.html">注册</a></li><li class="login logout" data-name="logout"><i></i><a href="javascript:localStorage.clear(); location.reload();">退出</a></li><li class="line">|</li>
+        <li class="myFive">
+          <a href="#">我的第五大道</a><i></i>
+          <ol class="myFiveList">
+            <li><a href="orderPage.html" target="_blank">我的订单</a></li>
+            <li><a href="address.html" target="_blank">我的收货地址</a></li>
+          </ol>
+        </li><li class="line">|</li>
+        <li class="help"><a href="#">帮助中心</a></li><li class="line">|</li>
+        <li class="phoneVersion"><a href="#">手机版下载</a><i></i></li>
+      </ul>
+    </div>
+  </header>
+
+  <!--logo和搜索框部分-->
+  <div class="logoAndSearch clearfix">
+    <div class="w">
+      <div class="logo fl clearfix">
+        <div class="logoPic">
+          <img src="image/logo.jpg" alt="第五大道奢侈品网" title="第五大道奢侈品网">
+        </div>
+        <div class="logoDesPic">
+          <img src="image/yijian.jpg" alt="一键连接奢侈品网" title="一键连接奢侈品网">
+        </div>
+      </div>
+      <div class="search fl">
+        <div>
+          <input class="searchInput" type="text" name="search_text" placeholder="唇部彩妆">
+          <input class="searchBtn" type="button" name="searchBtn" value="搜索">
+        </div>
+        <div class="search-history" style="border-top: 0;">
+	      	<ul id="searchulhistory">
+	      	</ul>
+      	</div>
+        <ul class="hotSearchList">
+          <li><a href="#">太阳镜</a></li>
+          <li><a href="#">美妆</a></li>
+          <li><a href="#">户外运动</a></li>
+          <li><a href="#">腕表</a></li>
+          <li><a href="#">箱包</a></li>
+          <li><a href="#">配饰</a></li>
+        </ul>
+      </div>
+      <a class="buyCar fr" href="buyCar.html" target="_blank">
+        <i></i>
+        <span>购物袋( <em>0</em> )</span>
+        <b></b>
+      </a>
+    </div>
+  </div>
+
+  
+  <div id="searchOnTop" data-name="searchOnTop">
+  	<div class="top-logoPic">
+      <img src="image/logo.jpg" alt="第五大道奢侈品网" title="第五大道奢侈品网">
+    </div>
+    <div class="top-logoDesPic">
+      <img src="image/yijian.jpg" alt="一键连接奢侈品网" title="一键连接奢侈品网">
+    </div>
+    <div id="ontop-box">
+      <div>
+        <input class="searchInput" type="text" name="search_text1" placeholder="唇部彩妆">
+        <input class="searchBtn fr" type="button" name="searchBtn1" value="搜索">
+      </div>
+    </div>
+  </div>
+  	
+  <!--nav导航-->
+  <nav id="main-nav" class="main-nav">
+    <div class="w">
+      <dl id="proClassify" class="proClassify fl">
+        <dt class="current">商品分类</dt>
+        <dd></dd>
+      </dl>
+      <ul id="proList" class="proList clearfix">
+        <li class="proListItem" data-index=''><a href=""></a></li>
+        <li class="proListItem" data-index=''><a href=""></a></li>
+        <li class="proListItem" data-index=''><a href=""></a></li>
+        <li class="proListItem" data-index=''><a href=""></a></li>
+        <li class="proListItem" data-index=''><a href=""></a></li>
+        <li class="proListItem" data-index=''><a href=""></a></li>
+        <li class="proListItem" data-index=''><a href=""></a></li>
+        <li class="proListItem" data-index=''><a href=""></a></li>
+        <li class="proListItem" data-index=''><a href=""></a></li>
+        <li class="proListItem" data-index=''><a href=""></a></li>
+      </ul>
+      <ul class="icon-wrap" data-name = "icon-wrap">
+      	<li class="icon-li icon-li-1" >
+    			<a href="#" style="color: #fff;">
+    				<span id="icon-li-1"></span>
+    				<b data-name="icon-b">品牌授权，官方验真</b>
+    			</a>
+      	</li>
+      	<li class="icon-li icon-li-2" >
+    			<a href="#" style="color: #fff;">
+    				<span id="icon-li-2"></span>
+    				<b>尊享品牌会员服务</b>
+    			</a>
+      	</li>
+      	<li class="icon-li icon-li-3" >
+    			<a href="#" style="color: #fff;">
+    				<span id="icon-li-3"></span>
+    				<b>商务部诚信示范企业</b>
+    			</a>
+      	</li>
+      </ul>
+    </div>
+  </nav>
+
+  <!--banner轮播图-->
+  <div id="banner" class="banner">
+    <div class="bannerWrap">
+      <ul class="bannerList">
+        <li class="current"><a href="#"><img src="image/banner01.jpg" alt=""></a></li>
+        <li><a href="#"><img src="image/banner02.jpg" alt=""></a></li>
+        <li><a href="#"><img src="image/banner03.jpg" alt=""></a></li>
+        <li><a href="#"><img src="image/banner04.jpg" alt=""></a></li>
+      </ul>
+      <div class="leftAndRight">
+        <span id="leftBtn" class="leftSpan"></span>
+        <span id="rightBtn" class="rightSpan"></span>
+      </div>
+      <div class="cricle">
+        <ul class="circleList">
+          <!--<li><a class="current" href="javascript:(0)"></a></li>-->
+          <!--<li><a href="javascript:(0)"></a></li>-->
+          <!--<li><a href="javascript:(0)"></a></li>-->
+          <!--<li><a href="javascript:(0)"></a></li>-->
+        </ul>
+      </div>
+    </div>
+  </div>
+
+   <!--<selected-card选项卡>-->
+ <div id="selected-card">
+    <img class="storesametitle" src="image/storesametitle.jpg" />
+     <ul class="storesame_link">
+         <li class="select_current">热卖品牌</li>
+         <li>新品推荐</li>
+         <li>明星同款</li>
+     </ul>
+     <div id="storesame">
+         <ul id="storesame_box" class="clearfix">
+             <li>
+                 <div class="storesameb_left">
+                     <img src="image/selected-topic1.jpg"/>
+                 </div>
+                 <div class="storesameb_right">
+                       <div class="storesameb_top">
+                           <div class="storesameb_top1">
+                              <div class="storesametoptxt">
+                                 <p class="enbrand">PINKO</p>
+                                 <p>Pinko</p>
+                                 <p>￥2132</p>
+                              </div>
+                              <div class="storesametoppic">
+                                 <img src="image/selected-topic2.jpg" alt="">
+                             </div>
+                           </div>
+                           <div class="storesameb_top2">
+                              <div class="storesametoptxt storesametoptxt2">
+                                 <p class="enbrand">LACUES</p>
+                                 <p>￥195</p>
+                              </div>
+                             <div class="storesametoppic storesametoppic2">
+                                 <img src="image/selected-topic3.jpg" alt="">
+                             </div>
+                           </div>
+                           <div class="storesameb_top3 storesameb_top3_2">
+                               <div class="storesametoptxt ">
+                                  <p class="enbrand">ARC</p>
+                                  <p>￥2468</p>
+                               </div>
+                               <div class="storesametoppic storesametoppic3">
+                                 <img src="image/selected-topic4.jpg" alt="">
+                             </div>
+                         </div>
+                       </div>
+                     <div class="storesameb_btm">
+                         <div class="storesameb_btm1">
+                             <div class="storesametoptxt">
+                                 <p >Relox</p>
+                                 <p>劳力士</p>
+                                 <p>￥251240</p>
+                             </div>
+                             <div class="storesametoppic">
+                                 <img src="image/selected-topic5.jpg" alt="">
+                             </div>
+                         </div>
+                         <div class="storesameb_btm2">
+                             <div class="storesametoptxt">
+                                 <p >PUMA</p>
+                                 <p>彪马</p>
+                                 <p>￥305</p>
+                             </div>
+                             <div class="storesametoppic">
+                                 <img src="image/selected-topic6.jpg" alt="">
+                             </div>
+                         </div>
+                         <div class="storesameb_btm3 storesameb_btm3_2">
+                             <div class="storesametoptxt">
+                                 <p>Roger</p>
+                                 <p>Roger</p>
+                                 <p>￥4456</p>
+                             </div>
+                             <div class="storesametoppic">
+                                 <img src="image/selected-topic7.jpg" alt="">
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </li>
+             <li>
+                 <div class="storesameb_left">
+                     <img src="image/selected2-topic1.jpg"/>
+                 </div>
+                 <div class="storesameb_right">
+                     <div class="storesameb_top">
+                         <div class="storesameb_top1">
+                             <div class="storesametoptxt">
+                                 <p class="enbrand">Valentino</p>
+                                 <p>瓦伦蒂诺</p>
+                                 <p>￥21324</p>
+                             </div>
+                             <div class="storesametoppic">
+                                 <img src="image/selected2-topic2.jpg" alt="">
+                             </div>
+                         </div>
+                         <div class="storesameb_top2">
+                             <div class="storesametoptxt storesametoptxt2">
+                                 <p class="enbrand">Eaoron</p>
+                                 <p>￥395</p>
+                             </div>
+                             <div class="storesametoppic storesametoppic2">
+                                 <img src="image/selected2-topic3.jpg" alt="">
+                             </div>
+                         </div>
+                         <div class="storesameb_top3 storesameb_top3_2">
+                             <div class="storesametoptxt ">
+                                 <p class="enbrand">Amanda</p>
+                                 <p>￥2468</p>
+                             </div>
+                             <div class="storesametoppic storesametoppic3">
+                                 <img src="image/selected2-topic4.jpg" alt="">
+                             </div>
+                         </div>
+                     </div>
+                     <div class="storesameb_btm">
+                         <div class="storesameb_btm1">
+                             <div class="storesametoptxt">
+                                 <p >Relox</p>
+                                 <p>西铁城</p>
+                                 <p>￥2540</p>
+                             </div>
+                             <div class="storesametoppic">
+                                 <img src="image/selected2-topic5.jpg" alt="">
+                             </div>
+                         </div>
+                         <div class="storesameb_btm2">
+                             <div class="storesametoptxt">
+                                 <p >Cartier</p>
+                                 <p>卡地亚</p>
+                                 <p>￥305</p>
+                             </div>
+                             <div class="storesametoppic">
+                                 <img src="image/selected2-topic6.jpg" alt="">
+                             </div>
+                         </div>
+                         <div class="storesameb_btm3 storesameb_btm3_2">
+                             <div class="storesametoptxt">
+                                 <p>golden</p>
+                                 <p>golden</p>
+                                 <p>￥4456</p>
+                             </div>
+                             <div class="storesametoppic">
+                                 <img src="image/selected2-topic7.jpg" alt="">
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </li>
+             <li>
+                 <div class="storesameb_left">
+                     <img class="woman"src="image/selected3-topic1.jpg"/>
+                 </div>
+                 <div class="storesameb_right">
+                     <div class="storesameb_top">
+                         <div class="storesamebsl">
+                             <img src="image/selected3-topic2.jpg" alt="">
+                         </div>
+                         <div class="storesamebsr">
+                             <img src="image/selected3-topic3.jpg" alt="">
+                         </div>
+                     </div>
+                     <div class="storesameb_btm">
+                         <div class="storesamebsl">
+                             <img src="image/selected3-topic4.jpg" alt="">
+                         </div>
+                         <div class="storesamebsr">
+                             <img src="image/selected3-topic5.jpg" alt="">
+                         </div>
+                     </div>
+                 </div>
+              </li>
+         </ul>
+     </div>
+ </div>
+
+
+  <!--主体内容-->
+  <div id="mainContent" class="mainContent">
+    <div class="w">
+      <!--homeFurnishing:家居,furniture:家具,Stationery:文具,Digital:数码,Fun：玩乐-->
+       <div class="menWear mainProItem">
+            <div class="proTitle">
+                <div class="proTitleLeft fl">
+                    <span class="proTypeIcon"></span>
+                    热门
+                </div>
+                <div class="proTitleRight fr">
+                    <a href="goodsList.html?cat_id=null">查看更多>></image></a>
+                </div>
+            </div>
+            <div class="proContain">
+                <ul class="mainProList clearfix">
+
+                </ul>
+            </div>
+        </div>
+       <div class="homeFurnishing mainProItem">
+          <div class="proTitle">
+           <div class="proTitleLeft fl">
+            <span class="proTypeIcon"></span>
+            家居
+           </div>
+           <div class="proTitleRight fr">
+            <a href="goodsList.html?cat_id=45">查看更多>></image></a>
+           </div>
+          </div>
+        <div class="proContain">
+          <ul class="mainProList clearfix">
+
+
+          </ul>
+        </div>
+      </div>
+       <div class="furniture mainProItem">
+          <div class="proTitle">
+              <div class="proTitleLeft fl">
+                  <span class="proTypeIcon"></span>
+                  家具
+              </div>
+              <div class="proTitleRight fr">
+                  <a href="goodsList.html?cat_id=55">查看更多>></image></a>
+              </div>
+          </div>
+          <div class="proContain">
+              <ul class="mainProList clearfix">
+
+              </ul>
+          </div>
+
+
+          </ul>
+        </div>
+       <div class="Stationery mainProItem">
+             <div class="proTitle">
+                 <div class="proTitleLeft fl">
+                     <span class="proTypeIcon"></span>
+                     文具
+                 </div>
+                 <div class="proTitleRight fr">
+                     <a href="goodsList.html?cat_id=62">查看更多>></image></a>
+                 </div>
+             </div>
+             <div class="proContain">
+                 <ul class="mainProList clearfix">
+
+                 </ul>
+             </div>
+          </div>
+       <div class="Digital mainProItem">
+           <div class="proTitle">
+               <div class="proTitleLeft fl">
+                   <span class="proTypeIcon"></span>
+                   数码
+               </div>
+               <div class="proTitleRight fr">
+                   <a href="goodsList.html?cat_id=69">查看更多>></image></a>
+               </div>
+           </div>
+           <div class="proContain">
+               <ul class="mainProList clearfix">
+
+               </ul>
+           </div>
+       </div>
+       <div class="Fun mainProItem">
+           <div class="proTitle">
+               <div class="proTitleLeft fl">
+                   <span class="proTypeIcon"></span>
+                  玩乐
+               </div>
+               <div class="proTitleRight fr">
+                   <a href="goodsList.html?cat_id=77">查看更多>></image></a>
+               </div>
+           </div>
+           <div class="proContain">
+               <ul class="mainProList clearfix">
+
+               </ul>
+           </div>
+       </div>
+       <div class="Kitchen mainProItem">
+           <div class="proTitle">
+               <div class="proTitleLeft fl">
+                   <span class="proTypeIcon"></span>
+                   厨卫
+               </div>
+               <div class="proTitleRight fr">
+                   <a href="goodsList.html?cat_id=82">查看更多>></image></a>
+               </div>
+           </div>
+           <div class="proContain">
+               <ul class="mainProList clearfix">
+
+               </ul>
+           </div>
+       </div>
+       <div class="food mainProItem">
+           <div class="proTitle">
+               <div class="proTitleLeft fl">
+                   <span class="proTypeIcon"></span>
+                   美食
+               </div>
+               <div class="proTitleRight fr">
+                   <a href="goodsList.html?cat_id=92">查看更多>></image></a>
+               </div>
+           </div>
+           <div class="proContain">
+               <ul class="mainProList clearfix">
+
+               </ul>
+           </div>
+
+        </div>
+       <div class="girlWear mainProItem">
+           <div class="proTitle">
+               <div class="proTitleLeft fl">
+                   <span class="proTypeIcon"></span>
+                  童装
+               </div>
+               <div class="proTitleRight fr">
+                   <a href="goodsList.html?cat_id=125">查看更多>></image></a>
+               </div>
+           </div>
+           <div class="proContain">
+               <ul class="mainProList clearfix">
+
+               </ul>
+           </div>
+       </div>
+    </div>
+  </div>
+
+  <!--底部-->
+  <div id="foot" class="foot">
+    <div class="w">
+      <div class="footTop">
+        <ul class="footTopList clearfix">
+          <li><a href="#"><div class="footTopImg footTopImg01"></div><h6>正品官方保证</h6><p>品牌授权,官方验真</p></a></li>
+          <li><a href="#"><div class="footTopImg footTopImg02"></div><h6>正品官方保证</h6><p>品牌授权,官方验真</p></a></li>
+          <li><a href="#"><div class="footTopImg footTopImg03"></div><h6>正品官方保证</h6><p>品牌授权,官方验真</p></a></li>
+          <li><a href="#"><div class="footTopImg footTopImg04"></div><h6>正品官方保证</h6><p>品牌授权,官方验真</p></a></li>
+          <li><a href="#"><div class="footTopImg footTopImg05"></div><h6>正品官方保证</h6><p>品牌授权,官方验真</p></a></li>
+        </ul>
+      </div>
+      <div class="footCon clearfix">
+        <dl>
+          <dt>服务保障</dt>
+          <dd><a href="#">品牌授权正品</a></dd>
+          <dd><a href="#">品牌客服</a></dd>
+          <dd><a href="#">预约到店体验</a></dd>
+          <dd><a href="#">7天无理由退换</a></dd>
+        </dl>
+        <dl>
+          <dt>使用帮助</dt>
+          <dd><a href="#">常见问题</a></dd>
+          <dd><a href="#">会员制度</a></dd>
+          <dd><a href="#">集团采购</a></dd>
+          <dd><a href="#">礼品卡</a></dd>
+        </dl>
+        <dl>
+          <dt>支付方式</dt>
+          <dd><a href="#">到店付款</a></dd>
+          <dd><a href="#">货到付款</a></dd>
+          <dd><a href="#">在线支付</a></dd>
+          <dd><a href="#">余额支付</a></dd>
+          <dd><a href="#">分期付款</a></dd>
+        </dl>
+        <dl>
+          <dt>配送方式</dt>
+          <dd><a href="#">配送说明</a></dd>
+          <dd><a href="#">专柜自提</a></dd>
+          <dd><a href="#">运费说明</a></dd>
+          <dd><a href="#">验货签收</a></dd>
+        </dl>
+        <dl>
+          <dt>售后服务</dt>
+          <dd><a href="#">品牌售后</a></dd>
+          <dd><a href="#">售后咨询</a></dd>
+          <dd><a href="#">退换政策</a></dd>
+          <dd><a href="#">发票保障</a></dd>
+        </dl>
+        <dl class="appAndWeiBo">
+          <dt>第五大道APP</dt>
+          <dd><a href="#"><img src="image/footer_message06.jpg" /></a></dd>
+        </dl>
+        <dl class="appAndWeiBo">
+          <dt>第五大道微博</dt>
+          <dd><a href="#"><img src="image/footer_message07.jpg" /></a></dd>
+        </dl>
+      </div>
+      <div class="footBtm">
+        <p class="footNav">
+          <a href="#">箱包</a>  <span class="line">|</span>
+          <a href="#">美妆</a>  <span class="line">|</span>
+          <a href="#">服饰</a>  <span class="line">|</span>
+          <a href="#">腕表</a>  <span class="line">|</span>
+          <a href="#">配饰</a>  <span class="line">|</span>
+          <a href="#">鞋靴</a>  <span class="line">|</span>
+          <a href="#">特惠</a>  <span class="line">|</span>
+          <a href="#">礼品区</a>
+        </p>
+        <p class="aboutUs">
+          <a href="#">关于第五大道</a>  <span class="line">|</span>
+          <a href="#">网站地图</a>  <span class="line">|</span>
+          <a href="#">品牌合作专区</a>  <span class="line">|</span>
+          <a href="#">媒体聚焦</a>  <span class="line">|</span>
+          <a href="#">商务合作</a>  <span class="line">|</span>
+          <a href="#">商家合作</a>  <span class="line">|</span>
+          <a href="#">加入第五大道</a>  <span class="line">|</span>
+          <a href="#">友情链接</a>  <span class="line">|</span>
+          <a href="#">奢尚志</a> <span class="line">|</span>
+          <a href="#">联系我们</a>  <span class="line">|</span>
+          <a href="#">投诉建议</a>
+        </p>
+        <p class="copyRight">Copyright © 2008-2016 瑞美嘉信国际信息技术（北京）有限公司  版权所有京ICP备09012701号-1 京公网安备110105007400号 食品经营许可证号：</p>
+        <p class="certificationMark">
+          <a href="#"><img src="image/14567178388519.jpg" alt=""></a>
+          <a href="#"><img src="image/footer_message10.jpg" alt=""></a>
+          <a href="#"><img src="image/footer_message11.jpg" alt=""></a>
+        </p>
+       <!--certificationMark：认证标识-->
+      </div>
+    </div>
+  </div>
+  <!--回到顶部-->
+  <a href="javascript:;" class="backtotop" id="backtotop"></a>
+  <script type="text/javascript" src="js/base.js"></script>
+  <script type="text/javascript" src="js/animateFrame03版.js"></script>
+  <script type="text/javascript" src="js/banner.js"></script>
+  <script type="text/javascript" src="js/selectedCard.js"></script>
+  <script type="text/javascript" src="js/myajax.js"></script>
+  <script type="text/javascript" src="js/showProCount.js"></script>
+  <script type="text/javascript" src="js/mainShow.js"></script>
+  <script type="text/javascript" src="js/index-login.js"></script>
+  <script type="text/javascript" src="js/backtotop.js"></script>
+  <script type="text/javascript" src="js/icon-wrap.js" ></script>
+  <script type="text/javascript" src="js/mainShow.js"></script>
+  <script type="text/javascript" src="js/goodsList.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="js/onTop.js"></script> 
+  <script type="text/javascript" src="js/goodsList-index.js"></script>
+</body>
+</html>

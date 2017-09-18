@@ -1,0 +1,162 @@
+.orderPageContain{
+  margin-top: 10px;
+}
+.orderPageWrap{
+  width: 1200px;
+  margin: 0 auto;
+}
+.order-top{
+	width: 1200px;
+	height: 30px;
+	border-bottom: 2px solid #e8e8e8;
+	box-sizing: border-box;
+}
+.order-top li{
+	width: 133px;
+	height: 30px;
+	border-bottom: 2px solid #e8e8e8;
+	box-sizing: border-box;
+	float: left;
+	font-size: 16px;
+	text-align: center;
+}
+.order-top li:hover {
+	border-bottom: 2px solid #c69c6d;
+}
+.order-top li:hover a {
+	color: #c69c6d;
+}
+.final {
+	float: right;
+	margin-right: 0;
+}
+.order-top li a {
+	color: #000000;
+	font-weight: 600;
+}
+.order-top li span {
+	float: right;
+	color: #AAAAAA;
+}
+.osearch {
+	width: 1200px;
+	height: 78px;
+}
+.useless {
+	width: 1200px;
+	height: 26px;
+}
+.search-ipt{
+	width: 400px;
+	height: 24px;
+	float: left;
+	border: 1px solid #C69C6D;
+}
+.searchinput {
+	width: 310px;
+	margin-left: 5px;
+	font-size: 10px;
+	border: none;
+}
+.searchbtn {
+	width: 80px;
+	height: 24px;
+	border: none;
+	border-left: 1px solid #C69C6D;
+}
+.search-more{
+	line-height: 26px;
+	margin-left: 20px;
+	float: left;
+}
+.order-title {
+	width: 1200px;
+	height: 40px;
+	font-weight: 600;
+	background: linear-gradient(to top, #dfdfdf, #f2f2f2);
+	box-sizing: border-box;
+}
+.ospan, .ospans{
+	display: block;
+	line-height: 40px;
+	float: left;
+	text-align: center;
+}
+.ospan {
+	width: 400px;
+}
+.ospans {
+	width: 133px;
+}
+.order-page {
+	width: 1200px;
+	height: 40px;
+}
+.opage {
+	line-height: 40px;
+	float: right;
+}
+.pagebtn {
+	padding: 0 10px;
+	border: 1px solid #DFDFDF;
+	background-color: #FFFFFF;
+}
+.order-detail {
+	width: 1200px;
+}
+/*table*/
+table {
+	width: 1200px;
+	border: 1px solid #c69c6d;
+	margin-bottom: 20px;
+}
+thead {
+	background-color: #f2f2f2;
+}
+th {
+	width: 133px;
+	height: 40px;
+	text-align: left;
+	margin-left: 20px;
+	font-weight: 700;
+	vertical-align: middle;
+	border-bottom: 1px solid #c69c6d;
+}
+tr+tr {
+	border-top: 1px solid #F2F2F2;
+}
+td {
+	width: 133px;
+	text-align: center;
+	vertical-align: middle;
+}
+.tb-mon, .tb-teal {
+	border-left:1px solid #F2F2F2;
+}
+td img {
+	border: none;
+	width: 113px;
+	height: 113px;
+	margin: 10px;
+}
+.cancel-order {
+	display: block;
+	outline: none;
+	width: 25px;
+	text-align: center;
+	height:20px;
+	float: right;
+	background-color: #DFDFDF;
+	background: url(../image/delete.png) center no-repeat;
+	border-radius: 5px;
+	margin-right: 10px;
+}
+.cancel-order:hover {
+	background-color: #C69C6D;
+	cursor: pointer;
+}
+h1 {
+	color: red;
+	font-size: 30px;
+	margin-left: 510px;
+}

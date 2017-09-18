@@ -1,0 +1,42 @@
+.icon-wrap{
+	position: absolute;
+	right: 90px;
+	top: 138px;
+	line-height: 40px;
+	height: 40px;
+	overflow: hidden;
+	z-index: 10;
+}
+.icon-wrap li{
+	overflow: hidden;
+	width: 30px;
+	height: 40px;
+	margin-right: 12px;
+	float: left;
+	z-index: 100;
+}
+.icon-wrap li a{
+	display: inline-block;
+	float: left;
+	width: 200px;
+	height: 40px;
+	line-height: 40px;
+}
+.icon-wrap li a span{
+	display: inline-block;
+	float: left;
+	width: 30px;
+	height: 40px;
+	line-height: 40px;
+	margin-right: 3px;
+}
+
+.icon-wrap li a #icon-li-1{
+	background: url(../image/share02.png) no-repeat -237px -66px;
+}
+.icon-wrap li a #icon-li-2{
+	background: url(../image/share02.png) no-repeat -296px -66px;
+}
+.icon-wrap li a #icon-li-3{
+	background: url(../image/share02.png) no-repeat -354px -66px;
+}

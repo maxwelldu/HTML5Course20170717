@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #drag {
+      width: 100px;
+      height: 100px;
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+  <div id="drag"></div>
+  <script src="jquery-3.2.1.js" charset="utf-8"></script>
+  <script src="jquery-ui.js" charset="utf-8"></script>
+  <script>
+    //插件无非就是往对象身上再添加方法
+    /*
+    $.fn.draggable = function() {
+      //绑定各种事件，完成拖拽
+    }
+    */
+    $(function(){ //实际就是DOMContentLoaded事件，当内容加载完成的时候再执行
+      $('#drag').draggable();
+    });
+  </script>
+</body>
+</html>

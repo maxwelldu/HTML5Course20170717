@@ -1,0 +1,27 @@
+.loginW{
+  width: 1000px;
+  margin: 0 auto;
+}
+.loginHeader{
+  height: 90px;
+}
+.loginHeaderCon{
+  position: relative;
+}
+.loginHeader .tel{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 20px;
+  line-height: 20px;
+  color: black;
+  font-size: 16px;
+}
+.loginHeader .tel>i{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: bottom;
+  background: url(../image/tel.jpg) center no-repeat;
+  margin-right: 5px;
+}

@@ -1405,6 +1405,68 @@ Github上面的项目，在设置里面开启git pages，这样可以直接浏�
 box-sizing属性
 DOM对象.classList属性，有 add方法和remove方法
 
+##动态商城网站项目
+团队合作：
+  git操作不熟练
+  项目初期目录和文件的规划
+  基础知识（DOM操作，兼容性）
+  Ajax(GET/POST)
+
+##20170918
+jQuery
+自制一个jQuery:
+  可以批量选择元素，支持CSS选择器，返回一个类数组对象
+  代码的书写，我们只使用一个变量叫$, 所有的方法都放到$.fn这个属性上
+  让$()返回的对象($.fn.init构造出来的)能够调用$.fn上的方法；$.fn.init.prototype = $.fn
+  实现链式调用，在方法(不能是init方法)里面最后返回this
+
+jQuery版本：
+1.x兼容IE6、7、8
+2.X不兼容IE6、7、8
+
+$(选择器) 可以选中元素，并返回jQuery($.fn.init的对象)
+方法：
+  html(html)/html() //设置或返回innerHTML内容
+  css(属性,值); css({属性:值,属性:值});/css(属性); //设置或者返回css的计算后属性
+  animate(目标状态的JSON，时长，回调函数);
+  $().事件名(事件处理函数); //事件处理函数当中的 $(this) 表示当前操作的元素的jQuery对象
+  stop(true, true); //清空当前动画队列，并将当前动画立即执行结束
+  eq(index); 返回对应索引的jQuery对象
+  addClass(类名); //添加类名
+  removeClass(类名); //移除类名
+  siblings(); 返回所有的兄弟元素
+  clone(); 克隆元素
+  appendTo(父元素); 添加到父元素内部
+  jquery对象转DOM对象；$('p')[1];
+  width()//width
+  innerWidth()//width+padding
+  outerWidth()//width+padding+border
+  outerWidth(true)//width+padding+border+margin
+  offset()//返回元素的净位置  offset().top 返回元素到顶部的净位置
+  mousewheel();//滚轮事件，是一个官方的插件，默认的jquery里面不包含
+  $(window)scrollTop(); /scrollTop(0); //获取scrollTop的值，设置scrollTop的值
+  $('html,body').animate({"scrollTop": 0}, 1000); //滚动添加动画
+  $(window).scroll();//滚动事件
+  show();//显示
+  hide();//隐藏
+  delay(600);//延迟
+  fadeOut()//淡出动画
+  is(选择器);//判断jquery对象是否符合当前的选择器
+
+筛选器：
+  $(元素)
+  $(元素:first)
+  $(元素:last)
+  $(元素:eq(3))
+  $(元素:lt(3))
+  $(元素:gt(3))
+  $(元素:odd)
+  $(元素:even)
+
+对同一个元素设置多个animate, 会把动画添加到动画队列当中
+jQuery的插件无非就是丰富一下jQuery对象的方法；$.fn.draggable = function(){}
+
+
 箭头函数
 明天说内网穿透，让你的网站能够被其他人看到
 ##5点后的练习计划

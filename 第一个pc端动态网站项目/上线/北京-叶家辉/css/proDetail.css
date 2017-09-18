@@ -1,0 +1,85 @@
+.DetailWrap{
+  width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.productDetailLeft{
+  float: left;
+  position:relative;
+}
+.productDetailImgB{
+  width: 480px;
+  height: 480px;
+  position: relative;
+}
+.productDetailLeft .productDetailImgB>img{
+  width: 478px;
+  height: 478px;
+  border: 1px solid #ccc;
+}
+.productDetailImgS>img{
+  width: 85px;
+  height: 85px;
+}
+.productDetailRight{
+  float: left;
+  padding-left: 20px;
+  width: 500px;
+}
+.productDetailRight>h3{
+  line-height: 30px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.productDetailRight>.des{
+  width: 500px;
+  height: 40px;
+  line-height: 20px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+.productDetailRight>.price{
+  font-size: 20px;
+  font-weight: bold;
+  color: #c8a985;
+  margin-top: 20px;
+}
+.productDetailRight .buy{
+  margin-top: 20px;
+}
+.productDetailRight .buy span{
+ float: left;
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  background: rgb(200, 169, 133);
+  margin-right: 20px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.bigPic{
+    width: 480px;
+    height:480px;
+    position: absolute;
+    top: 0px;
+    left: 480px;
+    background-size: 960px 960px;
+    display: none;
+}
+.zoom{
+    position: absolute;
+    width:238px;
+    height:238px;
+    top:0;
+    left:0;
+    border:1px solid #333333;
+    display: none;
+    opacity: 0.4;
+
+}
+.zoom:hover{
+    cursor: move;
+}

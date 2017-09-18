@@ -1,0 +1,247 @@
+/*header部分样式*/
+.ShoppingMallHead{
+  height: 30px;
+  line-height: 30px;
+  background-color: #f2f2f2;
+  color: #666666;
+}
+.ShoppingMallHead a{
+  color: #666;
+}
+.ShoppingMallHead a:hover{
+  color: #b28247;
+}
+.SMHLeft > li{
+  float: left;
+  padding: 0 15px;
+}
+.SMHRight > li{
+  float: left;
+  padding: 0 18px;
+}
+.SMHLeft .line,.SMHRight .line{
+  padding: 0;
+  color: #dfdfdf;
+}
+.SMHLeft i{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+.home>i{
+  background: url("../image/home.png") top center no-repeat;
+}
+.gb-tel>i{
+  background: url("../image/sprite.png") -350px -345px no-repeat;
+}
+.register>i{
+  float: left;           /*只设置了一边的浮动在低版本浏览器中会出现问题*/
+  width: 24px;
+  height: 30px;
+  vertical-align: middle;
+  background: url("../image/youli.gif") top center no-repeat;
+  margin-right: 8px;
+}
+.login,.register{
+  display: none;
+}
+.myFive{
+  position: relative;
+  border-left: 1px solid #f2f2f2;
+  border-right: 1px solid #f2f2f2;
+}
+.myFive>i{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  background: url("../image/sprite.png") -350px -443px no-repeat;
+  margin-left: 10px;
+}
+.myFive:hover{
+  background-color: white;
+  border-color: #ccc;
+}
+.myFive:hover>ol{
+  display: block;
+}
+.myFive:hover >i {
+  background: url("../image/sprite.png") -350px -470px no-repeat;
+}
+.myFiveList{
+  position: absolute;
+  width: 100%;
+  left: -1px;
+  border: 1px solid #ccc;
+  background: #FFF;
+  border-top: none;
+  display: none;
+}
+.myFiveList>li{
+  width: 100%;
+  text-align: center;
+}
+
+/*header部分样式结束*/
+
+/*logoAndSearch部分样式*/
+.logoAndSearch{
+  height: 110px;
+}
+.logo>div{
+  float: left;
+}
+.logo .logoPic{
+  width: 240px;
+  height: 110px;
+}
+.logoDesPic{
+  width: 142px;
+  height: 80px;
+  margin: 15px 0 0 50px;
+}
+.logoPic>img{
+  display: block;
+  height: 108px;
+}
+.search{
+  float: left;
+  margin: 36px 0 0 55px;
+
+}
+.search>div{
+  border: 2px solid #c69c6d;
+  font-size: 15px;
+  z-index: 9;
+}
+.search-history{
+	width: 300px;
+  height: 80px;
+  z-index: 10;
+  color: grey;
+  position: absolute;
+  background: #fff;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-left: 3px;
+  display: none;
+}
+.search-history ul li{
+	z-index: 100;
+	width: 297px;
+	height: 30px;
+	margin-bottom: 3px;
+	line-height: 30px;
+}
+.search-history ul li:hover{
+	background: #EDCC61;
+}
+.searchInput{
+  width: 300px;
+  height: 34px;
+  border: none;
+  color: grey;
+  padding-left: 3px;
+}
+.searchBtn{
+  width: 80px;
+  height: 34px;
+  font-size: 14px;
+  border: none;
+  vertical-align: bottom;
+  background-color: #c69c6d;
+  color: white;
+  cursor: pointer;
+}
+.hotSearchList{
+  font-size: 12px;
+  margin-top: 6px;
+}
+.hotSearchList>li{
+  float: left;
+}
+.hotSearchList>li a{
+  color: #999;
+}
+.hotSearchList>li a:hover{
+  color: #c8a985;
+}
+.hotSearchList>li+li{
+  padding-left: 25px;
+}
+.buyCar{
+  width: 138px;
+  height: 32px;
+  margin-top: 36px;
+  border: 1px solid #ccc;
+  font-size: 12px;
+  box-shadow: 0 0 1px #aaa;
+  color: #666;
+  cursor: pointer;
+}
+.buyCar>i{
+  float: left;
+  width: 30px;
+  height: 32px;
+  background-color: #aa0000;
+  margin: 0 5px;
+  background: url("../image/v30cart.png") center no-repeat;
+}
+.buyCar>span{
+  float: left;
+  line-height: 32px;
+}
+.buyCar>b{
+  float: left;
+  width: 10px;
+  height: 32px;
+  background: url("../image/sprite.png") -456px -406px;
+  margin-left: 12px;
+}
+.buyCar>span>em{
+  color: #d00000;
+}
+/*logoAndSearch部分样式结束*/
+
+/*main-nav部分样式*/
+.main-nav{
+  height: 38px;
+  font-size: 14px;
+  background-image: linear-gradient(to top, #000,#333);
+  border-bottom: 2px solid #d0cfcf;
+}
+.main-nav dl{
+  width: 130px;
+  height: 38px;
+  text-align: center;
+  line-height: 38px;
+  font-weight: bold;
+  color: white;
+}
+.main-nav .proList>li{
+
+  /*等会来改*/
+  width: 82px;
+
+  float: left;
+  line-height: 38px;
+}
+.proList>li>a{
+  display: block;
+  padding: 0 27px;
+  color: #c8a985;
+}
+.proList>li>a:hover{
+  color: white;
+}
+.proList>li.current{
+  background-color: #cf0101;
+}
+.proClassify>dt.current{
+  background-color: #cf0101;
+}
+.proList>li.current > a{
+  color: white;
+}
+/*main-nav部分样式结束*/

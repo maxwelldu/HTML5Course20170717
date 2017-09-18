@@ -1,0 +1,176 @@
+.addressCon{
+  margin-bottom: 30px;
+  color: #333;
+}
+.addressWrap{
+  width: 1000px;
+  margin: 0 auto;
+}
+.addressConTitle{
+  height: 50px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 50px;
+}
+.addressList>li{
+  width: 207px;
+  height: 76px;
+  float: left;
+  background: url("../image/unSelectBg.png") no-repeat;
+  padding: 15px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.addressList{
+  height: 126px;
+  overflow: hidden;
+}
+.addressList>li+li{
+  margin-left: 17.3px;
+}
+.addressList>li:nth-child(4n + 1){
+  margin-left: 0;
+}
+.addressList>li:hover{
+  background: url('../image/selectBg.png') no-repeat;
+}
+.addressList>li.selected{
+  background: url('../image/selectBg.png') no-repeat;
+}
+.addressList .addressListTitle{
+  height: 19px;
+  border-bottom: 1px solid #f2f2f2;
+  vertical-align: top;
+  line-height: 12px;
+}
+.addressListTitle > i:hover{
+  color: #C69C6D;
+}
+.addressListTitle .city{
+  font-weight: bold;
+  padding-right: 8px;
+}
+
+.detailAddressInfor{
+  height: 60px;
+  line-height: 20px;
+  overflow: hidden;
+}
+.addressDetail{
+  padding-left: 3px;
+}
+
+.newAddress-showAllAddress{
+  height: 25px;
+  line-height: 25px;
+  margin-bottom: 20px;
+}
+.newAddress{
+  width: 85px;
+  height: 25px;
+  color: #333;
+  font-weight: bold;
+  background-image: linear-gradient(to top,#e7e7e7,#fefefe);
+  border: 1px solid #ccc;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.newAddress:hover{
+  background-image: linear-gradient(to top,#ccc,#fefefe);
+}
+.showAllAddress{
+  height: 25px;
+  color: #666;
+  cursor: pointer;
+}
+.subOrder{
+  height: 60px;
+  line-height: 60px;
+  text-align: right;
+}
+.subOrder > a,.subOrder > button{
+  display: inline-block;
+  width: 183px;
+  height: 38px;
+  text-align: center;
+  cursor: pointer;
+  color: #c69c6d;
+}
+.subOrder > a{
+  color: #333;
+}
+.subOrder > a:hover{
+  color: #C69C6D;
+}
+.subOrder > button{
+  background-color: #c69c6d;
+  border: none;
+  border-radius: 2px;
+  color: #fff;
+}
+.subOrder > button:hover{
+  background-image: linear-gradient(to top,#c69c6d, #dab07d);
+}
+
+/*模态框上的样式*/
+.addAddressCon{
+  color: #333;
+}
+.addAddressCon i{
+  float: left;
+  width: 145px;
+  height: 28px;
+  line-height: 30px;
+  text-align: right;
+  font-size: 14px;
+  padding-right: 5px;
+}
+.addAddressCon div.cpcd{
+  padding-left: 123px;
+}
+.addAddressCon label{
+  text-align: right;
+}
+.addAddressCon .submit{
+  margin-left: 150px;
+  width: 60px;
+  height: 30px;
+  background-image: linear-gradient(to top,#ebebeb,#efefef);
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  color: #333;
+}
+.addAddressCon .submit:hover{
+  background-image: linear-gradient(to top,#ccc,#ededed);
+}
+.addAddressCon div{
+  margin-bottom: 16px;
+}
+.addAddressCon label>input,.addAddressCon label>textarea{
+  float: left;
+  width: 300px;
+  height: 24px;
+  line-height: 30px;
+  padding-left: 10px;
+}
+.addAddressCon label>textarea{
+  float: left;
+  width: 314px;
+  line-height: 20px;
+  height: 60px;
+  overflow: hidden;
+  padding-left: 0;
+  text-indent: 1.5em;
+  font-size: 12px;
+  font-family: "微软雅黑";
+}
+
+.addressDiv>label>i{
+  float: left;
+  height: 60px;
+  vertical-align: top;
+}
+
+.cpcd > div{
+  margin-left: 26px;
+}

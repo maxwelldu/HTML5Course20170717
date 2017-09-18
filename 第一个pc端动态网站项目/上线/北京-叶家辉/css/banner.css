@@ -1,0 +1,66 @@
+.banner{
+  max-width: 1440px;
+  height: 520px;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+}
+.bannerWrap{
+  width: 100%;
+}
+.bannerList>li{
+  width: 1440px;
+  position: absolute;
+  top: 0;
+  left: -1440px;
+}
+.bannerList>li.current{
+  left: 0;
+}
+.cricle .circleList{
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  margin-left: -20px;
+  background-color: rgba(0,0,0,0.3);
+  padding: 2px 0;
+  border-radius: 20px;
+}
+.circleList>li{
+  float: left;
+  padding: 0 6px;
+
+}
+.circleList>li>a{
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: white;
+}
+.circleList>li>a.current{
+  background-color: #aa0000;
+}
+
+.leftAndRight{
+  width: 1000px;
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0 -500px;
+}
+.leftAndRight>span{
+  position: absolute;
+  width: 30px;
+  height: 50px;
+  cursor: pointer;
+}
+.leftAndRight .leftSpan{
+  left: 0;
+  background: url("../image/templateleft.png") center no-repeat;
+}
+.leftAndRight .rightSpan{
+  right: 0;
+  background: url("../image/templateright.png") center no-repeat;
+}

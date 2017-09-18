@@ -1,0 +1,16 @@
+.toast {
+  width: 400px;
+  /*height: 50px;*/
+  text-align: center;
+  line-height: 50px;
+  border-radius: 10px;
+  position: fixed;
+  left: 45%;
+  margin-left: -100px;
+  top: 45%;
+  padding: 10px 0;
+  background-color: #C69C6D;
+  opacity: .7;
+  filter: alpha(opacity=20);
+  color: white;
+}

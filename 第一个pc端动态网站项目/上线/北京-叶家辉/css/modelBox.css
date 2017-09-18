@@ -1,0 +1,49 @@
+html,body{
+  width: 100%;
+  height: 100%;
+}
+.addAddress{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.3);
+  display: none;
+}
+.addAddressWrap{
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border: 10px solid #b4b4b4;
+  background-color: white;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  color: #333;
+}
+.addAdressTitle{
+  line-height: 35px;
+  background: #e6e6e6;
+  border-bottom: 1px solid #d9d9d9;
+  padding: 0 10px;
+  font-weight: bold;
+}
+.addAddressCon{
+  padding-top: 20px;
+}
+.addAdressTitle>h6{
+  height: 35px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.addAdressTitle>span{
+  width: 16px;
+  height: 16px;
+  margin-top: 9px;
+  background: url(../image/closePng.png) -32px -25px no-repeat;
+}
+.addAdressTitle>span:hover{
+  background-position: -48px -25px;
+}
