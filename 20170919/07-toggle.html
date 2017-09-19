@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+      background: green;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <button>toggle</button>
+  <button>toggle 动画</button>
+  <button>show</button>
+  <button>hide</button>
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+    $('button:eq(0)').click(function(){
+      $('div:first').toggle();
+    });
+    $('button:eq(1)').click(function(){
+      $('div:first').toggle(1000, function(){
+        console.log('动画执行完成');
+      });
+    });
+    $('button:eq(2)').click(function(){
+      $('div:first').show(1000);
+    });
+    $('button:eq(3)').click(function(){
+      $('div:first').hide(1000);
+    });
+  </script>
+</body>
+</html>

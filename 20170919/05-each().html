@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    p {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border: 1px dashed #e4e4e4;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+    $('p').each(function(i, item){
+      item.style.top = i * 100 + 'px';
+    });
+    $('p').each(function(i, item){
+      // console.log(arguments);
+      console.log(this, $(this), item, $(item));
+      $(this).animate({"left": 50*i}, 600);
+    });
+  </script>
+</body>
+</html>

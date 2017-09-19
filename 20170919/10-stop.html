@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+      background-color: orange;
+      left: 100px;
+      top: 100px;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <button>stop()</button>
+  <button>stop(true)</button>
+  <button>stop(true,true)</button>
+  <button>stop(false, true)</button>
+  <button>finish()</button>
+  <div></div>
+
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+    $('div').animate({left: 800}, 2000);
+    $('div').animate({top: 300}, 2000);
+    $('div').animate({left: 100}, 2000);
+    $('div').animate({top: 0}, 2000);
+    $('button:eq(0)').click(function(){
+      $('div').stop();//停止并继续下一个动画
+      // $('div').stop(false, false);//这两个是一样的
+    });
+    $('button:eq(1)').click(function(){
+      $('div').stop(true);//停止并清空
+    })
+    $('button:eq(2)').click(function(){
+      $('div').stop(true, true);//瞬间完成当前的动画并清空队列
+    })
+    $('button:eq(3)').click(function(){
+      $('div').stop(false, true);//瞬间完成当前的动画并继续下一个
+    })
+    $('button:eq(4)').click(function(){
+      $('div').finish();
+    })
+
+
+  </script>
+</body>
+</html>

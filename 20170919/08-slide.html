@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      width: 200px;
+      height: 400px;
+      background-color: skyblue;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <button>slideDown</button>
+  <button>slideUp</button>
+  <button>slideToggle</button>
+  <div></div>
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+    $('button:eq(0)').click(function(){
+      $("div").slideDown();
+    })
+    $('button:eq(1)').click(function(){
+      $("div").slideUp();
+    })
+    $('button:eq(2)').click(function(){
+      $("div").slideToggle();
+    })
+  </script>
+</body>
+</html>

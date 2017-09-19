@@ -1432,19 +1432,20 @@ $(选择器) 可以选中元素，并返回jQuery($.fn.init的对象)
   $().事件名(事件处理函数); //事件处理函数当中的 $(this) 表示当前操作的元素的jQuery对象
   stop(true, true); //清空当前动画队列，并将当前动画立即执行结束
   eq(index); 返回对应索引的jQuery对象
-  addClass(类名); //添加类名
+  addClass(类名); //添加类名 元素.classList.addClass(类名); 也可以使用className的字符串拼凑方法
   removeClass(类名); //移除类名
   siblings(); 返回所有的兄弟元素
   clone(); 克隆元素
   appendTo(父元素); 添加到父元素内部
   jquery对象转DOM对象；$('p')[1];
+  DOM对象转jQuery对象：$(DOM对象或DOM字符串) $(window) $(document) $(this) $("<div></div>").appendTo()
   width()//width
   innerWidth()//width+padding
   outerWidth()//width+padding+border
   outerWidth(true)//width+padding+border+margin
   offset()//返回元素的净位置  offset().top 返回元素到顶部的净位置
   mousewheel();//滚轮事件，是一个官方的插件，默认的jquery里面不包含
-  $(window)scrollTop(); /scrollTop(0); //获取scrollTop的值，设置scrollTop的值
+  $(window).scrollTop(); /scrollTop(0); //获取scrollTop的值，设置scrollTop的值
   $('html,body').animate({"scrollTop": 0}, 1000); //滚动添加动画
   $(window).scroll();//滚动事件
   show();//显示
@@ -1464,7 +1465,8 @@ $(选择器) 可以选中元素，并返回jQuery($.fn.init的对象)
   $(元素:even)
 
 对同一个元素设置多个animate, 会把动画添加到动画队列当中
-jQuery的插件无非就是丰富一下jQuery对象的方法；$.fn.draggable = function(){}
+jQuery的插件无非就是丰富一下jQuery对象的方法(给jquery对象的原型上面加方法)；$.fn.draggable = function(){}; 后面使用jquery选中的元素就可以此方法（$('p').draggable());
+
 
 
 箭头函数

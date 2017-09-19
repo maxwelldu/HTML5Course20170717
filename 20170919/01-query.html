@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <p></p>
+  <p></p>
+  <p></p>
+  <script>
+    //IIFE里面的变化不能暴露在外面，如果需要暴露，则用window.变量名 = 变量名
+    (function(){
+      //声明一个叫$的函数，这个函数返回一个query对象
+      //函数也是对象
+      function $(selector) {
+          return new $.fn.init(selector);//把init方法当成一个构造函数，所以用new关键字实例化对象；init方法内部的this就是指新创建出来的实例对象
+      }
+      //我们需要放很多的方法，所以要找一个地方存储
+      //给$添加一个fn属性，值是一个对象，对象里面存储所有的方法，包括构建方法
+      $.fn = {
+        //就是一个构造函数，只不过放在$.fn里面, 访问这个函数就是$.fn.init
+        init: function(selector) {
+          //查找到页面中所有的元素
+          var elems = document.querySelectorAll(selector);
+          //要把查找到的元素放到当前的实例对象(this); 返回的这个对象是类数组对象
+          for (var i = 0; i < elems.length; i++) {
+            this[i] = elems[i];//把所有的DOM对象都存放到this当中
+          }
+          this.length = elems.length;//方便后面遍历这个对象中的每一个元素
+          //这个方法因为是构造函数，所以会默认自动返回this
+        },
+        //下面的这些方法都是$.fn.init这个函数的原型对象身上的函数
+        html: function(html) {
+          //这个方法当中的this是不是就是指一个query对象
+          //批量的给所有的DOM元素赋值
+          for (var i = 0; i < this.length; i++) {
+            this[i].innerHTML = html;
+          }
+          //当给所有的元素设置内容完成之后，再返回当前的query对象，方便后面链式调用
+          return this;
+        }
+      }
+      /*
+      $.fn.init.prototype = {
+        html: function() { }
+      }
+      */
+      $.fn.init.prototype = $.fn;
+      window.$ = window.query = $;//相当于全局的使用$符号或者query都能够访问到$这个函数
+    })();
+    $('p').html('context');
+  </script>
+</body>
+</html>

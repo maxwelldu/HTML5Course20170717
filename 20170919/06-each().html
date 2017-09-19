@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    table,td{
+      border: 1px solid #000;
+    }
+    td {
+      width: 120px;
+      height: 40px;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+    /*
+    $("tr:even").each(function(){
+      $(this).css("backgroundColor", "green");
+    });
+    */
+
+    /*
+    $("td:even").each(function(){
+      $(this).css('backgroundColor', "green");
+    })
+    */
+
+/*
+    $('tr').each(function(){
+      $(this).children(":even").css('backgroundColor', 'green');
+    });
+    */
+
+    //get() 相当于中括号访问，返回的是DOM对象
+    // $("tr").get(1).css('backgroundColor', 'green');
+    $("tr").get(1).style.backgroundColor = 'green';
+  </script>
+</body>
+</html>

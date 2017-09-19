@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.shutter{
+			width: 800px;
+			height: 300px;
+			border: 1px solid #000;
+			margin: 100px auto;
+			position: relative;
+			overflow: hidden;
+		}
+		.shutter ul{
+			list-style: none;
+		}
+		.shutter ul li{
+		 	position: absolute;
+		 	top: 0;
+		}
+		.shutter ul li.no0{left: 0;}
+		.shutter ul li.no1{left: 160px;}
+		.shutter ul li.no2{left: 320px;}
+		.shutter ul li.no3{left: 480px;}
+		.shutter ul li.no4{left: 640px;}
+	</style>
+</head>
+<body>
+	<div class="shutter">
+		<ul>
+			<li class="no0">
+				<a href="">
+					<img src="images/0.jpg" alt="" />
+				</a>
+			</li>
+			<li class="no1">
+				<a href="">
+					<img src="images/1.jpg" alt="" />
+				</a>
+			</li>
+			<li class="no2">
+				<a href="">
+					<img src="images/2.jpg" alt="" />
+				</a>
+			</li>
+			<li class="no3">
+				<a href="">
+					<img src="images/3.jpg" alt="" />
+				</a>
+			</li>
+			<li class="no4">
+				<a href="">
+					<img src="images/4.jpg" alt="" />
+				</a>
+			</li>
+		</ul>
+	</div>
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+    //通常：0 160 320 480 640
+    //左边：0 60 120 180 240
+    //右边：N 560 620 680 740
+
+    $('.no0').mouseenter(function(){
+      $("li").stop(true);
+      $('.no1').animate({"left": 560}, 1000);
+      $('.no2').animate({"left": 620}, 1000);
+      $('.no3').animate({"left": 680}, 1000);
+      $('.no4').animate({"left": 740}, 1000);
+    });
+
+    $('.no1').mouseenter(function(){
+      $("li").stop(true);
+      $('.no1').animate({"left": 60}, 1000);
+      $('.no2').animate({"left": 620}, 1000);
+      $('.no3').animate({"left": 680}, 1000);
+      $('.no4').animate({"left": 740}, 1000);
+    })
+
+    $('.no2').mouseenter(function(){
+      $("li").stop(true);
+      $('.no1').animate({"left": 60}, 1000);
+      $('.no2').animate({"left": 120}, 1000);
+      $('.no3').animate({"left": 680}, 1000);
+      $('.no4').animate({"left": 740}, 1000);
+    })
+
+    $('.no3').mouseenter(function(){
+      $("li").stop(true);
+      $('.no1').animate({"left": 60}, 1000);
+      $('.no2').animate({"left": 120}, 1000);
+      $('.no3').animate({"left": 180}, 1000);
+      $('.no4').animate({"left": 740}, 1000);
+    })
+
+    $('.no4').mouseenter(function(){
+      $("li").stop(true);
+      $('.no1').animate({"left": 60}, 1000);
+      $('.no2').animate({"left": 120}, 1000);
+      $('.no3').animate({"left": 180}, 1000);
+      $('.no4').animate({"left": 240}, 1000);
+    })
+
+    $(".shutter").mouseleave(function(){
+      $("li").stop(true);
+      $('.no1').animate({"left": 160}, 1000);
+      $('.no2').animate({"left": 320}, 1000);
+      $('.no3').animate({"left": 480}, 1000);
+      $('.no4').animate({"left": 640}, 1000);
+    })
+  </script>
+
+
+</body>
+</html>

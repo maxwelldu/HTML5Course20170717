@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    p {
+      width: 100px;
+      height: 100px;
+      border: 1px solid green;
+    }
+  </style>
+</head>
+<body>
+    <div class="box1">
+  		<p></p>
+  		<p class="teshu"></p>
+  		<p class="teshu"></p>
+  		<p></p>
+  	</div>
+  	<div class="box2">
+  		<p class="teshu"></p>
+  		<p class="teshu">我想红！我想当明星！</p>
+  		<p></p>
+  		<p></p>
+  	</div>
+    <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+    <script>
+      $('.teshu').click(function(){
+        console.log($(this).index());
+      })
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    p {
+      width: 100px;
+      height: 100px;
+      float: left;
+      margin-right: 10px;
+      border: 1px dashed #e4e4e4;
+    }
+    div {
+      clear: both;
+      margin-top: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box1">
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+  </div>
+  <div class="box2">
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+  </div>
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+    $(".box1 p").click(function(){
+      $(".box2 p").eq($(this).index()).css({"backgroundColor": "red"});
+    });
+  </script>
+</body>
+</html>

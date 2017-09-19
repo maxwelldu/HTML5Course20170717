@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var arr = [1,2,3,4];
+    for (var i = 0; i < arr.length; i++) {
+      console.log(arr[i]);
+    }
+
+    each(arr, function(index, item, array){
+      //在这个函数里面使用this能够访问到这个数组
+      //this就相当于是item
+      console.log(this, index, item, array);
+    });
+    function each(array, fn) {
+      for (var i = 0; i < array.length; i++) {
+        //第一个参数指定this, 后面的参数分别传递到函数中的每个参数
+        fn.call(array[i], i, array[i], array);
+        fn.apply(array[i], [i, array[i], array]);
+        fn.bind(array[i])(i, array[i], array);
+      }
+    }
+    //typeof 只能返回基础数据类型，以及对象；function
+  </script>
+</body>
+</html>
