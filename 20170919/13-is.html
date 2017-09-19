@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    p {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <p class="t"></p>
+  <p class="t"></p>
+  <p></p>
+  <p id="m"></p>
+  <p class="t"></p>
+  <p></p>
+  <p class="t"></p>
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+    $("p:eq(4)").animate({width: 600}, 6000);
+    $("p").click(function(){
+      console.log( $(this).is(".t") ); //判断当前元素是否有class为t
+      console.log( $(this).is("#m") ); //判断当前元素是否有id为m
+      console.log( $(this).is("p:first") );//判断当前元素是否是p标签中的第一个元素
+      console.log( $(this).is(":animated") );//判断当前元素是否在执行动画
+      // true false false false
+    });
+  </script>
+</body>
+</html>

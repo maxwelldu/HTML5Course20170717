@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style type="text/css">
+  		*{
+  			margin: 0;
+  			padding: 0;
+  		}
+  		.nav{
+  			width: 960px;
+  			height: 40px;
+  			margin: 50px auto;
+  		}
+  		.nav ul{
+  			list-style: none;
+  		}
+  		.nav ul li{
+  			float: left;
+  			width: 120px;
+  			height: 40px;
+  			text-align: center;
+  			line-height: 40px;
+  			background-color: yellowgreen;
+  			position: relative;
+  		}
+  		.nav ul li a{
+  			text-decoration: none;
+  			color: white;
+  		}
+  		.nav ul li .dropbox{
+  			position: absolute;
+  			top: 40px;
+  			left: 0;
+  			width: 180px;
+  			display: none;
+  			padding-top: 10px;
+  		}
+  		.nav ul li .dropbox .inner{
+  			background-color: #ccc;
+  		}
+  		.nav ul li .dropbox a{
+  			display: block;
+  			line-height: 30px;
+  			height: 30px;
+  			text-align: left;
+  		}
+  		.nav ul li .dropbox a:hover{
+  			background-color: pink;
+  		}
+  	</style>
+  </head>
+  <body>
+  	<div class="nav">
+  		<ul>
+  			<li><a href="#">栏目名称</a></li>
+  			<li>
+  				<a href="#">公司新闻</a>
+  				<div class="dropbox">
+  					<div class="inner">
+  						<p><a href="">北京总部新闻</a></p>
+  						<p><a href="">上海分公司新闻</a></p>
+  						<p><a href="">东莞分公司新闻</a></p>
+  						<p><a href="">辽宁分公司新闻</a></p>
+  					</div>
+  				</div>
+  			</li>
+  			<li>
+  				<a href="#">公司财务</a>
+  				<div class="dropbox">
+  					<div class="inner">
+  						<p><a href="">2011财务</a></p>
+  						<p><a href="">2012财务</a></p>
+  						<p><a href="">2013财务</a></p>
+  						<p><a href="">2014财务</a></p>
+  						<p><a href="">2015财务</a></p>
+  						<p><a href="">2016财务</a></p>
+  					</div>
+  				</div>
+  			</li>
+  			<li><a href="#">栏目名称</a></li>
+  			<li><a href="#">栏目名称</a></li>
+  			<li><a href="#">栏目名称</a></li>
+  			<li><a href="#">栏目名称</a></li>
+  			<li><a href="#">栏目名称</a></li>
+  		</ul>
+  	</div>
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+    //鼠标碰到li
+    $('li').mouseenter(function(){
+      //每次写动画都得考虑一下是否会有堆叠情况
+      if ($(this).children('.dropbox').is(':animated')) {
+        return;
+      }
+
+      //让自己的子元素，.dropbox下拉
+      $(this).children(".dropbox").slideDown();
+    });
+    $('li').mouseleave(function(){
+      $(this).children('.dropbox').slideUp();
+    });
+  </script>
+</body>
+</html>

@@ -21,8 +21,8 @@
     function each(array, fn) {
       for (var i = 0; i < array.length; i++) {
         //第一个参数指定this, 后面的参数分别传递到函数中的每个参数
-        fn.call(array[i], i, array[i], array);
-        fn.apply(array[i], [i, array[i], array]);
+        // fn.call(array[i], i, array[i], array);
+        // fn.apply(array[i], [i, array[i], array]);
         fn.bind(array[i])(i, array[i], array);
       }
     }

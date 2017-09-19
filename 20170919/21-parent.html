@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .choose {
+      background-color: yellowgreen;
+    }
+  </style>
+</head>
+<body>
+  <div class="form">
+    <ul>
+      <li><input type="checkbox"> content</li>
+      <li><input type="checkbox"> content</li>
+      <li><input type="checkbox"> content</li>
+      <li><input type="checkbox"> content</li>
+      <li><input type="checkbox"> content</li>
+    </ul>
+  </div>
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+    $('input[type=checkbox]').click(function(){
+      // if ($(this).is(':checked')) {
+      if ($(this)[0].checked) {
+        $(this).parent().addClass('choose');
+      } else {
+        $(this).parent().removeClass('choose');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      width: 80px;
+      height: 80px;
+      position: absolute;
+      left: 100px;
+      top: 100px;
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <div></div>
+  <div></div>
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+    $("div:eq(0)").delay(600).animate({left: 500}, 1000);
+    $("div:eq(1)").delay(1000).animate({top: 500}, 1000);
+    $("div:eq(2)").delay(1500).animate({left: 300, top: 300}, 1000);
+  </script>
+</body>
+</html>

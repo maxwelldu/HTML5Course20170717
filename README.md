@@ -1450,10 +1450,30 @@ $(选择器) 可以选中元素，并返回jQuery($.fn.init的对象)
   $(window).scroll();//滚动事件
   show();//显示
   hide();//隐藏
+  toggle(); //显示/隐藏
+  slideDown(); //下拉显示
+  slideUp(); //上拉隐藏
+  slideToggle(); //显示/隐藏
+  fadeIn(); //淡入
+  fadeOut(); //淡出
+  fadeToggle();//淡入/淡出
+  fadeTo(500, 0.3); //切换到对应的透明度; 如果说切换到对应的透明度之后再fadeIn的时候，就只能到达这种状态
   delay(600);//延迟
-  fadeOut()//淡出动画
+  stop(); stop(false,false);//停止并结下一个动画
+  stop(true);//停止并清空队列
+  stop(true, true);//瞬间完成当前的动画并清空队列
+  stop(false, true); //瞬间完成当前的动画并继续下一个
+  finish();//瞬间完成队列中所有的动画
   is(选择器);//判断jquery对象是否符合当前的选择器
-
+  index(); //返回元素在真实的亲兄弟之间的序号
+  children();//子元素，不包含孙子元素
+  find();//找后代元素，包括儿子孙子等等
+  parent();//父元素
+  parents();//祖先元素
+  each(function(index, item){
+    console.log(index, item);
+    });//遍历数组或类数组元素
+  get(1); //相当于[1], 得到的是DOM元素
 筛选器：
   $(元素)
   $(元素:first)
@@ -1463,6 +1483,10 @@ $(选择器) 可以选中元素，并返回jQuery($.fn.init的对象)
   $(元素:gt(3))
   $(元素:odd)
   $(元素:even)
+  :animated
+  :visible
+  :checked
+
 
 对同一个元素设置多个animate, 会把动画添加到动画队列当中
 jQuery的插件无非就是丰富一下jQuery对象的方法(给jquery对象的原型上面加方法)；$.fn.draggable = function(){}; 后面使用jquery选中的元素就可以此方法（$('p').draggable());

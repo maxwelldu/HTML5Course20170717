@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style type="text/css">
+  		*{
+  			margin: 0;
+  			padding: 0;
+  		}
+  		.accordion{
+  			width: 500px;
+  			margin: 100px auto;
+  			border: 1px solid #000;
+  		}
+  		.accordion ul{
+  			list-style: none;
+  		}
+  		.accordion ul li.cur h3{
+  			background-color: orange;
+
+  		}
+  		.accordion ul li h3{
+  			line-height: 40px;
+  			background-color: skyblue;
+  			padding: 0 10px;
+  			border-bottom: 1px solid #000;
+  			color:white;
+  			cursor: pointer;
+  			position: relative;
+  		}
+  		.accordion ul li .content{
+  			padding: 10px;
+  			line-height: 150%;
+  			font-size: 16px;
+  			display: none;
+  		}
+  		.accordion ul li.first .content{
+  			display: block;
+  		}
+  		.accordion ul li i{
+  			position: absolute;
+  			right: 10px;
+  			top: 10px;
+  			width: 16px;
+  			height: 16px;
+  			background-color: yellow;
+  			background: url(images/icon.png);
+  			/*css3的过渡*/
+  			transition:all 1s ease 0s;
+  		}
+  		.accordion ul li.cur i{
+  			/*有cur的时候转90度*/
+  			transform:rotate(90deg);
+  		}
+  	</style>
+  </head>
+  <body>
+  	<div class="accordion">
+  		<ul>
+  			<li class="cur first">
+  				<h3>11111111<i></i></h3>
+  				<div class="content">
+  					<p>
+  						111111111111111111111
+  					</p>
+  				</div>
+  			</li>
+  			<li>
+  				<h3>222222222<i></i></h3>
+  				<div class="content">
+  					<p>
+  						2222222222222222222222
+  					</p>
+  				</div>
+  			</li>
+  			<li>
+  				<h3>3333333333<i></i></h3>
+  				<div class="content">
+  					<p>
+  						333333333333333333333
+  					</p>
+  				</div>
+  			</li>
+  			<li>
+  				<h3>44444444444<i></i></h3>
+  				<div class="content">
+  					<p>
+  						4444444444444444444444444
+  					</p>
+  				</div>
+  			</li>
+  		</ul>
+  	</div>
+    <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+    <script>
+      $('.accordion ul li h3').click(function(){
+        //让所有的内容隐藏
+        $('.content').slideUp();
+        //判断如果当前元素的内容已经是可见的，再点击，就应该关闭
+
+        if ($(this).siblings('.content').is(':visible')) {
+          //让内容隐藏
+          $(this).siblings('.content').stop(true).slideUp();
+          //让父元素的cur样式移除
+          $(this).parent().removeClass('cur');
+        } else {
+          //打开当前的内容
+          //先将所有的cur样式移除
+          $('.cur').removeClass('cur');
+          //给自己的父元素添加一个cur样式
+          $(this).parent().addClass('cur');
+          //让自己的.content兄弟元素显示
+          $(this).siblings('.content').stop(true).slideDown();
+        }
+      })
+    </script>
+</body>
+</html>
