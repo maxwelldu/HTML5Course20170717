@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .correct {
+      color: green;
+    }
+    .failed {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  用户名：<input type="text" name="username" placeholder="请输入用户名">
+  <span class="msg"></span>
+
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+    $('input[name=username]').blur(function(){
+      $.post('http://h6.duchengjiu.top/shop/api_user.php',
+      {
+        username: $(this).val(),
+        status:   'check'
+      },
+      function(json){
+        if (json.code === 2001) {
+          //用户名已存在
+          $('span.msg').html('用户名已存在').removeClass('correct').addClass('failed');
+        } else {
+          $('span.msg').html('用户名可以正常注册').removeClass('failed').addClass('correct');
+        }
+      })
+    })
+  </script>
+</body>
+</html>

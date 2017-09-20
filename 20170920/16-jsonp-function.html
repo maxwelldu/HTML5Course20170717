@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    jsonp('http://h6.duchengjiu.top/shop/api_cat.php?format=jsonp&callback=fun', 'fun', function(data){
+      console.log(data);
+    });
+    //编写一个实用的轮子
+    function jsonp(URL, callbackname, callback) {
+      //在window对象上强行增加一个属性，这个属性就是全局变量，是一个函数的名字
+      window[callbackname] = callback;
+      //添加元素
+      var script = document.createElement('script');
+      document.body.appendChild(script);
+      script.src = URL;
+      document.body.removeChild(script);
+    }
+  </script>
+</body>
+</html>

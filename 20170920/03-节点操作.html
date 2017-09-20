@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    span {
+      display: inline-block;
+      width: 100px;
+      background-color: orange;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <a href="">百度</a>
+    <a href="">AWS</a>
+  </div>
+  <a href="">网易</a>
+  <h2>h2 content</h2>
+  <h3>h3 content</h3>
+  <ul>
+    <li>111</li>
+    <li>222</li>
+  </ul>
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+    //给每一个元素都包裹一个span
+    // $('a').wrap('<span></span>');
+
+    //把一组元素外面包裹一个span
+    $('div a').wrapAll('<span></span>');
+
+    $('h2').empty();
+    $('h3').remove();
+    $('ul li:last').clone().appendTo('ul');
+    $('ul').append($('ul li:last').clone());
+  </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <form action="">
+    <input type="text" name="username">
+    <input type="password" name="password">
+    <input type="checkbox" name="hobby" value='1'> 吃饭
+    <input name="sex" type="radio" value="2"> 男
+    <select name="city">
+      <option> 武汉 </option>
+      <option> 西安 </option>
+      <option> 长沙 </option>
+      <option> 北京 </option>
+    </select>
+    <textarea name="desc" id="" cols="30" rows="10"></textarea>
+  </form>
+  <input type="button" value='提交'>
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+    $('input[type=button]').click(function(){
+      console.log($('form').serialize());//字符串
+      console.log($('form').serializeArray());//数组
+      //对象
+      var arr = $('form').serializeArray();
+      var obj = {};
+      for (var i = 0; i < arr.length; i++) {
+        obj[arr[i].name] = arr[i].value;
+      }
+      console.log(obj);
+    });
+
+    
+  </script>
+</body>
+</html>

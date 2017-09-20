@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="box"> <h1>h1</h1> </div>
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+    //追加元素
+    $('#box').append("<p>context</p>");
+    $('#box').prepend("<p>prepend context</p>");
+
+    //创建一个元素
+    var $p = $("<p></p>");
+    //设置内容和样式
+    $p.html('p content').css("color", "red");
+    // console.dir($p);
+    //追加到 box
+    $('#box').append($p);
+
+    //将子元素追加到父元素当中
+    $("<p>content 2</p>").appendTo('#box');
+    $("<p>content 2</p>").appendTo($('#box'));
+    //将子元素添加到父元素的开头位置
+    $("<h2>h2 2</h2>").prependTo('#box');
+    $("<h2>h2 2</h2>").prependTo($('#box'));
+
+  </script>
+</body>
+</html>

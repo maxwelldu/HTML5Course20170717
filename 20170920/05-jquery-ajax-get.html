@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <ul id="cat">
+
+  </ul>
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+    $();//调用的$这个函数，返回的是一个jquery对象；这些方法为操作DOM
+    //$.get 在$这个函数（这个对象）身上有一个get方法
+    $.get("http://h6.duchengjiu.top/shop/api_cat.php", {}, function(json){
+      console.log(json);
+      console.log(typeof json);
+      var data = json.data;
+      //是每一次都添加元素到页面上性能好还是组装好所有的内容之后一次性插入性能好
+      //每次都添加，页面会渲染多次
+      var str = '';
+      for (var i = 0; i < data.length; i++) {
+        var obj = data[i];
+        str += `<li><a href="#">${obj.cat_name}</a></li>`
+      }
+      $('#cat').html(str);
+    });
+  </script>
+</body>
+</html>

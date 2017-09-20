@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+    //跨域: 浏览器限制的，浏览器为了安全起见，只允许你访问同域的资源(同源策略); src属性的资源天然允许跨域
+    //协议://域名或IP:端口/路径/文件名?查询字符串#hash值
+    //只要协议或者域名或者端口，有一个不相同，我们就称之为跨域
+    //资源：URL 统一资源定位符 URI 统一资源标识符 URI包括URL
+    //资源可以是HTML,CSS,JS,JSON字符串，图片，视频，XML，zip或其他文件
+
+    //有ajax的地方，需要放到web服务器上; 之前咱们做项目使用文件的形式也可以访问ajax的数据（原因是那个资源在服务器端设置了允许跨域)
+
+    $.get('http://www.163.com', function(data){
+      console.log(data);
+    })
+  </script>
+</body>
+</html>

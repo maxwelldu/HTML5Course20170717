@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <ul id="cat"></ul>
+  <script>
+    function $(selector) {
+      return new $.fn.init(selector);
+    }
+    $.fn = {
+      init: function(selector) {
+        var elems = document.querySelectorAll(selector);
+        for (var i = 0; i < elems.length; i++) {
+          this[i] = elems[i];
+        }
+        this.length = elems.length;
+      },
+      html: function(html) {
+        for (var i = 0; i < this.length; i++) {
+          this[i].innerHTML = html;
+        }
+        return this;
+      },
+      css: function(k, v) {
+        for (var i = 0; i < this.length; i++) {
+          this[i].style[k] = v;
+        }
+        return this;
+      }
+    }
+    $.fn.init.prototype = $.fn;
+    $.ajax = function(opt){
+      var url = opt.url;
+      var type = opt.type;
+      var dataType = opt.dataType;
+      var data = opt.data;
+      var success = opt.success;
+
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === xhr.DONE) {
+          if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
+            if (typeof success === 'function') {
+              if (dataType === 'json') {
+                success(JSON.parse(xhr.responseText));
+              }
+            }
+          }
+        }
+      }
+      xhr.open(type, url, true);
+      xhr.send();
+    }
+    $.ajax({
+      url: "http://h6.duchengjiu.top/shop/api_cat.php",
+      type: "get",//请求的方式
+      dataType: "json",//JSON, XML, HTML
+      data: {},
+      success: function (json){
+        console.log(json);
+        console.log(typeof json);
+        var data = json.data;
+        var str = '';
+        for (var i = 0; i < data.length; i++) {
+          var obj = data[i];
+          str += `<li><a href="#">${obj.cat_name}</a></li>`
+        }
+        $('#cat').html(str);
+      }
+    });
+  </script>
+</body>
+</html>

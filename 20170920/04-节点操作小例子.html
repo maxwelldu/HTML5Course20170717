@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      border: 1px solid red;
+      width: 300px;
+      float: left;
+      margin-right: 100px;
+      min-height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div id="box1">
+    <ul>
+      <li><input type="checkbox"> 吃饭</li>
+      <li><input type="checkbox"> 睡觉</li>
+      <li><input type="checkbox"> 打豆豆</li>
+    </ul>
+  </div>
+
+  <button>&gt;&gt;&gt;&gt;</button>
+  <button>&lt;&lt;&lt;&lt;</button>
+  <div id="box2">
+    <ul>
+
+    </ul>
+  </div>
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+    $('button').eq(0).click(function(){
+      $("#box1 input:checked").parent().appendTo('#box2 ul');
+      //保持所有的checkbox不被选中
+      // $('input').attr('diy', false); //用来设置自定义属性
+      $('input').prop('checked', false); //用来设置本来就有的属性
+      /*
+      对于HTML元素本身就带有的固有属性，在处理时，使用prop方法。
+      对于HTML元素我们自己自定义的DOM属性，在处理时，使用attr方法。
+      */
+    });
+    $('button:eq(1)').click(function(){
+      $('#box2 input:checked').parent().appendTo('#box1 ul');
+      $('input').prop('checked', false);
+    })
+  </script>
+</body>
+</html>

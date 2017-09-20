@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+    $.ajax({
+      url: "http://h6.duchengjiu.top/shop/api_cat.php?format=jsonp&callback=fun",
+      dataType: 'jsonp',
+      jsonpCallback: "fun",
+      success: function(data){
+        console.log(data);
+      }
+    })
+  </script>
+</body>
+</html>

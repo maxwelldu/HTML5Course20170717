@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="box">div #box</div>
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script>
+    //要添加的元素.insertBefore，添加到哪个元素前面
+    $('<p>p content1</p>').insertBefore($('#box'));
+    $('<p>p content2</p>').insertBefore('#box');
+
+    $('#box').before('<p>p before</p>');
+    $('#box').after('<p>p after</p>');
+
+    $('<p>p content3</p>').insertAfter($('#box'));
+    $('<p>p content4</p>').insertAfter('#box');
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  /*
+    请求数据，得到json
+    请求数据回来之后调用一个函数去处理 fun(json){
+    }
+    */
+
+    /*
+    先定义处理数据的方法fun(json) {
+    }
+    然后再调用这个函数, 在调用的时候把数据传递进去
+    */
+
+    //JSONP JSON+Padding
+    //fun(json);
+    //定义函数
+    function fun(obj) {
+      console.log(obj);
+    }
+  </script>
+  <script src="http://h6.duchengjiu.top/shop/api_cat.php?format=jsonp&callback=fun" charset="utf-8"></script>
+</body>
+</html>
