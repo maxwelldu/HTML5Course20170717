@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <span></span>
+  <input type="button" value="抽奖">
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script src="underscore.js" charset="utf-8"></script>
+  <script>
+    var arr = [
+      "张津源",
+      "吴启金",
+      "李龙",
+      "邱应豪",
+      "马东旭",
+      "张乔宽",
+      "首欣颐",
+      "邓浩",
+      "桂康",
+      "凯玉"
+    ];
+    $('input').click(function(){
+      //随机一个人
+      var person = _.sample(arr);//随机挑选一个样本
+      arr = _.without(arr, person);
+      $('span').html(person);
+    });
+  </script>
+</body>
+</html>

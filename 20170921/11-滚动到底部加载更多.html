@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>商品列表页</title>
+</head>
+<body>
+  <div id="goods-list">
+  </div>
+
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script src="underscore.js" charset="utf-8"></script>
+  <script>
+    var page = 1;
+    var pagesize = 100;
+    function getContent() {
+      $.get('http://h6.duchengjiu.top/shop/api_goods.php', {page, pagesize}, function(json){
+        var template = "<div> <img src=<%= goods_thumb %> /> </div> <div> <%= goods_name %> </div> <div> <%= price %> </div>";
+        var compile = _.template(template);
+        for (var i = 0; i < json.data.length; i++) {
+          var data = json.data[i];
+          $('#goods-list').html( $('#goods-list').html() + compile(data));
+        }
+        lock = true;
+      });
+    }
+    getContent();
+
+    var lock = true;
+    // 当我们滚动到页面底部的时候 (百分之七十的时候我们就加载更多)
+    $(window).scroll(function(){
+      if (!lock) return;
+      var rate = $(document).scrollTop() / $(document).height();
+      console.log(rate);
+      if (rate > 0.7) {
+        getContent(++page);
+        lock = false;//加锁
+      }
+    });
+  </script>
+</body>
+</html>
