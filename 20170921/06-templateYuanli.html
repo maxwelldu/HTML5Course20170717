@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!--script type="text/template" id="temp">
+    <div>${name} ${money}</div>
+  </script-->
+  <template id="temp">
+    <div>${name} ${money}</div>
+  </template>
+
+  <script>
+    //模板的诞生是因为遇到了问题？
+    //模板技术之前是从后端借鉴过来的
+    //为了能够更好的和前端合作
+    var data = {
+      name: 'iphonex',
+      money: '8888'
+    };
+
+    var template = document.querySelector('#temp').innerHTML;
+    function compile(template, data) {
+      return template.replace(/\$\{([a-zA-Z_]+)\}/g, function(match, $1) {
+        return data[$1];
+      });
+    }
+    console.log(compile(template, data));
+  </script>
+</body>
+</html>

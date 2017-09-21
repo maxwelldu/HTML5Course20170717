@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var obj = {
+      username: 'maxwell'
+    };
+    obj.username;
+    //在解析的时候，先判断前面的这个内容是null还是undefined, 如果是这两种直接报错了
+    //如果前面的是对象，直接获取这个对象里面对应的这个属性名的内容
+    //如果前面的是一个基础的数据类型，比如字符串；会临时用包装对象包装起来，去访问对应的属性和方法
+
+    obj[username]; //这里的username是一个变量，他的值不知道是什么
+    obj['username']; //和上面.的解析方式一样；最后查找对象当中属性名为中括号里面的字符串对应的属性的值
+    //中括号里面不管你写什么，会先进行计算，计算完成之后最终在内部都会是字符串
+    obj['user' + 'name'];
+    var un = 'username';
+    obj[un];
+  </script>
+</body>
+</html>

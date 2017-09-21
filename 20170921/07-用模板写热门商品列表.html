@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    li {
+      list-style: none;
+      float: left;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      /*width: 200px;*/
+      /*height: 350px;*/
+      overflow: hidden;
+    }
+    li img {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <template>
+    <li>
+      <a href="08-goods.html?goods_id=${goods_id}">
+        <div><img src="${goods_thumb}"></div>
+        <div>${goods_name}</div>
+        <div>${price}</div>
+      </a>
+    </li>
+  </template>
+  <ul id="hot-goods">
+  </ul>
+  <script>
+  function $(selector) {
+    return new $.fn.init(selector);
+  }
+  $.fn = {
+    init: function(selector) {
+      var elems = document.querySelectorAll(selector);
+      for (var i = 0; i < elems.length; i++) {
+        this[i] = elems[i];
+      }
+      this.length = elems.length;
+    },
+    html: function(html) {
+      for (var i = 0; i < this.length; i++) {
+        this[i].innerHTML = html;
+      }
+      return this;
+    },
+    css: function(k, v) {
+      for (var i = 0; i < this.length; i++) {
+        this[i].style[k] = v;
+      }
+      return this;
+    }
+  }
+  $.fn.init.prototype = $.fn;
+  $.ajax = function(opt){
+    var url = opt.url;
+    var type = opt.type;
+    var dataType = opt.dataType;
+    var data = opt.data;
+    var success = opt.success;
+
+    if (dataType === 'jsonp') {
+      var callbackname = opt.jsonpCallback;
+      window[callbackname] = success;
+      var oScript = document.createElement('script');
+      document.body.appendChild(oScript);
+      oScript.src = url;
+      document.body.removeChild(oScript);
+    } else {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === xhr.DONE) {
+          if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
+            if (typeof success === 'function') {
+              if (dataType === 'json') {
+                success(JSON.parse(xhr.responseText));
+              }
+            }
+          }
+        }
+      }
+      xhr.open(type, url, true);
+      xhr.send();
+    }
+  }
+
+    var oGoods = document.querySelector('#hot-goods');
+    $.ajax({
+      url:'http://h6.duchengjiu.top/shop/api_goods.php',
+      type: 'get',
+      dataType: 'json',
+      success:  function(json){
+      console.log(json);
+      var data = json.data;
+
+      for (var i = 0; i < data.length; i++) {
+        var obj = data[i];
+        var template = document.querySelector('template').innerHTML;
+
+        oGoods.innerHTML += compile(template, obj);
+      }
+    }
+  });
+
+  function compile(template, data) {
+    return template.replace(/\$\{([a-zA-Z_]+)\}/g, function(match, $1) {
+      return data[$1];
+    });
+  }
+  </script>
+</body>
+</html>

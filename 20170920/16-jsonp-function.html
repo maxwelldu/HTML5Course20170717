@@ -15,6 +15,7 @@
     function jsonp(URL, callbackname, callback) {
       //在window对象上强行增加一个属性，这个属性就是全局变量，是一个函数的名字
       window[callbackname] = callback;
+      // 宿主对象 window
       //添加元素
       var script = document.createElement('script');
       document.body.appendChild(script);

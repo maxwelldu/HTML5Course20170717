@@ -1436,7 +1436,20 @@ $(选择器) 可以选中元素，并返回jQuery($.fn.init的对象)
   removeClass(类名); //移除类名
   siblings(); 返回所有的兄弟元素
   clone(); 克隆元素
-  appendTo(父元素); 添加到父元素内部
+  父元素.append(子元素);//追加到后面
+  父元素.prepend(子元素);//在父元素的内部头部插入
+  子元素.appendTo(父元素); //添加到父元素内部
+  子元素.prependTo(父元素);
+  新元素.insertBefore(旧元素);
+  新元素.insertAfter(旧元素);
+  旧元素.before(新元素);
+  旧元素.after(新元素);
+  旧元素.wrap(新元素);//用新元素包裹旧元素
+  旧元素.wrapAll(新元素);//把所有的旧元素作为一组，在外面包裹新元素
+  元素.empty(); //将元素内部的innerHTML清空
+  元素.remove(); //移除元素
+  元素.attr() ;//设置或获取自定义属性
+  元素.prop(); //设置或获取元素固有的属性
   jquery对象转DOM对象；$('p')[1];
   DOM对象转jQuery对象：$(DOM对象或DOM字符串) $(window) $(document) $(this) $("<div></div>").appendTo()
   width()//width
@@ -1474,6 +1487,30 @@ $(选择器) 可以选中元素，并返回jQuery($.fn.init的对象)
     console.log(index, item);
     });//遍历数组或类数组元素
   get(1); //相当于[1], 得到的是DOM元素
+  $.get(url, {}, function(json){
+    }); //返回的数据如果是json字符串, 自动帮我们转换成了对象，我们可以直接使用
+  $.post(url, {}, function(json){
+    });//返回的数据是json字符串会自动转换
+  $.ajax({
+    url: 地址,
+    type: 请求方式get/post,
+    dataType: 指定返回的数据类型,
+    data: 请求时的数据对象,
+    success: 成功时的回调
+    })
+  表单元素.serialize(); //获取表单当中的所有包含name属性的输入元素的查询字符串; k=v&k1=v1
+  表单元素.serializeArray(); //获取表单当中所有包含name属性的输入元素的数组
+  想要获取对应的对象：
+  function formArrayToObject(arr) {
+    var obj = {};
+      for (var i = 0; i < arr.length; i++) {
+        obj[arr[i].name] = arr[i].value;
+      }
+      return obj;
+  }
+  var formArray = $("form").serializeArray();
+  var formObject = formArrayToObject(formArray);
+
 筛选器：
   $(元素)
   $(元素:first)
@@ -1491,7 +1528,18 @@ $(选择器) 可以选中元素，并返回jQuery($.fn.init的对象)
 对同一个元素设置多个animate, 会把动画添加到动画队列当中
 jQuery的插件无非就是丰富一下jQuery对象的方法(给jquery对象的原型上面加方法)；$.fn.draggable = function(){}; 后面使用jquery选中的元素就可以此方法（$('p').draggable());
 
+##20170920
+浏览器端跨域
+同源策略(浏览器)
+浏览器同一时间向同一个域名只能发送8个请求；所以使用多个域名的方式提升性能（为了服务器的安全，一次只能向同一个域名发送8个请求)
+怎么区分数组和类数组（看原型）
+URL：协议://IP地址或域名:端口/路径/文件?查询字符串#hash
+http://www.163.com/a/b.html
+http默认的是80端口
+https://www.163.com/a/b.html
+如果你网站的协议是使用的https, 那你请求的所有资源都需要是https
 
+服务器端是可以跨域；可以用后端语言做爬虫（爬虫把一个页面就当成一个API）
 
 箭头函数
 明天说内网穿透，让你的网站能够被其他人看到
