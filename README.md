@@ -1540,6 +1540,57 @@ https://www.163.com/a/b.html
 如果你网站的协议是使用的https, 那你请求的所有资源都需要是https
 
 服务器端是可以跨域；可以用后端语言做爬虫（爬虫把一个页面就当成一个API）
+jsonp:
+jsonp('http://h6.duchengjiu.top/shop/api_cat.php?format=jsonp&callback=fun', 'fun', function(data){
+  console.log(data);
+});
+//编写一个实用的轮子
+function jsonp(URL, callbackname, callback) {
+  //在window对象上强行增加一个属性，这个属性就是全局变量，是一个函数的名字
+  window[callbackname] = callback;
+  // 宿主对象 window
+  //添加元素
+  var script = document.createElement('script');
+  document.body.appendChild(script);
+  script.src = URL;
+  document.body.removeChild(script);
+}
+jquery中的jsonp:
+$.ajax({
+  url: "http://h6.duchengjiu.top/shop/api_cat.php?format=jsonp&callback=fun",
+  dataType: 'jsonp',
+  jsonpCallback: "fun",
+  success: function(data) {
+    console.log(data);
+  }
+});
+
+模板引擎：
+  template标签用来存放模板的内容，不会显示在页面上
+
+jquery插件开发：
+  一种是往jquery的原型上面加方法： $.fn上面加方法, 比如 $.fn.draggable
+  一种是往jquery构造函数本身加方法：$.加方法，比如ajax这种, $.ajax
+  $.fn.draggable = function(){
+    for (var i = 0; i < this.length; i++) {
+      this[i].onmousedown = function(event){
+        event = event || window.event;
+        var deltaX = event.clientX - this.offsetLeft;
+        var deltaY = event.clientY - this.offsetTop;
+        this.style.position = 'absolute';
+        document.onmousemove = event => {
+          event = event || window.event;
+          this.style.top = event.clientY - deltaY + 'px';
+          this.style.left = event.clientX - deltaX + 'px';
+        }
+      }
+      document.onmouseup = function(event) {
+        document.onmousemove = null;
+      }
+    }
+  }
+
+prototype.js
 
 箭头函数
 明天说内网穿透，让你的网站能够被其他人看到
@@ -1550,3 +1601,15 @@ https://www.163.com/a/b.html
 - 20170831 写事件委托删除ul中的li子元素
 - 20170901 写拖拽模型
 - 20170902 getAllTop方法
+
+所有口头描述必须能够用一句话描述出来；要用类比的方式(生活中的比喻)：
+20170922上午 口头描述一下如何使用jsonp跨域 因为src属性可以跨域，所以利用这个特性；动态的创建script标签，并设置src属性，添加到页面上，这个script的内容就会立即执行，在当前页面上定义一个函数，这个外部的js文件调用这个函数，并传递json数据作为参数；jsonp
+一句话：外部的js文件调用你定义的函数并传递json数据
+20170921 口头描述对同步异步的理解   https://www.zhihu.com/question/19732473
+口头描述一下jquery的jsonp底层实现
+口头描述一下对模板引擎的理解 一个静态的字符串，数据；把数据替换字符串中特定标记位置的内容；
+20170922下午 口头描述你对jquery的理解
+口头描述你对underscore的理解
+口头描述浅拷贝和深拷贝的区别
+口头描述点语法和括号的区别
+描述GET和POST请求的区别

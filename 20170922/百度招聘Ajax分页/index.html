@@ -1,0 +1,393 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			background-color: #ccc;
+		}
+		.content{
+			background-color: white;
+			width: 1100px;
+			margin: 0 auto;
+			font-size: 12px;
+			padding: 20px;
+		}
+		.content .jobtable{
+			position: relative;
+		}
+		.content .row{
+			overflow: hidden;
+			line-height: 40px;
+			position: relative;
+		}
+		.content .hd{
+			font-weight: bold;
+		}
+		.content .row .cols{
+			overflow: hidden;
+			position: relative;
+			border-bottom: 1px solid #ccc;
+		}
+		.content .row .col{
+			float: left;
+		}
+		.content .row .col1{
+			width: 30%;
+		}
+		.content .row .col2{
+			width: 15%;
+		}
+		.content .row .col3{
+			width: 20%;
+		}
+		.content .row .col4{
+			width: 20%;
+		}
+		.content .row .col3{
+			width: 15%;
+		}
+		.content .info{
+			overflow: hidden;
+			font-size: 16px;
+			line-height: 32px;
+		}
+		.content .info h3{
+			float: left;
+		}
+		.content .info p{
+			float: right;
+		}
+		.content .row_btn{
+			position: absolute;
+			width: 21px;
+			height: 10px;
+			background-color: red;
+			right: 10px;
+			top: 50%;
+			margin-top: -5px;
+			background: url(images/banner-icon.png)  -28px -146px;
+			cursor: pointer;
+		}
+		.content .row_btn.up{
+			background-position: -2px -145px;
+		}
+		.content .detail{
+			display: none;
+			border-bottom: 1px solid #ccc;
+		}
+		.content .pageNav{
+			margin-top: 10px;
+			width: 259px;
+			margin: 20px auto;
+		}
+		.content .pageNav ul{
+			list-style: none;
+			overflow: hidden;
+		}
+		.content .pageNav ul li{
+			float: left;
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			margin-right: 5px;
+			cursor: pointer;
+			border: 1px solid #ccc;
+		}
+		.content .pageNav ul li.cur{
+			background-color: yellowgreen;
+		}
+		.mask{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background:url(images/busy.gif) no-repeat center center;
+			z-index: 999;
+		}
+	</style>
+</head>
+<body>
+	<div class="content">
+		<div class="info">
+			<h3>职位信息</h3>
+			<p>一共有444个职位</p>
+		</div>
+		<div class="jobtable" id="jobtable">
+			<div class="mask"></div>
+			<div class="row hd">
+				<div class="cols">
+					<div class="col col1">职位名称</div>
+					<div class="col col2">职位类别</div>
+					<div class="col col3">工作地点</div>
+					<div class="col col4">招聘人数</div>
+					<div class="col col5">更新时间</div>
+				</div>
+			</div>
+		</div>
+		<div class="pageNav">
+			<ul>
+				<li class="cur"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</div>
+
+	<script type="text/template" id="row_template">
+		<div class="row">
+			<div class="cols">
+				<div class="col col1"><a href='<%=link%>'><%=name%></a></div>
+				<div class="col col2"><%=postType%></div>
+				<div class="col col3"><%=workPlace%></div>
+				<div class="col col4"><%=recruitNum%></div>
+				<div class="col col5"><%=publishDate%></div>
+				<div class="row_btn"></div>
+			</div>
+			<div class="detail">
+				<div className="serviceCondition">
+					<h5>入职资格： </h5>
+					<%=serviceCondition%></div>
+				<div className="workContent">
+					<h5>工作内容： </h5>
+					<%=workContent%></div>
+			</div>
+		</div>
+	</script>
+
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript" src="js/underscore.js"></script>
+
+	<script type="text/javascript">
+
+		var compileFunction = _.template($("#row_template").html());
+
+		//检索结果行类。构造函数。JS中的组件开发，就是维护代码的一种方式。
+ 		function JobRow(dictionary){
+ 			//得到字典，构造函数传进来的
+ 			this.dictionary = dictionary;
+ 			//字典修正
+ 			this.dictionary.link = "http://talent.baidu.com/external/baidu/index.html#/jobDetail/2/" + this.dictionary.postId;
+
+ 			if(this.dictionary.postType.indexOf("技术") != -1){
+ 				this.dictionary.postType = "技术";
+ 			}
+ 			//自己的DOM字符串，用数据绑定函数传入自己的字典生成的
+ 			this.DOMString = compileFunction(this.dictionary);
+ 			//转为jQuery对象，$DOM就是自己这个大盒子所有DOM，此时是孤儿节点
+ 			this.$DOM = $(this.DOMString);
+ 			//但是即使是孤儿节点，也能够调用find方法
+ 			this.$rowBtn = this.$DOM.find(".row_btn");
+ 			this.$detail = this.$DOM.find(".detail");
+ 			//信号量，表示自己是否打开
+ 			this.state = 0;	//0-没打开，1-打开了
+
+ 			//上页面
+ 			this.render();
+ 			//绑定监听
+ 			this.bindEvent();
+ 			//让jobtable实例的数组里面添加自己
+ 			jobtable.addElement(this);
+ 		}
+ 		//渲染，所谓的渲染就是让自己的孤儿节点追加到页面的DOM树上
+ 		JobRow.prototype.render = function(){
+ 			//在页面的jobtable元素里面追加节点，追加自己的$DOM
+ 			jobtable.$DOM.append(this.$DOM);
+ 		}
+ 		//绑定事件监听
+ 		JobRow.prototype.bindEvent = function(){
+ 			var self = this;
+ 			//按钮的事件监听
+ 			this.$rowBtn.click(function(){
+ 				if(self.state == 0){
+	 				//让自己的细节盒子打开
+	 				self.$detail.stop(true).slideDown();
+	 				//自己追加类
+	 				$(this).addClass("up");
+	 				self.state = 1;
+	 			}else{
+	 				//让自己的细节盒子打开
+	 				self.$detail.stop(true).slideUp();
+	 				//自己追加类
+	 				$(this).removeClass("up");
+	 				self.state = 0;
+	 			}
+ 			});
+ 		}
+ 		//自杀方法
+ 		JobRow.prototype.killMySelf = function(){
+ 			//删除自己的DOM
+ 			this.$DOM.remove();
+ 		}
+
+
+
+ 	 	//jobtable也是一个类
+ 	 	function JobTable(){
+ 	 		//自己的DOM
+ 	 		this.$DOM = $("#jobtable");
+ 	 		//自己的工作结果数组
+ 	 		this.jobrows = [];
+ 	 		//自己的导航条
+ 	 		this.pagenav = new PageNav();
+ 	 		//读取hash ， 转到这个page上 。 substr(1)就是去掉#
+ 	 		if(window.location.hash == ""){
+ 	 			window.location.hash = 1;
+ 	 		}
+ 	 		var pagenum = parseInt(window.location.hash.substr(1));
+ 	 		this.gotoPage(pagenum);
+ 	 	}
+ 	 	//添加jobrow实例
+ 	 	JobTable.prototype.addElement = function(element){
+ 	 		this.jobrows.push(element);
+ 	 	};
+ 	 	//换页方法
+ 	 	JobTable.prototype.gotoPage = function(pageNum){
+ 	 		var self = this;
+ 	 		//用Ajax请求新的数据
+ 	 		$.get("JSON/getPostList" + pageNum , function(data){
+ 	 			//请求回来之后做的事情
+ 	 			//转为object对象
+ 	 			var dataObj = eval("(" + data + ")");
+ 	 			//总页数
+ 	 			var totalPage = dataObj.totalPage;
+ 	 			self.pagenav.update(pageNum , totalPage);
+
+
+ 	 			//删除所有的jobrow对象，就是遍历自己的jobrows数组，调用他们的killMySelf方法
+ 	 			_.each(self.jobrows,function(jobrow){
+ 	 				jobrow.killMySelf();
+ 	 			});
+ 	 			//遍历所有的字典，创建新的jobrow，new出来新的就行了
+ 	 			_.each(dataObj.postList,function(dictionary){
+ 	 				new JobRow(dictionary);
+ 	 			});
+
+ 	 			//开锁
+ 	 			lock = true;
+
+ 	 			//让mask消失
+ 	 			$(".mask").hide();
+ 	 		});
+ 	 	}
+
+
+ 	 	//导航条的类
+ 	 	function PageNav(maxPage){
+ 	 		this.curPage = 1;
+ 	 		this.maxPage = maxPage;
+ 	 		this.$DOM = $(".pageNav");
+ 	 		this.$lis = this.$DOM.find("li");
+ 	 		//渲染
+ 	 		this.render();
+ 	 		//监听
+ 	 		this.bindEvent();
+ 	 	}
+ 	 	PageNav.prototype.init = function(){
+
+ 	 	}
+ 	 	//导航条的更新
+ 	 	PageNav.prototype.update = function(curPage,maxPage){
+ 	 		this.curPage = curPage;
+ 	 		this.maxPage = maxPage;
+ 	 		this.render();
+ 	 	}
+ 	 	//渲染方法
+ 	 	PageNav.prototype.render = function(){
+ 	 		//换cur
+ 	 		//根据不同情况有不同的7小格的序号编排（看笔记）：
+ 	 		if(this.curPage >= 1 && this.curPage <= 3){
+ 	 			this.$lis.eq(0).html("1");
+ 	 			this.$lis.eq(1).html("2");
+ 	 			this.$lis.eq(2).html("3");
+ 	 			this.$lis.eq(3).html("4");
+ 	 			this.$lis.eq(4).html("…");
+ 	 			this.$lis.eq(5).html(this.maxPage-1);
+ 	 			this.$lis.eq(6).html(this.maxPage);
+ 	 			//cur
+ 	 			this.$lis.eq(this.curPage - 1).addClass("cur").siblings().removeClass("cur");
+ 	 		}else if(this.curPage <= this.maxPage && this.curPage >=  this.maxPage - 2){
+ 	 			this.$lis.eq(0).html("1");
+ 	 			this.$lis.eq(1).html("2");
+ 	 			this.$lis.eq(2).html("…");
+ 	 			this.$lis.eq(3).html(this.maxPage-3);
+ 	 			this.$lis.eq(4).html(this.maxPage-2);
+ 	 			this.$lis.eq(5).html(this.maxPage-1);
+ 	 			this.$lis.eq(6).html(this.maxPage);
+ 	 			//cur
+ 	 			this.$lis.eq(this.curPage - this.maxPage - 1).addClass("cur").siblings().removeClass("cur");
+ 	 		}else{
+ 	 			this.$lis.eq(0).html("1");
+ 	 			this.$lis.eq(1).html("…");
+ 	 			this.$lis.eq(2).html(this.curPage - 1);
+ 	 			this.$lis.eq(3).html(this.curPage);
+ 	 			this.$lis.eq(4).html(this.curPage + 1);
+ 	 			this.$lis.eq(5).html("…");
+ 	 			this.$lis.eq(6).html(this.maxPage);
+ 	 			//cur
+ 	 			this.$lis.eq(3).addClass("cur").siblings().removeClass("cur");
+ 	 		}
+ 	 	}
+ 	 	//监听
+ 	 	PageNav.prototype.bindEvent = function(){
+ 	 		var self = this;
+ 	 		this.$lis.click(function(){
+ 	 			if(!lock) return;
+ 	 			//写"…"的小格格不能被点击
+ 	 			if($(this).html() == "…"){
+ 	 				return;
+ 	 			}
+ 	 			//得到点击的这个格格里面的文本
+ 	 			var num = parseInt($(this).html());
+
+ 	 			//命令表格来进行换页
+ 	 			jobtable.gotoPage(num);
+ 	 			//让loading图显示
+ 	 			$(".mask").show();
+ 	 			//更新URL的hash
+ 	 			window.location.hash = num;
+
+ 	 			lock = false;
+ 	 		});
+ 	 	}
+
+ 	 	//锁
+ 	 	var lock = true;
+
+ 	 	var jobtable = new JobTable();
+
+/*
+		每一行是一个类(构造函数)
+		state = 0; = 1
+		table.addElement(this);//把自己添加到表格的数组当中
+		render();//调用table.$DOM.append()将当前行添加到表格当中
+		bindEvent()
+		killMySelf()
+
+		表格类（构造函数）
+		rows; 存放所有的行对象
+		page = //从location.hash里面读取一个页面值
+		addElement();  把一行加到表格对象当中
+		gotoPage(page);//调用分页的update()方法更新页码；把当前rows里面的所有行删除，new Row()对象生成新的行
+
+		分页类（构造函数）
+		curPage
+		maxPage
+		render(); // 显示出来，根据不同的页面显示不同的分页
+		update();//修改一下当前页的信号量，调用render()
+		bindEvent(); //只给不是...的li元素添加事件；当点击的时候调用表格.gotoPage(); 并且设置location.hash的值
+		*/
+	</script>
+</body>
+</html>

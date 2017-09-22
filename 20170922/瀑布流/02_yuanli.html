@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			background-color: #ccc;
+		}
+		.waterfall{
+			width: 790px;
+			margin: 0 auto;
+			position: relative;
+		}
+		.grid{
+			position: absolute;
+			width: 230px;
+			background-color: white;
+			padding: 10px;
+			border-radius: 15px;
+		}
+		.grid img{
+			width: 230px;
+		}
+	</style>
+</head>
+<body>
+	<h3>瀑布流的算法2，看哪个列最矮，插入在哪个列</h3>
+	<div class="waterfall">
+		<div class="grid">
+			<img src="images/0.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/1.png" alt="" />
+			<p>内容内容内容内容内容内容内内容内容内容内内容内容内容内内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/2.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/3.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/4.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/5.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/6.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/7.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/8.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/9.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/10.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/11.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/12.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript" src="js/underscore.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			//每个格格不一定往自己序号%3这个列插入，看哪个列目前最矮，插在哪里
+
+			//得到所有的grid
+			$grids = $(".grid");
+ 			
+ 			//用一个数组存储当前三个列的总高度
+ 			var colHeight = [0,0,0];
+
+ 			// 遍历小格格
+ 			$grids.each(function(){
+ 				//找一下当前的最短列是谁
+ 				var minValue = _.min(colHeight);
+ 				//看一下最短列出现在index几的位置上
+ 				var minIndex = _.indexOf(colHeight,minValue);
+
+ 				$(this).css({
+ 					"top" : minValue ,
+ 					"left" : minIndex * 270
+ 				});
+
+ 				colHeight[minIndex] += $(this).outerHeight() + 20;
+ 			})
+	 	}
+	</script>
+</body>
+</html>

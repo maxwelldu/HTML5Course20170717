@@ -14,7 +14,7 @@
   <script src="underscore.js" charset="utf-8"></script>
   <script>
     var page = 1;
-    var pagesize = 100;
+    var pagesize = 10;
     function getContent() {
       $.get('http://h6.duchengjiu.top/shop/api_goods.php', {page, pagesize}, function(json){
         var template = "<div> <img src=<%= goods_thumb %> /> </div> <div> <%= goods_name %> </div> <div> <%= price %> </div>";

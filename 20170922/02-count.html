@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  function count(arr, fn) {
+    var obj = {};
+    for (var i = 0; i < arr.length; i++) {
+      var r = fn(arr[i]);
+      if (obj.hasOwnProperty(r)) {
+        obj[r]++;
+      } else {
+        obj[r] = 1;
+      }
+    }
+    return obj;
+  }
+  var arr = [
+    {"name":"小明","age":16},
+    {"name":"小红","age":20},
+    {"name":"小绿","age":13},
+    {"name":"大明","age":27}
+  ];
+  var result = count(arr,function(item){
+    if(item.age >= 18 && item.age <= 20){
+      return "少年";
+    }else if(item.age < 18){
+      return "孩子";
+    }else if(item.age > 20){
+      return "老年";
+    }
+  });
+  </script>
+</body>
+</html>

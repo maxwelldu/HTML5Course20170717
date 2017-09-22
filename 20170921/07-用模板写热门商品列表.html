@@ -99,10 +99,9 @@
       console.log(json);
       var data = json.data;
 
+      var template = document.querySelector('template').innerHTML;
       for (var i = 0; i < data.length; i++) {
         var obj = data[i];
-        var template = document.querySelector('template').innerHTML;
-
         oGoods.innerHTML += compile(template, obj);
       }
     }

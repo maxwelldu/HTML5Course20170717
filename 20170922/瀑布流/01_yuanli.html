@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			background-color: #ccc;
+		}
+		.waterfall{
+			width: 790px;
+			margin: 0 auto;
+			position: relative;
+		}
+		.grid{
+			position: absolute;
+			width: 230px;
+			background-color: white;
+			padding: 10px;
+			border-radius: 15px;
+		}
+		.grid img{
+			width: 230px;
+		}
+	</style>
+</head>
+<body>
+	<div class="waterfall">
+		<div class="grid">
+			<img src="images/0.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/1.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/2.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/3.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/4.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/5.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/6.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/7.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/8.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/9.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/10.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/11.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+		<div class="grid">
+			<img src="images/12.png" alt="" />
+			<p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			//得到所有的grid
+			var $grids = $(".grid");
+
+			$grids.each(function(){
+				var sum = 0;
+				//遍历它上面的人的总高度
+				for(var i = $(this).index() - 3 ; i >= 0 ; i-=3){
+					sum += $grids.eq(i).outerHeight() + 20;
+				}
+				$(this).css({
+					"top" : sum,
+					"left" : ($(this).index() % 3) * 270
+				})
+			});
+	 	}
+	</script>
+</body>
+</html>

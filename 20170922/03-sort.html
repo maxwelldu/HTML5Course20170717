@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var arr = [32,45,32,2,32,4,3,65,78,4,5];
+    var a = arr.sort(function(a,b){
+      return b - a;
+    });
+
+
+    var arr = [35,47,23,36,12,49];
+    //冒泡
+    for (var i = 0; i < arr.length - 1; i++) {
+      for (var j = arr.length - 1; j > i; j--) {
+        if (arr[j] > arr[j-1]) {
+          var temp = arr[j];
+          arr[j] = arr[j-1];
+          arr[j-1] = temp;
+        }
+      }
+    }
+    console.log(arr);
+
+
+    //快排
+    var arr = [35,47,23,36,12,49];
+    function quick(arr) {
+      if (arr.length <= 1) {
+        return arr;
+      }
+      var middle = 0,
+          rightArr = [],
+          leftArr = [];
+      var middleValue = arr.splice(middle, 1);
+      for (var i = 0; i < arr.length; i++) {
+        if (middleValue < arr[i]) {
+          rightArr.push(arr[i]);
+        } else {
+          leftArr.push(arr[i]);
+        }
+      }
+      return quick(leftArr).concat(middleValue, quick(rightArr));
+    }
+    console.log(quick(arr));
+
+  </script>
+</body>
+</html>

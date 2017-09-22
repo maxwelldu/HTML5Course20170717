@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="prototype-1.6.0.3.js" charset="utf-8"></script>
+</head>
+<body>
+  <script>
+    console.dir(Object);
+    console.dir(Array);
+
+    var obj = {
+      username: "maxwelldu",
+      classmates: [
+
+      ]
+    };
+    var obj2 = obj;//多加了一个引用
+    //拷贝一个对象
+    //深拷贝需要不断的将值为对象的内容递归遍历
+    var obj3 = {};
+    for (var k in obj) {
+      obj3[k] = obj[k];
+    }
+
+    var obj4 = Object.clone(obj);
+    console.log(obj,obj2,obj3, obj4);
+    console.log(obj === obj2);//true
+    console.log(obj === obj3);//false
+    console.log(obj === obj4);//false
+  </script>
+</body>
+</html>
