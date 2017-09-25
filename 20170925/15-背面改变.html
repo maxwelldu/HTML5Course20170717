@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div { width: 258px; height: 258px;
+      border: 1px solid #000; perspective: 500px; margin: 100px;
+      position: relative;
+    }
+    img { width: 100%; height: 100%; border: 1px solid #000;
+      transition: all 3s ease 0s;
+      backface-visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    img:first-child {
+      transform: rotateX(-180deg);
+    }
+    div:hover img:first-child { transform: rotateX(0deg); }
+    div:hover img:last-child { transform: rotateX(180deg); }
+  </style>
+</head>
+<body> <div> <img src="./images/3.jpg" alt=""> <img src="./images/2.jpg" alt=""> </div> </body>
+</html>

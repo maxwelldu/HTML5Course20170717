@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #333;
+    }
+    ul {
+      list-style: none;
+      margin: 100px;
+    }
+    ul li {
+      float: left;
+      width: 107px;
+      height: 107px;
+      text-align: center;
+      position: relative;
+      margin-right: 50px;
+    }
+    ul li div:first-child {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 107px;
+      height: 107px;
+      transition: all 0.5s ease 0s;
+    }
+    ul li:first-child div:first-child {
+      background: url(images/a_1.png);
+    }
+    ul li:nth-child(2) div:first-child {
+      background: url(images/a_2.png);
+    }
+    ul li:first-child:hover div:first-child {
+      background: url(images/a_1_h1.png); transform: rotate(360deg);
+    }
+    ul li:nth-child(2):hover div:first-child {
+      background: url(images/a_2_h1.png); transform: rotate(360deg);
+    }
+
+    ul li div:nth-of-type(2) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 107px;
+      height: 107px;
+      line-height: 157px;
+    }
+
+    ul li div:nth-of-type(2) a {
+      display: block;
+      width: 107px;
+      height: 107px;
+      font-size: 14px;
+      color: white;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li>
+      <div></div>
+      <div><a href="#">学车流程</a></div>
+    </li>
+    <li>
+      <div></div>
+      <div><a href="#">报名缴费</a></div>
+    </li>
+  </ul>
+</body>
+</html>

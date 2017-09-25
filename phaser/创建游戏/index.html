@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>创建游戏</title>
+	<script src="js/phaser.js"></script>
+</head>
+<body>
+	<div id="container"></div>
+	<script>
+
+	var game = new Phaser.Game(300, 400, Phaser.AUTO, 'container');
+	
+	function state(){
+		this.init = function(){};
+		this.preload = function(){};
+		this.create = function(){};
+		this.update = function(){};
+		this.render = function(){};
+	}
+
+	game.state.add('state', state); //添加场景
+	game.state.start('state'); //启动场景
+
+
+	</script>	
+</body>
+</html>

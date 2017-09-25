@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    tr:nth-child(2n+1) {
+      background-color: red;
+    }
+    nav :nth-child(6) {
+      color: red;
+    }
+    div h3.haha:first-of-type {
+      color: red;
+    }
+    div h3.haha:last-of-type {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <tr> <td>1</td> <td>2</td> </tr>
+    <tr> <td>1</td> <td>2</td> </tr>
+    <tr> <td>1</td> <td>2</td> </tr>
+    <tr> <td>1</td> <td>2</td> </tr>
+    <tr> <td>1</td> <td>2</td> </tr>
+    <tr> <td>1</td> <td>2</td> </tr>
+  </table>
+
+  <nav>
+		<p>1</p>
+		<p>2</p>
+		<p>3</p>
+		<p>4</p>
+		<h3>5</h3>
+		<h3>6</h3>
+		<h3>7</h3>
+		<h3>8</h3>
+	</nav>
+
+  <div>
+		<p class="haha">p</p>
+		<p>p</p>
+		<p class="haha">p</p>
+		<p class="haha">p</p>
+		<h3>h</h3>
+		<h3 class="haha">h</h3>
+		<h3 class="haha">h★</h3>
+		<h3>h</h3>
+		<h3>h</h3>
+	</div>
+</body>
+</html>

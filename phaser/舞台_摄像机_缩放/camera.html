@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+<title>摄像机的移动</title>
+<style>
+html,body{ height:100%; margin: 0; padding: 0;}
+#container{ height:100%; width: 300px; margin: 0 auto;}
+</style>
+<script src="../js/phaser.min.js"></script>
+</head>
+<body>
+<div id="container"></div>
+<script>
+var game = new Phaser.Game(300, 400, Phaser.AUTO, 'container', state);
+
+function state(game){
+
+	var jiqimao;
+	this.preload = function(){
+		game.load.image('bg', 'assets/bg.jpg'); //加载背景图
+		game.load.image('jiqimao', 'assets/jiqimao.png'); //加载机器猫图片
+	}
+
+	this.create = function(){
+		game.world.setBounds(0, 0, 2000, 600);//设置世界大小
+		game.add.image(0, 0, 'bg'); //添加一张图片作为背景图
+		jiqimao = game.add.image(200, 300, 'jiqimao');//创建一个机器猫
+		jiqimao.anchor.set(0.5, 0.5);
+		jiqimao.inputEnabled = true;
+		jiqimao.events.onInputDown.add(click, this);
+		game.input.onDown.add(function(){
+			game.camera.focusOn(jiqimao);
+		});
+
+		game.camera.follow(jiqimao); //让摄像机跟随机器猫
+
+
+	}
+	function click() {
+		game.paused = !game.paused;
+	}
+
+	this.update = function(){
+		var keys = game.input.keyboard.createCursorKeys();
+		if(keys.right.isDown) game.camera.x += 1;
+		else if(keys.left.isDown) game.camera.x -= 1;
+		else if(keys.down.isDown) game.camera.y += 1;
+		else if(keys.up.isDown) game.camera.y -= 1;
+
+		jiqimao.x += 1; //让机器猫每一帧向右移动一个像素
+	}
+}
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //存对象，取对象
+    var obj = {
+      username: "张津源",
+      age: 18
+    };
+    //序列化
+    localStorage.setItem("zjy", JSON.stringify(obj));
+
+    var zjy = localStorage.getItem('zjy');
+    console.log(zjy);
+    var oZjy = JSON.parse(zjy);
+    console.log(oZjy);
+
+
+
+    //存数组，取数组
+    // 准备一个对象
+		var arr = {"students":[]};
+
+		arr.students.push({"xingming":"小明","nianling":12,"xingbie":"男"});
+		arr.students.push({"xingming":"小绿","nianling":13,"xingbie":"男"});
+		arr.students.push({"xingming":"小花","nianling":14,"xingbie":"男"});
+		arr.students.push({"xingming":"小花花","nianling":15,"xingbie":"男"});
+
+		// 把JSON变为文本
+		var objstring = JSON.stringify(arr);
+		// 存储
+		localStorage.setItem("同学",objstring);
+    var objStudent = JSON.parse(localStorage.getItem('同学'));
+    console.log(objStudent);
+  </script>
+</body>
+</html>

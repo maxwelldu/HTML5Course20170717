@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style type="text/css">
+  		ul{
+  			list-style: none;
+  		}
+  		li{
+  			float: left;
+  			width: 100px;
+  			height: 30px;
+  			background-color: #ccc;
+  			margin-right: 10px;
+  			position: relative;
+  			overflow: hidden;
+  		}
+  		li::before{
+  			content: "";
+  			position: absolute;
+  			width: 100%;
+  			height: 100%;
+  			background-color: yellowgreen;
+  			top: 100%;
+  			transition:all 0.2s ease 0s;
+  		}
+  		li:nth-child(1)::before{
+  			background-color: red;
+  		}
+  		li:nth-child(2)::before{
+  			background-color: orange;
+  		}
+  		li:nth-child(3)::before{
+  			background-color: yellow;
+  		}
+  		li:nth-child(4)::before{
+  			background-color: green;
+  		}
+  		li:hover::before{
+  			top: 0;
+  		}
+  		li.cur::before{
+  			top: 0;
+  		}
+  	</style>
+  </head>
+  <body>
+  	<ul>
+  		<li></li>
+  		<li></li>
+  		<li></li>
+  		<li></li>
+  		<li></li>
+  		<li></li>
+  		<li></li>
+  		<li></li>
+  	</ul>
+  	<div class="audio">
+  		<audio src="audio/c4.ogg"></audio>
+  		<audio src="audio/d4.ogg"></audio>
+  		<audio src="audio/e4.ogg"></audio>
+  		<audio src="audio/f4.ogg"></audio>
+  		<audio src="audio/g4.ogg"></audio>
+  		<audio src="audio/a4.ogg"></audio>
+  		<audio src="audio/b4.ogg"></audio>
+  		<audio src="audio/c5.ogg"></audio>
+  	</div>
+
+  	<script type="text/javascript">
+  		var lis = document.getElementsByTagName("li");
+  		var audios = document.getElementsByTagName("audio");
+
+  		//循环添加监听
+  		for(var i = 0 ; i < lis.length ; i++){
+  			lis[i].index = i; //编号
+
+  			//监听
+  			lis[i].onmouseover = function(){
+  				//对应的audio就play
+  				audios[this.index].load();		//保持刚才的回音，立即开始新的声音
+  				audios[this.index].play();		//播放
+  			}
+  		}
+
+  		//键盘事件，1、2、3、4、5、6、7
+  		document.onkeydown = function(event){
+  			if(event.keyCode >= 49 && event.keyCode <= 49 + 7){
+  				audios[event.keyCode - 49].load();
+  				audios[event.keyCode - 49].play();
+
+  				//cur的逻辑
+  				for(var i = 0 ; i < lis.length ; i++){
+  					lis[i].className = "";
+  				}
+  				lis[event.keyCode - 49].className = "cur";
+  			}
+  		}
+
+  		// 键抬起
+  		document.onkeyup = function(event){
+  			if(event.keyCode >= 49 && event.keyCode <= 49 + 7){
+  				lis[event.keyCode - 49].className = "";
+  			}
+  		}
+  	</script>
+  </body>
+  </html>

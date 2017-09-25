@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <form action="" id="form"></form>
+  <input type="text" name="username" form="form">
+  <input type="submit" value="提交" form="form">
+
+  <form action="">
+    年龄：<input type="number" min="1" max="123" step="1">
+    <!-- <number min="1" max="123" step="1"> -->
+    邮箱：<input type="email" >
+    主页：<input type="url">
+    电话：<input type="tel" pattern="^\d{11}$">
+    搜索：<input type="search" autofocus>
+    颜色：<input type="color">
+    日期：<input type="date">
+    范围：<input type="range" min="10" max="30"> <span id="range">0</span>
+    校区：<input type="text" list="school">
+    <datalist id="school">
+      <option value="北京">北京</option>
+      <option value="1">武汉</option>
+      <option value="2">西安</option>
+      <option value="3">长沙</option>
+    </datalist>
+    <a href="tel:18518368050">给Maxwell去电</a>
+    <a href="javascript:;"></a>
+    <a href="mailto:dcj3sjt@126.com"></a>
+    <input type="submit">
+  </form>
+  <script>
+    var oColor = document.querySelector('input[type=color]');
+    oColor.onchange = function() {
+      console.dir(this);
+      document.body.style.backgroundColor = this.value;
+    }
+
+    var oRange = document.querySelector('input[type=range]');
+    var oRangeTxt = document.querySelector('#range');
+    oRange.onchange = function(){
+      oRangeTxt.innerText = this.value;
+    }
+  </script>
+</body>
+</html>

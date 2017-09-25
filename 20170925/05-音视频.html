@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+    <video src="./video/c.mp4" autoplay controls width="100" height="100"></video>
+
+    <video poster="images/1.png">
+      <source src="./video/c.mp4">
+      <source src="./video/c.mp4">
+      <source src="./video/c.mp4">
+      <source src="./video/c.mp4">
+    </video>
+
+    <button>播放</button>
+    <button>暂停</button>
+    <input type="range" min="1" max="100" value="50">
+    <script>
+      var oPlay = document.querySelectorAll('button')[0];
+      var oPause = document.querySelectorAll('button')[1];
+      var oVideo = document.querySelectorAll('video')[1];
+      var oRange = document.querySelector('input[type=range]');
+      console.dir(oVideo);
+      oPlay.addEventListener('click', function(){
+        oVideo.play();
+      });
+      oPause.addEventListener('click', function() {
+        oVideo.pause();
+      });
+      oVideo.addEventListener('play', function() {
+        alert('开始播放');
+      });
+      oVideo.onpause = function () {
+        alert('暂停了');
+      };
+      oRange.onchange = function() {
+        oVideo.volume = parseInt(this.value) / 100;
+      };
+    </script>
+
+    <embed src="./mp3/味道.mp3" type="">
+    <object data="./mp3/味道.mp3" type=""></object>
+    <audio src="./mp3/味道.mp3" autoplay></audio>
+</body>
+</html>
