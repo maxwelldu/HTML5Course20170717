@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      width: 258px;
+      height: 258px;
+      margin: 30px;
+      perspective: 500px;
+      position: relative;
+      float: left;
+    }
+    div img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 50%;
+      transition: all 1s ease 0s;
+      width: 100%;
+      height: 100%;
+    }
+    div:nth-child(1) img {
+      transform-origin: 0% 0%;
+    }
+    div:nth-child(1):hover img.up {
+      transform: rotateX(180deg);
+    }
+    div:nth-child(2) img {
+      transform-origin: 0% 100%;
+    }
+    div:nth-child(2):hover img.up {
+      transform: rotateX(-180deg);
+    }
+    div:nth-child(3) img {
+      transform-origin: 0% 0%;
+    }
+    div:nth-child(3):hover img.up {
+      transform: rotateY(-180deg);
+    }
+    div:nth-child(4) img {
+      transform-origin: 100% 0%;
+    }
+    div:nth-child(4):hover img.up {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <img src="./images/3.jpg" alt="">
+    <img  class="up" src="./images/2.jpg" alt="">
+  </div>
+  <div>
+    <img src="./images/3.jpg" alt="">
+    <img  class="up" src="./images/2.jpg" alt="">
+  </div>
+  <div>
+    <img src="./images/3.jpg" alt="">
+    <img  class="up" src="./images/2.jpg" alt="">
+  </div>
+  <div>
+    <img src="./images/3.jpg" alt="">
+    <img  class="up" src="./images/2.jpg" alt="">
+  </div>
+</body>
+</html>

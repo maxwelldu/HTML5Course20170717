@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.stage{
+			width: 200px;
+			height: 200px;
+			border: 1px solid #000;
+			margin: 100px;
+			perspective:600px;
+		}
+		.stage .unit{
+			width: 200px;
+			height: 200px;
+			position: relative;
+		}
+		.stage .unit p{
+			width: 200px;
+			height: 200px;
+			text-align: center;
+			line-height: 200px;
+			font-size: 60px;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.stage .unit p:nth-child(1){background-color:orange;}
+		.stage .unit p:nth-child(2){background-color:pink;}
+		.stage .unit p:nth-child(3){background-color:yellowgreen;}
+		.stage .unit p:nth-child(4){background-color:rgb(111,222,123);}
+		.stage .unit p:nth-child(5){background-color:skyblue;}
+		.stage .unit p:nth-child(6){background-color:gold;}
+
+
+		.stage .unit p:nth-child(1){transform:translateZ(100px); z-index: 2;}
+		.stage .unit p:nth-child(2){transform:rotateX(90deg) translateZ(100px);}
+		.stage .unit p:nth-child(3){transform:rotateX(180deg) translateZ(100px);}
+		.stage .unit p:nth-child(4){transform:rotateX(-90deg) translateZ(100px);}
+		.stage .unit p:nth-child(5){transform:rotateY(90deg) translateZ(100px);}
+		.stage .unit p:nth-child(6){transform:rotateY(-90deg) translateZ(100px);}
+		
+		.unit{
+			/*只要是一个组合体，自己进行旋转，别问这是啥，你就加就对了*/
+			transform-style:preserve-3d;
+			transition:all 2s ease 0s;
+		}
+	</style>
+</head>
+<body>
+
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<!-- 舞台 -->
+	<div class="stage">
+		<div class="unit">
+			<p class="no1">1正面</p>
+			<p class="no2">2顶面</p>
+			<p class="no3">3背面</p>
+			<p class="no4">4底面</p>
+			<p class="no5">5侧面</p>
+			<p class="no6">6侧面</p>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		//拖拽业务
+		var $unit = $(".unit");
+
+
+		var nowrotateX = 0;
+		var nowrotateY = 0;
+
+ 		var startX;
+ 		var startY;
+
+ 		$(document).mousedown(function(event){
+ 			startX = event.clientX;
+ 			startY = event.clientY;
+ 			console.log(startX,startY);
+
+ 			$unit.css("transition","none");
+
+ 			$(document).mousemove(function(event){
+	 			var deltaX = event.clientX - startX;
+	 			var deltaY = event.clientY - startY;
+	 			console.log(deltaX,deltaY);
+
+	 			nowrotateX += -deltaY / 100;
+	 			nowrotateY += deltaX / 100;
+
+	 			$unit.css("transform","rotateX(" + nowrotateX + "deg) rotateY(" + nowrotateY + "deg)");
+	 			return false;
+ 			});
+
+ 		});
+
+ 		$(document).mouseup(function(){
+			$(document).off("mousemove");
+
+			$unit.css("transition","all 0.5s ease 0s");
+		})
+	</script>
+</body>
+</html>

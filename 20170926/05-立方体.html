@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .container {
+      width: 300px;
+      height: 300px;
+      perspective: 1500px;
+    }
+    .container .unit {
+      width: 300px;
+      height: 300px;
+      position: relative;
+    }
+    .container .unit img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .unit img.first {
+      transform: translateZ(150px);
+      z-index: 2;
+    }
+    /*上*/
+    .unit img.second {
+      /*放天花板上*/
+      transform: rotateX(90deg) translateZ(150px);
+    }
+    /*下*/
+    .unit img.third {
+      transform: rotateX(-90deg) translateZ(150px);
+    }
+    /*后*/
+    .unit img.fourth {
+      transform: rotateY(180deg) translateZ(150px);
+    }
+    /*左*/
+    .unit img.fifth {
+      transform: rotateY(-90deg) translateZ(150px);
+    }
+    .unit img.sixth {
+      transform: rotateY(90deg) translateZ(150px);
+    }
+    .unit {
+      /*当一个组合体自己要进行旋转的时候，一定要加这个属性*/
+      transform-style: preserve-3d;
+      transition: all 2s ease 0s;
+    }
+    .container:hover .unit {
+      transform: rotateX(360deg) rotateY(360deg) translateX(300px);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="unit">
+      <img class="first" src="./images/2.jpg" alt="">
+      <img class="second" src="./images/3.jpg" alt="">
+      <img class="third" src="./images/2.jpg" alt="">
+      <img class="fourth" src="./images/2.jpg" alt="">
+      <img class="fifth" src="./images/2.jpg" alt="">
+      <img class="sixth" src="./images/2.jpg" alt="">
+    </div>
+  </div>
+</body>
+</html>

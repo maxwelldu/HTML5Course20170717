@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      width: 960px;
+      height: 40px;
+      margin: 50px auto;
+      border: 1px solid #000;
+    }
+    nav ul {
+      list-style: none;
+    }
+    nav ul li {
+      float: left;
+      width: 120px;
+      height: 40px;
+      perspective: 500px;
+    }
+    nav ul li .unit {
+      width: 120px;
+      height: 40px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: all 0.4s ease 0s;
+    }
+    nav ul li .unit span {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 120px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      color: white;
+    }
+    nav ul li .unit span.chinese {
+      background-color: skyblue;
+      /*正面*/
+      transform: translateZ(20px);
+    }
+    nav ul li .unit span.english {
+      background-color: #333;
+      /*下面*/
+      transform: rotateX(-90deg) translateZ(20px);
+    }
+    nav ul li:hover .unit {
+      transform: rotateX(90deg);
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="">
+        <div class="unit">
+          <span class="chinese">网站栏目</span>
+          <span class="english">website</span>
+        </div>
+      </a></li>
+      <li><a href="">
+        <div class="unit">
+          <span class="chinese">网站栏目</span>
+          <span class="english">website</span>
+        </div>
+      </a></li>
+      <li><a href="">
+        <div class="unit">
+          <span class="chinese">网站栏目</span>
+          <span class="english">website category</span>
+        </div>
+      </a></li>
+      <li><a href="">
+        <div class="unit">
+          <span class="chinese">网站栏目</span>
+          <span class="english">website category</span>
+        </div>
+      </a></li>
+      <li><a href="">
+        <div class="unit">
+          <span class="chinese">网站栏目</span>
+          <span class="english">website category</span>
+        </div>
+      </a></li>
+      <li><a href="">
+        <div class="unit">
+          <span class="chinese">网站栏目</span>
+          <span class="english">website category</span>
+        </div>
+      </a></li>
+    </ul>
+  </nav>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			overflow: hidden;
+			background: black;
+		}
+		.stage{
+			width: 1260px;
+			height: 440px;
+			border: 1px solid #000;
+			margin: 50px auto;
+			position: relative;
+			perspective:500px;
+		}
+		.stage ul{
+			list-style: none;
+		}
+		.stage ul li{
+			position: absolute;
+			top: 50px;
+			left: 350px;
+			border: 1px solid #000;
+			transition:all 0.5s ease 0s;
+		}
+		.stage ul li.center{
+			z-index: 999;
+			transform:none;
+		}
+		.stage ul li.l1{
+			z-index: 888;
+			transform:rotateY(30deg) translateX(-100px) translateZ(-200px);
+		}
+		.stage ul li.l2{
+			z-index: 777;
+			transform:rotateY(30deg) translateX(-200px) translateZ(-300px);
+		}
+		.stage ul li.l3{
+			z-index: 666;
+			transform:rotateY(30deg) translateX(-300px) translateZ(-400px);
+		}
+		.stage ul li.l4{
+			z-index: 555;
+			transform:rotateY(30deg) translateX(-400px) translateZ(-500px);
+		}
+		.stage ul li.r1{
+			z-index: 888;
+			transform:rotateY(-30deg) translateX(100px) translateZ(-200px);
+		}
+		.stage ul li.r2{
+			z-index: 777;
+			transform:rotateY(-30deg) translateX(200px) translateZ(-300px);
+		}
+		.stage ul li.r3{
+			z-index: 666;
+			transform:rotateY(-30deg) translateX(300px) translateZ(-400px);
+		}
+		.stage ul li.r4{
+			z-index: 555;
+			transform:rotateY(-30deg) translateX(400px) translateZ(-500px);
+		}
+		.stage .bar{
+			position: absolute;
+			width: 1260px;
+			height: 30px;
+			background-color: #ccc;
+			bottom: 0;
+			left: 0;
+		}
+		.stage .bar b{
+			position: absolute;
+			top: 0;
+			left: 504px;
+			width: 252px;  /*总宽度÷5*/
+			height: 30px;
+			background-color: gold;
+		}
+	</style>
+</head>
+<body>
+	<div class="stage">
+		<ul>
+			<li class="l2"><img src="images/amaoagou/0.jpg" alt="" /></li>
+			<li class="l1"><img src="images/amaoagou/1.jpg" alt="" /></li>
+			<li class="center"><img src="images/amaoagou/2.jpg" alt="" /></li>
+			<li class="r1"><img src="images/amaoagou/3.jpg" alt="" /></li>
+			<li class="r2"><img src="images/amaoagou/4.jpg" alt="" /></li>
+		</ul>
+
+		<div class="bar">
+			<b></b>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
+
+	<script type="text/javascript">
+
+		var $lis = $("li");
+		//类名的数组
+		var classNameArr = ["l4","l3","l2","l1","center","r1","r2","r3","r4"];
+		//idx表示我们的小数组的起始位置
+		var idx = 2;
+
+		//函数节流
+		var lock = true;
+
+		//拖拽条
+		$(".bar b").draggable({
+			"axis": "x",		 //约束在某个轴上
+			"containment": "parent",	//在父盒子中拖拽
+			"grid" : [252],			//步长
+			"drag" : function(event, ui){  //事件，值就是ui.position.top
+				var oldidx = idx;	//备份原来的idx
+				idx = ui.position.left / 252;	//计算新的idx
+
+				//当值发生改变的时候
+				if(oldidx != idx){
+					//console.log(idx);
+
+					//小数组
+					//方向：
+					//idx的值2		数组起始2
+					//idx的值1		数组起始3
+					//idx的值0		数组起始4
+					//所以：数组起始4 - idx。  终点4 - idx + 5 =  9 - idx
+					var arr = classNameArr.slice(4 - idx, 9 - idx);
+
+					//设置类名
+					$lis.each(function(i){
+						$(this).attr("class",arr[i]);
+					});
+				}
+			}
+		});
+
+
+		//鼠标滚轮
+		var lock = true;
+
+		$(".stage").mousewheel(function(event,delta){
+			if(!lock) return;
+
+			idx -= delta;
+			if(idx < 0){
+				idx = 0;
+				return;
+			}else if(idx > 4){
+				idx = 4;
+				return;
+			}
+
+			var arr = classNameArr.slice(4 - idx, 9 - idx);
+
+			//设置类名
+			$lis.each(function(i){
+				$(this).attr("class",arr[i]);
+			});
+
+			//让条条跟着动
+			$(".bar b").css("left",idx * 252);
+
+
+			lock = false;
+
+			setTimeout(function(){
+				lock = true;
+			},500);
+		});
+	</script>
+</body>
+</html>
