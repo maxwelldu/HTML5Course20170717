@@ -1593,56 +1593,7 @@ jquery插件开发：
 prototype.js
 
 箭头函数
-内网穿透，让你的网站能够被其他人看到
-ngrok, localtunnel, 花生壳
-
-##20170925
-低版本浏览器兼容HTML5的新标签，有一个库叫html5shiv.js
-<!--[if lt IE 9]>
-  <script src="html5shiv.js"></script>
-<![endif]-->
-header, section, main, article, nav, aside, footer
-figure figcaption
-progress
-address
-time
-mark
-
-表单元素不一定要写到表单里面, 给表单一个ID，给input元素一个form属性指定为表单的ID
-label标签也是这种用法
-datalist标签有一个ID属性，input框的list属性指定为datalist的ID
-锚点的用法
-
-number类型的输入框肯定要重写，不实用
-email输入框这些你需要自己能够捕获到错误信息，以及invalid事件，因为原生的体验太差了，没有人用
-打电话：a标签，href属性为tel:手机号
-
-video, audio
-播放和暂停有play()和pause()方法
-play和pause也都有对应的事件，可以在这个时候做一些事情
-调节音量是控制元素的volume属性，它的值为0-1之间，1为最大
-embed也是html5里面的新标签，来源于微软
-
-JSON.parse() JSON.stringify()
-storage: localStorage和sessionStorage; 用法是一样的，只是存储的时间不一样
-storage.setItem(); //设置或更新
-storage.getItem();//获取
-storage.removeItem(); //移除
-storage.clear(); // 清空
-
-兼容性策略：优雅降级（优先考虑高版本浏览器，低版本没有炫的效果没事，保证可用性）；渐进增强（优先考虑低版本的功能可用，然后在高版本浏览器中添加更多炫的功能）
-或者说是针对低版本就直接跳过，不做兼容
-
-
-transition: 属性/all 过渡时间 缓冲函数名 延迟时间;
-transform: rotate(45deg) scale(.2) skew(30deg, 10deg);
-
-3D变形：一定要给父元素设置一个景深 perspective:
-transform: rotateX(30deg) rotateY(30deg) rotateZ(30deg);
-//这个顺序很有关系，按照先后来，调换之后效果就不一样了
-backface-visibility: visible/hidden
-
-
+明天说内网穿透，让你的网站能够被其他人看到
 ##5点后的练习计划
 - 20170828 练习批量绑定事件和对应模型
 - 20170829 练习函数截流滚动或者延迟搜索
@@ -1652,19 +1603,19 @@ backface-visibility: visible/hidden
 - 20170902 getAllTop方法
 
 所有口头描述必须能够用一句话描述出来；要用类比的方式(生活中的比喻)：
-口头描述一下如何使用jsonp跨域 因为src属性可以跨域，所以利用这个特性；动态的创建script标签，并设置src属性，添加到页面上，这个script的内容就会立即执行，在当前页面上定义一个函数，这个外部的js文件调用这个函数，并传递json数据作为参数；jsonp
-一句话：外部的js文件调用你定义的函数并传递json数据
 20170921 口头描述对同步异步的理解   https://www.zhihu.com/question/19732473
 口头描述一下jquery的jsonp底层实现
 口头描述一下对模板引擎的理解 一个静态的字符串，数据；把数据替换字符串中特定标记位置的内容；
-口头描述你对jquery的理解
-口头描述你对underscore的理解
-口头描述浅拷贝和深拷贝的区别
-口头描述点语法和括号的区别
-描述GET和POST请求的区别
-localStorage和sessionStorage的区别
-优雅降级和渐进增强
-事件代理、事件委托的优点
-动态绑定事件的缺点
-伪类和伪元素的区别
-20170925 对ajax的理解：至少体现三点：异步，HTTP请求，API
+20170925 对ajax的理解：至少体现三点：异步，HTTP请求(请求方式，响应状态码；可以继续挖很多)，API
+20170926 口头描述你对jquery的理解
+20170927 口头描述你对underscore的理解
+20170928 口头描述一下如何使用jsonp跨域 因为src属性可以跨域，所以利用这个特性；动态的创建script标签，并设置src属性，添加到页面上，这个script的内容就会立即执行，在当前页面上定义一个函数，这个外部的js文件调用这个函数，并传递json数据作为参数；jsonp
+一句话：外部的js文件调用你定义的函数并传递json数据
+20170929 优雅降级和渐进增强
+20170930 事件代理、事件委托的优点
+20171009 动态绑定事件的缺点
+20171010 伪类和伪元素的区别
+20171011 localStorage和sessionStorage的区别
+20171012 描述GET和POST请求的区别
+20171013 口头描述点语法和括号的区别
+20171014 口头描述浅拷贝和深拷贝的区别

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+      position: absolute;
+      top: 200px;
+      left: 200px;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <script>
+    // sin(30) = 1 /2 ;     //对边/斜边
+    // cos(60) = 1 /2 ;     //邻边/斜边
+    //要传递的值是弧度
+    // 30度需要转换成弧度
+
+    //角度和弧度
+    // 360°角度 对应 2π弧度
+    // 180°角度 对应 π弧度
+    // 1角度 对应 π弧度 / 180
+
+    // 角度转弧度 π/180×角度
+    // 弧度变角度 180/π×弧度
+    /*
+    一个圆的弧度是2π度,而它对应的圆心角是360度.
+    如果设定弧度为θ度,角度为α度,则它们有相应的关系为：
+    2π: θ=360：α
+    2π    360
+    ---   ---
+    θ     α
+    由此可以推导出由弧度转化成角度的计算公式：
+    α=(360/2π)θ
+    =180θ/π.
+    反之,由角度转化成弧度的计算公式为：
+    θ=πα/180.
+    */
+
+
+    function degreeToRad(degree) {
+      return degree * Math.PI / 180;
+    }
+
+    var oDiv = document.querySelector('div');
+    var a = 200;//圆心x
+    var b = 200;//圆心y
+    var r = 200;//半径
+    var degree = 0;//角度
+    setInterval(function(){
+      degree+=5;
+      var x = a + r * Math.sin(degreeToRad(degree));
+      var y = b - r * Math.cos(degreeToRad(degree));
+      oDiv.style.left = x + 'px';
+      oDiv.style.top = y + 'px';
+    }, 20);
+  </script>
+</body>
+</html>

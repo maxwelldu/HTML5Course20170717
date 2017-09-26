@@ -120,6 +120,7 @@
 			"containment": "parent",	//在父盒子中拖拽
 			"grid" : [252],			//步长
 			"drag" : function(event, ui){  //事件，值就是ui.position.top
+				console.log(ui);
 				var oldidx = idx;	//备份原来的idx
 				idx = ui.position.left / 252;	//计算新的idx
 

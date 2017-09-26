@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .rolling {
+      width: 800px;
+      height: 130px;
+      border: 10px solid #ccc;
+      margin: 100px auto;
+      position: relative;
+      overflow: hidden;
+    }
+    .rolling .m_unit {
+      width: 5000px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      animation: move 8s linear 0s infinite;
+    }
+    .rolling:hover .m_unit {
+      animation-play-state: paused;
+    }
+    .rolling ul {
+      list-style: none;
+    }
+    .rolling ul li {
+      float: left;
+      margin-right: 10px;
+    }
+    @-webkit-keyframes move {
+      from { left: 0; }
+      to { left: -1680px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="rolling" id="rolling">
+    <div class="m_unit" id="m_unit">
+      <ul>
+        <li><a href=""><img src="./images/2.png" alt=""></a></li>
+        <li><a href=""><img src="./images/3.png" alt=""></a></li>
+        <li><a href=""><img src="./images/4.png" alt=""></a></li>
+        <li><a href=""><img src="./images/5.png" alt=""></a></li>
+        <li><a href=""><img src="./images/6.png" alt=""></a></li>
+        <li><a href=""><img src="./images/7.png" alt=""></a></li>
+        <li><a href=""><img src="./images/8.png" alt=""></a></li>
+        <li><a href=""><img src="./images/9.png" alt=""></a></li>
+        <li><a href=""><img src="./images/2.png" alt=""></a></li>
+        <li><a href=""><img src="./images/3.png" alt=""></a></li>
+        <li><a href=""><img src="./images/4.png" alt=""></a></li>
+        <li><a href=""><img src="./images/5.png" alt=""></a></li>
+        <li><a href=""><img src="./images/6.png" alt=""></a></li>
+        <li><a href=""><img src="./images/7.png" alt=""></a></li>
+        <li><a href=""><img src="./images/8.png" alt=""></a></li>
+        <li><a href=""><img src="./images/9.png" alt=""></a></li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

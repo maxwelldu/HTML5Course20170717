@@ -44,7 +44,7 @@
 		.stage .unit p:nth-child(4){transform:rotateX(-90deg) translateZ(100px);}
 		.stage .unit p:nth-child(5){transform:rotateY(90deg) translateZ(100px);}
 		.stage .unit p:nth-child(6){transform:rotateY(-90deg) translateZ(100px);}
-		
+
 		.unit{
 			/*只要是一个组合体，自己进行旋转，别问这是啥，你就加就对了*/
 			transform-style:preserve-3d;
@@ -90,8 +90,11 @@
 	 			var deltaY = event.clientY - startY;
 	 			console.log(deltaX,deltaY);
 
-	 			nowrotateX += -deltaY / 100;
-	 			nowrotateY += deltaX / 100;
+					nowrotateX += -deltaY / 100;
+					nowrotateY += deltaX / 100;
+				// nowrotateX = deltaY;
+				// nowrotateY = deltaX;
+				console.log('x = ', nowrotateX, nowrotateY);
 
 	 			$unit.css("transform","rotateX(" + nowrotateX + "deg) rotateY(" + nowrotateY + "deg)");
 	 			return false;
