@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    div {
+      display: flex;
+    }
+    p {
+      box-sizing: border-box;
+      text-align: center;
+      border: 1px solid #333;
+    }
+    div p:nth-child(1) {
+      flex: 1;
+    }
+    div p:nth-child(2) {
+      flex: 2;
+    }
+    div p:nth-child(3) {
+      flex: 3;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+  </div>
+</body>
+</html>
