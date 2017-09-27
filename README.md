@@ -1589,11 +1589,55 @@ jquery插件开发：
       }
     }
   }
+htmlshiv.js兼容低版本浏览器
+
+##20170926
+H5C3
+2D:
+transition:
+transform: rotate() scale() skew();
+3D:
+perspective: 500px;
+transform: rotateX() rotateY() rotateZ() rotate3d() translateX() translateY() translateZ();
+transform-origin: Y轴方向的轴 X轴方向的轴;
+transform-style: preserve-3d; //保持3D
+//定义关键帧动画
+@-webkit-keyframes 动画名称{
+  0% {
+    transform: rotateX(300deg)
+  }
+  to {
+    transform: translateX(300px)
+  }
+}
+animation: 动画名称 持续时长 缓冲函数名 延迟时间 循环次数 是否折返 是否保持最终状态;
+animation: move 1s ease 0s infinite alternate forwards;
+animtion-play-state: paused;
+
 
 prototype.js
 
 箭头函数
 明天说内网穿透，让你的网站能够被其他人看到
+
+选择第三方库：
+有能力的话自己摘取，不要全部引用；有些库可以允许你按模块下载
+animate.css的动画分类：
+引起注意的特效
+弹跳入场
+弹跳出场
+淡入
+淡出
+翻转
+光速入场出场
+旋转入场
+旋转出场
+滑动入场
+滑动出场
+缩放入场
+缩放出场
+特殊特效
+
 ##5点后的练习计划
 - 20170828 练习批量绑定事件和对应模型
 - 20170829 练习函数截流滚动或者延迟搜索

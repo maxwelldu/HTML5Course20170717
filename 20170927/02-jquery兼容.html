@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  使用$符作为变量的库，不仅仅只有jQuery, 比如自己写的一个miniQuery也使用了$
+  <h2></h2>
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script src="miniquery.js" charset="utf-8"></script>
+  <script>
+    jQuery('h2').html('context');//这样写太傻了
+    //所以使用IIFE把jQuery传递到函数内部去使用
+    (function($){
+      console.log($);
+      $('h2').html('context');
+    })(jQuery);//把jQuery传递到函数内部的$, 函数内部的$就是指jQuery
+
+    //全局的$就是我们自己库里面的$对象
+    $('h2').css('color', 'red');
+
+    //类似的东西，当有人给undefined设置为true了，如何去解决
+    window.undefined = true;
+    console.log(undefined);
+    (function(undefined){
+      console.log(undefined);
+    })();
+  </script>
+</body>
+</html>

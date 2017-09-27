@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body {
+      overflow: hidden;
+    }
+    .sanjiaoxing {
+      width: 170px;
+      height: 170px;
+      background: url('images/page.png');
+      background-position: 0 -311px;
+      position: absolute;
+      top: 300px;
+      left: 100px;
+    }
+    .circle {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+    .circle:hover {
+      animation: zoomInDown 1s ease 0s;
+    }
+  </style>
+  <link rel="stylesheet" href="animate.css">
+</head>
+<body>
+  <div class="sanjiaoxing animated bounce infinite"></div>
+  <div class="circle"></div>
+</body>
+</html>

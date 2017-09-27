@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body {
+      /*如果有三维效果，景深咱们自己加*/
+      perspective: 500px;
+    }
+    div {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <script src="../20170918/jquery-3.2.1.js" charset="utf-8"></script>
+  <script src="velocity.min.js" charset="utf-8"></script>
+  <script>
+    // console.dir($.fn.velocity);
+    // $('div').velocity({"rotateZ": "40deg"}, 10000);
+    $('div').velocity({"rotateX": "45deg", "translateZ": "-500px"}, 10000);
+    /*
+    $('div').velocity({"rotateX": "40deg", rotateY: "40deg", translateZ: '400px', 'backgroundColor': '#123'}, 1000, function(){
+      $(this).fadeOut();
+    });
+    */
+  </script>
+</body>
+</html>
