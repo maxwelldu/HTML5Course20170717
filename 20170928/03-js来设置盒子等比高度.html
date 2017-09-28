@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    div {
+      width: 50%;
+      float: left;
+      border: 1px solid #000;
+      box-sizing: border-box;
+      background: url(../20170927/images/2.png) no-repeat;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <div></div>
+  <script>
+    var oBoxes = document.querySelectorAll('div');
+
+    //当屏幕发生变化的时候
+    window.onresize = set;
+
+    set();
+    function set() {
+      var boxWidth = parseInt(getComputedStyle(oBoxes[0])['width']);
+      //设置高度
+      var boxHeight = boxWidth / (200 / 130);
+      oBoxes[0].style.height = boxHeight + 'px';
+      oBoxes[1].style.height = boxHeight + 'px';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    img {
+      position: absolute;
+      width: 30%;
+    }
+  </style>
+</head>
+<body>
+  <img src="../20170927/images/3.jpg" alt="">
+  <h1></h1>
+  <script>
+    var oH1 = document.querySelector('h1');
+    document.addEventListener('touchstart', function(event) {
+      oH1.innerText = '你正在使用' + event.touches.length + '个手指触摸';
+      console.log(event);
+    });
+
+    var oImg = document.querySelector('img');
+    //信号量
+    var nowX = 0;
+    var nowY = 0;
+    //误差
+    var deltaX, deltaY;
+    oImg.addEventListener('touchstart', function(event){
+      deltaX = event.touches[0].clientX - nowX;
+      deltaY = event.touches[0].clientY - nowY;
+    });
+    oImg.addEventListener('touchmove', function(event) {
+      nowX =  (event.touches[0].clientX - deltaX);
+      nowY = (event.touches[0].clientY - deltaY);
+      this.style.left = nowX + 'px';
+      this.style.top = nowY + 'px';
+    });
+
+  </script>
+</body>
+</html>
