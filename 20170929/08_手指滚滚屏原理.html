@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>手指滚滚屏</title>
+	<meta name=viewport content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body,html{
+			height: 100%;
+			overflow: hidden;
+			background-color: #333;
+		}
+		.page{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+		.no0{background-color: rgb(111,222,123);}
+		.no1{background-color: orange;}
+		.no2{background-color: yellow;}
+		.no3{background-color: blue;}
+		.no4{background-color: purple;}
+		.no5{background-color: green;}
+	</style>
+</head>
+<body>
+	<div class="page no0"><h1>0</h1></div>
+	<div class="page no1"><h1>1</h1></div>
+	<div class="page no2"><h1>2</h1></div>
+	<div class="page no3"><h1>3</h1></div>
+	<div class="page no4"><h1>4</h1></div>
+	<div class="page no5"><h1>5</h1></div>
+
+	<script type="text/javascript">
+		//得到所有的page
+		var pages = document.querySelectorAll(".page");
+
+		//得到窗口的高度
+		var windowHeight = document.body.clientHeight || document.documentElement.clientHeight;
+
+		//所有page就位
+		pages.forEach(function(item){
+			item.style.webkitTransform = "translateY(" + windowHeight + "px)";
+		})
+		pages[0].style.webkitTransform = "translateY(0px)";
+
+		//监听就是给document对象
+		document.addEventListener("touchstart", touchstartHandler, false);
+		document.addEventListener("touchmove", touchmoveHandler, false);
+		document.addEventListener("touchend", touchendHandler, false);
+
+
+		//开始滑动的手指位置
+		var startY;
+		//滑动的距离
+		var distanceY;
+
+		//三个相关的page
+		var idx = 0;
+		var prev = NaN;
+		var next = 1;
+
+		//函数截流
+		lock = true;
+
+		// 触摸开始
+		function touchstartHandler(event){
+			event = event || window.event;
+			//开始值
+			startY = event.touches[0].clientY;
+
+			//去掉所有的过渡
+			pages[idx].style.webkitTransition = "none";
+			!isNaN(next) && (pages[next].style.webkitTransition = "none");
+			!isNaN(prev) && (pages[prev].style.webkitTransition = "none");
+
+			pages[idx].style.zIndex = 888;
+			!isNaN(next) && (pages[next].style.zIndex = 999);
+			!isNaN(prev) && (pages[prev].style.zIndex = 999);
+		}
+
+		// 触摸移动
+		function touchmoveHandler(event){
+			event = event || window.event;
+			//y是手指的位置减去误差
+			distanceY = event.touches[0].clientY - startY;
+
+			//到头了
+			if(idx == 0 && distanceY > 0){
+				return;
+			}else if(idx == 5 && distanceY < 0){
+				return;
+			}
+
+			//向上
+			if(distanceY < 0){
+				//滑动的时候改变transform：
+				pages[idx].style.webkitTransform = "scale(" + (1 - Math.abs(distanceY) / windowHeight) + ")";
+				!isNaN(next) && (pages[next].style.webkitTransform = "scale(1) translateY(" + (windowHeight + distanceY) + "px)");
+			}else if(distanceY > 0){
+				pages[idx].style.webkitTransform = "scale(" + (1 - Math.abs(distanceY) / windowHeight) + ")";
+				!isNaN(prev) && (pages[prev].style.webkitTransform = "scale(1) translateY(" + (-windowHeight + distanceY) + "px)");
+			}
+		}
+
+		// 触摸结束
+		function touchendHandler(event){
+			event = event || window.event;
+			//到头了
+			if(idx == 0 && distanceY > 0){
+				return;
+			}else if(idx == 5 && distanceY < 0){
+				return;
+			}
+
+			//根据distanceY来确定是否滑动成功
+			if(distanceY < -windowHeight / 4){
+				//向上滑动成功
+				console.log("↑")
+
+				//先改变信号量
+				prev = idx;
+				idx = next;
+				next++;
+				if(next > 5){
+					idx = 5;
+					next = NaN;
+				}
+
+				console.log(prev,idx,next)
+
+				//加上过渡
+				!isNaN(prev) && (pages[prev].style.webkitTransition = "all 0.4s ease 0s");
+				pages[idx].style.webkitTransition = "all 0.4s ease 0s";
+
+				//最终的位置
+				pages[prev].style.webkitTransform = "scale(0)";
+				pages[idx].style.webkitTransform = "translateY(0px)";
+				!isNaN(next) && (pages[next].style.webkitTransform = "translateY(" + windowHeight + "px)");
+
+			}else if(distanceY > windowHeight / 4){
+				console.log("↓")
+
+				//先改变信号量
+				next = idx;
+				idx = prev;
+				prev--;
+				if(prev < 0){
+					idx = 0;
+					prev = NaN;
+				}
+
+				console.log(prev,idx,next)
+
+				//加上过渡
+				!isNaN(next) && (pages[next].style.webkitTransition = "all 0.4s ease 0s");
+				pages[idx].style.webkitTransition = "all 0.4s ease 0s";
+
+				//最终的位置
+				pages[next].style.webkitTransform = "scale(0)";
+				pages[idx].style.webkitTransform = "translateY(0px)";
+				!isNaN(prev) && (pages[prev].style.webkitTransform = "translateY(" + -windowHeight + "px)");
+			}else{
+				pages[idx].style.webkitTransition = "all 0.4s ease 0s";
+				!isNaN(prev) && (pages[prev].style.webkitTransition = "all 0.4s ease 0s");
+				!isNaN(next) && (pages[next].style.webkitTransition = "all 0.4s ease 0s");
+
+
+				pages[idx].style.webkitTransform = "scale(1)";
+				!isNaN(prev) && (pages[prev].style.webkitTransform = "translateY(" + -windowHeight + "px)");
+				!isNaN(next) && (pages[next].style.webkitTransform = "translateY(" + windowHeight + "px)");
+
+			}
+			// distanceY = 0;
+
+			inAnimate[idx]();
+		}
+
+
+		//入场动画
+		var inAnimate = [function(){},function(){},function(){},function(){},function(){},function(){}];
+	</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      font-size: 30px;
+    }
+    div {
+      float: left;
+      width: 33.3333%;
+      height: 6.666rem;
+      box-sizing: border-box;
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+
+  <script>
+    window.onresize = set;
+    set();
+    function set() {
+      //设计师的实际图600宽，600状态下font-size我们设置的是30px;
+      /*
+      600 / 30 = windowWidth / x
+      x = windowWidth / (600 / 30)
+      */
+      var windowWidth = document.documentElement.clientWidth;
+      var fontsize = windowWidth / (600 / 30);
+      document.documentElement.style.fontSize = fontsize + 'px';
+    }
+  </script>
+</body>
+</html>

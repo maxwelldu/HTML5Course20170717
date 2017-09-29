@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name=viewport content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		div{
+			width: 60px;
+			height: 60px;
+			background-color: orange;
+			position: absolute;
+			top: 100px;
+			left: 100px;
+		}
+
+		span{
+			width: 1px;
+			position: absolute;
+			height: 600px;
+			left: 800px;
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+
+	<span class="line"></span>
+
+	<script type="text/javascript">
+		var box = document.getElementsByTagName("div")[0];
+
+		//起点的位置
+		var deltaX;
+
+		//信号量
+		var nowx = 100;
+
+		//移动的数组
+		var movearr = [];
+
+		box.addEventListener("touchstart",function(event){
+			event.preventDefault();
+			//去掉过渡
+			box.style.transition = "none";
+			//记录误差
+			deltaX = event.touches[0].clientX - nowx;
+		},false)
+
+		//touchmove事件并不是说，你滑动了多少像素就触发几次。而是有一个固有的时间周期。
+		//你滑动的慢，clientX间距很小。你滑动的快，clientX间距很大。
+		box.addEventListener("touchmove", function(event){
+			event.preventDefault();
+			//信号量的改变
+			nowx = event.touches[0].clientX - deltaX;
+			//相对移动
+			box.style.left = nowx + "px";
+			//记录手指的位置点
+			movearr.push(event.touches[0].clientX);
+			console.log(movearr);
+		},false);
+
+
+		//触摸结束
+		box.addEventListener("touchend", function(event){
+			event.preventDefault();
+			//计算movearr最后两个点的间距
+			var s = movearr[movearr.length - 1] - movearr[movearr.length - 2];
+			//s的大小就决定了你的速度，计算一个新的有惯性的targetx。
+			var targetx = nowx + s * 500;
+			//console.log(nowx,s,targetx);
+			if(targetx > 740){
+				console.log(targetx)
+				targetx = 740;
+				//贝塞尔曲线有折返
+				box.style.transition= "all 0.4s cubic-bezier(0.15, 0.85, 0.15, 2.08) 0s";
+			}else if(targetx < 0){
+				targetx = 0;
+				box.style.transition = "all 0.4s cubic-bezier(0.15, 0.85, 0.15, 2.08) 0s";
+			}else{
+				box.style.transition = "all 0.4s cubic-bezier(0.18, 0.68, 0.65, 0.88) 0s";
+			}
+			//用过渡来实现
+			box.style.left = targetx + "px";
+			//信号量的值就是目标x的值
+			nowx = targetx;
+		},false);
+	</script>
+</body>
+</html>

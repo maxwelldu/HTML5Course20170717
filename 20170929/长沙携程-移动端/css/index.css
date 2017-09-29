@@ -1,0 +1,189 @@
+*{margin:0;padding: 0;}
+body,html{
+	font:12px/1.5 微软雅黑,arial,sans-serif;
+	background-color: rgb(246,246,246);
+}
+ol, ul {list-style: none;}
+a{text-decoration: none;}
+@media screen and (max-width: 800px) {
+	body,html{
+		width: 100%;
+	}
+}
+@media screen and (min-width: 800px) {
+	body,html{
+		width: 50%;
+		margin: 0 auto;
+	}
+}
+.header{
+	height: 4rem;
+	
+}
+.header .search{
+	width: 86%;
+	margin: 2%;
+	margin-right: 0;
+	float: left;
+	padding: 0.7%;
+	border-radius: 5px;
+	box-sizing: border-box;
+	border: 1px solid #666;
+	background-color: white;
+	position: relative;
+	box-shadow: 0 3px 3px 3px rgba(190,190,190,.4);
+}
+.header .search input{
+	width: 100%;
+	font-size: 0.9rem;
+	border: none;
+	outline: none;
+}
+.header .search i{
+	position: absolute;
+	left: 6px;
+	top: 6px;
+	color: #666666;
+}
+.header .user{
+	float: right;
+	position: relative;
+	width: 10%;
+	margin: 1%;
+	padding-top: 5%;
+	
+}
+.header .user i{
+	position: absolute;
+	color: blue;
+	font-size: 20px;
+	top: 0;
+	left: 25%;
+}
+.header .user span{
+	display: block;
+	width: 100%;
+	position: absolute;
+	text-align: center;
+	color: blue;
+}
+
+.swiper-container{
+	width: 100%;
+	height: 7.4rem;
+	margin-bottom: 0;
+}
+.swiper-slide img{
+	width: 100%;
+	height: 7rem;
+}
+.nav{
+	overflow: hidden;
+}
+.nav>div{
+	width: 98%;
+	height: 7.5rem;
+	margin: 1%;
+	margin-top: 0;
+	display: flex;
+	box-sizing: border-box;
+	border-radius: .5rem;
+	text-align: center;
+}
+.nav>div>div{
+	flex-grow: 1;
+	-webkit-flex-basis: 100%;
+	margin-left: -1px;
+	height: 100%;
+	box-sizing: border-box;
+}
+
+.nav .nav-hd{
+	margin-left: 0;
+	border-radius: .5rem 0 0 .5rem;
+}
+.nav .nav-right{
+	border-radius: 0 .5rem .5rem 0;
+}
+.nav .nav-bd{
+	width: 100%;
+	height: 50%;
+	text-align: center;
+	box-sizing: border-box;
+	border: 1px solid rgb(246,246,246);
+}
+.nav-hotel .nav-bd,.nav-hotel .nav-hd{
+	background-color: #ff697a;
+}
+.nav-plane .nav-bd,.nav-plane .nav-hd{
+	background-color: #3d98ff;
+}
+.nav-tour .nav-bd,.nav-tour .nav-hd{
+	background-color: #44c522;
+}
+.nav-other .nav-bd{
+	background-color: #fc9720;
+}
+.nav-left :nth-child(1){
+	border-top: 0;
+	border-radius: .5rem 0 0 0;
+}
+.nav-left :nth-child(2){
+	border-bottom: 0;
+	border-radius: 0 0 0 .5rem;
+}
+.nav-mid :nth-child(1){
+	border-top: 0;
+}
+.nav-mid :nth-child(2){
+	border-bottom: 0;
+}
+.nav-right :nth-child(1){
+	border-top: 0;
+	border-radius: 0 .5rem 0 0;
+}
+.nav-right :nth-child(2){
+	border-bottom: 0;
+	border-radius: 0 0 .5rem 0;
+}
+/*设置nav里面的所有a标签*/
+.nav a{
+	display: block;
+	width: 100%;
+	color: white;
+	font-size: 15px;
+	
+}
+.nav .nav-hd a{
+	line-height: 3.2rem;
+}
+.nav .nav-bd a{
+	line-height: 3.7rem;
+}
+/*设置所有nav里面的i标签*/
+.nav i{
+	display: block;
+	/*position: absolute;*/
+	width: 3.8rem;
+	height: 3.8rem;
+	margin: 0 auto;
+	background: url(../img/xiecheng-icon.png) no-repeat 0 0;
+	background-size: 104px auto;
+}
+.nav .nav-hotel i{
+	background-position: 4px -126px;
+}
+.nav .nav-plane i{
+	background-position: 4px -180px;
+}
+.nav .nav-tour i{
+	background-position: 4px -230px;
+}
+
+.nav .nav-down{
+	height: 15rem;
+	background-color: darkgray;
+}
+.nav .nav-down .nav-down-col{
+	border: 1px solid rgb(246,246,246);
+}

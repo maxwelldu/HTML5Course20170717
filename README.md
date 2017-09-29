@@ -1638,6 +1638,34 @@ animate.css的动画分类：
 缩放出场
 特殊特效
 
+
+//让元素垂直居中的一种方式
+top: 50%
+transform: translateY(50%); //这个值相对于高
+
+left: 50%;
+transform: translateX(50%);//这个值相对于宽
+
+图片的外层和a链接的外层，通常都会用div包裹，因为这个位置的元素内容可能会更新，一更新内容可能会导致页面布局就乱了，所以通常用div去布局，不要让具体的一个元素去布局
+布局元素：header div nav ul li     
+具体的元素：a img input
+
+图片加超链接的情况，通常用一个a链接，然后用伪元素去定位图片，用line-height去定位文字
+h1, h2, h3标签的用途：SEO优化的功能 SEO（搜索引擎优化，说白了就是你网站在百度上的排名） SEM 竞价排名（点击一次多少钱，便宜的几毛钱，稍微贵点几块钱）
+h3重要的元素里面一定要设置文字，但是图片更好看，所以把文字text-indent: -9999em;
+另外一个原因，为什么一定要加文字，我们说有视障者，他们看不到图片
+background-size是真实雪碧图的大小/2
+background-position: 真实雪碧图上小icon的位置/2
+width,height都是雪碧图要显示的小icon的大小/2
+如果background-size设置的是真实雪碧图的一半，那position和width,height都要再除以2
+
+letter-spacing: 8px;
+text-align: center;
+/*往回拉8px*/
+/*text-indent: 8px; */
+/*或者padding*/
+/*padding-left: 8px;*/
+
 ##5点后的练习计划
 - 20170828 练习批量绑定事件和对应模型
 - 20170829 练习函数截流滚动或者延迟搜索

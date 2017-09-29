@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      overflow: hidden;
+    }
+    .carousel {
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+    }
+    .carouse ul li{
+      display: inline-block;
+    }
+    .carousel ul li {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 0;
+    }
+    .carousel ul li img {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="carousel" id="carousel">
+    <div class="imageList">
+      <ul>
+        <li><a href=""><img src="images/2.png" alt=""></a></li>
+        <li><a href=""><img src="images/3.png" alt=""></a></li>
+        <li><a href=""><img src="images/4.png" alt=""></a></li>
+        <li><a href=""><img src="images/5.png" alt=""></a></li>
+        <li><a href=""><img src="images/6.png" alt=""></a></li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    //得到轮播图里面的li
+    var carousel = document.querySelector('#carousel');
+    var imageLis = carousel.querySelectorAll('.imageList li');
+
+    //信号量
+    var idx = 0; //当前中间的图片
+    var next = 1; //下一张
+    var prev = 4; //上一张
+
+    var windowWidth;
+    //初始化
+    init();
+    //尺寸改变的时候也去初始化
+    window.onresize = init;
+
+    function init() {
+      //屏幕的宽度
+      windowWidth = document.documentElement.clientWidth;
+
+      //设置盒子的高度
+      carousel.style.height = windowWidth / (200 / 130);
+
+      //设置li的默认位置, 把所有的图片都放到右边
+      imageLis.forEach(function(item){
+        item.style.transform = "translateX(" + windowWidth + "px)";
+      });
+
+      //去掉过渡，移动的时候我们希望实时跟随手指，而不是有过渡效果
+      imageLis[idx].style.transition = "none";
+      imageLis[prev].style.transition = "none";
+      imageLis[next].style.transition = "none";
+
+      //新的位置
+      imageLis[idx].style.transform = "translateX(0px)";
+      imageLis[prev].style.transform = "translateX(" + -windowWidth + "px)";
+      imageLis[next].style.transform = "translateX(" + windowWidth + "px)";
+    }
+
+    //事件监听
+    carousel.addEventListener('touchstart', touchstartHandler, false);
+    carousel.addEventListener('touchmove', touchmoveHandler, false);
+    carousel.addEventListener('touchend', touchendHandler, false);
+
+    //手指的偏移量
+    var deltaX;
+    //触摸开始时候的手指位置
+    var startX;
+    //时间戳，从1970年1月1日 0:00到现在的毫秒数
+    var startTime;
+    //定时器
+    var timer = setInterval(function(){
+      showNext();
+    }, 4000);
+
+    //事件处理函数
+    function touchstartHandler(event) {
+      /*
+      阻止默认事件
+      检查手指个数，多于1个拦截
+      清空定时器
+      记录开始的时间
+      */
+      event.preventDefault();
+      if (event.touches.length > 1) return;
+      clearInterval(timer);
+      //记录偏移量
+      deltaX = event.touches[0].clientX;
+      //记录手指的位置
+      startX = event.touches[0].clientX;
+      //记录时间
+      startTime = new Date();
+
+      //去掉过渡，移动的时候我们希望实时跟随手指，而不是有过渡效果
+      imageLis[idx].style.transition = "none";
+      imageLis[prev].style.transition = "none";
+      imageLis[next].style.transition = "none";
+    }
+    function touchmoveHandler(event) {
+      /*
+        阻止默认行为
+        判断手指个数
+        得到坐标，改变图片的位置
+      */
+      event.preventDefault();
+      if (event.touches.length > 1) return;
+      //得到坐标
+      var clientX = event.touches[0].clientX;
+      //改变图片的位置
+      imageLis[idx].style.transform = "translateX(" + (clientX - deltaX) + "px)";
+      imageLis[next].style.transform = "translateX(" + (windowWidth + clientX - deltaX) + "px)";
+      imageLis[prev].style.transform = "translateX(" + (-windowWidth + clientX - deltaX) + "px)";
+    }
+    function touchendHandler(event) {
+      event.preventDefault();
+      //决断滑动是否成功
+      var distance = event.changedTouches[0].clientX - startX;
+      //滑动时间
+      var time = new Date() - startTime;
+      if (distance >= (windowWidth / 2) || (distance > 30 && time < 300)) {
+        //向右滑动成功
+        console.log('right');
+        //改变信号量
+        next = idx;
+        idx = prev;
+        prev--;
+        if (prev < 0) {
+          prev = 4;
+        }
+        //加上过渡
+        imageLis[next].style.transition = "all 0.3s ease 0s";
+        imageLis[idx].style.transition = "all 0.3s ease 0s";
+        //移动
+        imageLis[next].style.transform = "translateX(" + windowWidth + 'px)';
+        imageLis[idx].style.transform = "translateX(0px)";
+
+      } else if (distance < (-windowWidth / 2) || (distance < -30 && time < 300)) {
+        console.log('left');
+        showNext();
+      } else {
+        console.log('不成功');
+        //加上过渡
+        imageLis[prev].style.transition = "all 0.3s ease 0s";
+        imageLis[idx].style.transition = "all 0.3s ease 0s";
+        imageLis[next].style.transition = "all 0.3s ease 0s";
+        //移动
+        imageLis[prev].style.transform = "translateX(" + -windowWidth + 'px)';
+        imageLis[idx].style.transform = "translateX(0px)";
+        imageLis[next].style.transform = "translateX(" + windowWidth + 'px)';
+      }
+      /*
+      阻止默认行为
+      计算移动的总位置
+      计算移动的总时间
+      如果你向右滑动超过了屏幕的一半，或者你向右滑动且时间小于500，就认为滑动成功
+        改变信号量，if后验证
+        加上过渡
+        移动位置
+      如果你向左滑动超过了屏幕的一半，或者你向左滑动且时间小于500，就认为滑动成功
+        改变信号量，if后验证
+        加上过渡
+        移动位置
+      其他就是失败
+        加上过渡
+        移动回原来的位置
+
+      开启一下自动轮播
+      */
+
+      clearInterval(timer);
+      timer = setInterval(function() {
+        showNext();
+      }, 4000);
+    }
+    function showNext() {
+      //改变信号量
+      prev = idx;
+      idx = next;
+      next++;
+      if (next > 4) {
+        next = 0;
+      }
+      imageLis[next].style.transition = "none";
+      imageLis[next].style.transform = "translateX(" + windowWidth +'px)';
+      //加上过渡
+      imageLis[prev].style.transition = "all 0.3s ease 0s";
+      imageLis[idx].style.transition = "all 0.3s ease 0s";
+      //移动
+      imageLis[prev].style.transform = "translateX(" + -windowWidth + 'px)';
+      imageLis[idx].style.transform = "translateX(0px)";
+    }
+
+  </script>
+</body>
+</html>

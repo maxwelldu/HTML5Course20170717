@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name=viewport content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		header{
+			background-color: #E51650;
+			height: 40px;
+			width: 100%;
+			position: relative;
+		}
+		header .logo{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100px;
+			background-color: pink;
+			height: 40px;
+			z-index: 999;
+		}
+		header .btn{
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 60px;
+			background-color: pink;
+			height: 40px;
+			z-index: 999;
+		}
+		
+		header nav{
+			padding: 0 60px 0 100px;
+			width:100%;
+			height: 40px;
+			box-sizing:border-box;
+			-webkit-box-sizing:border-box;
+			overflow: hidden;
+		}
+		#unit{
+			width: 100%;
+			height: 40px;
+		}
+		header nav ul{
+			list-style: none;
+			width: 1000px;
+			height: 40px;
+			padding-left: 10px;
+		}
+		header ul li{
+			float: left;
+			width: 60px;
+			line-height: 40px;
+		}
+		header ul li a{
+			text-decoration: none;
+			color:white;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<div class="logo">聚划算</div>
+		<nav id="nav">
+			<div id="unit">
+				<ul>
+					<li><a href="#">111</a></li>
+					<li><a href="#">333</a></li>
+					<li><a href="#">333</a></li>
+					<li><a href="#">购物4</a></li>
+					<li><a href="#">购物5</a></li>
+					<li><a href="#">购物6</a></li>
+					<li><a href="#">购物7</a></li>
+					<li><a href="#">购物8</a></li>
+					<li><a href="#">购物9</a></li>
+					<li><a href="#">购物10</a></li>
+					<li><a href="#">购物11</a></li>
+					<li><a href="#">购物12</a></li>
+					<li><a href="#">购物13</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="btn"></div>
+	</header>
+
+	<script type="text/javascript">
+		var unit = document.getElementById("unit");
+		var ul = document.getElementsByTagName("ul")[0];
+		//得到导航条
+		var nav = document.getElementById("nav");
+
+		var alllength = unit.getElementsByTagName("li").length * 60;
+
+		//屏幕宽度
+		var windowWidth = document.documentElement.clientWidth;
+
+		//左边最小的translateX的值
+		var min = alllength - (windowWidth - 100 - 60);
+
+
+		//起点的位置
+		var deltaX;
+
+		//信号量
+		var nowx = 0;
+
+		//移动的数组
+		var movearr = [0,0];
+
+		unit.addEventListener("touchstart",function(event){
+			event.preventDefault();
+			movearr = [0,0];
+			//去掉过渡
+			ul.style.transition = "none";
+			//记录误差
+			deltaX = event.touches[0].clientX - nowx;
+
+		},false)
+
+		//touchmove事件并不是说，你滑动了多少像素就触发几次。而是有一个固有的时间周期。
+		//你滑动的慢，clientX间距很小。你滑动的快，clientX间距很大。
+		unit.addEventListener("touchmove", function(event){
+			event.preventDefault();
+			//信号量的改变
+			nowx = event.touches[0].clientX - deltaX;
+
+			//相对移动
+			ul.style.transform = "translateX(" + nowx + "px)";
+			ul.style.webkitTransform = "translateX(" + nowx + "px)";
+
+
+			//记录手指的位置点
+			movearr.push(event.touches[0].clientX);
+
+			 
+		},false);
+
+
+		//触摸结束
+		unit.addEventListener("touchend", function(event){
+			event.preventDefault();
+			//计算movearr最后两个点的间距
+			var s = movearr[movearr.length - 1] - movearr[movearr.length - 2];
+			//s的大小就决定了你的速度，计算一个新的有惯性的targetx。
+			var targetx = nowx + s * 3;
+			//console.log(nowx,s,targetx);
+			if(targetx < -min){
+				targetx = -min;
+				//贝塞尔曲线有折返
+				ul.style.transition= "all 0.6s cubic-bezier(0.15, 0.85, 0.15, 2.08) 0s";	
+			}else if(targetx > 0){
+				targetx = 0;
+				ul.style.transition = "all 0.6s cubic-bezier(0.15, 0.85, 0.15, 2.08) 0s";
+			}else{
+				ul.style.transition = "all 0.4s cubic-bezier(0.18, 0.68, 0.65, 0.88) 0s";	
+			}
+			//用过渡来实现
+			ul.style.transform = "translateX(" +  targetx + "px)";
+			ul.style.webkitTransform = "translateX(" +  targetx + "px)";
+			//信号量的值就是目标x的值
+			nowx = targetx;
+		},false);
+	</script>
+</body>
+</html>

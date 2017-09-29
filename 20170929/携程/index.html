@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>携程在手·说走就走</title>
+	<meta name=viewport content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+	<link rel="stylesheet" href="css/cssreset-min.css">
+	<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+	<header>
+		<div class="soso">
+			<div class="soso_box">
+				<input type="text" placeholder="搜索酒店 航班 目的地">
+			</div>
+		</div>
+		<div class="user">
+			<a onclick="javascript:window.location='2.html';">我  的</a>
+		</div>
+	</header>
+	<!-- banner -->
+	<section class="banner">
+
+	</section>
+
+	<!-- 导航部分 -->
+	<nav>
+		<div class="row">
+			<ul>
+				<li><div><a href="#">团 购</a></div></li>
+				<li><div><a href="#">团 购</a></div></li>
+				<li><div><a href="#">团 购</a></div></li>
+				<li><div><a href="#">团 购</a></div></li>
+				<li><div><a href="#">团 购</a></div></li>
+			</ul>
+		</div>
+		<div class="row">
+			<ul>
+				<li><div><a href="#">团 购</a></div></li>
+				<li><div><a href="#">团 购</a></div></li>
+				<li><div><a href="#">团 购</a></div></li>
+				<li><div><a href="#">团 购</a></div></li>
+				<li><div><a href="#">团 购</a></div></li>
+			</ul>
+		</div>
+		<div class="row">
+			<ul>
+				<li><div><a href="#">团 购</a></div></li>
+				<li><div><a href="#">团 购</a></div></li>
+				<li><div><a href="#">团 购</a></div></li>
+				<li><div><a href="#">团 购</a></div></li>
+				<li><div><a href="#">团 购</a></div></li>
+			</ul>
+		</div>
+		<div class="row">
+			<ul>
+				<li><div><a href="#">机 票</a></div></li>
+				<li><div><a href="#">团 购</a></div></li>
+				<li><div><a href="#">团 购</a></div></li>
+				<li><div><a href="#">团 购</a></div></li>
+				<li><div><a href="#">团 购</a></div></li>
+				<li><div><a href="#">团 购</a></div></li>
+			</ul>
+		</div>
+	</nav>
+	<section class="products">
+		<ul>
+			<li><a href="">自由行</a></li>
+			<li><a href="">自由行</a></li>
+			<li><a href="">自由行</a></li>
+			<li><a href="">自由行</a></li>
+			<li><a href="">自由行</a></li>
+			<li><a href="">自由行</a></li>
+			<li><a href="">自由行</a></li>
+			<li><a href="">自由行</a></li>
+		</ul>
+	</section>
+
+	<section class="temaihui">
+		<div class="hd">
+			<h3>特卖汇</h3>
+			<div class="hongbao"><a href="">领红包再下单</a></div>
+		</div>
+		<div class="bd">
+			<div class="baokuan_box sales_item">
+				<div class="pic">
+					<span>
+						爆款
+					</span>
+					<img src="images/1225.jpg" alt="">
+				</div>
+				<h4>马来西亚槟城+兰卡威5日4晚半自助游(4钻)·【兰卡威自由活动】2799起限量</h4>
+				<span class="price"><em>¥</em>2799</span>
+				<span class="cut">4.7折</span>
+			</div>
+			<div class="sales_item">
+				<dl>
+					<dt>千款特价</dt>
+					<dd>走过路过不错过</dd>
+				</dl>
+				<img src="images/pic-tmh-02.png" alt="">
+			</div>
+			<div class="sales_item">
+				<dl>
+					<dt>海外精选</dt>
+					<dd><span>百元</span>出境游</dd>
+				</dl>
+			</div>
+			<div class="sales_item">
+				<dl>
+					<dt>周边玩乐</dt>
+					<dd><span>十元</span>度周末</dd>
+				</dl>
+			</div>
+		</div>
+	</section>
+
+	<section class="huodong">
+		<div class="hd">
+			<h3>热门活动</h3>
+			<div class="fuli"><a href="">获取更多福利 > </a></div>
+		</div>
+		<div class="bd">
+			<ul>
+				<li><a href="#"><img src="images/huodong1.png" alt=""></a></li>
+				<li><a href="#"><img src="images/huodong2.png" alt=""></a></li>
+				<li><a href="#"><img src="images/huodong3.png" alt=""></a></li>
+				<li><a href="#"><img src="images/huodong4.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/huodong5.png" alt=""></a></li>
+			</ul>
+		</div>
+	</section>
+	
+	<section class="tool">
+		<ul>
+			<li><a href="">电话预定</a></li>
+			<li><a href="">下载客户端</a></li>
+			<li><a href="">我 的</a></li>
+		</ul>
+	</section>
+
+	<footer>
+		<p>
+			<a href="#">网站地图</a> |
+			<a href="#">ENGLIST</a> |
+			<a href="#">电脑版</a>
+		</p>
+		<p>
+			&copy;2016携程旅行
+		</p>
+	</footer>
+
+	
+
+	<script type="text/javascript">
+		//通过选择器得到元素们
+		var banner = document.querySelector(".banner");
+
+		//屏幕尺寸被改变的时候执行 
+		window.onresize = set;
+
+		set();
+
+		function set(){
+			//var windowWidth = document.documentElement.clientWidth;
+			//盒子的计算后的宽度，找到0号盒子当代表，看看此时计算后的宽度是什么
+			var bannerWidth = parseInt(getComputedStyle(banner)["width"]);
+			//设置高度
+			banner.style.height = bannerWidth  / (1536 / 307) + "px";
+		}
+	</script>
+</body>
+</html>
