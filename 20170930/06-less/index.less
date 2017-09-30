@@ -1,0 +1,67 @@
+@primaryColor: green;
+@dangerColor: red;
+
+html {
+  color: @primaryColor;
+}
+a {
+  color: @primaryColor;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+    color: @dangerColor;
+  }
+}
+div {
+  width: 100px;
+  height: 100px;
+  border: 1px solid @primaryColor;
+  .bordered;
+}
+.error {
+  color: @dangerColor;
+  .bordered;
+}
+// 混合
+.bordered {
+  border-top: dotted 1px black;
+  border-bottom: solid 2px black;
+}
+// 嵌套规则
+#header {
+  color: black;
+  .navigation {
+    font-size: 12px;
+  }
+  .logo {
+    width: 300px;
+  }
+}
+.clearfix {
+  display: block;
+  zoom: 1;
+
+  // 引用父级，相当于 .clearfix::after
+  &::after {
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+
+.box-shadow(@style, @c) when (iscolor(@c)) {
+  -webkit-box-shadow: @style @c;
+  box-shadow:         @style @c;
+}
+.box-shadow(@style, @alpha: 50%) when (isnumber(@alpha)) {
+  .box-shadow(@style, rgba(0, 0, 0, @alpha));
+}
+.box {
+  color: saturate(@primaryColor, 5%);
+  border-color: lighten(@primaryColor, 30%);
+  // 嵌套 .box div
+  div { .box-shadow(0 0 5px, 30%) }
+}

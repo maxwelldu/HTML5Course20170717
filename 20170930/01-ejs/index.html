@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="node_modules/ejs/ejs.min.js" charset="utf-8"></script>
+</head>
+<body>
+  <div id="container"></div>
+  <script>
+    //验证引入成功
+    console.log(ejs);
+
+    var str = `
+    <h1><%= title %></h1>
+    <ul>
+        <% for(var i=0; i<supplies.length; i++) { %>
+            <li>
+                <a href='supplies/<%= supplies[i] %>'>
+                    <%= supplies[i] %>
+                </a>
+            </li>
+        <% } %>
+    </ul>`;
+
+    var data = {
+      title: 'supplies',
+      supplies: [
+        'mop',
+        'broom',
+        'duster'
+      ]
+    };
+
+    var html = ejs.render(str, data);
+    console.log(html);
+    document.querySelector('#container').innerHTML = html;
+
+/*
+    var template = ejs.compile(str, options);
+    template(data);
+    // => Rendered HTML string
+
+    ejs.render(str, data, options);
+    // => Rendered HTML string
+
+    ejs.renderFile(filename, data, options, function(err, str){
+        // str => Rendered HTML string
+    });
+    */
+  </script>
+</body>
+</html>

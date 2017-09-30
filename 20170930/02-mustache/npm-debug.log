@@ -1,0 +1,49 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'run',
+1 verbose cli   'build' ]
+2 info using npm@3.10.8
+3 info using node@v6.9.1
+4 verbose run-script [ 'prebuild', 'build', 'postbuild' ]
+5 info lifecycle 02-mustache@1.0.0~prebuild: 02-mustache@1.0.0
+6 silly lifecycle 02-mustache@1.0.0~prebuild: no script for prebuild, continuing
+7 info lifecycle 02-mustache@1.0.0~build: 02-mustache@1.0.0
+8 verbose lifecycle 02-mustache@1.0.0~build: unsafe-perm in lifecycle true
+9 verbose lifecycle 02-mustache@1.0.0~build: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;D:\HTML5Course20170717\20170930\02-mustache\node_modules\.bin;C:\Users\sks\bin;D:\Program Files\Git\mingw64\bin;D:\Program Files\Git\usr\local\bin;D:\Program Files\Git\usr\bin;D:\Program Files\Git\usr\bin;D:\Program Files\Git\mingw64\bin;D:\Program Files\Git\usr\bin;C:\Users\sks\bin;C:\Python36\Scripts;C:\Python36;C:\ProgramData\Oracle\Java\javapath;C:\program files (x86)\graphicsmagick-1.3.25-q16;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\Lenovo\Access Connections;C:\Program Files\ThinkPad\Bluetooth Software;C:\Program Files\ThinkPad\Bluetooth Software\syswow64;C:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x64;C:\wamp\bin\php\php5.5.12;D:\Program Files\TortoiseSVN\bin;D:\Program Files\TortoiseGit\bin;D:\Program Files\Git\cmd;D:\Program Files\Git\mingw64\bin;D:\Program Files\Git\usr\bin;C:\wamp\bin\mysql\mysql5.6.17\bin;C:\ProgramData\ComposerSetup\bin;C:\Program Files\nodejs;C:\HashiCorp\Vagrant\bin;C:\ProgramData\chocolatey\bin;C:\Program Files\MongoDB\Server\3.4\bin;C:\Program Files (x86)\Yarn\bin;C:\Users\sks\AppData\Roaming\Composer\vendor\bin;C:\Users\sks\AppData\Roaming\npm;C:\Users\sks\AppData\Local\atom\bin;C:\Users\sks\AppData\Local\Yarn\.bin;D:\Program Files\Git\usr\bin\vendor_perl;D:\Program Files\Git\usr\bin\core_perl
+10 verbose lifecycle 02-mustache@1.0.0~build: CWD: D:\HTML5Course20170717\20170930\02-mustache
+11 silly lifecycle 02-mustache@1.0.0~build: Args: [ '/d /s /c',
+11 silly lifecycle   './node_modules/mustache/bin/mustache index.json index.mustache > index.html' ]
+12 silly lifecycle 02-mustache@1.0.0~build: Returned: code: 1  signal: null
+13 info lifecycle 02-mustache@1.0.0~build: Failed to exec build script
+14 verbose stack Error: 02-mustache@1.0.0 build: `./node_modules/mustache/bin/mustache index.json index.mustache > index.html`
+14 verbose stack Exit status 1
+14 verbose stack     at EventEmitter.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\lifecycle.js:255:16)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at EventEmitter.emit (events.js:191:7)
+14 verbose stack     at ChildProcess.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\spawn.js:40:14)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at ChildProcess.emit (events.js:191:7)
+14 verbose stack     at maybeClose (internal/child_process.js:877:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
+15 verbose pkgid 02-mustache@1.0.0
+16 verbose cwd D:\HTML5Course20170717\20170930\02-mustache
+17 error Windows_NT 6.1.7601
+18 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "run" "build"
+19 error node v6.9.1
+20 error npm  v3.10.8
+21 error code ELIFECYCLE
+22 error 02-mustache@1.0.0 build: `./node_modules/mustache/bin/mustache index.json index.mustache > index.html`
+22 error Exit status 1
+23 error Failed at the 02-mustache@1.0.0 build script './node_modules/mustache/bin/mustache index.json index.mustache > index.html'.
+23 error Make sure you have the latest version of node.js and npm installed.
+23 error If you do, this is most likely a problem with the 02-mustache package,
+23 error not with npm itself.
+23 error Tell the author that this fails on your system:
+23 error     ./node_modules/mustache/bin/mustache index.json index.mustache > index.html
+23 error You can get information on how to open an issue for this project with:
+23 error     npm bugs 02-mustache
+23 error Or if that isn't available, you can get their info via:
+23 error     npm owner ls 02-mustache
+23 error There is likely additional logging output above.
+24 verbose exit [ 1, true ]

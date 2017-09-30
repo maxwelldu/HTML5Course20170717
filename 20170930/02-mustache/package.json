@@ -1,0 +1,17 @@
+{
+  "name": "02-mustache",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "mustache": "^2.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "./node_modules/mustache/bin/mustache index.json index.mustache > index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

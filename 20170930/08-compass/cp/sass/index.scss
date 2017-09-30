@@ -1,0 +1,26 @@
+@import "compass/reset";
+@import "compass/css3";
+@import "compass/layout";
+
+$primary-color: red;
+
+#footer {
+  @include sticky-footer(54px);
+}
+.rounded {
+  @include border-radius(5px);
+}
+.opacity {
+  @include opacity(0.5);
+}
+.inline {
+  @include inline-block;
+}
+.box {
+  color: $primary-color;
+  font-size: 13px;
+}
+div {
+  color: $primary-color;
+  font-size: 13px;
+}
