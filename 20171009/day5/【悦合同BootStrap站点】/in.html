@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <style>
+    html {
+      font-size: 16px;
+    }
+    body {
+      background-color: #f5f5f5;
+    }
+    .navbar-default {
+      height: 115px;
+      line-height: 115px;
+      background-color: white;
+      border: none;
+    }
+    .navbar-brand img{
+      width: 12.1875rem;
+    }
+    .navbar-default .logo-txt {
+      font-size: 1.5rem;
+    }
+    .navbar-right {
+      padding-top: 32.5px;
+    }
+    .navbar-right li a{
+      font-size: 16px;
+    }
+    .navbar-toggle {
+      top: 50%;
+      transform: translateY(50%);
+    }
+    @media screen and (max-width:890px) {
+      html {
+        font-size: 14px;
+      }
+      .navbar-right li a{
+        font-size: 12px;
+      }
+      .navbar-default .logo-txt {
+        font-size: 1rem;
+      }
+    }
+    .contract-item {
+
+    }
+    .contract-item-header {
+      text-align: center;
+    }
+    .contract-item-body li {
+      list-style: none;
+      border-bottom: 1px dashed #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+          <img src="./images/yht-logo-195x80.png" alt="">
+        </a>
+        <span class="logo-txt">专业合同服务商</span>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">悦读</a></li>
+          <li><a href="#">写合同</a></li>
+          <li><a href="#">审合同</a></li>
+          <li><a href="#">|</a></li>
+          <li><a href="#" data-toggle="modal" data-target="#myModal1">登录</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+</div>
+<!-- 导航条的container结束 -->
+
+<!-- 轮播图 -->
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="./images/20170725.jpg" alt="...">
+      <div class="carousel-caption">
+        ...
+      </div>
+    </div>
+    <div class="item">
+      <img src="./images/20170726.jpg" alt="...">
+      <div class="carousel-caption">
+        ...
+      </div>
+    </div>
+    <div class="item">
+      <img src="./images/20170505011.jpg" alt="...">
+      <div class="carousel-caption">
+        ...
+      </div>
+    </div>
+    <div class="item">
+      <img src="./images/20170505012.jpg" alt="...">
+      <div class="carousel-caption">
+        ...
+      </div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+<!-- 轮播图结束 -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">登录</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal">
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">邮箱</label>
+            <div class="col-sm-10">
+              <input name="username" type="text" class="form-control" id="inputEmail3" placeholder="用户名">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+            <div class="col-sm-10">
+              <input name="password" type="password" class="form-control" id="inputPassword3" placeholder="Password">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"> 记住密码
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default">登录</button>
+            </div>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 轮播图结束 -->
+  <div class="container">
+    <div class="contract-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
+      <div class="contract-item-head">
+        股权
+      </div>
+      <div class="contract-item-body">
+        <ul>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="contract-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
+      <div class="contract-item-head">
+        股权
+      </div>
+      <div class="contract-item-body">
+        <ul>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="contract-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
+      <div class="contract-item-head">
+        股权
+      </div>
+      <div class="contract-item-body">
+        <ul>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="contract-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
+      <div class="contract-item-head">
+        股权
+      </div>
+      <div class="contract-item-body">
+        <ul>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="contract-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
+      <div class="contract-item-head">
+        股权
+      </div>
+      <div class="contract-item-body">
+        <ul>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="contract-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
+      <div class="contract-item-head">
+        股权
+      </div>
+      <div class="contract-item-body">
+        <ul>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="contract-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
+      <div class="contract-item-head">
+        股权
+      </div>
+      <div class="contract-item-body">
+        <ul>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="contract-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
+      <div class="contract-item-head">
+        股权
+      </div>
+      <div class="contract-item-body">
+        <ul>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+          <li><a href="#">出资协议</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/jquery-1.12.3.min.js" charset="utf-8"></script>
+  <script src="js/bootstrap.min.js" charset="utf-8"></script>
+  <script>
+    $('#myModal1 button[type=submit]').click(function(event){
+      event.preventDefault();
+      var data = $('form').serialize();
+      data += '&status=login';
+      $.ajax({
+        url: 'http://h6.duchengjiu.top/shop/api_user.php',
+        type: 'POST',
+        data: data,
+        success: function(data) {
+          console.log(data);
+          //让模态框隐藏
+          $('#myModal1').modal('hide');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

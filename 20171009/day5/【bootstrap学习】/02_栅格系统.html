@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <!-- 设置IE的兼容模式，可以防止IE有一些兼容错误 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- 视口标签 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 上述3个meta标签必须放在最前面，任何其他内容都*必须*跟随其后！ -->
+  <title>BootStrap学习</title>
+  <!-- 链接了一个样式表 -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- 下面的js是给IE6、7、8用的，让IE6、7、8能够支持html5标签和媒体查询 -->
+  <!--[if lt IE 9]>
+  <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <style type="text/css">
+    .container{
+ 
+      background-color: #ccc;
+    }
+    .no1{
+      height: 200px;
+      background-color: orange;
+    }
+     .no2{
+      height: 200px;
+      background-color: yellowgreen;
+    }
+     .no3{
+      height: 200px;
+      background-color: skyblue;
+    }
+     .no4{
+      height: 200px;
+      background-color: gold;
+    }
+
+    .c{
+      height: 200px;
+      background-color: purple;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+      <div class="no1 col-lg-3 col-md-12 col-sm-4"></div>
+      <div class="no2 col-lg-3 col-md-4  col-sm-4"></div>
+      <div class="no3 col-lg-3 col-md-4  col-sm-4"></div>
+      <div class="no4 col-lg-3 col-md-4  col-sm-12"></div>
+  </div>
+
+  <div class="container box">
+      <div class="c col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2"></div>
+  </div>
+
+  <!-- 引用jQuery和bootstarp自己的js-->
+  <script src="js/jquery-1.12.3.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

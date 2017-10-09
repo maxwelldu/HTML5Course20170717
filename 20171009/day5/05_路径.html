@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		canvas{
+			border: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<canvas width="600" height="300" id="canvas">对不起，您不支持画布，请升级浏览器！</canvas>
+
+	<script type="text/javascript">
+		//得到画布
+		var canvas = document.getElementById("canvas");
+		//得到上下文
+		var ctx = canvas.getContext("2d");
+		
+
+		ctx.beginPath();		//表示我现在要开始绘制路径
+		ctx.moveTo(100,100);	//把绘制点移动到100，100的位置去
+		ctx.lineTo(400,100);	//绘制一条线。这条线就是(100,100)-(400,100)
+		ctx.lineTo(200,200);	//绘制一条线。这条线就是(400,100)-(200,200)
+		ctx.closePath();		//闭合路径，系统会帮我们多绘制一条线(200,200)-(100,100)
+
+		ctx.strokeStyle = "blue";
+		ctx.lineWidth = "40";
+		ctx.stroke();			//把刚刚绘制的所有线添加笔触，显示出来
+		ctx.fillStyle = "red"
+		ctx.fill();				//把刚刚绘制的所有线，添加填充色。
+
+		
+	</script>
+</body>
+</html>

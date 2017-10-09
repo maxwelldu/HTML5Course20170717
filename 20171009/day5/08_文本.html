@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		canvas{
+			border: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<canvas width="800" height="800" id="canvas">对不起，您不支持画布，请升级浏览器！</canvas>
+
+	<script type="text/javascript">
+		//得到画布
+		var canvas = document.getElementById("canvas");
+		//得到上下文
+		var ctx = canvas.getContext("2d");
+
+		ctx.font = "40px 微软雅黑";
+		ctx.fillText("你好",100,100);
+ 
+	</script>
+</body>
+</html>

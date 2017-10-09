@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		canvas{
+			border: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<canvas width="600" height="300" id="canvas">对不起，您不支持画布，请升级浏览器！</canvas>
+
+	<script type="text/javascript">
+		//得到画布
+		var canvas = document.getElementById("canvas");
+		//得到上下文
+		var ctx = canvas.getContext("2d");
+		
+		//画东西：
+		ctx.strokeStyle = "red";				//更改笔触的颜色
+		ctx.lineWidth = "4";					//更改笔触的宽度
+		ctx.strokeRect(100,100,200,50);			//画一个矩形笔触，没有填充
+
+		//画东西：
+		ctx.fillStyle = "blue";					//更改填充的颜色
+		ctx.fillRect(200, 200, 100, 100);		//画一个矩形填充，没有笔触
+	</script>
+</body>
+</html>

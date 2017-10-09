@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		canvas{
+			border: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<canvas width="800" height="400" id="canvas">对不起，您不支持画布，请升级浏览器！</canvas>
+
+	<script type="text/javascript">
+		//得到画布
+		var canvas = document.getElementById("canvas");
+		//得到上下文
+		var ctx = canvas.getContext("2d");
+ 		
+ 		var image = new Image();
+ 		image.src = "images/lc.png";
+
+ 		image.onload = function(){
+ 			//图片加载完毕之后做的事情
+ 			var m = 0;
+ 			var left = 100;
+ 			setInterval(function(){
+ 				// 先清除画布上的所有图形
+ 				ctx.clearRect(0, 0, 800, 800);
+ 				//再绘制新的
+ 				m++;
+ 				if(m > 3){
+ 					m = 0;
+ 				}
+
+ 				left +=3;
+ 				ctx.drawImage(image, 79 * m , 108 * 1 , 79 , 108 , left, 100 ,79,108);
+ 			},30);
+ 		}
+
+
+
+	</script>
+</body>
+</html>

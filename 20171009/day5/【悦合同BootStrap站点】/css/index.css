@@ -1,0 +1,265 @@
+body{
+	background-color: #f5f5f5;
+}
+.navbar-default{
+	background-color: white;
+	border: none;
+	height: 115px;
+	line-height: 115px;
+}
+@media screen and (max-width:970px){
+ 	.navbar-default{
+		height: 90px;
+		line-height: 90px;
+ 	}
+}
+@media screen and (max-width:750px){
+	.navbar{
+		margin-bottom: 0;
+	}
+ 	.navbar-default{
+		height: 40px;
+		line-height: 40px;
+ 	}
+}
+ 
+.navbar h1{
+	float: left;
+	text-indent: -9999em;
+	width: 195px;
+	height: 80px;
+	background: url(../images/yue-sprit001.png) ;
+}
+@media screen and (max-width:970px){
+	.navbar h1{
+	    width: 150px;
+    	height: 60px;
+    	background-position:  -202px 0;
+	}
+}
+@media screen and (max-width:750px){
+	.navbar h1{
+       	width: 122px;
+    	height: 50px;
+    	background: url(../images/yht-logo-195X80.png);
+    	background-size: 100% auto;
+    	margin: 0;
+    	margin-left: 20px;
+	}
+}
+.navbar .slogan{
+	float: left;
+	line-height: 115px;
+	font-size: 2.3em;
+	color:#35c1ec;
+	font-family: "Microsoft Yahei";
+	position: relative;
+	margin-left: 30px;
+	padding-left: 30px;
+}
+.navbar .slogan span{
+	position: absolute;
+	top: 50%;
+	margin-top: -15px;
+	left: 0;
+	width: 2px;
+	height: 30px;
+	background-color: #35c1ec;
+}
+@media screen and (max-width:970px){
+	 .navbar .slogan{
+	 	font-size: 1.5em;
+	 	line-height: 90px;
+	 	margin-left: 30px;
+	 	padding-left: 30px;
+	 }
+	 
+}
+@media screen and (max-width:750px){
+	.navbar .slogan{
+		display: none;
+	}
+}
+
+
+.list{
+	float: left;
+	position: relative;
+}
+.list span{
+	position: absolute;
+	top: 50%;
+	right: 0;
+	width: 1px;
+	height: 20px;
+	background-color: #35c1ec;
+	margin-top: -10px;
+}
+.navbar-collapse{
+	float: left;
+	padding: 0;
+}
+.navbar-right ul{
+	list-style: none;
+	padding: 0;
+}
+.navbar-right li{
+	float: left;
+	width: 70px;
+	text-align: center;
+}
+.navbar-right li a{
+	padding: 6px 10px;
+	border-radius: 10px;
+}
+.navbar-right li a:hover{
+	background-color:  #35c1ec;
+	color:white;
+	text-decoration: none;
+}
+
+@media screen and (max-width: 768px){
+	.navbar-right{
+		float: right;
+		padding-right: 40px;
+	}
+	.navbar-right span{
+		display: none;
+	}
+	.navbar-header{
+		float: left;
+	}
+	.navbar-toggle{
+		position: absolute;
+		right: 0;
+		top: 5px;
+	    padding: 4px 3px;
+	}
+	.navbar-toggle .icon-bar+.icon-bar {
+    	margin-top: 2px;
+	}
+	.navbar-default .navbar-toggle .icon-bar{
+		border: 1px solid black;
+	}
+	.navbar-default .navbar-collapse{
+		position: absolute;
+		top: 50px;
+		left: 0;
+		width: 100%;
+		border-top:1px solid  #ccc;
+		box-shadow: 1px 1px 3px rgba(0,0,0,.4);
+		background-color:white;
+		z-index: 999;
+	}
+	.navbar-default .navbar-collapse li{
+		line-height: 50px;
+	}
+
+}
+
+
+.soso{
+	background: url(../images/s_bg.jpg);
+	height: 150px;
+	padding-top: 50px;
+}
+
+.soso .box{
+	height: 50px;
+	position: relative;
+}
+.soso .box .kk{
+	width: 100%;
+	padding-right: 120px;
+	height: 50px;
+	background-color: white;
+	border-bottom-left-radius: 15px;
+	border-top-left-radius: 15px;
+	padding-left: 30px;
+}
+.soso .box .kk input{
+	height: 50px;
+	border: none;
+	outline: none;
+	font-size: 16px;
+	width: 100%;
+}
+.soso .box .sosobtn{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 120px;
+	height: 50px;
+	background-color: orange;
+	border-bottom-right-radius: 15px;
+	border-top-right-radius: 15px;
+	text-align: center;
+	line-height: 50px;
+}
+
+@media screen and (max-width:970px){
+	 .soso{
+		height: 100px;
+		padding-top: 25px;
+	}
+	
+}
+@media screen and (max-width:750px){
+	 .soso{
+		height: 80px;
+		padding-top: 25px;
+	}
+	.soso .box .kk{
+		height: 30px;
+	}
+	.soso .box .kk input{
+		height: 30px;
+		line-height: 30px;
+	}
+	.soso .box .sosobtn{
+		height: 30px;
+		line-height: 30px;
+	}
+}
+
+.main{
+	
+}
+.main .container{
+	padding-top: 30px;
+ 
+}
+
+.item {
+	margin-bottom: 20px;
+	padding:0 20px;
+}
+.item .pic{
+	background-color: #e8b875;
+	height: 174px;
+}
+.item .inner{
+	background-color: white;
+}
+.item ul{
+	list-style: none;
+	padding: 10px;
+ 
+}
+.item li{
+	line-height: 30px;
+	border-bottom: 1px dashed #ccc;
+}
+.item .more{
+	text-align: right;
+ 	line-height: 40px;
+}
+.aside{
+	padding: 0 10px;
+}
+.aside div{
+	width:100%;
+	height: 300px;
+	background-color: orange;
+	margin-bottom: 20px;
+}

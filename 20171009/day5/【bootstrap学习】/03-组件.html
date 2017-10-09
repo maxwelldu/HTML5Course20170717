@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+  <div class="dropdown">
+    <a class="btn btn-primary dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      下拉菜单
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <li><a href="#">CCC</a></li>
+      <li><a href="#">CCC</a></li>
+      <li><a href="#">CCC</a></li>
+      <li><a href="#">CCC</a></li>
+    </ul>
+  </div>
+
+
+
+
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal1">
+    Launch demo modal
+  </button>
+
+  <button class="btn btn-danger" id="showModal">
+    显示弹出框
+  </button>
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/jquery-1.12.3.min.js" charset="utf-8"></script>
+  <script src="js/bootstrap.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    $(function(){
+      $('#showModal').on('click', function(){
+        $('#myModal1').modal();
+      });
+    });
+  </script>
+</body>
+</html>

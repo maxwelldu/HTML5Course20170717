@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		canvas{
+			border: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<canvas width="600" height="300" id="canvas">对不起，您不支持画布，请升级浏览器！</canvas>
+
+	<script type="text/javascript">
+		//得到画布
+		var canvas = document.getElementById("canvas");
+		//得到上下文
+		var ctx = canvas.getContext("2d");
+		//接下来画的东西，都是ctx的方法、属性
+		ctx.fillStyle = "red";			//填充颜色
+		ctx.fillRect(100, 100, 30, 70); //画一个矩形
+	</script>
+</body>
+</html>

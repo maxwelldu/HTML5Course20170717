@@ -1,0 +1,7 @@
+1.去下面的两个网站去多看几个模板，改改：
+www.bootstrapzero.com
+www.startbootstrap.com
+
+2. 去看几个bootstrap的网站实例：
+http://expo.bootcss.com/
+找一个站仿仿

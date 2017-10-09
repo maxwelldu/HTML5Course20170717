@@ -1,0 +1,20 @@
+header{
+	width: 980px;
+}
+header nav{
+	width: 620px;
+}
+header nav li.s{
+	display: none;
+}
+
+
+.main{
+	width: 980px;
+}
+.main .col{
+	width: 180px;
+}
+.main .hide-980{
+	display: none;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		canvas{
+			border: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<canvas width="600" height="300" id="canvas">对不起，您不支持画布，请升级浏览器！</canvas>
+
+	<script type="text/javascript">
+		//得到画布
+		var canvas = document.getElementById("canvas");
+		//得到上下文
+		var ctx = canvas.getContext("2d");
+		
+ 		ctx.fillRect(100, 100, 100, 100);
+
+ 		ctx.strokeRect(300, 100, 100, 100);
+
+ 		ctx.beginPath();
+ 		ctx.moveTo(500,100);
+ 		ctx.lineTo(500,200);
+ 		ctx.lineTo(600,200);
+ 		ctx.lineTo(600,100);
+ 		ctx.closePath();
+ 		ctx.fillStyle = "#ccc";
+ 		ctx.fill();
+ 		ctx.strokeStyle = "red";
+ 		ctx.stroke();
+	</script>
+</body>
+</html>

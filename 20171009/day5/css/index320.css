@@ -1,0 +1,32 @@
+header{
+	width: 98%;
+}
+header nav ul li{
+	float: none;
+	display: block;
+}
+header nav{
+	display: none;
+	height: 800px;
+}
+header .tools{
+	display: none;
+}
+header .btns{
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	width: 40px;
+	height: 40px;
+	background-color: yellow;
+}
+
+.main{
+	width: 98%;
+	height: 600px;
+}
+.main .col{
+	float:none;
+	width: 90%;
+	margin: 10px auto;
+}
