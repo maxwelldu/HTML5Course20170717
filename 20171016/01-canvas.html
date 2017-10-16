@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    canvas {
+      background-color: black;
+    }
+  </style>
+</head>
+<body>
+  <canvas width="500" height="500"></canvas>
+  <script>
+    var canvas = document.querySelector('canvas');
+    var ctx = canvas.getContext('2d');
+    //画一个矩形的框
+    ctx.strokeStyle = "red";
+    ctx.lineWidth = 4;
+    ctx.strokeRect(100, 100, 200, 40);
+    //画一个矩形的填充
+    ctx.fillStyle = "blue";
+    ctx.fillRect(100, 200, 50, 50);
+  </script>
+</body>
+</html>

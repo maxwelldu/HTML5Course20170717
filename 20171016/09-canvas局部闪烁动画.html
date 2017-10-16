@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    canvas {
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+  <canvas width="500" height="500"></canvas>
+  <script>
+    var canvas = document.querySelector('canvas');
+    var ctx = canvas.getContext('2d');
+
+    var img = new Image();
+    img.src = "./images/1225.jpg";
+    img.onload = function(){
+      var i = 0;
+      setInterval(function(){
+        i++;
+        ctx.clearRect(0, 0, 500, 500);
+        ctx.save();
+        ctx.globalAlpha = i % 10 / 10;
+        ctx.drawImage(img, 235, 60, 90, 100, 100, 100, 90, 100);
+        ctx.restore();
+        ctx.drawImage(img, 235, 60, 90, 100, 200, 100, 90, 100);
+      }, 30);
+    }
+  </script>
+</body>
+</html>

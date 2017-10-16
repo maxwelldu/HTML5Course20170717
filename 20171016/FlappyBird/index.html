@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>FlappyBird</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <style media="screen">
+      * {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="288" height="512"></canvas>
+    <script src="js/underscore.js" charset="utf-8"></script>
+    <!-- 游戏类 -->
+    <script src="js/Game.js" charset="utf-8"></script>
+    <!-- 场景管理器 -->
+    <script src="js/SceneManagement.js" charset="utf-8"></script>
+    <!-- 背景类 -->
+    <script src="js/Background.js" charset="utf-8"></script>
+    <!-- 大地 -->
+    <script src="js/Land.js" charset="utf-8"></script>
+    <!-- 管子 -->
+    <script src="js/Pipe.js" charset="utf-8"></script>
+    <!-- 小鸟 -->
+    <script src="js/Bird.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      var game = new Game();//中介者模式，暴露在全局一个game变量
+    </script>
+  </body>
+</html>
