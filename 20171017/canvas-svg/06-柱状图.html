@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<canvas width="800" height="800" class="visualView"></canvas>
+
+<script>
+    var LINE_MAX_HEIGHT = 400;
+    var LINE_WIDTH = 20;
+    var LINE_HEIGHT = LINE_MAX_HEIGHT/10;
+    var TABLE_ORIGIN = {x:100,y:100};
+    var LINE_SPACE = 15;
+
+    function init() {
+        var visualView = document.querySelector(".visualView");
+
+        var context = visualView.getContext("2d");
+
+        drawTable(context,15,10,[44,65,43,300,276,44,190,276,44,190,44,190,276,44,190]);
+
+
+    }
+
+    function drawTable(context,row,column,heights) {
+        var maxWidth = TABLE_ORIGIN.x + LINE_WIDTH * row + LINE_SPACE * (row - 1);
+        addLine(context, TABLE_ORIGIN, {x: TABLE_ORIGIN.x, y: TABLE_ORIGIN.y + LINE_MAX_HEIGHT});
+        addLine(context, {x: maxWidth, y: TABLE_ORIGIN.y}, {x: maxWidth, y: TABLE_ORIGIN.y + LINE_MAX_HEIGHT});
+
+        for (var j=0;j<=column;j++){
+            addLine(context,{x:TABLE_ORIGIN.x,y:TABLE_ORIGIN.y+LINE_HEIGHT*j},{x:maxWidth,y:TABLE_ORIGIN.y+j*LINE_HEIGHT});
+        }
+
+        for (var i=0;i<=row;i++){
+            rect(context,LINE_WIDTH*i+LINE_SPACE*i,heights[i]);
+        }
+    }
+
+    function addLine(context,begin,end) {
+        context.beginPath();
+        context.moveTo(begin.x,begin.y);
+        context.lineTo(end.x,end.y);
+        context.stroke();
+    }
+
+    function rect(context,x,height) {
+
+        var lineGardient = context.createLinearGradient(TABLE_ORIGIN.x,TABLE_ORIGIN.y,0,LINE_MAX_HEIGHT);
+        lineGardient.addColorStop(0,"red");
+        lineGardient.addColorStop(0.5,"#FFB100");
+        lineGardient.addColorStop(1,"#28FF84");
+        context.fillStyle = lineGardient;
+
+        context.fillRect(TABLE_ORIGIN.x+x,LINE_MAX_HEIGHT+TABLE_ORIGIN.y-height,LINE_WIDTH,height);
+
+    }
+    init();
+</script>
+</body>
+</html>

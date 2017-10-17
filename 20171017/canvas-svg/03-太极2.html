@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="background-color:#cccccc;">
+
+<canvas width="800" height="800"></canvas>
+<script>
+    var canvas = document.querySelector("canvas");
+    var context = canvas.getContext("2d");
+
+    round(400,400,400,Math.PI*1.5,Math.PI/2,"black",true);
+    round(400,400,400,Math.PI*1.5,Math.PI/2,"white",false);
+    round(400,200,200,0,Math.PI*2,"white",false);
+    round(400,600,200,0,Math.PI*2,"black",false);
+
+    round(400,200,50,0,Math.PI*2,"black",false);
+    round(400,600,50,0,Math.PI*2,"white",false);
+
+    function round(x,y,radius,begin,end,color,anticlockwise) {
+        context.strokeStyle = "rgba(0,0,0,0)";
+        context.beginPath();
+        context.arc(x,y,radius,begin,end,anticlockwise);
+//        context.closePath();
+        context.fillStyle = color;
+        context.fill();
+        context.stroke()
+    }
+
+</script>
+</body>
+</html>

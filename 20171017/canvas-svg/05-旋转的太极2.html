@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title> </head>
+<body>
+<canvas id="myCanvas" width="500" height="500" >your browser does not support the canvas tag </canvas>
+<script type="text/javascript">
+    var canvas = document.getElementById('myCanvas');
+    var ctx = canvas.getContext("2d");
+    var angle = 0;
+    var count = 360;
+    var clrA = '#000';
+    var clrB = 'red';
+
+    function taiji(x, y, radius, angle, wise) {
+        angleangle = angle || 0;
+        wisewise = wise ? 1 : -1;
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(angle);
+        ctx.fillStyle = clrA;
+        ctx.beginPath();
+        ctx.arc(0, 0, radius, 0, Math.PI, true);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.fillStyle = clrB;
+        ctx.arc(0, 0, radius, 0, Math.PI, false);
+        ctx.fill();
+        ctx.fillStyle = clrB;
+        ctx.beginPath();
+        ctx.arc(wise * -0.5 * radius, 0, radius / 2, 0, Math.PI * 2, true);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.fillStyle = clrA;
+        ctx.arc(wise * +0.5 * radius, 0, radius / 2, 0, Math.PI * 2, false);
+        ctx.arc(wise * -0.5 * radius, 0, radius / 10, 0, Math.PI * 2, true);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.fillStyle = clrB;
+        ctx.arc(wise * +0.5 * radius, 0, radius / 10, 0, Math.PI * 2, true);
+        ctx.fill();
+        ctx.restore();
+    }
+
+    loop = setInterval(function () {
+        beginTag = true;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        taiji(200, 200, 50, Math.PI * (angle / count) * 2, true);
+//taiji(350, 350, 50, Math.PI * ((count - angle) / count) * 2, false);
+        angle = (angle + 5) % count;
+    }, 50);
+</script>
+</body>
+</html>

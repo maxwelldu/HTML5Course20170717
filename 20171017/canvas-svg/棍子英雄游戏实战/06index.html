@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		#wrap{
+			width: 300px;
+			height: 500px;
+			border: 1px solid #000;
+			margin: 70px auto;
+			/*overflow: hidden;*/
+		}
+		#gameContent{
+			width: 600px;
+			height: 500px;
+			background: yellow;
+			position: relative;
+			left: 0px;
+		}
+		#leftdiv{
+			width: 80px;
+			height: 200px;
+			background: black;
+			position: absolute;
+			bottom: 0;
+		}
+		#hero{
+			width: 40px;
+			height: 40px;
+			background: red;
+			position: absolute;
+			left: 0;
+			bottom: 200px;
+		}
+		#middlediv{
+			width: 80px;
+			height: 200px;
+			background: black;
+			position: absolute;
+			bottom: 0;
+			left: 200px;
+		}
+		#rightdiv{
+			width: 80px;
+			height: 200px;
+			background: black;
+			position: absolute;
+			bottom: 0;
+			left: 400px;
+		}
+		#stick{
+			width: 0px;
+			height: 6px;
+			background: green;
+			position: absolute;
+			left: 40px;
+			bottom: 200px;
+			transform: rotate(-90deg);
+			transform-origin: 0 6px;
+			/*transition: 0.5s;*/
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="gameContent">
+			<div id="leftdiv"></div>
+			<div id="middlediv"></div>
+			<div id="rightdiv"></div>
+			<div id="hero"></div>
+			<div id="stick"></div>
+		</div>
+	</div>
+	<script>
+		var timer = null;
+		var onoff = true;
+		var num = 0;
+		var step = 0;
+		var stick = document.getElementById("stick");
+		var hero = document.getElementById("hero");
+		var gameContent = document.getElementById("gameContent");
+		var middlediv = document.getElementById("middlediv");
+	    document.onmousedown = function(){
+	    	timer = setInterval(function(){
+	    		num+=2;
+	    		stick.style.width = num+"px";
+	    	},20)
+	    };
+	    document.onmouseup = function(){
+	    	clearInterval(timer);
+	    	stick.style.transition = "0.5s";
+	    	stick.style.transform = "rotate(0deg)";
+	    	
+	    	if(num<middlediv.offsetLeft-40 || num>middlediv.offsetLeft+middlediv.offsetWidth-40){
+//	    		console.log("失败");
+//				onoff = false;
+	    	}
+	    };
+	    stick.addEventListener("transitionend",function(){
+	    	if(onoff){
+	    		hero.style.transition = "1s";
+	    		hero.style.left = middlediv.offsetLeft + "px";
+	    	}	    	
+	    });
+	    hero.addEventListener("transitionend",function(ev){
+	    	gameContent.style.transition = "1s";
+	    	gameContent.style.left = -middlediv.offsetLeft + "px";
+	    	step = 1;
+	    	ev.stopPropagation();
+	    });
+	    gameContent.addEventListener("transitionend",function(){
+	    	if(step == 1){
+	    		gameContent.style.transition = "none";
+	    		gameContent.style.left = 0;
+	    		hero.style.transition = "none";
+	    		hero.style.left = 0;
+	    		stick.style.transition = "none";
+	    		stick.style.width = 0;
+	    		stick.style.transform = "rotate(-90deg)";
+	    		num = 0;
+	    		step = 0;
+	    	}
+	    })
+	</script>
+</body>
+</html>

@@ -1666,6 +1666,93 @@ text-align: center;
 /*或者padding*/
 /*padding-left: 8px;*/
 
+20171016
+canvas用来制作图表，游戏，广告banner, 常用的会用的话5个属性，15个方法就行
+
+<canvas width="500" height="500">不支持的浏览器会显示</canvas>
+var canvas = document.querySelector('canvas');
+var ctx = canvas.getContext('2d');
+//绘制元素主要是有一堆的方法去设置笔的样式，以及一堆的方法去绘制具体的图形或文字或图片
+ctx.strokeStyle = "red";//笔触的颜色
+ctx.lineWidth = 4;//笔记的线宽
+ctx.fillStyle = "blue";//设置填充色
+ctx.font = "40px 微软雅黑";
+ctx.globalAlpha = 0.5;//全局的透明度
+
+ctx.strokeRect(x, y, width, height);//绘制的矩形框
+ctx.fillRect(x, y, width, height);//绘制实心的矩形
+ctx.clearRect(x, y, width, height);//把对应的矩形区域清空
+
+//路径
+ctx.beginPath();
+ctx.moveTo(x, y);//移动笔触的起点
+ctx.lineTo(x, y);//从起点画线一直画到当前的x,y
+ctx.closePath();//闭合的时候会自动把当前的点和开始的点连接起来
+ctx.stroke();//绘制框
+ctx.fill();//填充
+ctx.fillText("内容", x, y);
+var img = new Image();
+img.src = "./images/x.jpg";
+img.onload = function(){
+  ctx.drawImage(img, x, y);
+  ctx.drawImage(img, sx, sy, swidth, sheight, dx, dy, dwidth, dheight);
+}
+//动画
+var img = new Image();
+img.src = "./images/1225.jpg";
+img.onload = function(){
+  var x = 100;
+  var y = 100;
+  setInterval(function(){
+    ctx.clearRect(0, 0, 500, 500);
+    x+=3;
+    y+=4;
+    ctx.drawImage(img, 235, 60, 90, 100, x, y, 90, 100);
+  }, 30);
+}
+//事件
+canvas不是DOM元素，不能够像给DOM元素添加事件一样方便，所以游戏引擎里面的显示对象，就是为了解决这些复杂的问题
+js, jquery
+canvas, phaser, jcanvas
+canvas.addEventListener('click', function(event){
+  event = event || window.event;
+  //通过判断点击的位置在目标区域内，就当成是点击了这个显示对象
+  if (event.offsetX > 100 && event.offsetX < 190 && event.offsetY > 100 && event.offsetY < 200) {
+    console.log('clicked');
+  }
+});
+//save(), restore();
+save();保留当前的上下文，相当于是保留了ctx对象的所有的属性的值不变；
+然后你就可以做一些独特的事情，不影响全局，当你完成之后可以调用restore()恢复之前的上下文
+像旋转，缩放，位移，透明度等等，如果要针对某个显示对象则需要先调用save();完事之后调用restore();
+
+//旋转
+
+ctx.translate(x+self.width/2, y+self.height/2);//旋转的时候把参考点改变一下
+ctx.rotate(20);//旋转的角度
+ctx.drawImage(img, sx, sy, swidth, sheight, -dwidth/2, -dheight/2, dwidth, dheight);//对应的位置也要相应的发生变化,-宽度的一半
+
+20171017
+和canvas类似的可以绘图的是svg, 不过这个是描述性的， 不是通过js的api去绘制
+遇到SVG图片，然后颜色还不一样，这个时候可以统一的上传到iconfont网站，然后把颜色去掉再下载
+
+nodejs安装
+到官网下载程序安装
+会自动将程序的路径添加到环境变量的PATH里面，在执行程序的时候会把这个PATH变量里面所有的路径去找，找到了则执行，找不到则报错
+验证安装
+node -v
+cmd和git bash的区别：
+cmd: c: d:
+git bash: cd /c     cd /d
+npm config set loglevel http
+npm config set registry "https://registry.npm.taobao.org"
+npm i underscore
+npm i -g pm2
+pm2 --help
+pm2 -h
+pm2 start 05-http-server.js
+//进程管理：pm2 supervisor forever
+
 ##5点后的练习计划
 - 20170828 练习批量绑定事件和对应模型
 - 20170829 练习函数截流滚动或者延迟搜索

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="myCanvas" width="600" height="400" style="background-color: #EED2EE; ">
+</canvas>
+<script type="text/javascript">
+    var c=document.getElementById("myCanvas");
+    var cxt=c.getContext("2d");
+    //绘制左侧的白色半圆直径都是150
+    cxt.fillStyle="#FFFFFF";
+    cxt.beginPath();
+    cxt.arc(300,200,150,1.5*Math.PI,Math.PI/2,false);
+    cxt.closePath();
+    cxt.fill();
+    //绘制右侧的黑色半圆
+    cxt.fillStyle="#000000";
+    cxt.beginPath();
+    cxt.arc(300,200,150,Math.PI/2,1.5*Math.PI,false);
+    cxt.closePath();
+    cxt.fill();
+    //绘制下面的黑色圆
+    cxt.fillStyle="#000000";
+    cxt.beginPath();
+    cxt.arc(300,275,75,0,2*Math.PI,false);
+    cxt.closePath();
+    cxt.fill();
+    //绘制上面的白色圆
+    cxt.fillStyle="#FFFFFF";
+    cxt.beginPath();
+    cxt.arc(300,125,75,0,2*Math.PI,false);
+    cxt.closePath();
+    cxt.fill();
+    //绘制两个小圆
+    cxt.fillStyle="FFFFFF";
+    cxt.beginPath();
+    cxt.arc(300,275,10,0,2*Math.PI,false);
+    cxt.closePath();
+    cxt.fill();
+    //绘制黑色小圆
+    cxt.fillStyle="#000";
+    cxt.beginPath();
+    cxt.arc(300,125,10,0,2*Math.PI,false);
+    cxt.closePath();
+    cxt.fill();
+</script>
+</body>
+</html>

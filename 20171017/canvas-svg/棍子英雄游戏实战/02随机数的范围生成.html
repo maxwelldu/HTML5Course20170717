@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+//	Math.random()
+//		返回一个0-1之间的随机数
+//		console.log(Math.random());
+
+//		返回一个0-10
+//		console.log(Math.random()*10);
+
+//		返回一个10 - 20 之间的随机数
+//		console.log(Math.random()*10+10);
+
+//		返回一个10 - 30 之间的随机数
+//				一个0-20之间的随机数
+//				   10 - 30
+//		console.log(Math.random()*20+10);
+
+//		返回一个x - y 之间的随机数
+//		console.log(Math.random()*(y-x)+x);
+
+		function creatNum(start,end){
+			return parseInt(Math.random()*(end-start)+start)
+		}
+		console.log(creatNum(1,5))
+	</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		#box{
+			width: 200px;
+			height: 100px;
+			background: red;
+			margin-left: 100px;
+			margin-top: 400px;
+			transform: rotate(0deg);
+			transform-origin:0px 100px ;
+			transition: 1s;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<script type="text/javascript">
+		var box = document.getElementById("box"); 
+		document.onclick = function(){
+			box.style.transform = "rotate(-90deg)";
+		}
+	</script>
+</body>
+</html>

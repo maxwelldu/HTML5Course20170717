@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+//		开启定时器：
+//		setInterval(函数,时间间隔)
+
+//		每隔一段时间执行一次函数
+//		时间间隔是以ms（毫秒）作为单位的
+
+//		关闭定时器；
+//		clearInterval()
+
+
+		var num = 0;
+		var timer = null;
+		document.onmousedown = function(){
+			clearInterval(timer);
+			timer = setInterval(function(){
+				num = num + 1;
+				console.log(num);
+			},100)
+		}
+		document.onmouseup = function(){
+			clearInterval(timer)
+		}
+	</script>	
+</body>
+</html>

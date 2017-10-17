@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	#canvas{
+		background-color: black;
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		margin: auto;
+	}
+	</style>
+</head>
+<body>
+	<canvas width="500" height="500" id="canvas"></canvas>
+	<script type="text/javascript">
+		var canvas = document.getElementById('canvas');
+		var gc = canvas.getContext("2d");
+		var data = map(12,12);
+		var arr = [
+			[[1,1,1,1]],
+			[[1,1],[1,1]],
+			[[1,1,0],[0,1,1]],
+			[[0,1,1],[1,1,0]],
+			[[0,1,0],[1,1,1]],
+			[[1,0,0],[1,1,1]],
+			[[0,0,1],[1,1,1]]
+		];
+		var y = 0;
+		var x = 4;
+		//matrix 保存随机出来的方块，这样在运动中就可以一直使用同一个方块了。
+		var matrix = mold();
+	
+		//生成地图
+		render(data,gc);
+		setInterval(function(){
+			fall();
+		}, 400)
+		
+		create(matrix);
+		play();
+		function play(){
+			document.onkeydown = function(ev){
+				
+				switch(ev.keyCode){
+					case 37://向左移动
+
+						clearPre(matrix);
+						x--;
+						if(x<0){
+							x = 0;
+						}
+						create(matrix);
+					break;
+					case 39://向右移动
+						clearPre(matrix);
+						x++;
+						if(x+matrix[0].length>= data[0].length){
+							x = data[0].length- matrix[0].length;
+						}
+						create(matrix);
+					break;
+					case 38://方块变形
+					break;
+					case 40://加速向下移动。
+					break;
+				}
+			};
+		}
+		//移动
+		function fall(){
+			//判断当放开移动到底部的时候就停下，从新生成一个新的方块从顶部开始下移。
+			if(collideTest()){
+				y=0;
+				matrix = mold();
+			}
+			
+			//清除前边
+			clearPre(matrix);
+			y++;
+			create(matrix);
+		}
+		//检测是否到达地图的底部，或者撞上了其他方块。这个函数返回true说明到底部或者撞上其他方块。
+		function collideTest(){
+			var len = matrix.length;
+			//判断到底部了。
+			if(y+len>=data.length){
+				return true;
+			}
+			for(var i = len-1;i < len;i++){
+				
+				for(var j = 0;j < matrix[i].length;j++){
+					//方块的数组这个位置是0说明是空的，就不需要检测了
+					//如果data[i+y+1][j+4]的位置是1，说明这个位置已经有一个放开了，就是说移动中的放开碰到了下边的方块。	
+					if(matrix[i][j]&&data[i+y+1][j+x] == 1){
+						return true;
+					} 
+				}
+			}
+			return false;
+		}
+
+		//在移动中清除前边的方块
+		function clearPre(arr){
+			for(var i = 0;i < arr.length;i++){
+				
+				for(var j = 0;j < arr[i].length;j++){	
+					
+					data[i+y][j+x] = 0;
+					
+				}
+			}
+		}
+		//创建方块
+		function create(arr){
+			
+			for(var i = 0;i < arr.length;i++){
+				
+				for(var j = 0;j < arr[i].length;j++){
+					if(!data[i+y][j+x]){
+						data[i+y][j+x] = arr[i][j];
+					}	
+					  
+				}
+			}
+			render(data,gc);
+		}
+
+		//随机一个方块数据
+		function mold(){
+			var num = Math.floor(Math.random()*7);
+			
+			return arr[num];	
+		}	
+
+		//创建方块
+		function render(data,gc){
+			var w = 500/12-10;
+			var h = w;
+			
+			var rLen = data.length;
+			var cLen = data[0].length;
+			for(var i = 0;i < rLen;i++){
+				for(var j = 0;j < cLen;j++){
+					gc.fillStyle = data[i][j]==0?'#1AE680':'yellow';
+
+					gc.fillRect(j*(w+10)+5, i*(h+10)+5, w, h);
+				}
+			}
+		}
+
+		//创建数据
+		function map(r,c){
+			var data = [];
+
+			for(var i = 0;i < r;i++){
+				data.push([]);
+				for(var j = 0;j < c;j++){
+					data[i].push(0);
+				}
+			}
+			return data;
+		}
+	</script>
+</body>
+</html>

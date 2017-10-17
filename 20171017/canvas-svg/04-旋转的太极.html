@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="myCanvas" width="500" height="500">your browser does not support the canvas tag</canvas>
+<script type="text/javascript">
+    var deg = 0;
+    var r = 30;
+    var rl = 100;
+    function drawTaiji() {
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+        var colorA = "rgb(0, 0, 0)";
+        var colorB = "red";
+
+        var px =Math.sin(deg)*r;
+        var py =Math.cos(deg)*r;
+        context.clearRect(0, 0, 300, 300);
+        context.beginPath();
+        context.fillStyle = colorA;
+        context.arc(rl, rl, 60, 0.5 * Math.PI +deg, 1.5 * Math.PI +deg, true);
+        context.closePath();
+        context.fill();
+        context.fillStyle = colorB;
+        context.beginPath();
+        context.arc(rl, rl, 60, 1.5* Math.PI +deg, 0.5 * Math.PI +deg, true);
+        context.closePath();
+        context.fill();
+        context.fillStyle = colorB;
+        context.beginPath();
+        context.arc(rl+px, rl-py, 30, 0.5 * Math.PI + deg, 1.5 * Math.PI + deg, true);
+        context.closePath();
+        context.fill();
+        context.fillStyle = colorA;
+        context.beginPath();
+        context.arc(rl-px, rl+py, 30, 1.5 * Math.PI + deg, 0.5 * Math.PI + deg, true);
+        context.closePath();
+        context.fill();
+        context.fillStyle = colorA;
+        context.beginPath();
+        context.arc(rl+px, rl-py, 8, 0, 2 * Math.PI, true);
+        context.closePath();
+        context.fill();
+        context.fillStyle = colorB;
+        context.beginPath();
+        context.arc(rl-px, rl+py, 8, 0, 2 * Math.PI, true);
+        context.closePath();
+        context.fill();
+        deg +=0.1;
+    }
+    setInterval(drawTaiji, 100);
+</script>
+</body>
+</html>

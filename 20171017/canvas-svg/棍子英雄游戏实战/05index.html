@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width">
+	<style>
+		#wrap{
+			width: 300px;
+			height: 500px;
+			border: 1px solid #000;
+			margin: 70px auto;
+			overflow: hidden;
+		}
+		#gameContent{
+			width: 600px;
+			height: 500px;
+			background: yellow;
+			position: relative;
+		}
+		#leftdiv{
+			width: 80px;
+			height: 200px;
+			background: black;
+			position: absolute;
+			bottom: 0;
+		}
+		#hero{
+			width: 40px;
+			height: 40px;
+			background: red;
+			position: absolute;
+			left: 0;
+			bottom: 200px;
+		}
+		#middlediv{
+			width: 80px;
+			height: 200px;
+			background: black;
+			position: absolute;
+			bottom: 0;
+			left: 200px;
+		}
+		#stick{
+			width: 0px;
+			height: 6px;
+			background: green;
+			position: absolute;
+			left: 40px;
+			bottom: 200px;
+			transform: rotate(-90deg);
+			transform-origin: 0 6px;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="gameContent">
+			<div id="leftdiv"></div>
+			<div id="middlediv"></div>
+			<div id="rightdiv"></div>
+			<div id="hero"></div>
+			<div id="stick"></div>
+		</div>
+	</div>
+</body>
+</html>

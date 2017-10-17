@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script language="JavaScript">
+			 var maps=new Array(15);
+			 for(var i=0;i<15;i++)
+			 {
+			 	maps[i]=new Array(15);
+			 	for(var j=0;j<15;j++)
+			 	{
+			 		maps[i][j]=0;
+			 	}
+			 }
+			 //初始化
+			 var black=new Image();
+			 var white=new Image();
+			 black.src="img/black.png";
+			 white.src="img/white.png";
+			 
+			 var can;
+			 var ctx;
+			 
+			 var isBlack=true;
+			 
+			
+		//初始化棋盘
+		function init()
+		{
+			can=document.getElementById("can");
+			ctx=can.getContext("2d");
+			
+			ctx.strokeStyle="#FFF";
+			for(var i=0;i<15;i++)
+			{
+				for(var j=0;j<15;j++)
+				{
+						ctx.strokeRect(j*40,i*40,40,40);
+				}
+			}
+		}
+		
+
+		//下子
+		function play(e)
+		{
+		   
+			var leftOffset=11;
+			//点击cavans的坐标
+			var x=e.clientX-leftOffset;
+			var y=e.clientY-11;
+			
+			var col=parseInt((e.clientX-20)/40)+1;
+			var row=parseInt((e.clientY-20)/40)+1;
+		 
+		    if(isBlack)
+		    {
+		    	
+		    	 ctx.drawImage(black,col*40-20,row*40-20);
+		    	
+		    	 isBlack=false;
+		    	 
+		    	 maps[row][col]=2;//黑
+		    	
+		         iswin(2,row,col);
+		    	 
+		    }
+		    else
+		    {
+		    	   ctx.drawImage(white,col*40-20,row*40-20);
+		    	   isBlack=true;
+		    	    maps[row][col]=1;//白  
+		    	    iswin(1,row,col);
+		    }
+		   //@param t  1白  2黑
+		  function  iswin(t,row,col)
+		    {
+		   
+		    	var orgrow=row;
+		    	var orgcol=col;
+		    	var total=1;
+		        //水平
+		    	while(col-1>0&&maps[row][col-1]==t)
+		    	{
+		    		total++;
+		    		col--;
+		    	}
+		    	row=orgrow;
+		    	col=orgcol;
+		    	while(col+1<15&&maps[row][col+1]==t)
+		    	{
+		    		col++;
+		    		total++;
+		    	}
+		    	if(total>=5)
+		    	{
+		    		if(t==1)
+		    		alert("白子赢");
+		    		else
+		    		alert("黑子赢");
+		    	}
+		    	
+		    	//垂直
+		    	row=orgrow;
+		    	col=orgcol;
+		    	total=1;
+		    	while(row-1>0&&maps[row-1][col]==t)
+		    	{
+		    		row--;
+		    		total++;
+		    	}
+		    	row=orgrow;
+		    	col=orgcol;
+		    	while(row+1<15&&maps[row+1][col]==t)
+		    	{
+		    		row++;
+		    		total++;
+		    	}
+		    	if(total>=5)
+		    	{
+		    		if(t==1)
+		    		alert("白子赢");
+		    		else
+		    		alert("黑子赢");
+		    	}
+		    	
+		    	//左下  右上
+		    	row=orgrow;
+		    	col=orgcol;
+		    	total=1;
+		    	while(row+1<15&&col-1>0&&maps[row+1][col-1]==t)
+		    	{
+		    		row++;
+		    		col--;
+		    		total++;
+		    	}
+		    	row=orgrow;
+		    	col=orgcol;
+		    	while(row-1>0&&col+1<15&&maps[row-1][col+1]==t)
+		    	{
+		    		row--;
+		    		col++;
+		    		total++;
+		    	}
+		    	if(total>=5)
+		    	{
+		    		if(t==1)
+		    		alert("白子赢");
+		    		else
+		    		alert("黑子赢");
+		    	}
+		    	//左上右下
+		    	row=orgrow;
+		    	col=orgcol;
+		    	total=1;
+		    	while(row-1>0&&col-1>0&&maps[row-1][col-1]==t)
+		    	{
+		    		row--;
+		    		col--;
+		    		total++;
+		    	}
+		    	row=orgrow;
+		    	col=orgcol;
+		    		while(row+1<15&&col+1<15&&maps[row+1][col+1]==t)
+		    	{
+		    		row++;
+		    		col++;
+		    		total++;
+		    	}
+		    		if(total>=5)
+		    	{
+		    		if(t==1)
+		    		alert("白子赢");
+		    		else
+		    		alert("黑子赢");
+		    	}
+		    }
+		}
+			
+		</script>
+	</head>
+	<body onload="init();">
+
+			<canvas id="can" width="600" height="600" onclick="play(event);" style="background: url(img/bak.jpg);"></canvas>
+		
+		
+	</body>
+</html>

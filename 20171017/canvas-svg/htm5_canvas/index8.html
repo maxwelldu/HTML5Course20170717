@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script language="JavaScript">
+			function init()
+			{
+				var can=document.getElementById("can");
+				var ctx=can.getContext("2d");
+
+                ctx.beginPath();
+          
+               ctx.moveTo(100,60);
+       
+                ctx.arcTo(200,60,180,150,60);
+          
+                ctx.closePath();
+                
+               ctx.lineWidth=5;
+               ctx.strokeStyle="orange";
+               ctx.stroke();
+				
+           
+			}
+			
+		</script>
+	</head>
+	<body onload="init();">
+		<canvas id="can" width="400" height="300" style="border: 1px #000 solid;"></canvas>
+	</body>
+</html>

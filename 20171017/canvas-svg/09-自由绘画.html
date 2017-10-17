@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        section { position: relative; }
+        .painter { border: 1px solid #cccccc; }
+        .control {
+            position: absolute;
+            left: 810px;
+        }
+
+        .chooseColor { top: 50px; }
+        .allClearButton { top: 100px; }
+        .saveButton { top: 150px; }
+        .eraserButton {
+            width: 50px;
+            height: 50px;
+            background-color: #cccccc;
+            top: 200px;
+            text-align: center;
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <canvas class="painter" height="800" width="800"></canvas>
+    <input class="control chooseColor" type="color">
+    <button class="control allClearButton">清除画板</button>
+    <button class="control saveButton">保存</button>
+    <p class="control eraserButton">橡皮擦</p>
+</section>
+<script>
+    (function () {
+        function Painter(canvasEle,superEle) {
+            this.superEle = superEle;
+            this.canvasEle = canvasEle;
+            this.context = this.canvasEle.getContext("2d");
+            //    设置画笔 两头的样式
+            this.context.lineCap = "round";
+            //    设置拐角的样式
+            this.context.lineJoin = "round";
+        }
+        //设置画笔的颜色
+        Painter.prototype.setLineColor = function (color) {
+            this.context.strokeStyle = color;
+        };
+
+        //清除画板中  所有的内容
+        Painter.prototype.clearWindow = function () {
+            this.context.clearRect(0,0,this.canvasEle.width,this.canvasEle.height);
+        };
+
+        //保存绘制的内容
+        Painter.prototype.saveToImage = function () {
+            var inputImageName = prompt("请输入图片的名字","image");
+            if (inputImageName){
+                var a = document.createElement("a");
+                a.href = this.canvasEle.toDataURL();
+                a.download = inputImageName;
+                a.click();
+            }
+        };
+
+        //橡皮擦
+        Painter.prototype.eraser = function (eraserEle) {
+            var tempEraserEle = eraserEle.cloneNode(true);
+            this.superEle.appendChild(tempEraserEle);
+            var self = this;
+            function move(event) {
+                tempEraserEle.style.left = event.pageX-25+"px";
+                tempEraserEle.style.top = event.pageY-25+"px";
+                self.context.clearRect(event.pageX-25,event.pageY-25,50,50);
+            }
+            function up(event) {
+                clearEventListener();
+                self.superEle.removeChild(tempEraserEle);
+            }
+            function down(event) {
+                console.log(tempEraserEle);
+                document.addEventListener("mousemove",move);
+            }
+            //清除 橡皮擦的 效果
+            function clearEventListener() {
+                document.removeEventListener("mousedown",down);
+                document.removeEventListener("mousemove",move);
+                document.removeEventListener("mouseup",up);
+            }
+            document.addEventListener("mousedown",down);
+            document.addEventListener("mouseup",up);
+        };
+
+        Painter.prototype.drowLine = function () {
+            var self = this;
+            var offsetPoint = 5;
+            //当鼠标在画板上 移动时候的 监听者
+            function move(event) {
+                self.context.lineTo(event.pageX-offsetPoint,event.pageY-offsetPoint);
+                self.context.stroke();
+            }
+            this.canvasEle.onmousedown = function (event) {
+                self.context.beginPath();
+                self.context.moveTo(event.pageX-offsetPoint,event.pageY-offsetPoint);
+                self.context.stroke();
+                self.canvasEle.addEventListener("mousemove",move);
+            };
+            this.canvasEle.onmouseup = function (event) {
+                this.removeEventListener("mousemove",move);
+                self.context.save();
+                self.context.closePath();
+            };
+        };
+
+        window.Painter = Painter;
+        function init() {
+            var chooseColor = document.querySelector(".chooseColor");
+            var canvasEle = document.querySelector(".painter");
+            var allClearButton = document.querySelector(".allClearButton");
+            var saveButton = document.querySelector(".saveButton");
+            var eraserButton = document.querySelector(".eraserButton");
+            var superEle = document.querySelector("section");
+            var painter = new Painter(canvasEle,superEle);
+            painter.drowLine();
+            chooseColor.onchange = function () {
+                painter.setLineColor(this.value);
+            };
+
+            allClearButton.onclick = function () {
+                painter.clearWindow();
+            };
+
+            saveButton.onclick = function () {
+                painter.saveToImage();
+            };
+
+            eraserButton.onmousedown = function () {
+                painter.eraser(this);
+            };
+        }
+
+        init();
+
+    })();
+</script>
+</body>
+</html>

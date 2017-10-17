@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		div{
+			width: 100px;
+			height: 100px;
+			background: red;
+			/*transition:1s;*/
+			/*transition: width 1s;*/
+			transition: width 1s, height 1s;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<script type="text/javascript">
+		var box = document.getElementById("box");
+		document.onclick = function(){
+			box.style.width = "800px";
+			box.style.height = "400px";
+			box.style.background = "green";
+		}
+//		transition end
+		box.addEventListener("transitionend",function(){
+			alert(1)
+		});
+	</script>
+</body>
+</html>

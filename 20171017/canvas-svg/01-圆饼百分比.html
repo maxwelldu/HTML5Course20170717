@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<canvas id="bg" widt="200" height="200"></canvas>
+http://caibaojian.com/canvas-circular.html
+<script>
+    var bg = document.getElementById('bg');
+    var cxt = bg.getContext('2d'); //创建context对象
+    cxt.fillStyle = '#FF0000'; //设置或返回用于填充绘画的颜色、渐变或模式 染成红色
+    cxt.strokeStyle="#ff0000"; //设置或返回用于笔触的颜色、渐变或模式
+    //cxt.lineCap = 'square'; //设置或返回线条的结束端点样式
+    cxt.beginPath(); //起始一条路径，或重置当前路径
+    cxt.moveTo(100,100); //把路径移动到画布中的指定点，不创建线条
+
+    function draw(current){
+        //cxt.lineTo(100,0); //添加一个新点，然后在画布中创建从该点到最后指定点的线条
+        cxt.arc(100,100,80,-0.5*Math.PI,current*(2*Math.PI) - Math.PI/2,false); //绘制一个中心点为（100,100），半径为100，起始点为1.5*Math.PI,终点为2*Math.PI,顺时针的1/4圆
+        cxt.closePath(); //创建从当前点回到起始点的路径
+        cxt.fill();//填充当前绘图（路径）
+        //cxt.lineWidth = 10.0; //设置或返回当前的线条宽度
+        cxt.stroke(); //绘制已定义的路径
+    }
+    //draw(0.6);
+    var t=0;
+    var timer=null;
+    function loadCanvas(now){
+        timer = setInterval(function(){
+            if(t>now){
+                draw(now);//最后一次绘制
+                clearInterval(timer);
+            }else{
+                draw(t);
+                t+=0.005;
+            }
+        },5);
+    }
+    loadCanvas(0.8);
+    timer=null;
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+
+			function isWin(t,row,col)
+			{
+				
+				var orgrow=row;
+				var orgcol=col;
+				
+				var total=0;
+				while((col-1)>0&&maps[row][col-1]==t)
+				{
+					col--;
+					total++;
+				}
+				row=orgrow;
+				col=orgcol;
+				while((col+1)<15&&maps[row][col+1]==t)
+				{
+					col++;
+					total++;
+				}
+			   if(total>=5)
+			   {
+			   	
+			   	   if(t==1)
+			   	   {
+			   	  	ctx.strokeStyle="red";
+				ctx.font="bold 34px 微软雅黑";
+				ctx.strokeText("白子赢",100,200);
+			   	
+			   	   }else
+			   	   {
+			   	ctx.strokeStyle="red";
+				ctx.font="bold 34px 微软雅黑";
+				ctx.strokeText("黑白子赢",100,200);
+			   	   }
+			   }
+			
+			}	

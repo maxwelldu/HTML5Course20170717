@@ -1,0 +1,104 @@
+canvas 标签可以创建一个空白的画布
+	width
+	height
+可通过js webAPI绘制内容
+
+绘制步骤
+1.创建画布
+2.获得上下文
+3.设置绘制的相关信息
+4.绘制内容
+5.绘制
+
+lineCap
+butt（默认值），round 圆形，square 方形
+
+lineJoin
+miter（默认值，尖角），bevel（衔接），round（圆角）
+
+miterLimit number lineJoin为miter影响 他的角度
+
+arc
+x	圆的中心的 x 坐标。
+y	圆的中心的 y 坐标。
+r	圆的半径。
+sAngle	起始角，以弧度计。（弧的圆形的三点钟位置是 0 度）。
+eAngle	结束角，以弧度计。
+counterclockwise	可选。规定应该逆时针还是顺时针绘图。False = 顺时针，true = 逆
+
+drawImage
+img	规定要使用的图像、画布或视频。
+sx	可选。开始剪切的 x 坐标位置。
+sy	可选。开始剪切的 y 坐标位置。
+swidth	可选。被剪切图像的宽度。
+sheight	可选。被剪切图像的高度。
+x	在画布上放置图像的 x 坐标位置。
+y	在画布上放置图像的 y 坐标位置。
+width	可选。要使用的图像的宽度。（伸展或缩小图像）
+height	可选。要使用的图像的高度。（伸展或缩小图像）
+
+贝塞尔曲线 bezierCurveTo
+
+线性渐变 createLinearGradient
+	addColorStop
+
+径向渐变 createRadialGradient
+
+context.shadowOffsetX = 5;
+context.shadowOffsetY = -3;
+context.shadowBlur = 5;
+context.shadowColor = "rgba(0, 0, 0, 0.5)";
+
+
+图章 createPattern
+"repeat" (both directions),
+"repeat-x" (horizontal only),
+"repeat-y" (vertical only), or
+"no-repeat" (neither).
+
+
+填充
+ 	"nonzero": 默认值.
+	fill("evenodd");
+
+save
+restore
+当前应用的变形（即移动，旋转和缩放，见下）
+strokeStyle, fillStyle, globalAlpha, lineWidth, lineCap, lineJoin, miterLimit, shadowOffsetX, shadowOffsetY, shadowBlur, shadowColor, globalCompositeOperation 的值
+当前的裁切路径（clipping path）
+
+
+移动 Translating
+
+旋转 rotate 角度转换为弧度公式 degrees*Math.PI/180 进行计算
+
+scale
+
+
+transform
+水平缩放绘图
+水平倾斜绘图
+垂直倾斜绘图
+垂直缩放绘图
+水平移动绘图
+垂直移动绘图
+
+组合 Compositing
+source-over (default) 这是默认设置，新图形会覆盖在原有内容之上
+destination-over 会在原有内容之下绘制新图形
+source-in 新图形会仅仅出现与原有内容重叠的部分。其它区域都变成透明的
+destination-in 原有内容中与新图形重叠的部分会被保留，其它区域都变成透明的
+source-out 结果是只有新图形中与原有内容不重叠的部分会被绘制出来
+destination-out 原有内容中与新图形不重叠的部分会被保留
+source-atop 新图形中与原有内容重叠的部分会被绘制，并覆盖于原有内容之上
+destination-atop 原有内容中与新内容重叠的部分会被保留，并会在原有内容之下绘制新图形
+lighter 两图形中重叠部分作加色处理。
+
+darker 两图形中重叠的部分作减色处理
+xor 重叠的部分会变成透明。
+copy 只有新图形会被保留，其它都被清除掉。
+
+裁切：clip()
+
+
+Echarts.js

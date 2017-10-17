@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="bg" width="240" height="240"></canvas>
+<script>
+    var bg = document.getElementById('bg');
+    var ctx = bg.getContext('2d');
+    var circ = Math.PI * 2;
+    var quart = Math.PI / 2;
+    var imd = null;
+    var circ = Math.PI * 2;
+    var quart = Math.PI / 2;
+
+    ctx.beginPath();
+    ctx.strokeStyle = '#99CC33';
+    ctx.lineCap = 'square';
+    ctx.closePath();
+    ctx.fill();
+    ctx.lineWidth = 10.0;
+
+    imd = ctx.getImageData(0, 0, 240, 240);
+    function draw(current){
+        ctx.putImageData(imd, 0, 0);
+        ctx.beginPath();
+        ctx.arc(120, 120, 70, -(quart), ((circ) * current) - quart, false);
+        ctx.stroke();
+    }
+    //draw(0.6);
+    var t=0;
+    var timer=null;
+    function loadCanvas(now){
+        timer = setInterval(function(){
+            if(t>now){
+                draw(now);//最后一次绘制
+                clearInterval(timer);
+            }else{
+                draw(t);
+                t+=0.01;
+            }
+        },20);
+    }
+    loadCanvas(0.8);
+    timer=null;
+</script>
+</body>
+</html>
