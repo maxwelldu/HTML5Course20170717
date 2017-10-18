@@ -1,0 +1,1 @@
+var bar = require("./test/foo.js");

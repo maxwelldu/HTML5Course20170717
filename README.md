@@ -1736,6 +1736,10 @@ ctx.drawImage(img, sx, sy, swidth, sheight, -dwidth/2, -dheight/2, dwidth, dheig
 和canvas类似的可以绘图的是svg, 不过这个是描述性的， 不是通过js的api去绘制
 遇到SVG图片，然后颜色还不一样，这个时候可以统一的上传到iconfont网站，然后把颜色去掉再下载
 
+#20171017
+Node的内容非常非常重要，因为现在前端开发都讲究工程化，gulp, webpack, express, vue-cli, vue
+nodejs的三大特征：单线程，非阻塞I/O，事件机制
+I/O 对于计算机来说可以在内存当中写数据或数据，可以在硬盘当中写数据读数据，也可以从网络当中去读数据或写数据
 nodejs安装
 到官网下载程序安装
 会自动将程序的路径添加到环境变量的PATH里面，在执行程序的时候会把这个PATH变量里面所有的路径去找，找到了则执行，找不到则报错
@@ -1744,14 +1748,105 @@ node -v
 cmd和git bash的区别：
 cmd: c: d:
 git bash: cd /c     cd /d
+//执行一个nodejs的文件
+node 要执行的js文件.js
+//如果运行的这个文件是启动一个web server, 需要手动的打开浏览器，输入地址去查看
+协议://域名(IP):端口/路径/名件名?a=1&b=1#c=3&d=4
+ftp:
+http:
+https:
+ws:
+//怕你等着急了，可以查看到正在访问的请求，而不至于等半天没反应
 npm config set loglevel http
+//解决速度慢的问题; 后面如果安装某些包比较费时，你可以使用已经安装好的同学的包
 npm config set registry "https://registry.npm.taobao.org"
+//安装一个第三方的模块, 第三方模块特别多，gulp,webpack, http-server, json-server, localtunnel
 npm i underscore
+//进程管理，nodejs程序炸了就挂了，所以需要一个能够自动重启的软件，类似的软件还有forever, supervisor
+//i表示install -g表示--global
 npm i -g pm2
+//查看帮助
 pm2 --help
+//查看帮助,-h表示--help
 pm2 -h
+//启动05-http-server.js这个程序，通过pm2去启动; 如果开启之后不去停止会报端口号被占用
 pm2 start 05-http-server.js
-//进程管理：pm2 supervisor forever
+//关闭所有的pm2进程
+pm2 kill
+//nodejs中的模块导出
+module.exports = {
+  需要导出的内容
+}
+//nodejs中的模块导入
+var m = require('./a1.js');
+var m = require('./m1/');//相当于引入了m1目录下的index.js这个模块
+var m = require('./m1');//会先在当前目录查找一下是否有m1.js这个文件，如果没有则看有没有m1这个目录，如果有这个目录去查看有没有index.js
+var m = require('http');
+var m = require('url');
+var m = require('fs');
+var m = require('underscore');//第三方模块
+var m = require('gulp');//第三方模块
+var m = require('webpack');//第三方模块
+m.属性
+m.方法()
+//使用nodejs创建一下简单的webserver
+let http = require('http');
+http.createServer((req, res) => {
+  req.url;//获取请求的地址
+  //每次请求的时候都会执行的内容
+  res.write('<h1>h1</h1>');
+  res.writeHead(200, {"content-type":"text/html;charset=utf-8"});
+  res.end("可以加返回的内容，相当于write并结束");//表示结束，如果没有这个则一直在请求
+}).listen(3000, '127.0.0.1');
+//fs模块,文件系统模块，目录的增删改查，文件的增删改查
+//通用的规定，nodejs里面的回调函数中的第一个参数通常都是error对象，第二个才是数据
+fs.mkdir();//创建目录
+fs.stat('文件', (err, data) => {
+    console.log(data.isDirectory());//检测是否是一个目录
+});//检测状态
+fs.readFile('文件', (error, data) => {
+});
+fs.readdir('目录', (error, files) => {
+  //files就是指一个目录下面的所有的文件（包括目录）
+})
+
+//路由做的事情就是根据不同的请求地址或者不同的请求方式，或者不同的请求参数去做不同的事情
+if (req.url === 'a') {
+  //做某件事
+} else if (req.url === 'b') {
+  //做某件事
+}
+//express
+app.get('/', function(){
+})
+//url模块
+var u = url.parse(req.url);//能够将地址转换成对象
+var u = url.parse(req.url, true);//不仅能够将地址转换成对象，而且将查询字符串也能够转换成对象
+//想要获得某个GET请求的参数为name的值
+console.log(u.query.name);
+//路由这一块可以是精确匹配;还有模糊匹配
+//在学Vue的时候也会有路由配置，到时候就会有一级路由，二级路由，动态路由
+//前端路由是指页面不跳转的情况下，所以通常是#/a/b/ 也可以变成/a 背后的原因是通过h5的history对象去管理
+//后端路由通常是页面会发生跳转，所以是 /a /b  /a?id=1
+
+//生成package.json
+npm init -y
+//根据package.json下载对应的库通过
+npm i
+//安装的时候如果是线上需要用的模块
+npm i -S underscore
+//安装的时候如果是一些工具模块
+npm i -D gulp
+
+package.json说明：
+main选项
+scripts选项  npm run dev
+dependencies
+devDependencies
+
+.gitignore通常需要忽略node_modules目录
+
+
 
 ##5点后的练习计划
 - 20170828 练习批量绑定事件和对应模型

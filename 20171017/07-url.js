@@ -7,6 +7,8 @@ let server = http.createServer((req, res) => {
   }
   //url.parse()可以将一个完整的URL地址分成很多部分：
   //host  port pathname path querystring
+  console.log(url.parse(req.url));
+  console.log(url.parse(req.url, true));
   var pathname = url.parse(req.url).pathname;
   console.log(pathname);
   //url.parse()如果第二个参数是true, 可以将所有的查询变成对象

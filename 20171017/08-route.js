@@ -7,6 +7,7 @@ let server = http.createServer((req, res) => {
   }
   var userurl = req.url;
   res.writeHead(200, {"content-type": 'text/html;charset=utf-8'});
+  //判断地址的前面9个是不是 /student/
   if (userurl.substr(0, 9) === '/student/') {
     var studentid = userurl.substr(9);
     if (/^\d{10}$/.test(studentid)) {
@@ -15,9 +16,9 @@ let server = http.createServer((req, res) => {
       res.end("学生学号位数不对" + studentid);
     }
   } else if (userurl.substr(0, 9) === '/teacher/') {
-    
+
   }
-  res.end();
+  res.end('默认首页');
 });
 server.listen(4000, '127.0.0.1');
 
