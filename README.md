@@ -1809,6 +1809,9 @@ fs.readFile('文件', (error, data) => {
 fs.readdir('目录', (error, files) => {
   //files就是指一个目录下面的所有的文件（包括目录）
 })
+fs.rename(oldpath, newpath, (err) => {
+
+})
 
 //路由做的事情就是根据不同的请求地址或者不同的请求方式，或者不同的请求参数去做不同的事情
 if (req.url === 'a') {
@@ -1828,6 +1831,92 @@ console.log(u.query.name);
 //在学Vue的时候也会有路由配置，到时候就会有一级路由，二级路由，动态路由
 //前端路由是指页面不跳转的情况下，所以通常是#/a/b/ 也可以变成/a 背后的原因是通过h5的history对象去管理
 //后端路由通常是页面会发生跳转，所以是 /a /b  /a?id=1
+let pathname = url.parse(req.url).pathname;
+
+//path模块
+let extname = path.extname(pathname);
+
+//sd模块
+npm i -S silly-datetime
+let sd = require('silly-datetime');
+sd.format(new Date(), 'YYYYMMDDHHmmss');
+
+//路由的话可以单独写成一个文件，然后导出给主文件使用
+在需要使用的地方导入
+let router = require('./router.js');
+router.showIndex(req, res);
+
+//req
+req.url 请求的地址
+req.method 请求的方式
+
+//querystring模块
+npm i -S querystring
+let querystring = require('querystring');
+//分块post请求提交，每提交一部分数据
+req.addListener('data', (chunk)=>{
+});
+//post提交完成
+req.addListener('end', () => {
+  let dataObj = querystring.parse(datastring);
+});
+
+//formidable 专门处理post请求的模块
+npm i -S formidable;
+let formidable = require('formidable');
+//创建一个新的来源表单
+let form = new formidable.IncomingForm();
+form.uploadDir = './uploads';
+form.keepExtensions = true;
+form.parse(req, (err, fileds, files) => {
+  if (err) {
+    throw err;
+  }
+  console.log(fileds, files);
+  console.log(util.inspect({fileds, files}));//ES6的简写相当于，{fileds: fileds, files: files}
+  //时间，使用silly-datetime
+  let time = sd.format(new Date(), 'YYYYMMDDHHmmss');
+  let rand = Number.parseInt(Math.random() * 89999 + 10000);
+  let extname = path.extname(files.pic.name);
+  let oldpath = __dirname + '/' + files.pic.path;
+  //新的路径
+  var newpath = __dirname + '/uploads/' + time + rand + extname;
+  //改名
+  fs.rename(oldpath, newpath, (err) => {
+    if (err) {
+      throw err;
+    }
+    res.writeHead(200, {'content-type':'text/html;charset=utf-8'});
+    res.end('成功');
+  });
+});
+}
+
+//util
+util.inspect({});//可以把对象转换成字符串,方便调试
+
+__dirname 表示当前文件所在的目录绝对地址
+
+//ejs模块
+npm i -S ejs
+let ejs = require('ejs');
+fs.readFile("./views/index.ejs",function(err,data){
+    //绑定模板
+    var template = data.toString();
+    var dictionary = {
+        a:6,
+        news : [
+            {"title":"陈伟我爱你","count":10},
+            {"title":"哈哈哈哈","count":20},
+            {"title":"逗你玩儿的","count":30}
+        ]
+    };
+    var html = ejs.render(template,dictionary);
+
+    //显示
+    res.writeHead(200,{"Content-Type":"text/html;charset=UTF8"});
+    res.end(html);
+});
 
 //生成package.json
 npm init -y

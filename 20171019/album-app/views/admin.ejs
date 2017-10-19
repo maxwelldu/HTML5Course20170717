@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    input[name=new-album-name] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/">首页</a>
+    <a href="/admin">后台管理</a>
+  </nav>
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <p>
+      请选择相册：
+      <select name="album">
+        <% for (var i = 0; i < subFolders.length; i++) { %>
+        <option value="<%= subFolders[i]%>"><%= subFolders[i]%></option>
+        <% } %>
+      </select>
+      <input type="button" value="新建相册" id="create-album" />
+      <input type="text" name="new-album-name">
+    </p>
+    <input type="file" name="pic">
+    <input type="submit">
+  </form>
+
+
+  <script>
+    var createAlbum = document.querySelector('#create-album');
+    var newAlbumName = document.querySelector('input[name=new-album-name]');
+    createAlbum.addEventListener('click', function(){
+      if (this.value === '确定创建') {
+        //发送 ajax请求
+        ajaxget('/create-album?name=' + newAlbumName.value, function(data) {
+          if (data+'' === '0') {
+            newAlbumName.style.display = 'none';
+            createAlbum.value = '新建相册';
+            //给select框添加一个option
+            var option = document.createElement('option');
+            option.value = newAlbumName.value;
+            option.innerText = newAlbumName.value;
+            document.querySelector('select[name=album]').appendChild(option);
+            alert('相册创建成功');
+          } else {
+            alert('相册创建失败');
+          }
+        });
+      } else {
+        newAlbumName.style.display = 'block';
+        this.value = '确定创建';
+      }
+    });
+    function ajaxget(url, callback) {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === xhr.DONE) {
+          if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
+            // console.log(xhr.responseText);
+            callback && callback(xhr.responseText);
+          }
+        }
+      }
+      xhr.open('GET', url);
+      xhr.send();
+    }
+  </script>
+</body>
+</html>
