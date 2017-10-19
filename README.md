@@ -1935,7 +1935,29 @@ devDependencies
 
 .gitignore通常需要忽略node_modules目录
 
+Express中文官方网站上面的所有的资源都跑一遍，能够学到的知识挺多
+express自定义端口号：
+在 package.jsonr的scripts中修改：
+"start": "set PORT=80 && node ./bin/www"
 
+写API就是返回json数据而不是返回页面
+res.json({'data':"a"})
+
+路由： http://www.expressjs.com.cn/guide/routing.html
+
+res.download()	提示下载文件。
+res.end()	终结响应处理流程。
+res.json()	发送一个 JSON 格式的响应。
+res.jsonp()	发送一个支持 JSONP 的 JSON 格式的响应。
+res.redirect()	重定向请求。
+res.render()	渲染视图模板。
+res.send()	发送各种类型的响应。
+res.sendFile	以八位字节流的形式发送文件。
+res.sendStatus()
+
+nodejs进程管理：
+pm2, supervisor, forever, strongloop
+pm2 start ./bin/www
 
 ##5点后的练习计划
 - 20170828 练习批量绑定事件和对应模型
