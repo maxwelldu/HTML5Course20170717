@@ -1959,6 +1959,64 @@ nodejs进程管理：
 pm2, supervisor, forever, strongloop
 pm2 start ./bin/www
 
+//ubuntu系统远程连接失败
+在安全组配置一下，开启22 443 80端口，授权对象为 0.0.0.0/0
+//ubuntu系统中安装nodejs和mongodb
+//添加一个用户,输入两次密码，其他的回车即可
+adduser maxwelldu
+//把当前用户添加到sudo组
+adduser maxwelldu sudo
+//切换到这个用户
+su - maxwelldu
+//更新包
+sudo apt-get update
+//安装两个工具
+sudo apt-get install build-essential libssl-dev
+//安装nvm
+wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.25.3/install.sh | bash
+//使nvm生效
+source ~/.profile
+nvm
+nvm ls-remote
+nvm install 8.7.0
+nvm list
+nvm use 8.7.0
+node -v
+
+//编辑一下本地host,vim当中按i输入内容；保存退出按ESC键，然后按两个大Z或者按:wq回车
+sudo vim /etc/hosts
+//确保里面的内容只有一个127.0.0.1 后面的值为localhost dev
+//下面的内容都注释起来
+127.0.0.1       localhost dev
+
+# The following lines are desirable for IPv6 capable hosts
+#::1     localhost ip6-localhost ip6-loopback
+#ff02::1 ip6-allnodes
+#ff02::2 ip6-allrouters
+
+//下面安装mongodb
+//ubuntu上面安装mongodb的文档 http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu
+
+MongoDB的安装分为4步：
+1.导入包管理系统需要用到的公钥：
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+2.为MongoDB创建list文件：这个根据ubuntu系统的不同而不同，查看上面的文档
+echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.0.list
+3.重载本地包数据库
+sudo apt-get update
+4.安装最新版的MongoDB
+sudo apt-get install -y mongodb-org
+5.启动
+sudo service mongod start
+6.测试
+sudo mongo
+
+ORM Object Relation Model 操作对象，让对象帮我们去操作数据库
+
+//配置SSH免密钥登录
+//git推送后自动更新网站
+
+
 ##5点后的练习计划
 - 20170828 练习批量绑定事件和对应模型
 - 20170829 练习函数截流滚动或者延迟搜索
