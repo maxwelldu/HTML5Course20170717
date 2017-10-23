@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h1>请登录</h1>
+    <div>
+        <form action="" method="post">
+            <p>
+                登录名： <input type="text" id="dengluming"/>
+            </p>
+            <p>
+                密码： <input type="password" id="mima"/>
+            </p>
+            <p>
+                <input id="denglu" type="button" value="登陆"/>
+            </p>
+        </form>
+    </div>
+
+    <script type="text/javascript" src="/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        //用ajax提交表单
+        $("#denglu").click(function(){
+            $.post("/dologin",{
+                "dengluming" : $("#dengluming").val(),
+                "mima" : $("#mima").val()
+            },function(result){
+                if(result == "1"){
+                    alert("登陆成功");
+                }else if(result == "-2"){
+                    alert("没有这个注册用户");
+                }else if(result == "-1"){
+                    alert("密码不正确");
+                }
+            })
+        });
+    </script>
+</body>
+</html>

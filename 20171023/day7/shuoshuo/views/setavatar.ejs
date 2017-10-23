@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+    <title>更改头像 - 班级说说</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/jumbotron.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            padding-top: 120px;
+        }
+    </style>
+</head>
+
+<body>
+<% include header.ejs %>
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row col-lg-6">
+        <h1>上传头像</h1>
+
+        <form action="/dosetavatar" method="post"  enctype="multipart/form-data" >
+            <div class="form-group">
+                <label for="username">请改头像</label>
+                <input type="file" class="form-control" id="touxiang" name="touxiang">
+            </div>
+            <button type="submit" id="zhuce" class="btn btn-default" >上传</button>
+        </form>
+    </div>
+</div>
+
+<hr>
+
+<footer>
+    <p>&copy; Company 2014</p>
+</footer>
+</div>
+<!-- /container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/js/jquery-1.11.3.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

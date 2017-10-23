@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div>
+        <p>
+            登录名： <input type="text" name="dengluming" id="dengluming"/>
+        </p>
+        <p>
+            密码： <input type="password" name="mima" id="mima"/>
+        </p>
+        <p>
+            <input id="zhuce" type="button" value="注册"/>
+        </p>
+    </div>
+
+    <script type="text/javascript" src="/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        //用ajax提交表单
+        $("#zhuce").click(function(){
+            $.get("/doregist",{
+                "dengluming" : $("#dengluming").val(),
+                "mima" : $("#mima").val()
+            },function(result){
+                if(result == "1"){
+                    alert("注册成功");
+                }else{
+                    alert("注册失败");
+                }
+            })
+        });
+    </script>
+</body>
+</html>
