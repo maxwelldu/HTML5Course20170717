@@ -43,11 +43,13 @@ app.post("/tijiao", function (req, res, next) {
             "liuyan" : fields.liuyan,
             "shijian" : new Date()
         }, function (err, result) {
+          console.log(result);
+          console.log(result.insertedId);
             if(err){
                 res.send({"result":-1}); //-1是给Ajax看的
                 return;
             }
-            res.json({"result":1});
+            res.json({"result":1, "id":result.insertedId});
         });
     });
 });

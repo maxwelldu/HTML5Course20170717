@@ -133,12 +133,13 @@
             if (result.result == -1) {
                 $("#shibai").fadeIn();
             } else if (result.result == 1) {
+                var id = result.id;
                 //提交成功
                 $("#chenggong").fadeIn();
                 //数据库真的存储了，但是当前页面无法显示。这是因为需要刷新
                 //才能用ajax从/du中得到新的。所以我们先用一个假盒子凑出来。
                 var compiled = _.template($("#moban").html());
-                var html = compiled({liuyan: $("#liuyan").val(), xingming: $("#xingming").val(), shijian: new Date()});
+                var html = compiled({liuyan: $("#liuyan").val(), xingming: $("#xingming").val(), shijian: new Date(), id:id});
                 $(html).insertBefore($("#quanbuliuyan"));
             }
         });
