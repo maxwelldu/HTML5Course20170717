@@ -1997,7 +1997,7 @@ sudo vim /etc/hosts
 //下面安装mongodb
 //ubuntu上面安装mongodb的文档 http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu
 
-MongoDB的安装分为4步：
+Ubuntu系统上面的MongoDB服务端和客户端的安装分为4步：
 1.导入包管理系统需要用到的公钥：
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
 2.为MongoDB创建list文件：这个根据ubuntu系统的不同而不同，查看上面的文档
@@ -2016,6 +2016,34 @@ ORM Object Relation Model 操作对象，让对象帮我们去操作数据库
 //配置SSH免密钥登录
 //git推送后自动更新网站
 
+Express(RMVC框架)
+M Model表示数据，就是负责数据的管理，对数据的CRUD(Create, Read, Update, Delete) 增删改查; 有可能是对数据库，也有可能对文件和目录
+V view视图，通常是html模板
+C Controller控制器，中间的协调者，把数据和模板都得到返回给用户；或者把数据得到返回json
+实际网站请求就是RCMV, 返回的v是html
+API请求就是RCM 返回的是json或者xml
+
+Mongoose的使用
+1.引入包
+2.定义Schema，导出Model
+3.对Model的操作，可以增删改查
+
+function Person(name){
+  this.name = name;
+}
+Person.prototype.sayHello = function(){
+  console.log('hi');
+}
+var p = new Person('p1');
+p.name;//实例属性
+p.sayHello();//实例方法
+
+静态属性，实例属性
+静态方法，实例方法
+Person.city = '北京';//这个属性在构造函数身上，使用的时候Person.city; 这个叫静态属性
+Person.sayHi = function() {
+  console.log('hi');
+}//这个方法在构造函数身上，使用的时候使用Person.sayHi();这个叫静态方法
 
 ##5点后的练习计划
 - 20170828 练习批量绑定事件和对应模型

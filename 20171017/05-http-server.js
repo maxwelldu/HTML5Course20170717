@@ -4,8 +4,12 @@ console.log(http);
 let server = http.createServer((req, res) => {
   var random = Math.random();
   console.log(random);
-  if (random > 0.9) {
-    throw new Error('炸了');
+  try {
+    if (random > 0.9) {
+      throw new Error('炸了');
+    }
+  } catch(e) {
+    console.log(e);
   }
   res.end('hello world, nodejs');
 });

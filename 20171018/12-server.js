@@ -1,7 +1,6 @@
 let http = require('http');
 let fs = require('fs');
 let formidable = require('formidable');
-let util = require('util');
 
 http.createServer((req, res) => {
   if (req.url === '/') {
