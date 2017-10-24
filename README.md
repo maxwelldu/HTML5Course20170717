@@ -2045,6 +2045,27 @@ Person.sayHi = function() {
   console.log('hi');
 }//这个方法在构造函数身上，使用的时候使用Person.sayHi();这个叫静态方法
 
+##20171024
+基于Express+ejs+mongoose开发网站
+mkdir node-ask
+cd node-ask
+express -e .
+npm i
+npm start
+http://localhost:3000
+写路由，写页面
+开启mongo的服务器
+引入mongoose模块
+npm i -S mongoose
+vim ./config/db.js
+vim ./model/User.js
+vim ./vendor/md5.js
+注册功能：接收用户提交的用户名和密码，对密码加密，查询用户，渲染模板
+vim ./views/user/register.ejs
+需要开启调试工具(或者其他工具有对应的其他方法)：
+node-inspector &
+node --debug ./bin/www
+
 ##5点后的练习计划
 - 20170828 练习批量绑定事件和对应模型
 - 20170829 练习函数截流滚动或者延迟搜索
