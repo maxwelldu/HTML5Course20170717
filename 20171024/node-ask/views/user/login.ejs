@@ -1,10 +1,15 @@
 <% include ../header.ejs %>
 
-  注册页面
+  <% if (code === 1) { %>
+    <%= msg %>
+  <% } else { %>
+    <%= msg %>
+  <% } %>
+  登录页面
   <form action="" method="post">
     <input type="text" name="username">
     <input type="password" name="password">
-    <input type="submit" value="注册">
+    <input type="submit" value="登录">
   </form>
 
 <% include ../footer.ejs %>

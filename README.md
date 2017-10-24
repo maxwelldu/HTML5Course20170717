@@ -2049,6 +2049,7 @@ Person.sayHi = function() {
 基于Express+ejs+mongoose开发网站
 mkdir node-ask
 cd node-ask
+npm i -g generator-express
 express -e .
 npm i
 npm start
@@ -2065,6 +2066,13 @@ vim ./views/user/register.ejs
 需要开启调试工具(或者其他工具有对应的其他方法)：
 node-inspector &
 node --debug ./bin/www
+登录功能：安装express-session; 在app.js中配置
+
+使用Teamview做团队任务管理
+https://www.teambition.com/
+石墨进行实时文档管理
+https://shimo.im/
+QQ其实就是Socket
 
 ##5点后的练习计划
 - 20170828 练习批量绑定事件和对应模型

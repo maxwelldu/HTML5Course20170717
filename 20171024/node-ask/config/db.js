@@ -1,5 +1,6 @@
+let config = require('./config');
 let mongoose = require('mongoose');
-let db = mongoose.createConnection('mongodb://127.0.0.1:27017/ask');
+let db = mongoose.createConnection(config.MONGODB_URL);
 db.on('open', cb => {
   console.log('数据库连接成功');
 });

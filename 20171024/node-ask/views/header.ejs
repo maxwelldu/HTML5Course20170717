@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <!-- 可以加入公共的CSS引用 -->
+</head>
+<body>
+<header>
+  <ul>
+    <li><a href="#">首页</a></li>
+    <% if (username) { %>
+      <%= username %>
+      <li><a href="/users/logout">退出</a></li>
+    <%} else {%>
+    <li><a href="/users/login">登录</a></li>
+    <li><a href="/users/register">注册</a></li>
+    <%}%>
+  </ul>
+</header>
+<%- message %>
