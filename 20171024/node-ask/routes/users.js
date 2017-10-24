@@ -68,7 +68,7 @@ router.post('/login', (req, res) => {
     req.session.username = username;
     res.locals.username = username;//往本地变量存一份，是全局的
     res.locals.message = '登录成功';
-    return res.render('user/login');
+    return res.redirect('/');
   });
 });
 //退出

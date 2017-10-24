@@ -1,0 +1,10 @@
+<% include ../header.ejs %>
+
+  问题列表页
+  <% for (var i = 0; i < result.length; i++) {%>
+    <div>
+      标题：<%= result[i].title%>
+    </div>
+  <%}%>
+
+<% include ../footer.ejs %>

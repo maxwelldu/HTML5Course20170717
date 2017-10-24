@@ -13,6 +13,7 @@
     <li><a href="#">首页</a></li>
     <% if (username) { %>
       <%= username %>
+      <li><a href="/questions/create">提问题</a></li>
       <li><a href="/users/logout">退出</a></li>
     <%} else {%>
     <li><a href="/users/login">登录</a></li>

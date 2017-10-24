@@ -5,9 +5,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var common = require('./vendor/common');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var questions = require('./routes/questions');
 
 var app = express();
 app.use(session({
@@ -25,6 +27,19 @@ app.use(function(req,res,next){
     }
     next();  //中间件传递
 });
+app.use((req, res, next) => {
+  if (req.url === '/users/login' || req.url === '/users/register' || req.url === '/questions') {
+    next();
+  } else {
+    if (!req.session.username) {
+      //:TODO 无效
+      res.locals.message = common.errorMessage('当前操作需要需要');
+      return res.redirect('/users/login');
+    } else {
+      next();
+    }
+  }
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -40,6 +55,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/questions', questions);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
