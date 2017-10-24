@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>聊天室</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="../public/stylesheets/main.css">
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<link rel="stylesheet" href="../public/stylesheets/sco.message.css">
+<link rel="stylesheet" href="../public/stylesheets/message.css">
+<!--<link rel="stylesheet" href="../public/css/messenger.css">
+<link rel="stylesheet" href="../public/css/messenger-theme-ice.css">-->
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <div style="margin-right:-10px;" class="panel panel-primary">
+        <div class="panel-heading"><span class="glyphicon glyphicon-user">&nbsp;</span><span>在线成员</span></div>
+        <div class="panel-body">
+          <div class="msg-list-body user-content">
+            <ul>
+              <li style="display:none;"><a href="#"><img src="../public/images/1.jpg" class="img-thumbnail"><span></span></a></li>
+              <li style="display: list-item;"><a href="javascript:void(0);"><img src="../public/images/4.jpg" class="img-thumbnail"><span>hfghgfhg</span></a></li>
+              <li style="display: list-item;"><a href="javascript:void(0);"><img src="../public/images/1.jpg" class="img-thumbnail"><span>gdfgsdfg</span></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-home"></span></button>
+            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span></button>
+            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-film"></span></button>
+            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-music"></span></button>
+            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-heart"></span></button>
+            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-envelope"></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <div class="panel panel-primary">
+        <div class="panel-heading"><span class="glyphicon glyphicon-comment">&nbsp;</span><span>聊天室</span><span style="padding-left:10px; font-size:12px; ">正在与 hfghgfhg 聊天</span><span id="spanuser" class="pull-right">欢迎您！ gdfgsdfg</span></div>
+        <div class="panel-body">
+          <div class="msg-list-body msg-content">
+            <div class="message-reply">
+              <div class="message-info">
+                <div class="user-info"><img title="hfghgfhg" src="../public/images/4.jpg" class="user-avatar img-thumbnail"></div>
+                <div class="message-content-box">
+                  <div class="arrow"></div>
+                  <div class="message-content">fsdfsfaddfadf</div>
+                </div>
+              </div>
+            </div>
+            <div class="message-receive">
+              <div class="message-info">
+                <div class="user-info"><img title="hfghgfhg" src="../public/images/1.jpg" class="user-avatar img-thumbnail"></div>
+                <div class="message-content-box">
+                  <div class="arrow"></div>
+                  <div class="message-content">fsdfsfaddfadf</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <div class="input-group">
+            <div class="input-group-addon"><a href="#"><img src="../public/images/bq.png"></a></div>
+            <div style="padding-bottom:0px;" class="input-group-addon">
+              <label style="position:relative;"><img src="../public/images/jt.jpg" title="send images" style="cursor:pointer;">
+              <input id="sendImage" value="images" style="display:none;" type="file">
+              </label>
+            </div>
+            <input id="msg" placeholder="请输入聊天内容" onKeyDown="javascript:void(0);" class="form-control" type="text">
+            <span class="input-group-btn">
+            <button id="sendMsg" type="button" class="btn btn-primary">发送/Send</button>
+            </span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div aria-hidden="true" style="display: none;" id="myModal" tabindex="-1" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="myModalLabel" class="modal-title">请设置聊天昵称</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon">昵称</div>
+            <input id="username" value="李阳" onKeyDown="javascript:void(0);" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <input id="btn-setName" value="应用昵称" class="btn btn-primary" type="button">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="setMsgToOne" tabindex="-1" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="myModalLabel1" class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+        <input id="input_msgToOne" onKeyDown="javascript:void(0);" class="form-control" type="text">
+      </div>
+      <div class="modal-footer">
+        <input id="btn_toOne" value="发送/Send" class="btn btn-primary" type="button">
+      </div>
+    </div>
+  </div>
+</div>
+<!--<script src="../node_modules/socket.io/node_modules/socket.io-client/socket.io/socket.io.js"></script>
+<script src="../public/javascripts/chat.js"></script>
+<script src="../public/javascripts/client.js"></script>
+<script src="../public/javascripts/sco.message.js"></script>
+<script src="../public/js/messenger.min.js"></script>
+<script src="../public/js/messenger-theme-flat.js"></script>
+-->
+</body>
+</html>

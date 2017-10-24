@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        table,tr,td{
+            border: 1px solid black;
+        }       
+        td{
+            width: 200px;
+            line-height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <a href="/add" target="_blank">添加学生</a>
+    <table>
+        <tr>
+            <td>姓名</td>
+            <td>年龄</td>
+            <td>性别</td>
+            <td>所选课程</td>
+            <td>操作</td>
+        </tr>
+        <% for(var i = 0 ; i < students.length ; i++){%>
+            <tr>
+                <td><%=students[i].name%></td>
+                <td><%=students[i].age%></td>
+                <td><%=students[i].sex%></td>
+                <td><%=students[i].Kechengs%></td>
+                <td>
+                    <a href="/edit/<%=students[i].sid%>">修改</a>
+                    <a href="/remove/<%=students[i].sid%>">删除</a>
+
+                </td>
+            </tr>
+        <%}%>
+    </table>
+</body>
+</html>

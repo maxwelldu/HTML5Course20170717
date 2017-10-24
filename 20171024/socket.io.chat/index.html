@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Socket.io chat</title>
+    <style media="screen">
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font: 13px Helvetica, Arial;
+      }
+      form {
+        background: #000;
+        padding: 3px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      }
+      form input {
+        border: 0;
+        padding: 10px;
+        width: 90%;
+        margin-right: .5%;
+      }
+      form button {
+        width: 9%;
+        background: rgb(130, 224, 255);
+        border: none;
+        padding: 10px;
+      }
+      #messages {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      #messages li {
+        padding: 5px 10px;
+      }
+      #messages li:nth-child(odd) {
+        background: #eee;
+      }
+      .info {
+        position: fixed;
+        bottom: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login">
+      <input type="text" placeholder="please input your name" name="username" />
+      <input class="login-btn" type="button" value="Login">
+    </div>
+    <input type="button" name="logout" value="logout">
+    <ul id="messages">
+
+    </ul>
+    <div class="info">
+      <div class="typing"></div>
+      <div class="userinfo"></div>
+    </div>
+    <form action="">
+      <input id="m" autocomplete="off"> <button>Send</button>
+    </form>
+    <script src="/socket.io/socket.io.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      var socket = io();
+      var oMessages = document.querySelector('#messages');
+      var oForm = document.querySelector('form');
+      var oInput = document.querySelector('#m');
+      var oButton = document.querySelector('button');
+
+      var oLogin = document.querySelector('.login');
+      var oUsername = document.querySelector('input[name=username]');
+      var oLoginBtn = document.querySelector('.login-btn');
+      var oLogoutBtn = document.querySelector('input[name=logout]');
+      var oTyping = document.querySelector('.typing');
+      var oUserinfo = document.querySelector('.userinfo');
+      if (!!localStorage.username) {
+        oLogin.style.display = 'none';
+      } else {
+        oLogoutBtn.style.display = 'none';
+      }
+
+      oInput.oninput = function() {
+        if (this.value.length > 1) {
+          socket.emit('typing', {username: localStorage.username, typing: true});
+        } else {
+          socket.emit('typing', {username: localStorage.username, typing: false});
+        }
+      }
+      oLogoutBtn.onclick = function(){
+        localStorage.username = '';
+        oLogin.style.display = 'block';
+        oLogoutBtn.style.display = 'none';
+      }
+      oLoginBtn.onclick = function(){
+        localStorage.setItem('username', oUsername.value);
+        oLogin.style.display = 'none';
+        oLogoutBtn.style.display = 'block';
+      }
+      oForm.onsubmit = oButton.onclick = function(){
+        if (!localStorage.username) {
+          return alert('please login first');
+        }
+        if (oInput.value.trim().length < 1) {
+          return alert('msg must have some words');
+        }
+        oMessages.innerHTML += `<li>${localStorage.username}: ${oInput.value}</li>`;
+        socket.emit('chat message', {msg: oInput.value, username: localStorage.username});
+        oInput.value = '';
+        return false;
+      }
+
+      socket.on('msg', function(data){
+        oMessages.innerHTML += `<li>${data.username}: ${data.msg}</li>`;
+      });
+      socket.on('typing', function(data){
+        if (data.typing) {
+          oTyping.innerHTML = `${data.username} is typing`;
+        } else {
+          oTyping.innerHTML = '';
+        }
+      });
+      socket.on('global', function(data){
+        oUserinfo.innerHTML = `current have ${data.currentUserCount} users`;
+      });
+    </script>
+  </body>
+</html>

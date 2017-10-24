@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h1>修改学生</h1>
+    <form action="/doedit/<%=student.sid%>" method="get">
+        <p>
+            学号
+            <input type="text" name="sid" disabled value="<%=student.sid%>"/>
+        </p>
+        <p>
+            姓名
+            <input type="text" name="name" value="<%=student.name%>"/>
+        </p>
+        <p>
+            年龄
+            <input type="text" name="age" value="<%=student.age%>"/>
+        </p>
+        <p>
+            性别
+            <input type="radio" name="sex" value="男" <%if(student.sex=="男"){%>checked<%}%> />男
+            <input type="radio" name="sex" value="女" <%if(student.sex=="女"){%>checked<%}%> />女
+        </p>
+        <p>
+        <p>
+            选修课程：
+            <%for(var i = 0 ; i < quanbukecheng.length ; i++){
+                if(student.Kechengs.indexOf(quanbukecheng[i].kid) != -1){
+                    var sss = "checked";
+                }else{
+                    var sss = "";
+                }
+            %>
+                <input type="checkbox" name="Kechengs" value="<%=quanbukecheng[i].kid%>" <%=sss%>/><%=quanbukecheng[i].name%>
+            <%}%>
+        </p>
+        </p>
+        <p>
+            <input type="submit"/>
+        </p>
+    </form>
+</body>
+</html>
