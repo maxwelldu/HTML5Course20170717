@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<canvas id="myCanvas" width="1000" height="400" style="background: #000;"></canvas>
+<script type="text/javascript">
+
+var ctx = myCanvas.getContext('2d');
+var w = myCanvas.width;
+var h = myCanvas.height;
+ctx.fillStyle = 'red';
+var Ball = function (x, y, r) {
+	this.x = x;
+	this.y = y;
+	this.r = r;
+}
+Ball.prototype = {
+	draw: function () {
+		ctx.beginPath();
+		ctx.arc(this.x, this. y, this.r, 0, 2 * Math.PI);
+		ctx.closePath();
+		ctx.fill();
+	}
+}
+
+
+// 第二三种
+function BallFectory (num) {
+	if (num) {
+		var result = [];
+		for (var i = 0; i < num; i++) {
+			// result.push(BallFectory())	// 第二种
+			result.push(arguments.callee())	// 第三种
+		}
+		return result
+	} else {
+		var x = Math.random() * w;
+		var y = Math.random() * h;
+		var r = Math.random() * 10 + 10;
+		var ball = new Ball(x, y, r);
+		return ball;
+	}
+}
+/*
+var balls = BallFectory(10);
+balls.forEach(ball => {
+	ball.draw();
+});
+*/
+
+//改名之后依然有用
+var Ball2Fectory = BallFectory;
+BallFectory = null;
+var arr = Ball2Fectory(10);
+arr.forEach(function (ball) {
+	ball.draw()
+})
+console.log(arr, 111)
+
+
+// 第一种方式
+// function BallFectory () {
+// 	var x = Math.random() * w;
+// 	var y = Math.random() * h;
+// 	var r = Math.random() * 10 + 10;
+// 	var ball = new Ball(x, y, r);
+// 	return ball;
+// }
+//
+// function ManyBallFentery (num) {
+// 	var result = [];
+// 	for (var i = 0; i < num ; i++) {
+// 		result.push(BallFectory())
+// 	}
+// 	return result;
+// }
+// var balls = ManyBallFentery(10);
+// balls.forEach(ball => {
+// 	ball.draw();
+// });
+// console.log(balls)
+
+</script>
+</body>
+</html>

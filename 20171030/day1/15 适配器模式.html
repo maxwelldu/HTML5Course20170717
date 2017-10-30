@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<button id="btn">按钮</button>
+<p id="text"></p>
+<script type="text/javascript" src="lib/jquery-1.12.2.js"></script>
+	<script type="text/javascript">
+	var UCAI = {
+		on: function (id, type, fn) {
+			$('#' + id).on(type, fn)
+		},
+		html: function (id, html) {
+			$('#' + id).html(html)
+		}
+	}
+	</script>
+	<script type="text/javascript">
+	// 团队换领导了，要让我们改成jquery，
+
+	// 给id是btn的元素绑定事件，当点击的时候插入内容
+	UCAI.on('btn', 'click', function () {
+		UCAI.html('text', '点击成功')
+	})
+	</script>
+</body>
+</html>

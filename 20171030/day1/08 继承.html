@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+var Book = function (name) {
+	this.name = name;
+}
+Book.prototype = {
+	page: 500,
+	getName: function () {
+		return this.name;
+	}
+}
+var b = new Book();
+// 构造函数式继承
+// var Sjms = function (name) {
+// 	// 继承父类Book构造函数中的属性
+// 	Book.call(this, name)
+// }
+// var s = new Sjms('javascript 设计模式')
+// console.log(s);
+
+var Book = function (name) {
+	this.name = name;
+}
+Book.prototype = {
+	page: 500,
+	getName: function () {
+		return this.name;
+	}
+}
+var b = new Book();
+// 原型式继承
+var Sjms = function () {}
+// 我们知道实例化的对象能够找到该类的原型，这样，我们将父类的实例化对象赋值给子类的原型，那么子类的原型就指向了父类的原型
+Sjms.prototype = new Book();
+Sjms.prototype.color = 'red';
+Sjms.prototype.say = function () {
+	console.log('hello')
+}
+
+// var s = new Sjms();
+// console.log(s);
+// console.log(s.page);
+// s.say();
+
+// var a = {};
+// a.b =111;
+// a.c = function () {};
+
+// 第三类继承，组合式继承
+var Sjms = function (name) {
+	// 继承父类的构造函数
+	Book.call(this, name)
+}
+// 继承父类的原型
+Sjms.prototype = new Book();
+
+var s = new Sjms('javascript');
+console.log(s)
+console.log(s.getName())
+</script>
+</body>
+</html>

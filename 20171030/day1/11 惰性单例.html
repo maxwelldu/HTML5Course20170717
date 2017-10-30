@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 页面加载后，由于闭包执行了。他就是我们后面返回的函数
+	var LazySingle = (function () {
+		var _instance = null;
+		// singe单例很大，加载之初实例化很浪费资源，我们要推迟他的实例化
+		var Single = function () {
+			console.log('success');
+			// 有上万上的代码
+		}
+		Single.prototype = {
+			// 有上万行的代码，
+			version: 2,
+			sayHello: function () {
+				console.log('hello ')
+			}
+		};
+		// 函数的作用域在闭包里面，可以获取Singe，可以对其实例化，
+		// 页面加载后我们没有执行这个返回的函数，所以里面的语句加载之初没有被执行，当调用他的时候才被执行
+		return function () {
+			if (!_instance) {
+				_instance = new Single();
+			}
+			return _instance;
+		}
+	})()
+	// setTimeout(function () {
+	// 	LazySingle()
+	// }, 5000)
+	var s = LazySingle();
+	console.log(s);
+	s.sayHello();
+	</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+// // 创建数组方法一
+// var arr1 = [3, 4, 5];
+// console.log(arr1 instanceof Array)
+// // 创建数组方法二
+// var arr2 = new Array(3, 4, 5);
+// console.log(arr2, arr2 instanceof Array);
+// // 创建数组方法三
+// var arr3 = Array(3, 4, 5);
+// console.log(arr3, arr3 instanceof Array)
+
+
+// // 创建book类
+// var Book = function (title) {
+// 	console.log(this, 111); // 打印this追踪问题
+// 	this.title = title;
+// }
+// // 调用方式一
+// var book1 = new Book('javascript 设计模式');
+// console.log(book1, book1 instanceof Book);
+// // 调用方式二
+// var book2 = Book('设计模式');
+// console.log(book2, book2 instanceof Book);
+
+
+// 安全工厂
+var Book = function (title) {
+	// 判断是否调用new关键字的时候，
+	if (this instanceof Book) {
+		this.title = title;
+	} else {
+		return new Book(title);
+	}
+}
+var book1 = new Book('javascript 设计模式');
+var book2 = Book('设计模式')
+console.log(book1, book1 instanceof Book);
+console.log(book2, book2 instanceof Book)
+</script>
+</body>
+</html>

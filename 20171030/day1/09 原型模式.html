@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<style type="text/css">
+html, body {
+	height: 100%;
+}
+div {
+	position: absolute;
+}
+.rect {
+	width: 100px;
+	height: 100px;
+	background: red;
+}
+.cricle {
+	width: 100px;
+	height: 100px;
+	background: green;
+	border-radius: 50%;
+}
+.arrow-top {
+	width: 0;
+	border-top: 100px solid blue;
+	border-bottom: 100px solid transparent;
+	border-left: 100px solid transparent;
+	border-right: 100px solid transparent;
+}
+</style>
+<script type="text/javascript">
+// 获取页面的宽高
+var w = document.body.offsetWidth;
+var h = document.body.offsetHeight;
+
+// 写基类的第一步：一定要抽象子类
+// 相同的部分有，参数，构造函数中执行的业务逻辑（处理className）， 原型方法
+var Base = function (x, y) {
+	// 这三步操作在子类中是一样的，所以我们提取出来放在基类（父类）的构造函数中
+	this.dom = document.createElement('div');
+	this.dom.style.left = x + 'px';
+	this.dom.style.top = y + 'px'
+}
+Base.prototype = {
+	// 子类原型中init方法是相同的，我们提出出来放在基类的原型中
+	init: function () {
+		document.body.appendChild(this.dom);
+	}
+}
+
+var Cricle = function (x, y) {
+	Base.call(this, x, y);
+	this.dom.className = 'cricle';
+}
+Cricle.prototype = new Base();
+Cricle.prototype.changeColor = function (c) {
+	this.dom.style.background = c;
+}
+
+
+
+
+var Rect = function (x, y) {
+	Base.call(this, x, y);
+	this.dom.className = 'rect';
+}
+Rect.prototype = new Base();
+
+
+
+
+
+
+
+
+
+Cricle.prototype.html = function (text) {
+	this.dom.innerHTML = text;
+}
+
+// 测试用例
+var c = new Cricle(200, 200);
+c.init();
+c.html('hello');
+setTimeout(function () {
+	c.changeColor('pink');
+}, 2000)
+
+// var r = new Rect(100, 100);
+// r.init();
+
+
+
+
+
+
+
+
+
+
+// 创建正方形
+// var Rect = function (x, y) {
+// 	// 构建元素
+// 	this.dom = document.createElement('div');
+// 	// 设置坐标
+// 	this.dom.style.left = x + 'px';
+// 	this.dom.style.top = y + 'px';
+// 	// 初始化形状
+// 	this.dom.className = 'rect';
+// }
+// Rect.prototype = {
+// 	init: function () {
+// 		// 在body种插入形状
+// 		document.body.appendChild(this.dom)
+// 	}
+// }
+
+// // 创建圆
+// var Cricle = function (x, y) {
+// 	this.dom = document.createElement('div');
+// 	this.dom.style.left = x + 'px';
+// 	this.dom.style.top = y + 'px';
+// 	this.dom.className = 'cricle';
+// }
+// Cricle.prototype = {
+// 	init: function () {
+// 		document.body.appendChild(this.dom)
+// 	}
+// }
+
+// // 创建三角形
+// var ArrowTop = function (x, y) {
+// 	this.dom = document.createElement('div');
+// 	this.dom.style.left = x + 'px';
+// 	this.dom.style.top = y + 'px';
+// 	this.dom.className = 'arrow-top';
+// }
+// ArrowTop.prototype = {
+// 	init: function () {
+// 		document.body.appendChild(this.dom);
+// 	}
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // 测试用例
+// // var x = Math.random() * w;
+// // var y = Math.random() * h;
+// // new ArrowTop(x, y).init();
+
+
+// function ShapFectroy (type) {
+// 	var x = Math.random() * w;
+// 	var y = Math.random() * h;
+// 	var shape = null;
+// 	// 通过type的不同来创建不同的产品实例
+// 	switch (type) {
+// 		case 'rect': 
+// 			shape = new Rect(x, y);
+// 			// 循环结束调用break
+// 			break;
+// 		case 'cricle':
+// 			shape = new Cricle(x, y);
+// 			break;
+// 		case 'arrowTop':
+// 			shape = new ArrowTop(x, y);
+// 			break;
+// 	}
+// 	// 在工厂方法模式中，我们可以对类进行其他操作；
+// 	if (shape) {
+// 		shape.init();
+// 	}
+// 	// 将实例返回出来
+// 	return shape;
+// }
+
+</script>
+</body>
+</html>

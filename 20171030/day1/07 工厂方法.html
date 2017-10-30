@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<style type="text/css">
+html, body {
+	height: 100%;
+}
+div {
+	position: absolute;
+}
+.rect {
+	width: 100px;
+	height: 100px;
+	background: red;
+}
+.cricle {
+	width: 100px;
+	height: 100px;
+	background: green;
+	border-radius: 50%;
+}
+.arrow-top {
+	width: 0;
+	border-top: 100px solid blue;
+	border-bottom: 100px solid transparent;
+	border-left: 100px solid transparent;
+	border-right: 100px solid transparent;
+}
+</style>
+	<script type="text/javascript">
+	// 获取页面的宽高
+	var w = document.body.offsetWidth;
+	var h = document.body.offsetHeight;
+	// 创建正方形
+	var Rect = function (x, y) {
+		// 构建元素
+		this.dom = document.createElement('div');
+		// 设置坐标
+		this.dom.style.left = x + 'px';
+		this.dom.style.top = y + 'px';
+		// 初始化形状
+		this.dom.className = 'rect';
+	}
+	Rect.prototype = {
+		init: function () {
+			// 在body种插入形状
+			document.body.appendChild(this.dom)
+		},
+		changeColor: function (c) {
+			this.dom.style.background = c;
+		}
+	}
+
+	// 创建圆
+	var Cricle = function (x, y) {
+		this.dom = document.createElement('div');
+		this.dom.style.left = x + 'px';
+		this.dom.style.top = y + 'px';
+		this.dom.className = 'cricle';
+	}
+	Cricle.prototype = {
+		init: function () {
+			document.body.appendChild(this.dom)
+		}
+	}
+
+	// 创建三角形
+	var ArrowTop = function (x, y) {
+		this.dom = document.createElement('div');
+		this.dom.style.left = x + 'px';
+		this.dom.style.top = y + 'px';
+		this.dom.className = 'arrow-top';
+	}
+	ArrowTop.prototype = {
+		init: function () {
+			document.body.appendChild(this.dom);
+		}
+	}
+
+	// 测试用例
+	// var x = Math.random() * w;
+	// var y = Math.random() * h;
+	// new ArrowTop(x, y).init();
+
+
+	function ShapFectroy (type) {
+		var x = Math.random() * w;
+		var y = Math.random() * h;
+		var shape = null;
+		// 通过type的不同来创建不同的产品实例
+		switch (type) {
+			case 'rect':
+				shape = new Rect(x, y);
+				// 循环结束调用break
+				break;
+			case 'cricle':
+				shape = new Cricle(x, y);
+				break;
+			case 'arrowTop':
+				shape = new ArrowTop(x, y);
+				break;
+		}
+		// 在工厂方法模式中，我们可以对类进行其他操作；
+		if (shape) {
+			shape.init();
+		}
+		// 将实例返回出来
+		return shape;
+	}
+
+	var a = ShapFectroy('rect');
+	a.changeColor('pink');
+	ShapFectroy('cricle')
+	ShapFectroy('arrowTop');
+	ShapFectroy('rect');
+	</script>
+</body>
+</html>

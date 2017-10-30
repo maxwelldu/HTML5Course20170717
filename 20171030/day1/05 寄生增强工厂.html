@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<canvas id="myCanvas" width="1000" height="400" style="background: #000;"></canvas>
+	<script type="text/javascript">
+
+	var ctx = myCanvas.getContext('2d');
+	var w = myCanvas.width;
+	var h = myCanvas.height;
+	ctx.fillStyle = 'red';
+	var Ball = function (x, y, r) {
+		this.x = x;
+		this.y = y;
+		this.r = r;
+	}
+	Ball.prototype = {
+		draw: function () {
+			ctx.beginPath();
+			ctx.arc(this.x, this. y, this.r, 0, 2 * Math.PI);
+			ctx.closePath();
+			ctx.fill();
+		}
+	}
+
+	// 实现需求，我们创建的小球不仅仅画在画布里，而且让他们动起来
+	function BallFectory () {
+		// 这一步对类的实例化--寄生
+		var x = Math.random() * w;
+		var y = Math.random() * h;
+		var r = Math.random() * 10 + 10;
+		var ball = new Ball(x, y, r);
+
+		// 这一步对实例化对象的拓展--增强
+		ball.vx = Math.random() * 5;
+		ball.vy = Math.random() * 5;
+		ball.changeColor = function () {
+			ctx.fillStyle = Math.random() > .5 ? 'red' : 'blue'
+		}
+		ball.move = function () {
+			setInterval(() => {
+				// 水平方向边界处理
+				if (this.x - this.r < 0 || this.x + this.r > w) {
+					this.vx *= -1;
+				}
+				// 垂直方向边界处理
+				if (this.y - this.r < 0 || this.y + this.r > h) {
+					this.vy *= -1;
+				}
+				// 让球运动
+				this.x += this.vx;
+				this.y += this.vy;
+				// 清除上一帧，并重新绘制小球
+				ctx.clearRect(0, 0, w, h);
+				this.changeColor();	// 改变小球的颜色
+				this.draw()
+			}, 33);
+		}
+		// 将实例化对象返回--工厂
+		return ball;
+	}
+	// 测试小球
+	var ball = BallFectory();
+	ball.move();
+	BallFectory().move();
+	BallFectory().move();
+	BallFectory().move();
+	BallFectory().move();
+	</script>
+</body>
+</html>

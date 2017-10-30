@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+	//  静态变量；被定以后是不允许我们更改的。
+	// 闭包是可以用来分隔作用域的，我们将静态变量定义在闭包中，只定义取值器。不定义赋值器，来实现静态变量
+	var Conf = (function () {
+		// 定义在闭包内部的变量，在外界是访问不到的。
+		var _conf = {
+			MAX_NUM: 100,
+			COUNT: 1000,
+			obj: {
+				a: 1,
+				b: 2
+			}
+		}
+		// 通过将返回函数定义成取值器，这样我们在外界就能通过该函数访问到该变量了
+		return function (name) {
+			return _conf[name];
+		}
+	})()
+	var c = Conf('obj')
+	c.a = 3;
+	console.log(Conf('obj'));
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<button id="btn">按钮</button>
+<p id="text"></p>
+<script type="text/javascript" src="lib/ucai.js"></script>
+	<script type="text/javascript">
+	// 我已经占用UCAI放，请不要
+	var css = 12;
+
+	// 给id是btn的元素绑定事件，当点击的时候插入内容
+	UCAI.on('btn', 'click', function () {
+		UCAI.html('text', '点击成功')
+	})
+	</script>
+</body>
+</html>

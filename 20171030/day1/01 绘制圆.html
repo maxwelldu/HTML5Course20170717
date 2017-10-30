@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<canvas id="myCanvas" width="1000" height="400" style="background: #000;"></canvas>
+	<script type="text/javascript">
+	var ctx = myCanvas.getContext('2d');
+	var w = myCanvas.width;
+	var h = myCanvas.height;
+	ctx.fillStyle = 'red';
+	var Ball = function (x, y, r) {
+		this.x = x;
+		this.y = y;
+		this.r = r;
+	}
+	Ball.prototype = {
+		draw: function () {
+			ctx.arc(this.x, this. y, this.r, 0, 2 * Math.PI);
+			ctx.fill();
+		}
+	}
+
+	var x1 = Math.random() * w;
+	var y1 = Math.random() * h;
+	var r1 = Math.random() * 10 + 10;
+	new Ball(x1, y1, r1).draw();
+
+	var x2 = Math.random() * w;
+	var y2 = Math.random() * h;
+	var r2 = Math.random() * 10 + 10;
+	new Ball(x2, y2, r2).draw();
+
+
+
+	</script>
+</body>
+</html>

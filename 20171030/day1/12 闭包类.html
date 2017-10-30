@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+var Book = (function () {
+	var num = 0;
+	function getNum () {}
+	var Book = function (title) {
+		var name = '11';
+		// this.title = title;
+		this.getName = function () {
+			return name;
+		}
+	}
+	Book.prototype = {
+		title: 'javascript',
+		setTitle: function (title) {
+			this.title = title
+		}
+	}
+	return Book
+})()
+</script>
+</body>
+</html>
