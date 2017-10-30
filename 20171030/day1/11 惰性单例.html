@@ -30,12 +30,17 @@
 			return _instance;
 		}
 	})()
-	// setTimeout(function () {
-	// 	LazySingle()
-	// }, 5000)
+	/*
+	setTimeout(function () {
+		LazySingle()
+	}, 5000)
+	*/
 	var s = LazySingle();
 	console.log(s);
 	s.sayHello();
+
+	var single = LazySingle();
+	console.log(s === single);
 	</script>
 </body>
 </html>

@@ -23,6 +23,11 @@
 			return _conf[name];
 		}
 	})()
+	var count = Conf('COUNT');
+	count = 20;
+	console.log(count);
+	console.log(Conf('COUNT'));
+
 	var c = Conf('obj')
 	c.a = 3;
 	console.log(Conf('obj'));

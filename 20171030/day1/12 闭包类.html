@@ -23,7 +23,12 @@ var Book = (function () {
 		}
 	}
 	return Book
-})()
+})();
+var book = new Book();
+console.log(book.getName());
+console.log(book.title);
+book.setTitle('js');
+console.log(book.title);
 </script>
 </body>
 </html>
