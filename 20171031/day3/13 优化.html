@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<img src="img/03.jpg" alt="" style="display: none;">
+<canvas id="mycanvas" style="border: 1px solid #000;"></canvas>
+	<script type="text/javascript">
+	window.onload = function () {
+		var mycanvas = document.getElementById('mycanvas');
+		var img = document.images[0];
+		var ctx = mycanvas.getContext('2d');
+		// 将canvas 的宽度设置成图片的宽度的2倍
+		var width = img.width;
+		mycanvas.width = width * 2;
+		// 将canvas的高度设置成图片的高度
+		var height = mycanvas.height = img.height;
+		// 吧图片绘制canvas中
+		ctx.drawImage(img, 0, 0);
+
+		/**
+		 * 定义了一种处理图像的方法
+		 * @type 	处理方法
+		 * @x		表示横坐标
+		 * @y		表示纵坐标
+		 * @w 		表示截取矩形的宽度
+		 * @h 		表示截取矩形的高度
+		 * @a 		表示透明度
+		 */
+		function dealCanvas (type, x, y, w, h, a) {
+			// 截取画布中的源图像
+			var data = ctx.getImageData(x, y, w, h);
+			// 获取图像源的像素数据
+			var canvasData = data.data;
+
+			// switch 改成策略模式
+			var DealStrategy = (function () {
+				var strategy = {
+					red: function (i) {
+						canvasData[i + 1] = 0;
+						canvasData[i + 2] = 0;
+						canvasData[i + 3] = a;
+					},
+					redGreen: function (i) {
+						canvasData[i + 2] = 0;
+						canvasData[i + 3] = a;
+					},
+					grey: function (i) {
+						var num = parseInt((canvasData[i] + canvasData[i + 1] + canvasData[i + 2]) / 3)
+						canvasData[i] = num;
+						canvasData[i + 1] = num;
+						canvasData[i + 2] =  num;
+						canvasData[i + 3] = a;
+					}
+				}
+				/**
+	 			 * @type 算法名称
+	 			 * @i 	 第i元素
+				 */
+				return function (type) {
+					// strategy[type] 算法函数
+					// strategy[type](i)	// 这种方式执行了，因为后面有圆括号，我们不想让他执行，我们只想得到算法的方法
+					return strategy[type]
+				}
+			})()
+
+			// 将for循环改成迭代器
+			function each (arr, method, step) {
+				for (var i = 0, len = arr.length; i < len; i += step) {
+					method(i)
+				}
+			}
+
+			// 寻找策略算法 算法名称叫type
+			var method = DealStrategy(type);
+			// 在迭代器中执行算法
+			each(canvasData, method, 4);
+			// 横坐标向右平移了一个图片的宽度，所以+width
+			ctx.putImageData(data, width + x, y)
+		}
+
+		dealCanvas('grey', 0, 0, width, height, 255)
+		dealCanvas('grey', 50, 50, 400, 200, 100)
+		dealCanvas('grey', 100, 100, 300, 100, 255)
+	}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<style type="text/css">
+* {margin: 0;padding: 0;}
+.header {
+	height: 30px;
+	line-height: 30px;
+	background: #f7f7f7;
+}
+.main {
+	margin: 0 auto;
+	width: 1000px;
+}
+span {
+	margin: 5px;
+}
+h2 {
+	margin: 30px auto 20px;
+}
+button {
+	padding: 5px 8px;
+}
+#msg_list {
+	margin: 0 0 30px 0;
+}
+li {
+	list-style: none;
+	line-height: 30px;
+	height: 30px;
+	padding: 0 5px;
+}
+li span {
+	float: right;
+	width: 20px;
+	height: 20px;
+	background: url(close.png) center no-repeat;
+	display: none;
+}
+li:hover span {
+	display: block;
+}
+li:nth-child(even) {
+	background: #f7f7f7;
+}
+</style>
+<div class="header">
+	<div class="main">
+		<span>雨夜清荷</span>
+		<span>等级<i>9</i></span>
+		<span>消息<i id="msg_num">0</i></span>
+	</div>
+</div>
+<div class="main">
+	<h2>最近发布的消息</h2>
+	<ul id="msg_list"></ul>
+</div>
+<div class="main">
+	<textarea name="" cols="30" rows="10" id="msg_text"></textarea>
+	<br><br>
+	<button id="msg_submit">提交</button>
+</div>
+	<script type="text/javascript">
+	// 消息系统
+	var Observer  = (function () {
+		// 消息系统内定一个消息管道，将用户订阅的消息保存起来
+		var __message = {};
+
+		return {
+			/**
+			 * 订阅消息的方法
+			 * @type： 	表消息名称
+			 * @fn： 	消息的回调函数
+			 */
+			regist: function (type, fn) {
+				// 如果消息管道中已经订阅果这类消息
+				if (__message[type]) {
+					// 向消息管道中推入消息
+					__message[type].push(fn)
+				// 如果消息管道中没有订阅过这则消息
+				} else {
+					// 向消息管道中添加消息，放在数组中的原因是，方便后面继续添加消息
+					__message[type] = [fn]
+				}
+				return this;
+			},
+			/**
+			 * 触发已经订阅过的消息
+			 * @type： 	表示消息类型
+			 * @data: 	表示消息传递的参数
+			 */
+			fire: function (type, data) {
+				// 首先判断消息是否存在
+				if (__message[type]) {
+					// 重组传递的数据，将消息的类别传递进来
+					var e = {
+						type: type,
+						data: data
+					}
+					// 如果存在，就要遍历消息管道中每个回调函数并且执行
+					for (var i = 0; i < __message[type].length; i++) {
+						// 执行每个回调函数
+						__message[type][i](e)
+					}
+				}
+				return this;
+			},
+			/**
+			 * 取消消息订阅
+			 * @type: 	消息名称
+			 * @fn: 	消息的回调函数的名
+			 */
+			remove: function (type, fn) {
+				// 要想取消某个消息，必须判断该消息存在
+				if (__message[type]) {
+					// 遍历我们消息消息系统。看有没有该回调函数
+					for (var i = __message[type].length - 1; i >= 0; i--) {
+						// 如果有这个回调函数
+						if (__message[type][i] === fn) {
+							// 删除这个回调函数
+							__message[type].splice(i, 1);
+						}
+					}
+				}
+				return this;
+			}
+		}
+	})()
+
+	var $ = function (id) {
+		return document.getElementById(id)
+	}
+	</script>
+<script type="text/javascript" src="10/a.js"></script>
+<script type="text/javascript" src="10/b.js"></script>
+<script type="text/javascript" src="10/c.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

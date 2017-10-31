@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="./lib/jquery-1.12.2.js"></script>
+	<script type="text/javascript">
+	/**
+	 * arr[0] 图片的链接
+	 * arr[1] 图片的地址
+	 * arr[2] 图片的标题
+	 */
+	function DealData (arr) {
+		// 实现了一千行
+		var div = document.createElement('div');
+		var img = new Image();
+		var a = document.createElement('a');
+		var p = document.createElement('p');
+		img.src = arr[1];
+		a.href = arr[0];
+		p.innerHTML = arr[2];
+		a.appendChild(p);
+		a.appendChild(img);
+		div.appendChild(a)
+		document.body.appendChild(div)
+	}
+
+	function dataAdaptor (data) {
+		var arr = [];
+		// 适配映射表
+		/**
+		 * key data数据属性
+		 * value arr数据索引
+		 */
+		var map = {
+			src: 1,
+			href: 0,
+			title: 2
+		}
+		for (var i in map) {
+			// 把第三方数据源中的数据，放到自己数据中的数组中的相应位置
+			// map[i] -> 自己数据源中的位置
+			// i -> 第三方数据源中的属性
+			arr[map[i]] = data[i];
+		}
+		/*
+		arr[0] = data.href;
+		arr[1] = data.src;
+		arr[2] = data.title
+		*/
+		return arr;
+	}
+
+	// 第三方数据源
+	/**
+	 * obj.herf 	: 链接地址
+	 * obj.src 		: 图片地址
+	 * obj.title	: 图片标题
+	 */
+	$.get('./data.json', function (res) {
+		if (res && res.errno === 0) {
+			var newRes = dataAdaptor(res.data);
+			DealData(newRes);
+		}
+	})
+	</script>
+</body>
+</html>

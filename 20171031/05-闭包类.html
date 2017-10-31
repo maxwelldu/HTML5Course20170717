@@ -1,0 +1,31 @@
+<script>
+    var Animal = (function () {
+        function Animal() {
+            //公共属性
+            this.name = 'animal';
+            var sex = 0;//私有属性
+            //私有属性希望对外可以暴露，但是可以限制
+            this.getSex = function() { // getter
+                return sex;
+            }
+            this.setSex = function(newsex) { // setter
+                sex = newsex;
+            }
+        }
+        //公共方法
+        Animal.prototype.say = function() {
+            console.log('hi' + this.name);
+        }
+        return Animal;
+    })();
+    var a = new Animal();
+    console.log(a.name);
+    a.say();
+    a.name = 'cat';
+    console.log(a.name);
+    a.say();
+    console.log(a.sex);
+    console.log(a.getSex());
+    a.setSex(1);
+    console.log(a.getSex());
+</script>

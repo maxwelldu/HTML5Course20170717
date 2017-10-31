@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 将多个数据对象转化为一个数据对象
+	function extend (target, obj) {
+		// 将obj中的属性或者方法赋值给target
+		for (var i in obj) {
+			// i 是obj中属性，
+			// obj[i] 是obj中的属性值
+			target[i] = obj[i];
+		}
+		// 将target返回
+		return target;
+	}
+	// 我们写了一个button组件给别人用，参数是button的一些样式以及内容参数
+	var Button = function (param) {
+		var btn = document.createElement('button')
+		// 默认参数
+		var def = {
+			background: 'red',
+			color: 'white',
+			fontSize: '12px',
+			text: '按钮'
+		}
+		// 适配用户传递的参数与默认的参数
+		var def1 = extend(def, param);
+		// 遍历参数，来设置我们按钮样式
+		for (var i in def1) {
+			// i 参数名如： background，color，fontsize
+			// def[i]  参数值： ’red‘ ’wihte‘
+			// text属性不能直接赋值，要用innerHTML赋值
+			if (i === 'text') {
+				btn.innerHTML = def1[i]
+			} else {
+				btn.style[i] = def1[i]
+			}
+		}
+		document.body.appendChild(btn);
+		// if (param.background) {
+		// 	btn.style.background = param.background
+		// }
+		// btn.style.background = param.background || '';
+	}
+
+	Button();
+	Button({
+		background: 'green'
+	})
+	Button({
+		background: 'yellow',
+		color: 'blue',
+		text: '确定',
+		fontSize: '20px'
+	});
+	</script>
+</body>
+</html>

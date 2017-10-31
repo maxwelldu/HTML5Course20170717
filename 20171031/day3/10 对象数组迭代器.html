@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+	var arr = [2, 3, 4];
+	var demo = {
+		a: 2,
+		b: 3,
+		c: 4
+	};
+	function each (obj, fn) {
+		// obj是一个数组时候
+		if (obj instanceof Array) {
+			//迭代数组
+			for (var i = 0, len = obj.length; i < len; i++) {
+				fn(obj[i], i, obj)
+			}
+		// obj是一个对象
+		} else {
+			// 迭代对象
+			for (var i in obj) {
+				fn(obj[i], i, obj)
+			}
+		}
+	}
+	each(arr, function (value, index) {
+		console.log(111, value, index)
+	})
+	each(demo, function (value, key) {
+		console.log(222, value, key)
+	})
+	</script>
+</body>
+</html>

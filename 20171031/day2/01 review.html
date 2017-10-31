@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+	var Book = function (name) {
+		this.name = name;
+	}
+	Book.prototype = {
+		page: 500,
+		getName: function () {
+			return this.name;
+		}
+	}
+
+	// 构造函数式继承
+	var Sjms = function (name) {
+		// 继承父类Book构造函数中的属性
+		// Book.call(this, name)
+	}
+	// Sjms.prototype = new Boo`k();
+	Sjms.prototype = new Book('模式');
+
+	var s1 = new Sjms()
+	// var s2 = new Sjms('bb')
+	console.log(s1, 1111);
+	// console.log(s2, 1111);
+
+
+	</script>
+</body>
+</html>

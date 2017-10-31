@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<style type="text/css">
+* {margin: 0;padding: 0;}
+.product {
+	width: 840px;
+	margin: 100px auto;
+}
+.product div {
+	width: 200px;
+	height: 120px;
+	float: left;
+	margin: 0 5px;
+	position: relative;
+}
+.product img {
+	width: 200px;
+	height: 120px;
+}
+.product p {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	color: #fff;
+	background: rgba(0, 0, 0, .5);
+	margin: 0;
+}
+</style>
+<div id="container" class="product"></div>
+	<script type="text/javascript">
+	var productData = [
+		{
+			src : 'img/01.jpg',
+			text : '迎着朝阳的野菊花'
+		},
+		{
+			src : 'img/02.jpg',
+			text : '绽放的桃花'
+		},
+		{
+			src : 'img/03.jpg',
+			text : '阳光下的温馨'
+		},
+		{
+			src : 'img/04.jpg',
+			text : '镜头前的绿色'
+		}
+	];
+	// var data = {
+	// 	src : 'img/04.jpg',
+	// 	text : '镜头前的绿色'
+	// }
+
+
+	var tpl = '<div><img src="{#src#}" alt="" /><span></span><p>{#text#}</p>{#aa#}</div>';
+
+	/**
+	 * 格式化字符串方法
+	 * @tpl : 	格式化的字符串模板
+	 * @data： 	格式化的数据
+	 * return： 格式化后的字符串
+	 */
+	var formatString = function (tpl, data) {
+		// 返回字符串变量
+		var result = '';
+		// 通过data对tpl格式化，得到的结果赋值给result并返回
+		result = tpl.replace(/\{#(\w+)#\}/g, function (match, key) {
+			return data[key] === undefined ? '' : data[key];
+		})
+		// 将格式化后的字符串返回
+		return result
+	}
+
+	// formatString(tpl, data);
+	var html = '';
+	for (var i = 0; i < productData.length; i++) {
+		html += formatString(tpl, productData[i])
+	}
+	document.getElementById('container').innerHTML = html;
+
+	// var result = tpl.replace(/\{\#(\w+)\#\}/g, function (match, key) {
+	// 	return data[key];
+	// })
+	// document.getElementById('container').innerHTML = result;
+	</script>
+</body>
+</html>

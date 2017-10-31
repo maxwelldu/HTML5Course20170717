@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<style type="text/css">
+div {
+	width: 100px;
+	height: 100px;
+	background: green;
+	position: relative;
+	margin-bottom: 20px;
+}
+</style>
+<div id="div_1"></div>
+<div id="div_2"></div>
+<div id="div_3"></div>
+<div id="div_4"></div>
+<div id="div_5"></div>
+<div id="div_6"></div>
+<script type="text/javascript" src="lib/jquery-1.12.2.js"></script>
+<script type="text/javascript" src="lib/easing.js"></script>
+<script type="text/javascript">
+$('#div_1').animate({left: 1000}, 2000, 'easeInOutElastic')
+$('#div_2').animate({left: 1000}, 2000, 'easeOutCubic')
+$('#div_3').animate({left: 1000}, 2000, 'easeInOutQuart')
+$('#div_4').animate({left: 1000}, 2000, 'easeInOutQuint')
+$('#div_5').animate({left: 1000}, 2000, 'easeInElastic')
+$('#div_6').animate({left: 1000}, 2000, 'easeOutBounce')
+</script>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+form{width: 540px; margin: 100px auto;}
+div{height: 30px; line-height: 30px;}
+fieldset{margin-bottom: 20px;}
+span{margin-left: 10px; font-size: 14px; color: red;}
+</style>
+<body>
+
+</body>
+	<script type="text/javascript">
+	var InputStrategy = (function () {
+		var stragety = {
+			// 判断不能为空
+			notNull: function (value) {
+				return /^\s*$/.test(value) ? '输入的内容不能为空' : '';
+			},
+			// 判断是数字
+			isNumber: function (value) {
+				return /^-?\d+(\.\d*)?$/.test(value) ? '' : '输入的不是一个正确的数字'
+			},
+			// 判断电话格式 010-12345678 1234-1234567
+			isTelephoneNumber: function (value) {
+				return /^\d{3}\-\d{8}$|^\d{4}\-\d{7}$/.test(value) ? '' : '请输入一个正确的电话号码';
+			},
+			userName: function (value) {
+				return /^\w{4,6}$/.test(value) ? '' : '请输入4到6位字母或者下划线或者数字'
+			},
+			password: function (value) {
+				return /^\w{8,12}$/.test(value) ? '' : '请输入8到12位字母或者下划线或者数字';
+			}
+		}
+		return {
+			/**
+			 * 检测表单输入的文本内容是否正确
+			 * @value: 	检测的文本内容
+			 * @type: 	检测的算法
+			 */
+			check: function (value, type) {
+				if (stragety[type]) {
+					return stragety[type](value);
+				} else {
+					return '没有该检测方法'
+				}
+			},
+			// 拓展我们的算法
+			add: function (type, fn) {
+				// 为算法对象strategy添加算法
+				stragety[type] = fn;
+			}
+		}
+	})()
+
+	// 父类
+	var Base = function(){
+		//子组件容器
+		this.children = [];
+		//当前组件元素
+		this.element = null;
+	}
+	Base.prototype = {
+		init : function(){
+			throw new Error("请从写你的方法");
+		},
+		add : function(){
+			throw new Error("请从写你的方法");
+		},
+		getElement : function(){
+			throw new Error("请从写你的方法");
+		}
+	}
+
+	var FormItem = function(id, parent, method, action){
+		Base.call(this);
+		this.id = id;
+		this.parent = parent;
+		this.method = method || 'POST';
+		this.action = action || '#';
+		this.init();
+	}
+	FormItem.prototype = new Base();
+	FormItem.prototype.init = function(){
+		this.element = document.createElement('form');
+		this.element.id = this.id;
+		this.element.method = this.method || 'POST';
+		this.element.action = this.action || '#';
+	};
+	FormItem.prototype.add = function(child){
+		//在子元素容器中插入子元素
+		this.children.push(child);
+		//插入当前组件元素树中
+		this.element.appendChild(child.getElement());
+		return this;
+	}
+	FormItem.prototype.getElement = function(){
+			return this.element;
+		}
+	FormItem.prototype.show = function(){
+		this.parent.appendChild(this.element);
+	}
+
+	var FieldsetItem = function(id, title, classname){
+		Base.call(this);
+		this.id = id;
+		this.title = title || '';
+		this.classname = classname;
+		this.init();
+	}
+	FieldsetItem.prototype = new Base();
+	FieldsetItem.prototype.init = function(){
+		var legned = document.createElement('legend');
+		legned.innerHTML = this.title;
+		this.element = document.createElement('fieldset');
+		this.element.appendChild(legned);
+		this.element.id = this.id;
+		this.element.className = this.classname;
+	}
+	FieldsetItem.prototype.add = function(child){
+		//在子元素容器中插入子元素
+		this.children.push(child);
+		//插入当前组件元素树中
+		this.element.appendChild(child.getElement());
+		return this;
+	}
+	FieldsetItem.prototype.getElement = function(){
+		return this.element;
+	}
+
+	var Group = function(classname){
+		Base.call(this);
+		this.classname = classname || '';
+		this.init();
+	}
+	Group.prototype = new Base();
+	Group.prototype.init = function(){
+		this.element = document.createElement('div');
+		this.element.className = this.classname;
+	}
+	Group.prototype.add = function(child){
+		//在子元素容器中插入子元素
+		this.children.push(child);
+		//插入当前组件元素树中
+		this.element.appendChild(child.getElement());
+		return this;
+	}
+	Group.prototype.getElement = function(){
+		return this.element;
+	}
+	Group.prototype.bindEvent = function (type) {
+		var inp = this.children[1].getElement();
+		var err = this.children[2].getElement();
+		inp.onblur = function (e) {
+			var value = e.target.value;
+			var result = InputStrategy.check(value, type);
+			if (result) {
+				err.innerHTML = result;
+			} else {
+				err.innerHTML = '';
+			}
+		}
+		return this;
+	}
+
+	var InputItem = function(id, type, classname){
+		Base.call(this);
+		this.id = id;
+		this.type = type || 'text';
+		this.classname = classname || '';
+		this.init();
+	}
+	InputItem.prototype = new Base();
+	InputItem.prototype.init = function(){
+		this.element = document.createElement('input');
+		this.element.name = this.id;
+		this.element.id = this.id;
+		this.element.type = this.type;
+		this.element.className = this.classname;
+	}
+	InputItem.prototype.add = function(){}
+	InputItem.prototype.getElement = function(){
+		return this.element;
+	}
+	InputItem.prototype.getValue = function(){
+		return this.element.value;
+	}
+
+	var LabelItem = function(id, text, classname){
+		Base.call(this);
+		this.id = id;
+		this.text = text;
+		this.classname = classname || '';
+		this.init();
+	}
+	LabelItem.prototype = new Base();
+	LabelItem.prototype.init = function(){
+		this.element = document.createElement('label');
+		this.element.setAttribute('for', this.id);
+		this.element.className = this.classname;
+		this.element.innerHTML = this.text;
+	}
+	LabelItem.prototype.add = function(){}
+	LabelItem.prototype.getElement = function(){
+		return this.element;
+	}
+
+	var SpanItem = function(text, classname){
+		Base.call(this);
+		this.text = text || '';
+		this.classname = classname || '';
+		this.init();
+	}
+	SpanItem.prototype = new Base();
+	SpanItem.prototype.init = function(){
+		this.element = document.createElement('span');
+		this.element.innerHTML = this.text;
+		this.element.className = this.classname;
+	}
+	SpanItem.prototype.add = function(){}
+	SpanItem.prototype.getElement = function(){
+		return this.element;
+	}
+	SpanItem.prototype.resetText = function (text) {
+		this.text = text;
+		this.element.innerHTML = this.text;
+	}
+
+	var TextareaItem = function(id, classname){
+		Base.call(this);
+		this.id = id;
+		this.classname = classname || '';
+		this.init();
+	}
+	TextareaItem.prototype = new Base();
+	TextareaItem.prototype.init = function(){
+		this.element = document.createElement('textarea');
+		this.element.id = this.id;
+		this.element.name = this.name;
+		this.element.classname = this.classname;
+	}
+	TextareaItem.prototype.add = function(){}
+	TextareaItem.prototype.getElement = function(){
+		return this.element;
+	}
+
+
+
+	var form = new FormItem('FormItem', document.body);
+	form.add(
+		new FieldsetItem('account', '账号').add(
+			new Group().add(
+				new LabelItem('user_name', '用户名：')
+			).add(
+				new InputItem('user_name')
+			).add(
+				new SpanItem()
+			).bindEvent('userName')
+		).add(
+			new Group().add(
+				new LabelItem('user_password', '密&emsp;码：')
+			).add(
+				new InputItem('user_password')
+			).add(
+				new SpanItem()
+			).bindEvent('password')
+		)
+	).add(
+		new FieldsetItem('information', '信息').add(
+			new Group().add(
+				new LabelItem('info_name', '昵称：')
+			).add(
+				new InputItem('info_name')
+			).add(
+				new SpanItem()
+			).bindEvent('notNull')
+		).add(
+			new Group().add(
+				new LabelItem('info_states', '电话：')
+			).add(
+				new InputItem('info_states')
+			).add(
+				new SpanItem()
+			).bindEvent('isTelephoneNumber')
+		)
+	).add(
+		new Group().add(
+			new InputItem('btn_submit', 'submit')
+		)
+	).show();
+	</script>
+</html>

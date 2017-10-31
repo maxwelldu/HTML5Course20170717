@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<style type="text/css">
+
+* {margin: 0;padding: 0;}
+.product {
+	width: 840px;
+	margin: 100px auto;
+}
+.product div {
+	width: 200px;
+	height: 120px;
+	float: left;
+	margin: 0 5px;
+	position: relative;
+}
+.product img {
+	width: 200px;
+	height: 120px;
+}
+.product p {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	color: #fff;
+	background: rgba(0, 0, 0, .5);
+	margin: 0;
+}
+</style>
+
+<div id="title" class="title"></div>
+<div id="container" class="product"></div>
+
+	<script type="text/javascript">
+	var titleData = {
+		title : '夏日里的一片温馨',
+		tips : '暖暖的温情带给人们家的感受。'
+	};
+	var productData = [
+		{
+			src : 'img/02.jpg',
+			text : '绽放的桃花'
+		},
+		{
+			src : 'img/03.jpg',
+			text : '阳光下的温馨'
+		},
+		{
+			src : 'img/04.jpg',
+			text : '镜头前的绿色'
+		}
+	];
+
+	var ViewCommand = (function () {
+		// 模板容器方便我们对模版复用的
+		var view = {
+			tittle: '<div><h2>{#title#}</h2><p>{#tips#}</p></div>',
+			item: '<div><img src="{#src#}" alt="" /><p>{#text#}</p></div>'
+		}
+		var formatString = function (tpl, data) {
+			// 返回字符串变量
+			var result = '';
+			// 通过data对tpl格式化，得到的结果赋值给result并返回
+			result = tpl.replace(/\{#(\w+)#\}/g, function (match, key) {
+				return data[key] === undefined ? '' : data[key];
+			})
+			// 将格式化后的字符串返回
+			return result
+		}
+		// 缓存我们格式化后的字符串
+		var html = '';
+		var cmd = {
+			/**
+			 * 对模板格式化
+			 * @tpl 	模板
+			 * @data 	数据
+			 */
+			create: function (tpl, data) {
+				// 在模板容器中获取模板
+				var ctpl = view[tpl]
+				// data是数组的话我们要遍历数组，
+				if (data instanceof Array) {
+					for (var i = 0; i < data.length; i++) {
+						// 每个数组成员格式化后的字符串存储在字符串容器html中
+						html += formatString(ctpl, data[i])
+					}
+				} else {
+					// 如果data是对象的话，将格式化后的字符串存储在字符串容器html中
+					html += formatString(ctpl, data)
+				}
+			},
+			/**
+			 * 将html字符串渲染页面中
+			 * @id 	页面中渲染字符串容器id
+			 * @tpl	模板
+			 * @data 数据
+			 */
+			display: function (id, tpl, data) {
+				if (tpl && data) {
+					this.create(tpl, data)
+				}
+				// 获取容器
+				var dom = document.getElementById(id);
+				dom.innerHTML = html;
+				html = '';
+			}
+		}
+		return {
+			/**
+			 * 命令执行方法
+			 * @obj.command 表示命令名称
+			 * @obj.param 	表示名称参数
+			 */
+			excute: function (obj) {
+				// 方法的目的-》通过用户传递参数来获取相应命令，并将命令的参数传递到命令中。，来渲染页面
+				// 比如obj.command = 'display' => cmd['display']
+				var command = cmd[obj.command]
+				// 参数转化数组-》 apply要求我们传递时一个数组
+				obj.param = obj.param instanceof Array ? obj.param : [obj.param ];
+				// 执行用户的命令
+				command.apply(cmd, obj.param)
+				return this;
+			}
+		}
+	})()
+
+
+
+
+	ViewCommand
+		.excute({
+			command: 'display',
+			param: ['title', 'tittle', titleData]
+		})
+		.excute({
+			command: 'create',
+			param: ['item', {
+				src : 'img/01.jpg',
+				text : '迎着朝阳的野菊花'
+			}]
+		})
+		// 淘宝提供了一个广告
+		.excute({
+			command: 'create',
+			param: ['item', {
+				src : 'img/01.jpg',
+				text : '迎着朝阳的野菊花'
+			}]
+		})
+		// 百度提供了一个广告
+		.excute({
+			command: 'create',
+			param: ['item', {
+				src : 'img/01.jpg',
+				text : '迎着朝阳的野菊花'
+			}]
+		})
+		.excute({
+			command: 'display',
+			param: ['container', 'item', productData]
+		})
+	</script>
+</body>
+</html>

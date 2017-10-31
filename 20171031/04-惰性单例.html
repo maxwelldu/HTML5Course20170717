@@ -1,0 +1,17 @@
+<script>
+    function Animal() {
+        this.name = 'animal';
+    }
+    var SingleAnimal = (function () {
+        var _instance = null;
+        return function () {
+            if (!_instance) {
+                _instance = new Animal();
+            }
+            return _instance;
+        }
+    })();
+    var a1 = SingleAnimal();
+    var a2 = SingleAnimal();
+    console.log(a1 === a2);
+</script>

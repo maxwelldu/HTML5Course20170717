@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+	var A = {
+		server: {
+			site: 'www.ucai.cn',
+			title: '优才'
+		},
+		client: {
+			username: '雨夜清荷',
+			uid: 123
+		},
+		common: {
+			local: 'zh'
+		}
+	};
+
+	var AIterator = function (str) {
+		// path表示A变量中的属性路径
+		var path = str.replace(/^A\./, '').split('.');
+		console.log(path);
+		// 现在path就是一个数组了，表示A中属性路径；
+		var result = A;
+		for (var i = 0; i < path.length; i++) {
+			// path[i] A的第i级属性
+			// result[path[i]] 是undefined，那么我们就没有必要对其进行循环查询，直接返回
+			if (undefined === result[path[i]]) {
+				return undefined;
+			} else {
+				// 将找到的属性缓存在result里面，后面循环下一级属性使用
+				result = result[path[i]]
+			}
+		}
+		// 如果我们找到最后一级的属性，我们直接将其返回
+		return result;
+	}
+
+	// console.log('A.server.title'.replace(/^A\./, ''))
+	console.log(AIterator('A.server.title'))	// '优才'
+	console.log(AIterator('server.title'))	// '优才''
+	console.log(AIterator('A.b.c'))	// -> undefined
+
+	// console.log(A.client.uid);
+	// console.log(A.b.c);
+	</script>
+</body>
+</html>

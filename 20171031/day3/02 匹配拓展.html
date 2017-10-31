@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+	var data = {
+		src : 'img/04.jpg',
+		text : '镜头前的绿色'
+	}
+	//(+_+)?
+	var tpl = '<div><img src="(+src+)?" alt="" /><p>(+text+)?</p><div>';
+	// 加好之间的东西需要捕获的，所以加好之间的东西我们放到小括号里面
+	var result = tpl.replace(/\(\+(\w+)\+\)\?/g, function (match, key) {
+		return data[key];
+	})
+	console.log(result)
+	</script>
+</body>
+</html>

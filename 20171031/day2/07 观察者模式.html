@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+	// 消息系统
+	var Observer  = (function () {
+		// 消息系统内定一个消息管道，将用户订阅的消息保存起来
+		var __message = {};
+
+		return {
+			/**
+			 * 订阅消息的方法
+			 * @type： 	表消息名称
+			 * @fn： 	消息的回调函数
+			 */
+			regist: function (type, fn) {
+				// 如果消息管道中已经订阅果这类消息
+				if (__message[type]) {
+					// 向消息管道中推入消息
+					__message[type].push(fn)
+				// 如果消息管道中没有订阅过这则消息
+				} else {
+					// 向消息管道中添加消息，放在数组中的原因是，方便后面继续添加消息
+					__message[type] = [fn]
+				}
+				// console.dir(__message);
+			},
+			/**
+			 * 触发已经订阅过的消息
+			 * @type： 	表示消息类型
+			 */
+			fire: function (type) {
+				// 首先判断消息是否存在
+				if (__message[type]) {
+					// 如果存在，就要遍历消息管道中每个回调函数并且执行
+					for (var i = 0; i < __message[type].length; i++) {
+						// 执行每个回调函数
+						__message[type][i]()
+					}
+				}
+			}
+		}
+	})()
+
+	Observer.regist('say', function () {
+		console.log('hello')
+	})
+	Observer.regist('say', function () {
+		console.log(111)
+	})
+	Observer.fire('say')
+	</script>
+</body>
+</html>

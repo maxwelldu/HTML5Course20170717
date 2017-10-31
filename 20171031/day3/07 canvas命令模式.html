@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<canvas id="mycanvas" width="800" height="400" style="background: black;"></canvas>
+	<script type="text/javascript">
+	var CanvasCommand = (function () {
+		var myCanvas = document.getElementById('mycanvas');
+		var ctx = myCanvas.getContext('2d');
+		var width = myCanvas.width;
+		var height = myCanvas.height;
+		var cmd = {
+			beginPath: function () {
+				ctx.beginPath();
+			},
+			closePath: function () {
+				ctx.closePath();
+			},
+			arc: function (x, y, r, star, end, dir) {
+				ctx.arc(x, y, r, star, end, dir)
+			},
+			fill: function () {
+				ctx.fill()
+			},
+			fillStyle: function (c) {
+				ctx.fillStyle = c;
+			},
+			fillRect: function (x, y, w, h) {
+				ctx.fillRect(x, y, w, h)
+			},
+			fillCricle: function (x, y, r, c) {
+				ctx.beginPath();
+				ctx.arc(x, y, r, 0, 2 * Math.PI);
+				ctx.closePath();
+				ctx.fillStyle = c;
+				ctx.fill();
+			},
+			// 通过矩形中心点绘制矩形
+			fillRectCenter: function (x, y, w, h) {
+				// 定点的横坐标是x - w / 2， 纵坐标 y - h / 2
+				ctx.fillRect(x - w / 2, y - h / 2, w, h)
+			}
+		}
+		return {
+			excute: function (arr) {
+				var command = cmd[arr[0]]
+				command.apply(cmd, arr.slice(1));
+				return this;
+			},
+			excuteArr: function (arr) {
+				// 这里的arr是一个命令集合，不是一个单独的指令，所以我们要遍历
+				for (var i = 0; i < arr.length; i++) {
+					// 对于每一条单独的指令，我们调用excute方法
+					this.excute(arr[i])
+				}
+				return this;
+			}
+		}
+	})()
+
+	CanvasCommand
+		.excute(['beginPath'])
+		.excute(['arc', 100, 100, 20, 0, 2 * Math.PI, false])
+		.excute(['closePath'])
+		.excute(['fillStyle', 'pink'])
+		.excute(['fill'])
+		.excuteArr([
+			['beginPath'],
+			['arc', 200, 200, 20, 0, 2 * Math.PI, false],
+			['closePath'],
+			['fillStyle', 'red'],
+			['fill']
+		])
+		.excute(['fillRectCenter', 400, 200, 100, 100])
+		.excute(['fillCricle', 500, 200, 20, 'green'])
+	</script>
+</body>
+</html>

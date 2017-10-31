@@ -2128,6 +2128,154 @@ util.inspect();
      d. 加载索引(M)
   2. 加载索引(X)
 
+#20171031
+var Person = function() { }
+简单工厂：用于创建单一对象的实例
+function PersonFactory() {
+  return new Person();
+}
+var p = PersonFactory();
+批量生产：一个方法，能够实现批量创建
+function PersonFactory(num) {
+  if (num) {
+    var result = [];
+    for (var i = 0; i < num; i++) {
+      result.push(arguments.callee());
+    }
+    return result;
+  } else {
+    return new Person();
+  }
+}
+寄生增强：在简单工厂里面生产对象后，添加属性和方法
+function PersonFactory() {
+  //生产
+  var p = new Person();
+  //增强
+  p.walk = function(){}
+  //工厂
+  return p;
+}
+安全工厂：防止有人使用new关键字去调用简单工厂方法
+function PersonFactory() {
+  if (this instanceof arguments.callee) {
+    return arguments.callee();
+  } else {
+    return new Person();
+  }
+}
+var p = new PersonFactory();
+var p1 = PersonFactory();
+工厂方法：创建多个不同类型的对象
+function Cat() {
+  this.name = 'hello kitty';
+  this.type = 'cat';
+}
+Cat.prototype.init = function(){
+  console.log(this);
+}
+function Dog() {
+  this.name = 'wood';
+  this.type = 'dog';
+}
+Dog.prototype.init = function(){
+  console.log(this);
+}
+function AnimalFactory(type) {
+  var animal;
+  switch(type) {
+    case 'Cat':
+      animal = new Cat();
+      break;
+    case 'Dog':
+      animal = new Dog();
+      break;
+  }
+  if (animal) {
+    animal.init && animal.init();
+  }
+}
+原型模式：把类中公共的属性和方法提取
+function Animal() {
+  this.name = 'hello kitty';
+}
+Animal.prototype.init = function(){
+  console.log(this);
+}
+function Cat(name) {
+  Animal.call(this, name);
+  this.type = 'cat';
+}
+Cat.prototype = new Animal();
+
+function Dog(name) {
+  Animal.call(this, name);
+  this.type = 'dog';
+}
+Dog.prototype = new Animal();
+function AnimalFactory(type) {
+  var animal;
+  switch(type) {
+    case 'Cat':
+      animal = new Cat('hello kitty');
+      break;
+    case 'Dog':
+      animal = new Dog('wood');
+      break;
+  }
+  if (animal) {
+    animal.init && animal.init();
+  }
+}
+惰性单例模式：希望创建出来的对象只有一个;并且希望在用到的时候才调用
+function Animal() {
+  this.name = 'animal';
+}
+var SingleAnimal = (function(){
+  var _instance = null;
+  return function () {
+    if (!_instance) {
+      _instance = new Animal();
+    }
+    return _instance;
+  }
+})();
+var a1 = SingleAnimal();
+var a2 = SingleAnimal();
+console.log(a1 === a2);
+闭包类：为了能够封装私有的属性和方法
+var Animal = (function () {
+        function Animal() {
+            //公共属性
+            this.name = 'animal';
+            var sex = 0;//私有属性
+            //私有属性希望对外可以暴露，但是可以限制
+            this.getSex = function() { // getter
+                return sex;
+            }
+            this.setSex = function(newsex) { // setter
+                sex = newsex;
+            }  
+        }
+        //公共方法
+        Animal.prototype.say = function() {
+            console.log('hi' + this.name);
+        }
+        return Animal;
+    })();
+    var a = new Animal();
+    console.log(a.name);
+    a.say();
+    a.name = 'cat';
+    console.log(a.name);
+    a.say();
+    console.log(a.sex);
+    console.log(a.getSex());
+    a.setSex(1);
+    console.log(a.getSex());
+适配器：
+  
+
 ##5点后的练习计划
 - 20170828 练习批量绑定事件和对应模型
 - 20170829 练习函数截流滚动或者延迟搜索

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<style type="text/css">
+.container li {
+	line-height: 30px;
+	height: 30px;
+}
+.container a {
+	text-decoration: none;
+	color: #52687e;
+}
+.container a:hover,
+.container span {
+	color: #ff8400;
+}
+</style>
+	<script type="text/javascript">
+	// 把节点和实例化对象看成一个东西
+	var Base = function () {
+		this.children = [];		// 父节点的容器，包含子节点实例化对象
+		this.element = null;	// 父节点对应的元素
+	}
+	Base.prototype = {
+		// 到目前为止，我们还没有初始化元素，所以我们提供一个init方法初始化元素。
+		init: function () {
+			throw new Error('请定义init方法')
+		},
+		// child表示子类的实例化对象
+		// 向父节点中添加子节点，分成两步
+		// 1 将子节点实例化对象放到父节点的容器内
+		// 2 将子节点对应的元素放到父节点对应的元素内
+		add: function (child) {
+			// 要把父节点包含子节点添加到父节点的容器内 -- 第一步
+			this.children.push(child);
+			// 将子元素添加到父元素内 -- 第二步
+			this.element.appendChild(child.getElement());
+			return this;
+		},
+		// 习惯上我们不直接引用this.element，而是通过getElement获取
+		getElement: function () {
+			return this.element;
+		}
+	}
+
+	/**
+	 * id 容器的id，方便外部获取
+	 * parent 包含容器的父节点，这样容器才能插入到页面中
+	 */
+	var Container = function (id, parent) {
+		Base.call(this);
+		this.id = id;	// 保存id
+		this.parent = parent; 	// 保存父节点对应的元素
+		this.init();
+	}
+	Container.prototype = new Base();
+	// 初始化元素
+	Container.prototype.init = function () {
+		// 创建元素
+		this.element = document.createElement('ul');
+		// 为元素添加id
+		this.element.id = this.id;
+		// 为元素添加类
+		this.element.className = 'container';
+	}
+	// 将节点对应的元素放到页面中
+	Container.prototype.show = function () {
+		this.parent.appendChild(this.element);
+		return this;
+	}
+
+	// 行节点
+	var Item = function (className) {
+		// 构造函数式继承基类
+		Base.call(this);
+		// 保留类名
+		this.className = className || '';
+		// 初始化元素
+		this.init();
+	}
+	// 通过原型式继承基类的add和getElement方法
+	Item.prototype = new Base();
+	// 初始化我们元素
+	Item.prototype.init = function () {
+		// 创建元素
+		this.element = document.createElement('li')
+		// 为元素添加类
+		this.element.className = this.className
+	}
+
+	// 叶子节点，创建新闻
+	var TextNews = function (text, href) {
+		// 1
+		Base.call(this);
+		// 2
+		this.text = text;
+		this.href = href || '#';
+		// 3
+		this.init();
+	}
+	// 继承基类原型方法
+	TextNews.prototype = new Base();
+	TextNews.prototype.init = function () {
+		this.element = document.createElement('a');
+		this.element.innerHTML = this.text;
+		this.element.href = this.href;
+	}
+
+	var TypeNews = function (text, href, type) {
+		Base.call(this);
+		this.text = text;
+		this.href = href;
+		this.type = type;
+		this.init();
+	}
+	TypeNews.prototype = new Base();
+	TypeNews.prototype.init = function () {
+		this.element = document.createElement('a');
+		var span = document.createElement('span');
+		span.innerHTML = this.type + ' | ';
+		var text  = document.createTextNode(this.text);
+		this.element.appendChild(span);
+		this.element.appendChild(text);
+		// this.element.innerHTML  = this.type + ' | ' + this.text;
+		this.element.href = this.href;
+	}
+	TypeNews.prototype.add = function () {}
+
+	//单测
+	var container = new Container('my_news', document.body);
+	container.add(
+		new Item().add(
+			new TextNews('新闻')
+		)
+	)
+	.add(
+		new Item().add(
+			new TextNews('英格兰1:1俄罗斯')
+		)
+	)
+	.add(
+		new Item().add(
+			new TypeNews('暴雪对《魔兽》电影不满', '#', '科技')
+		)
+	).show();
+	var container = new Container('my_news2', document.body);
+	container.add(
+		new Item().add(
+			new TypeNews('暴雪对《魔兽》电影不满', '#', '科技')
+		)
+	).add(
+		new Item().add(
+			new TextNews('新闻')
+		)
+	).add(
+		new Item().add(
+			new TextNews('英格兰1:1俄罗斯')
+		)
+	).show();
+
+/*
+Base:  children, element  add(child)把子元素加到cihld,把子元素的element加到当前元素身上; getElement();返回element
+
+Container extends Base:
+id, parent, init()创建ul元素设置ID和类名 show()把自己添加到父元素上面
+
+Item extends Base:
+className, init()创建li,设置类名
+
+TextNews extends Base:
+text, href, init()创建a标签，设置文本和超链接
+
+TypeNews extends Base:
+text, href, type init()创建a标签，以及span标签和文本标签，把span和文本标签放入a标签，设置超链接
+*/
+	</script>
+</body>
+</html>

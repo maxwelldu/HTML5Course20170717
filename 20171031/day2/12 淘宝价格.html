@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<p>价格：<span id="num1"></span></p>
+<p>淘宝价：<span id="num2"></span></p>
+	<script type="text/javascript">
+	var price = 500;
+	var PriceStrategy = (function () {
+		// 汇率表
+		var rate = {
+			RMBTODOLLAR: 0.1525,
+			DOLLARTORMB: 6.5590
+		}
+		// 算法对象
+		var strategy = {
+			// 100反10
+			return10: function (price) {
+				var num = parseInt(price / 100) * 10;
+				return price - num
+			},
+			// 打五折
+			percent50: function (price) {
+				return price * .5;
+			},
+			// 将人民币转化成美元
+			RMBToDollar: function (price) {
+				return price * rate.RMBTODOLLAR;
+			}
+		}
+		/**
+		 * 返回函数，通过提供的价格返回优惠后的价格
+		 * @price： 商品的原价
+		 * @type： 	策略的类型
+		 */
+		return function (price, type) {
+			// 判断该策略是否存在
+			if (strategy[type]) {
+				// 存在则获取运算后的价格
+				return strategy[type](price);
+			}
+			// 不存在返回原价
+			return price;
+		}
+	})()
+
+	document.getElementById('num1').innerHTML = '￥：' + price + '  $：' + PriceStrategy(price, 'RMBToDollar');
+	document.getElementById('num2').innerHTML = '￥：' + PriceStrategy(price, 'return10')
+	// document.getElementById('num2').innerHTML = '￥：' + 500 * .9
+
+	console.log(PriceStrategy(500, 'percent50'));
+
+	</script>
+</body>
+</html>

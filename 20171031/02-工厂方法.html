@@ -1,0 +1,32 @@
+<script>
+    function Cat() {
+  this.name = 'hello kitty';
+  this.type = 'cat';
+}
+Cat.prototype.init = function(){
+  console.log(this);
+}
+function Dog() {
+  this.name = 'wood';
+  this.type = 'dog';
+}
+Dog.prototype.init = function(){
+  console.log(this);
+}
+function AnimalFactory(type) {
+  var animal;
+  switch(type) {
+    case 'Cat':
+      animal = new Cat();
+      break;
+    case 'Dog':
+      animal = new Dog();
+      break;
+  }
+  if (animal) {
+    animal.init && animal.init();
+  }
+}
+AnimalFactory('Cat');
+AnimalFactory('Dog');
+</script>

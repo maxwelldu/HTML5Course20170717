@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+	var Ball = function (x, y) {
+		this.x = x;
+		this.y = y;
+	}
+	Ball.prototype = {
+		color: 'red',
+		init: function () {}
+	}
+	var b1 = new Ball(10, 100);
+	b1.vx = 10;
+	b1.vy = 20;
+
+	console.log(b1)
+
+	/**
+	 * 遍历实例化对象自身的属性，过滤掉原型上的属性
+	 * obj	实例化对象
+	 * fn 	回调函数
+	 */
+	function each (obj, fn) {
+		for (var i in obj) {
+			if (obj.hasOwnProperty(i)) {
+				// fn && fn(obj[i], i, obj)
+				fn && fn.call(obj, obj[i], i, obj)
+			}
+		}
+	}
+	each(b1, function (value, key, obj) {
+		console.log(value, key, obj, this);
+	})
+
+	// for (var i in b1) {
+	// 	if (b1.hasOwnProperty(i)) {
+	// 		console.log(i)
+	// 	}
+	// }
+
+	</script>
+</body>
+</html>

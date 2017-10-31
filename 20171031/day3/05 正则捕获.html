@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+	var str = 'ABCDefg';
+	var result = str.replace(/([A-Z]+)([A-Z][a-z])/g, function(match, $1, $2) {
+		console.log(match, $1, $2)
+		return $1 + '_' + $2;
+	})
+	console.log(result)
+	</script>
+</body>
+</html>

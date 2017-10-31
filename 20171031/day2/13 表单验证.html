@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<style type="text/css">
+span {color: red;}
+input {
+	margin: 0 20px;
+}
+div {
+	height: 30px;
+	line-height: 30px;
+}
+</style>
+<div>
+	<label for="">昵称</label>
+	<input type="text" id="inp1">
+	<span id="err1"></span>
+</div>
+<div>
+	<label for="">数字</label>
+	<input type="text" id="inp2">
+	<span id="err2"></span>
+</div>
+<div>
+	<label for="">电话</label>
+	<input type="text" id="inp3">
+	<span id="err3"></span>
+</div>
+	<script type="text/javascript">
+	var InputStrategy = (function () {
+		var stragety = {
+			// 判断不能为空
+			notNull: function (value) {
+				return /^\s*$/.test(value) ? '输入的内容不能为空' : '';
+			},
+			// 判断是数字
+			isNumber: function (value) {
+				return /^-?\d+(\.\d*)?$/.test(value) ? '' : '输入的不是一个正确的数字'
+			},
+			// 判断电话格式 010-12345678 1234-1234567
+			isTelephoneNumber: function (value) {
+				return /^\d{3}\-\d{8}$|^\d{4}\-\d{7}$/.test(value) ? '' : '请输入一个正确的电话号码';
+			}
+		}
+		return {
+			/**
+			 * 检测表单输入的文本内容是否正确
+			 * @value: 	检测的文本内容
+			 * @type: 	检测的算法
+			 */
+			check: function (value, type) {
+				if (stragety[type]) {
+					return stragety[type](value);
+				} else {
+					return '没有该检测方法'
+				}
+			},
+			// 拓展我们的算法
+			add: function () {
+
+			}
+		}
+	})()
+
+	/**
+	 * inp input输入框的id
+	 * err 后面提示错误文案span的id
+	 * type 检测的策略
+	 */
+	function checkInput (inp, err, type) {
+		document.getElementById(inp).onblur = function (e) {
+			var value = e.target.value;
+			// 获取检测的结果
+			var result = InputStrategy.check(value, type)
+			if (result) {
+				document.getElementById(err).innerHTML = result;
+			} else {
+				document.getElementById(err).innerHTML = '';
+			}
+		}
+	}
+
+	// 策略名称与页面中表单的映射表
+	var arr = ['notNull', 'isNumber', 'isTelephoneNumber']
+	for (var i = 1; i < 4; i++) {
+		// 遍历三次，为上面的元素绑定事件
+		checkInput('inp' + i, 'err' + i, arr[i - 1])
+	}
+	</script>
+</body>
+</html>

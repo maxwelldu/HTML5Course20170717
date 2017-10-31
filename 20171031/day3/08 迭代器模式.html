@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<script type="text/javascript" src="lib/jquery-1.12.2.js"></script>
+	<script type="text/javascript">
+	var arr = [2, 3, 4];
+
+/*
+	$.each(arr, function (index, value) {
+		arr[index] = value + 2;
+		console.log(this)
+	})
+	console.log(arr)
+	*/
+
+	// 我们无形中创建i变量，
+	// for (var i = 0; i < arr.length; i++) {
+		// arr[i] += 2;
+	// }
+	// console.log(arr, 222, i)
+
+	// 第一个参数是值， 第二个是索引值
+	// arr.forEach(function (value, index, a) {
+		// console.log(value, index, a, this)
+	// })
+
+	/**
+	 * 自定义数组迭代器
+	 * @arr	: 	数组
+	 * @fn ： 	回调函数
+	 */
+	function each(arr, fn) {
+		for (var i = 0, len = arr.length; i < len; i++) {
+			// arr[i] 值； i 索引值, arr 原数组
+			// 第一种方案 实现都是forEach
+			// fn && fn(arr[i], i, arr)
+			// 第二种方案，this指向数组
+			fn && fn.call(arr, arr[i], i, arr);
+		}
+	}
+	// 测试
+	each(arr, function (value, index, arr) {
+		// arr[index] = value + 2;
+		// console.log(value, index, arr, this);
+		this[index] = value + 2;
+	})
+	console.log(arr);
+
+	</script>
+</body>
+</html>

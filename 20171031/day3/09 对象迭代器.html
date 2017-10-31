@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<script type="text/javascript" src="lib/jquery-1.12.2.js"></script>
+	<script type="text/javascript">
+	var demo = {
+		a: 2,
+		b: 3,
+		c: 4
+	};
+	// $.each(demo, function (key, value) {
+		// console.log(key, value, this)
+	// })
+
+	// 没有迭代器时候，遍历对象
+	/*
+	for (var i in demo) {
+		demo[i] += 2;
+	}
+	console.log(demo, i)
+	*/
+
+	/**
+	 * 对象迭代器
+	 * @obj 	要被遍历的对象
+	 * @fn		遍历回调函数
+	 */
+	function each (obj, fn) {
+		for (var i in obj) {
+			// obj[i] 属性值，i表示属性名，obj原对象
+			// 该方式this指向了window
+			// fn && fn(obj[i], i, obj)
+			// 该方式指向对象
+			fn && fn.call(obj, obj[i], i, obj);
+		}
+	}
+	each(demo, function (value, key, o) {
+		this[key] += 2;
+		console.log(value, key, o, this)
+	})
+	console.log(demo)
+	</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<canvas id="mycanvas" width="800" height="400" style="background: black;"></canvas>
+	<script type="text/javascript">
+	(function () {
+		var mycanvas = document.getElementById('mycanvas');
+		var ctx = mycanvas.getContext('2d');
+
+		ctx.arc(100, 100, 20, 0, 2 * Math.PI);
+		ctx.fillStyle = 'red';
+		ctx.fill();
+
+	})()
+	</script>
+</body>
+</html>

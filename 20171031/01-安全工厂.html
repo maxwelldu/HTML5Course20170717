@@ -1,0 +1,15 @@
+<script>
+function Person() {
+    this.name = 'max';
+}
+function PersonFactory() {
+    if (this instanceof arguments.callee) {
+      return arguments.callee();
+    } else {
+      return new Person();
+    }
+  }
+  var p = new PersonFactory();
+  var p1 = PersonFactory();
+  console.log(p, p1);
+</script>

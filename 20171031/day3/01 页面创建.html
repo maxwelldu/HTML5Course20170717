@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<div id="container"></div>
+	<script type="text/javascript">
+	// var productData = [
+	// 	{
+	// 		src : 'img/01.jpg',
+	// 		text : '迎着朝阳的野菊花'
+	// 	},
+	// 	{
+	// 		src : 'img/02.jpg',
+	// 		text : '绽放的桃花'
+	// 	},
+	// 	{
+	// 		src : 'img/03.jpg',
+	// 		text : '阳光下的温馨'
+	// 	},
+	// 	{
+	// 		src : 'img/04.jpg',
+	// 		text : '镜头前的绿色'
+	// 	}
+	// ];
+	var data = {
+		src : 'img/04.jpg',
+		text : '镜头前的绿色'
+	}
+
+
+	// var dom = document.createElement('div')
+	// var img = new Image();
+	// img.src = data.src;
+	var tpl = '<div><img src="{#src#}" alt="" /><p>{#text#}</p><div>';
+	var result = tpl.replace(/\{\#(\w+)\#\}/g, function (match, key) {
+		// 对于src =》 data['src']
+		// 对于text =》 data['text']
+		// 上面两个东西可以通过 data[key] 表示
+		// 我们发现，return出来什么东西，就会替换到原来字符串中匹配的字符串
+		// return 'hello'
+		return data[key];
+	})
+	//(+_+)?
+	document.getElementById('container').innerHTML = result;
+	// console.log(result)
+	</script>
+</body>
+</html>
