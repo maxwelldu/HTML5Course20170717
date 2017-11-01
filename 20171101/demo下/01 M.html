@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+	var MVC = {};
+	// 数据层业务逻辑
+	/**
+	 * model要读取数据与写入数据，所以我们要定义两个方法
+	 * get 读取数据的方法
+	 * add 添加数据的方法
+	 */
+	MVC.Model = (function () {
+		// 用来存储数据层面的数据
+		var M = {};
+		return {
+			/**
+			 * 读取数据的方法（参考迭代器模式的同步变量案例）
+			 * @str 	表示属性层级的字符串
+			 *
+			 * eg： set('a.b.c') => M.a.b.c
+			 */
+			get: function (str) {
+				var path = str.split('.');
+				var result = M;
+				for (var i = 0; i < path.length; i++) {
+					// 读取每一层级的数据
+					result = result[path[i]];
+					if (undefined === result) {
+						return null;
+					}
+				}
+				return result
+			},
+			/**
+			 * 为模型添加数据
+			 * @str 	表示属性层级的字符串
+			 * @value	表示添加的数据值
+			 *
+			 * eg: M 是 {a: {b: {c: 111}}}
+			 * 		add('a.b.c', 111)
+			 * 		add('a.b', {c: 111})
+			 */
+			add: function (str, value) {
+				var path = str.split('.');
+				// 缓存M数据，方便遍历
+				var result = M;
+
+				// 比如我们先给M添加成 {a: {b: {c: 111}}}
+				// 第一步，M有a属性没M.a = {}
+				// 第二步 {a:{}} M.a 有b属性 M.a.b = {}
+				// 第三步 {a:{b:{}}} M.a.b 有c属性么
+				// 第四步 M.a.b.c = 111
+
+				// 遍历path， 最后是赋值参数value值，它是已知的，所以我们要特殊处理，所以遍历path.lenght-1
+				for (var i = 0; i < path.length - 1; i++) {
+					// 什么样的数据可以添加属性
+					// 我们这里的判断是说，当前result有path[i]属性，但是属性的类型不是object
+					if (result[path[i]] !== undefined && typeof result[path[i]] !== 'object') {
+						throw new Error('非对象类不可以添加属性')
+					}
+					// 如果reuslt没有该属性，那么我们就要给他添加一个对象
+					if (result[path[i]] === undefined) {
+						result[path[i]] = {}
+					}
+					// 参考get方法，遍历时候一定要缓存住下一级的数据
+					result = result[path[i]]
+				}
+				result[path[i]] = value;
+				console.log(M)
+				return this;
+			}
+		}
+	})()
+
+	MVC.Model.add('a.b.c', 111)
+	MVC.Model.add('a.b', {c: 222})
+	MVC.Model.add('.b.c.d', 333)
+	// console.log(MVC.Model.get('a.b.c'))
+	// console.log(MVC.Model.get('a.e.f.g'))
+	console.log(MVC.Model.get('.b.c'))
+	// 视图层业务逻辑
+	// MVC.View
+
+	// 控制器层业务逻辑
+	// MVC.Controller
+	</script>
+</body>
+</html>

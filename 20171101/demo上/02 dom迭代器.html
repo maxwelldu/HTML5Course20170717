@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<ul id="list">
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+	<li>4</li>
+	<li>5</li>
+	<li>6</li>
+	<li>7</li>
+	<li>8</li>
+	<li>9</li>
+	<li>10</li>
+</ul>
+	<script type="text/javascript">
+	var Iterator = function (id, tagName) {
+		this.container = document.getElementById(id);
+		this.items = this.container.getElementsByTagName(tagName);
+		this.length = this.items.length;
+		this.index = 0;
+	}
+	Iterator.prototype = {
+		// 获取当前index指向的元素
+		getCurrent: function () {
+			return this.items[this.index]
+		},
+		// 获取第一个元素
+		first: function () {
+			this.index = 0;
+			return this.getCurrent();
+		},
+		// 获取最后一个元素
+		last: function () {
+			this.index = this.length - 1;
+			return this.getCurrent();
+		},
+		// 当前index的前一个元素
+		pre: function () {
+			// 向左边数减一
+			if (this.index > 0) {
+				this.index = this.index - 1;
+				return this.getCurrent();
+			// 参考jquery，如果当前是一个，那么前一个就返回最后一个
+			} else {
+				return this.last()
+			}
+		},
+		// 返回index的后一个元素
+		next: function () {
+			// 后一个是向右边数，那么我们就要加一
+			if (this.index < this.length - 1) {
+				this.index = this.index + 1;
+				return this.getCurrent();
+			// 参考jquery，如果超出长度，那我们往前数，所以说最后一个元素后一个就是第一个
+			} else {
+				return this.first();
+			}
+		},
+		// 不用设置index返回元素
+		get: function (index) {
+			// index % this.length + this.length 得到的结果肯定是一个整数
+			// 在对整数取模得到的结果就是一个正确的结果
+			var num = (index % this.length + this.length) % this.length;
+			return this.items[num];
+		},
+		// 需要设置index放回元素
+		set: function (index) {
+			var num = (index % this.length + this.length) % this.length;
+			this.index = num;
+			return this.getCurrent();
+		}
+	}
+
+	// 测试用例
+	var list = new Iterator('list', 'li');
+
+	// 为了测试last的边界值，我们需要让index指向最后一个
+	// list.last();
+	// 负数跟整数正好相反，-200 小于 -100，所以负数的数值越大往前数，正数正好相反，数值越大往后数
+	list.get(-105).style.background = 'green';
+
+	</script>
+</body>
+</html>

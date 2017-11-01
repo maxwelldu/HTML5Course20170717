@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<style type="text/css">
+body {
+	margin: 0;
+	color: #fff;
+}
+.banner {
+	height: 100px;
+	background: red;
+	margin-bottom: 20px;
+}
+.aside {
+	float: right;
+	width: 300px;
+	height: 500px;
+	background: blue;
+}
+.article {
+	margin-right: 320px;
+	height: 500px;
+	background: green;
+}
+</style>
+<div class="banner">1</div>
+<div class="aside">2</div>
+<div class="article">3</div>
+
+<script type="text/javascript" src="lib/jquery-1.12.2.js"></script>
+	<script type="text/javascript">
+	// 获取banner数据并渲染在页面中
+	/*
+	$.get('data/banner.json', function (res) {
+		// 如果res.errno === 0 说明数据获取成功
+		if (res.errno === 0) {
+			$('.banner').html(res.data);
+		} else {
+			alert('数据读取失败')
+		}
+	})
+	$.get('data/aside.json', function (res) {
+		if (res.errno === 0) {
+			$('.aside').html(res.data)
+		}
+	})
+	$.get('data/article.json', function (res) {
+		if (res.errno === 0) {
+			$('.article').html(res.data);
+		}
+	})
+	*/
+
+	// 对每个模块处理方法的一个封装
+	var DealStrategy = {
+		// 对banner模块渲染页面
+		banner: function (data) {
+			$('.banner').html(data)
+		},
+		// 对aside模块渲染页面
+		aside: function (data) {
+			$('.aside').html(data)
+		},
+		// 对article模块渲染页面
+		article: function (data) {
+			$('.article').html(data)
+		}
+	}
+
+	// 就是一个数据解析器，解析数据，并派发给每个子模块
+	function Deal (data) {
+		// 解析数据 i表示data中的属性，即相应模块，例如，i是banner，表示是banner模块的数据
+		for (var i in data) {
+			// data[i]表示i模块对应的数据，将data[i]传入的我们处理方法中
+			DealStrategy[i](data[i])
+		}
+	}
+
+	$.get('data/all.json', function (res) {
+		if (res.errno === 0) {
+			Deal(res.data)
+		}
+	})
+	</script>
+
+</body>
+</html>

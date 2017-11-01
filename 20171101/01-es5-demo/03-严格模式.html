@@ -1,0 +1,126 @@
+<script type="text/javascript">
+  // 'use strict';
+  // color = 'green';
+
+  function demo() {
+    'use strict';
+    console.log(this);
+  }
+  // demo();
+
+  //通常这样去使用
+  (function(){
+    'use strict';
+  })();
+
+  // function demo(param1, param1) {
+    // console.log(arguments);
+    // console.log(param1);
+  // }
+  // demo(2, 3);
+
+  // var obj = {
+  //   color: 'red',
+  //   color: 'green'
+  // };
+
+  // var public = 'red';
+  // function demo() {
+    // var arguments = 123;
+  // }
+  // demo(4, 5, 6);
+
+  // var a = 123;
+  // delete a;
+  // console.log(a);
+
+  // function demo() { }
+  // delete demo;
+  // console.log(demo);
+
+  var obj = {
+    color: 'red'
+  }
+  delete obj.color;
+  console.log(obj);
+
+  // var num = 012; // 1 * 8 + 2 * 1
+
+  // var myEval = eval;
+  // eval('var a = "red"');
+  // myEval('var b = "green"');
+  // console.log(b);
+
+  function addNum(num) {
+  	// 如果num是1直接返回，不要再迭代了
+  	if (num <= 1) {
+  		return num;
+  	}
+  	// 调用下一个num相加
+  	// 这里功能与方法的名称耦合了，所以方法名称永远不能修改
+  	// return num + addNum(num - 1)
+  	// 为了解决这个问题，提供了arguments.callee方法
+  	return num + arguments.callee(num - 1)
+  }
+  // addNum(2);
+
+
+  // var a = 4;
+  // var b = 5;
+  // var obj = {c: 6}
+  // with(obj) {
+  // 	a  = a + b + c
+  // }
+  // console.log(a);
+
+  var date = new Date();
+  console.log(date);
+  console.log(date.toJSON());
+
+  /**
+   * 实现函数绑定
+   * @fn 		表示执行的函数
+   * @obj 	表示绑定的作用域
+   * return 	绑定作用域后的方法
+   **/
+  function bind(fn, obj) {
+  	// 我们调用bind时候可以传递其他参数。如1,2，我们要将他们获取
+  	// 通过arguments获取
+  	var args = [].slice.call(arguments, 2)
+  	// 返回一个方法
+  	return function () {
+  		// 获取参数，并和args放在一起
+  		var params = args.concat([].slice.call(arguments, 0))
+  		// 当执行返回的方法的时候，我们要执行fn
+  		// 将参数传递进来
+  		fn.apply(obj, params)
+  	}
+  }
+  function d() {
+    console.log(this.value);
+    console.log(arguments);
+  }
+  var obj = {
+    value: '123'
+  }
+  bind(d, obj, 1,2,3)(4,5,6);
+
+  /**
+   * 继承工厂方法
+   * @obj 	被继承的对象
+   **/
+  function create(obj) {
+  	// 创建寄生类,在方法中创建类称为寄生类
+  	var F = function () {};
+  	// 原型继承
+  	F.prototype = obj;
+  	// 实例化寄生类
+  	return new F()
+  }
+  var parent = {
+    a: 1
+  }
+  var son = create(parent);
+  son.b = 2;
+  console.log(son);
+</script>

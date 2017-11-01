@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+	/**
+	 * 触发操作
+	 * @fn 表示函数名称
+	*/
+	var add = function (fn, o) {
+		var ob = o || {};
+		var param = {
+			time: ob.time || 200,
+			context: ob.context || null,
+			data: ob.data || null
+		}
+		// var t = time || 200;
+		clear(true, fn)
+		fn.__throttle = setTimeout(function () {
+			// fn.call(ob, data)
+			fn.call(param.context, param.data)
+		// }, t)
+		}, param.time)
+	}
+
+	/**
+	 * 取消操作
+	 * @fn 	函数的名称
+	*/
+	var clear = function (isClear, fn) {
+		if (isClear === true) {
+			if (fn.__throttle) {
+				clearTimeout(fn.__throttle)
+			}
+		}
+
+	}
+
+
+	var obj = {
+		title: 'yyqh'
+	}
+
+	function say (data) {
+		console.log(this.title);
+		console.log('hello' + data)
+	}
+	console.log('11')
+	add(say, {
+		time: 1000,
+		context: obj,
+		data: ' word111'
+	})
+	clear(true, say)
+	</script>
+</body>
+</html>

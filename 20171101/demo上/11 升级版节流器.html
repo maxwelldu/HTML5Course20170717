@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+
+	var Throttle = function () {
+		// 为了获取isclear变量
+		var isClear = arguments[0];
+		if (true === isClear) {
+			// 这一行是新增的，为了获取函数名
+			var fn = arguments[1]
+			if (fn.__throttle != undefined) {
+				clearTimeout(fn.__throttle)
+			}
+		} else {
+			// 为了获取函数名
+			var fn = arguments[0];
+			// 为了获取选项值
+			var o = arguments[1];
+			var ob = o || {};
+			var param = {
+				time: ob.time || 200,
+				context: ob.context || null,
+				data: ob.data || null
+			}
+			// var t = time || 200;
+			// 之前的函数名称是clear，现在改成了Throttle
+			Throttle(true, fn)
+			fn.__throttle = setTimeout(function () {
+				// fn.call(ob, data)
+				fn.call(param.context, param.data)
+			// }, t)
+			}, param.time)
+		}
+	}
+
+
+	/**
+	 * 触发操作
+	 * @fn 表示函数名称
+	*/
+	// var add = function (fn, o) {
+	// 	var ob = o || {};
+	// 	var param = {
+	// 		time: ob.time || 200,
+	// 		context: ob.context || null,
+	// 		data: ob.data || null
+	// 	}
+	// 	// var t = time || 200;
+	// 	clear(fn)
+	// 	fn.__throttle = setTimeout(function () {
+	// 		// fn.call(ob, data)
+	// 		fn.call(param.context, param.data)
+	// 	// }, t)
+	// 	}, param.time)
+	// }
+
+	// /**
+	//  * 取消操作
+	//  * @fn 	函数的名称
+	// */
+	// var clear = function (isClear, fn) {
+	// 	if (isClear === true) {
+	// 		if (fn.__throttle) {
+	// 			clearTimeout(fn.__throttle)
+	// 		}
+	// 	}
+
+	// }
+
+
+	var obj = {
+		title: 'yyqh'
+	}
+
+	function say (data) {
+		console.log(this.title);
+		console.log('hello' + data)
+	}
+	console.log('11')
+	Throttle(say, {
+		time: 1000,
+		context: obj,
+		data: ' word111'
+	})
+	Throttle(say, {
+		time: 500,
+		context: obj,
+		data: ' word111'
+	})
+	Throttle(true, say)
+	</script>
+</body>
+</html>

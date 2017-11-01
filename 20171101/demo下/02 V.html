@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<div id="demo"></div>
+<script type="text/javascript" src="lib/jquery-1.12.2.js"></script>
+<script type="text/javascript" src="lib/MVC.js"></script>
+	<script type="text/javascript">
+	MVC.Model.add('demo', {
+		title: "这是一个标题",
+		item: {
+			key: '这是个key',
+			value: '这是个value'
+		}
+	})
+	var m = MVC.Model.get('demo');
+	console.log(m);
+	var formatString = function (tpl, data) {
+		// 现在集合已经不是简单\w集合了，其中还包含., 新的集合是[\w\.]
+		return tpl.replace(/\{#([\w\.]+)#\}/g, function (match, key) {
+			// 现在匹配到的key已经不是简单的属性了，它是一个层级属性
+			// 切分遍历层级属性
+			var path = key.split('.');
+			// 缓存参数中的data
+			var result = data;
+			for (var i = 0; i < path.length; i++) {
+				// 缓存每一层级的数据
+				result = result[path[i]];
+				// 如果该数据不存在
+				if (result === undefined) {
+					// 因为是在格式在字符串，所以我们要返回字符串
+					return '';
+				}
+			}
+			return result;
+		})
+	}
+	var tpl = '<h1>{#title#}{#item.key#}{#item.value#}{#item.a#}</h1>'
+
+	// 将渲染后的视图插入到demo元素中
+	document.getElementById('demo').innerHTML = formatString(tpl, m)
+
+	</script>
+</body>
+</html>

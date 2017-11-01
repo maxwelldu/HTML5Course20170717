@@ -1,0 +1,8 @@
+{
+	"errno": 0,
+	"data": {
+		"banner": "new banner data",
+		"article": "new article data",
+		"aside": "new aside data"
+	}
+}

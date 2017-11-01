@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<style type="text/css">
+#icon {
+	margin: 300px;
+	position: relative;
+	width: 30px;
+	height: 20px;
+	background: #f7f7f7;
+	padding: 5px;
+}
+.icon {
+	padding: 10px 15px;
+	background: url(img/icon.png) no-repeat -85px -223px;
+}
+#layer {
+	position: absolute;
+	bottom: 40px;
+	left: -39px;
+	border: 1px solid #ccc;
+	padding: 5px;
+	width: 100px;
+	height: 100px;
+	display: none;
+}
+#layer img {
+	width: 100px;
+	height: 100px;
+}
+#layer span {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	border-bottom: 6px solid transparent;
+	border-top: 6px solid #ccc;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	margin: -13px -7px;
+	font-size: 0;
+}
+#layer i {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	border-top: 6px solid white;
+	border-bottom: 6px solid transparent;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	margin: -11px -7px;
+}
+</style>
+<div id="icon">
+	<a href="" class="icon"></a>
+	<div id="layer"><img src="img/code.jpg" alt=""><span></span><i></i></div>
+</div>
+<script type="text/javascript" src="lib/jquery-1.12.2.js"></script>
+	<script type="text/javascript">
+	var Throttle = function () {
+		// isClear 表示是否清除操作，
+		// fn 表示函数的名称
+		var isClear = arguments[0], fn;
+		// if表示判断执行上面的哪个操作
+		if (isClear === true) {
+			// 此时是取消操作，那么，fn就是第二个参数
+			fn = arguments[1];
+			// 清除fn计时器的句柄
+			if (fn.__Throttle) {
+				clearTimeout(fn.__Throttle);
+			}
+
+		// 第一种情况，第一个参数是函数名称，那么执行触发操作的业务逻辑
+		} else {
+			// 因为第一个参数已经保存在isClear变量里面，触发操作中。，第一个参数表示的是函数的名称，
+			// fn = isClear;
+			fn = arguments[0];
+			// o表示选项，里面保存用户使用时添加的计时器的时间， 以及函数的作用域，以及fn执行值传递的数据
+			var o = arguments[1] || {};
+			var param = {
+				time: o.time || 200,
+				context: o.context || null,
+				data: o.data || {}
+			}
+			// 清除前面的计时器
+			clearTimeout(fn.__Throttle);
+			// 重新执行一遍清除计时器的操作
+			arguments.callee(true, fn)
+			fn.__Throttle = setTimeout(function () {
+				// 函数在param.context作用域U下执行，并传递进来param.data数据作为参数
+				fn.call(param.context, param.data)
+			}, param.time)
+		}
+	}
+
+	var Icon = function (id) {
+		this.container = document.getElementById(id);
+		this.init();
+	}
+	Icon.prototype = {
+		init: function () {
+			// 第一步获取浮层元素
+			this.layer = this.container.getElementsByTagName('div')[0]
+			// 第二步绑定事件
+			this.bindEvent();
+		},
+		// 封装on方法来绑定事件
+		on: function (el, type, fn) {
+			// 如果支持addEventListener，我们就用该方法添加时，否则是ie浏览器，我们用attachEvent添加事件
+			el.addEventListener ? el.addEventListener(type, fn, false) : el.attachEvent('on' + type, fn);
+			return this;
+		},
+		//  为container绑定事件
+		bindEvent: function () {
+			var that = this;
+			this.on(this.container, 'mouseenter', function () {
+				// 鼠标进入的时候，hidelayer可能还没有执行完，此时我们必须将该动作取消掉，才能继续执行showlayer
+				Throttle(true, that.hideLayer);
+				Throttle(that.showLayer);
+				// that.showLayer();
+			}).on(this.container, 'mouseleave', function () {
+				// 鼠标离开的时候，showlayer可能还没有执行完，此时我们必须将该动作取消掉，才能继续执行hidelayer
+				Throttle(true, that.showLayer)
+				Throttle(that.hideLayer);
+				// that.hideLayer();
+			})
+		},
+		showLayer: function () {
+			// this.layer.style.display = 'block';
+			$(this.layer).fadeIn()
+		},
+		hideLayer: function () {
+			// this.layer.style.display = 'none'
+			$(this.layer).fadeOut()
+		}
+	}
+
+	new Icon('icon')
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+.header {
+	height: 60px;
+	border: 1px solid #eff0f0;
+}
+.header .container {
+	width: 1190px;
+	margin: 0 auto;
+}
+.header .header-left {
+	float: left;
+}
+.header .header-right {
+	position: relative;
+	float: right;
+}
+.header span {
+	display: inline-block;
+	vertical-align: middle;
+	height: 60px;
+	line-height: 60px;
+	font-size: 12px;
+	color: #999;
+	cursor: pointer;
+}
+.header .weather:hover b,
+.header .date:hover b,
+.header .star:hover b,
+.header .header-right span:hover {
+	border-left: 1px solid #dedede;
+	border-right: 1px solid #dedede;
+	background: #f7f7f7;
+}
+.header .weather,
+.header .date,
+.header .star,
+.header .header-right span {
+	position: relative;
+	border: 1px solid transparent;
+}
+.header .weather a,
+.header span b {
+	/** 注意，不能设置宽度，要设置高度，边框和内边距 **/
+	border-left: 1px solid transparent;
+	border-right: 1px solid transparent;
+	position: relative;
+	z-index: 100;
+	padding: 0 10px;
+	height: 100%;
+	display: block;
+	font-weight: normal;
+}
+.header .weather span,
+.header .weather img {
+	padding: 0 5px;
+	position: relative;
+	z-index: 100;
+}
+.header .set-home {
+	padding: 2px 5px;
+	background-color: #07ac72;
+	color: white;
+	font-size: 12px;
+	height: auto;
+	line-height: 16px;
+}
+.header img {
+	vertical-align: middle;
+}
+.header ul {
+	float: right;
+	height: 60px;
+	overflow: hidden;
+}
+.header .city i {
+	background: url(../../image/icons.png) -52px -97px;
+	padding: 3px 5px;
+	display: inline-block;
+	margin-left: 2px;
+}
+.header .header-right i {
+	padding: 10px;
+	display: inline-block;
+	background: url(../../image/icons.png);
+	vertical-align: middle;
+	margin-right: 2px;
+}
+.header .user b {
+	background-position: -22px -111px;
+}
+.header .email b {
+	background-position: -90px -110px;
+}
+.header .browser b {
+	background-position: -155px -110px;
+}
+.header .skin b {
+	background-position: -237px -110px;
+}
+
+.header-right span b {
+	padding-left: 40px;
+	background: url(../../img/icons.png);
+
+}

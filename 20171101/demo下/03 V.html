@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/javascript" src="lib/jquery-1.12.2.js"></script>
+<script type="text/javascript" src="lib/MVC.js"></script>
+	<script type="text/javascript">
+	MVC.Model.add('demo', {
+		title: "这是一个标题",
+		item: {
+			key: '这是个key',
+			value: '这是个value'
+		}
+	})
+	/**
+	 * 视图模块
+	 * create: 	创建某个视图的
+	 * add：	添加视图创建方法的
+	 */
+	MVC.View = (function () {
+		// 保存创建视图的所有方法的容器
+		var V ={};
+		return {
+			/**
+		 	 * 创建某个视图的
+		 	 * @id 	表示视图的模块
+			 */
+			create: function (id) {
+				var view = V[id];
+				view.call(MVC, MVC.Model, MVC.template);
+
+			},
+			/**
+			 * 添加视图创建方法的
+			 * @id 		创建方法的名称
+			 * @method 	创建方法的实现
+			 */
+			add: function (id, method) {
+				V[id] = method;
+				return this;
+			}
+		}
+	})()
+
+	// 添加demo视图模块的创建方法
+	// 如果我们将model和template方法可以引入进来，我们使用的就比较方便了，我们在哪里引用呢？
+	MVC.View.add('demo', function (model, template) {
+		// 第一步，创建模块容器元素
+		var dom = $('<div class="demo" id="demo"></div>');
+		// 第二步，获取模块数据
+		// var data = MVC.Model.get('demo')
+		// var data = model.get('demo')
+		var data = this.Model.get('demo');
+		// 第三步，书写视图模板
+		var tpl = '<h1>{#title#}<span>{#item.key#}</span><span>{#item.value#}</span></h1>';
+		// 第四步，定义模块字符串
+		var html = '';
+		// 第五步，格式化视图模板
+		// html = MVC.template(tpl, data);
+		html = template(tpl, data);
+		// 第六步，完成视图的创建
+		dom.html(html);
+		dom.appendTo('#app');
+		// 第七步，将dom return出来，方便后面使用
+		return dom;
+	});
+
+	// MVC.View.create('demo')
+	</script>
+</body>
+</html>

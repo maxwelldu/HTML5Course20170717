@@ -98,7 +98,7 @@
 	var stu2 = new Student('xiaobai', '不告诉你')
 	stu1.listen('什么是设计模式')
 	stu2.listen('什么是设计模式')
-	stu2.sleep('什么是设计模式');
+	// stu2.sleep('什么是设计模式');
 
 
 	var Teacher = function (name) {
@@ -110,12 +110,13 @@
 		Observer.fire(question)
 		// stu1.replay();
 	}
-	Teacher.prototype.lisnte = function () {
+	Teacher.prototype.listen = function () {
 		Observer.regist('replay', function () {
 			console.log(222)
 		})
 	}
 	var teacher = new Teacher('Maxwelldu');
+	teacher.listen();
 	teacher.ask('什么是设计模式')
 	</script>
 </body>

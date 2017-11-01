@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        span {
+            color: gray;
+        }
+        input{
+            position: absolute;
+            left: 5px;
+            top: 8px;
+            background-color: transparent;
+            border: 1 solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+       <span id="span">请输入您的账号</span>
+        <input type="text" id="placeholder">
+    </div>
+</body>
+<script>
+    var input = document.getElementById('placeholder')
+    var span = document.getElementById('span')
+    input.onkeyup = function () {
+        if (this.value) {
+            span.style.display = 'none'
+        } else {
+            span.style.display = 'inline'
+        }
+    }
+</script>
+
+</html>

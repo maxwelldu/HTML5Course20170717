@@ -1,0 +1,49 @@
+<script type="text/javascript">
+  console.log(JSON.parse('{}'));              // {}
+  console.log(JSON.parse('true'));            // true
+  console.log(JSON.parse('"foo"'));           // "foo"
+  console.log(JSON.parse('[1, 5, "false"]')); // [1, 5, "false"]
+  console.log(JSON.parse('null'));            // null
+
+  var str = '{"a": "1", "b": "2", "c": {"d": 4, "e": {"f": 6}}}';
+  var obj = JSON.parse(str, function (key, value) {
+  	// console.log(arguments)
+  	// console.log(key, value)
+  	// 如果值是字符串类型，我们转化成数字
+  	if (typeof value === 'string') {
+  		return +value;
+  	}
+  	// return 111
+  	// 返回value
+  	return value
+  });
+  console.log(obj);
+
+  JSON.parse('{"1": 1, "2": 2,"3": {"4": 4, "5": {"6": 6}}}', function (k, v) {
+    console.log(k); // 输出当前的属性名，从而得知遍历顺序是从内向外的，
+                    // 最后一个属性名会是个空字符串。
+    //可以判断比如是字符串则转换成数字
+    return v;       // 返回原始属性值，相当于没有传递 reviver 参数。
+  });
+
+  var obj = {
+    a: 2,
+    b: 3,
+    c: {
+      d: 5
+    }
+  };
+  var result = JSON.stringify(obj, function (key, value) {
+    //console.log(arguments);
+    //将数字转换成字符串
+    if (typeof value === 'number') {
+      return value + '';
+    }
+    return value;
+  });
+  console.log(result);
+
+  // both will throw a SyntaxError
+  JSON.parse("[1, 2, 3, 4, ]");
+  JSON.parse('{"foo" : 1, }');
+</script>

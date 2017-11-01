@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <title></title> </head> <body> <div id="app"></div>
+<script type="text/javascript" src="lib/jquery-1.12.2.js"></script>
+<script type="text/javascript" src="lib/MVC.js"></script>
+<script type="text/javascript">
+	MVC.addModel('demo', {
+		title: "这是一个标题",
+		item: {
+			key: '这是个key',
+			value: '这是个value'
+		}
+	})
+	MVC.addView('demo', function (model, template) {
+		var dom = $('<div class="demo" id="demo"></div>');
+		var data = this.Model.get('demo');
+		var tpl = '<h1>{#title#}<span>{#item.key#}</span><span>{#item.value#}</span></h1>';
+		var html = '';
+		html = template(tpl, data);
+		dom.html(html);
+		dom.appendTo('#app');
+		return dom;
+	})
+	MVC.addCtrl('demo', function (model, view) {
+		var dom = view.create('demo');
+		dom.delegate('h1', 'click', function () {
+			$(this).css('background', 'red')
+		})
+	})
+	MVC.install();
+	</script>
+</body>
+</html>

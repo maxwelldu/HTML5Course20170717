@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<div><button>显示信息</button></div>
+	<script type="text/javascript">
+	var div = document.getElementsByTagName('div')[0];
+	var button = document.getElementsByTagName('button')[0];
+
+	// 点击button，在div中显示信息的内容，并且将button删除
+	// button.onclick = function () {
+	// 	div.innerHTML = '信息的内容显示出来了'
+	// }
+
+	// 解决这类问题很简单
+	// button.onclick = function () {
+	// 	button.onclick = null;
+	// 	div.innerHTML = '信息的内容显示出来了';
+	// }
+
+	// 在事件内部对dom的元素的主动接触事件不是更好的方式，
+	div.onclick = function (e) {
+		if (e.target.tagName.toUpperCase() === 'BUTTON') {
+			// 此时删除的button元素没有了事件，就会被内存释放
+			div.innerHTML = '信息的内容显示出来了111';
+		}
+	}
+	</script>
+</body>
+</html>
