@@ -28,3 +28,4 @@ vim .babelrc
 
 #作业
 晚上自己写一篇gulp入门的文档，放到https://segmentfault.com/ 上面，然后把链接发给助教统计一下
+把ES6中常用的敲一遍

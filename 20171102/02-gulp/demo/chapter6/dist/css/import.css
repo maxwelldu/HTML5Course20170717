@@ -1,5 +1,9 @@
 .sass a {
   color: pink; }
+.sass b {
+  color: blue; }
+.sass c {
+  color: green; }
 
 .import a {
   color: red; }
