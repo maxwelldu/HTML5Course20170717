@@ -2274,7 +2274,32 @@ var Animal = (function () {
     a.setSex(1);
     console.log(a.getSex());
 适配器：
-  
+  数据适配
+  参数适配
+
+#20171103
+必会的ES6知识点：
+环境搭建：babel node npm webpack
+let,const
+rest: ...rest
+解构赋值：[] {} [{[{}]}]
+字符串：includes, startsWidth, endsWidth, trim, `${name}`
+数字：Number.isNaN, Number.parseInt, Number.parseFloat
+数组：Array.from(类数组) 数组.forEach
+函数：参数默认值，箭头函数
+对象：属性的缩写，方法简写
+Symbol: 知道是一种类型， Symbol()能够产生一个独一无二的值，Symbol.iterator用来设置默认的迭代器
+Set: 用来存放无重复的数据
+类：class, extends, constructor, get, set, static, super
+Promise: new Promise(function(resolve,reject){});   promise.then(function(){}).catch(function(){})
+Promise.all, Promise.race
+迭代器Iterator: next();   for(let k of arr) {}
+生成器genertor: function * fn(){yield 'a'; yield 'b';yield 'c'}
+ES2017: async await 实际上是generator和yield的语法糖
+异步的解决方案：回调函数 --> promise --> generator --> async
+模块化：export, export default, import './a'; import a from './a'; import * as a from './a'; import {hello, A} from './a';
+
+#尝试学习Koa.js, Egg.js（选学）, ThinkJS（选学）, 小程序， WebPack, Git的分支等
 
 ##5点后的练习计划
 - 20170828 练习批量绑定事件和对应模型
