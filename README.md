@@ -2301,6 +2301,13 @@ ES2017: async await 实际上是generator和yield的语法糖
 
 #尝试学习Koa.js, Egg.js（选学）, ThinkJS（选学）, 小程序， WebPack, Git的分支等
 
+#20171106
+包管理：bower, npm, yarn
+操作系统：chocolatey brew centos:yum ubuntu:apt-get
+语言：php:pear,composer java:maven ruby:gem
+
+yarn, Browserify, Grunt, eslint, lint, async, commonjs, amd, requirejs, haml, coffee script, typescript    
+
 ##5点后的练习计划
 - 20170828 练习批量绑定事件和对应模型
 - 20170829 练习函数截流滚动或者延迟搜索
