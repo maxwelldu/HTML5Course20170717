@@ -26,3 +26,8 @@ wx.request请求ajax数据
 清除前台的缓存
 设置data的数据
 wx.hideToast();
+变量显示
+遍历数据
+写样式
+页面跳转，参数传递
+参数接收

@@ -1,3 +1,5 @@
+import $$ from '../../tools/api.js';
+
 Page({
   data: {
     hot: [],
@@ -10,24 +12,21 @@ Page({
       duration: 3000
     });
 
-    wx.request({
-      url: 'https://www.v2ex.com/api/topics/hot.json',
-      method: 'GET',
-      success: (res) => {
-        this.setData({
-          hot: res.data
-        })
-      }
+    $$.getHotTopics(res => {
+      this.setData({
+        hot: res.data
+      })
     });
-    wx.request({
-      url: 'https://www.v2ex.com/api/topics/latest.json',
-      method: 'GET',
-      success: (res) => {
-        this.setData({
-          new: res.data
-        });
-        wx.hideToast();
-      }
+    $$.getLatestTopics(res => {
+      this.setData({
+        new: res.data
+      });
+      wx.hideToast();
+    });
+  },
+  navTo(e) {
+    wx.navigateTo({
+      url: '../post/post?postid=' + e.currentTarget.dataset.id
     })
   }
 })

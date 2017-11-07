@@ -51,7 +51,6 @@
   color: #888;
   border: 1px solid;
   border-radius: 3px;
-
   padding-left: 5px;
   padding-right: 5px;
 }

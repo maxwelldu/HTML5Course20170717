@@ -1,9 +1,28 @@
 <view id='new' class='common-box'>
   <text class='common-text'>最新主题</text>
-  <view wx:for='{{hot}}' wx:for-index='idx' wx:for-item='post'>
-    <view class='post-box'>
+  <view wx:for='{{new}}' wx:for-index='idx' wx:for-item='post'>
+    <view bindtap='navTo' data-id='{{post.id}}' class='post-box' wx:if='{{idx < 5}}'>
       <view class='post-member-box'>
-         <image src='{{post.member.avatar_mini}}' class='post-avatar'></image> 
+         <image src='https:{{post.member.avatar_mini}}' class='post-avatar'></image>
+         <text class='post-member'>{{post.member.username}}</text>
+      </view>
+      <view class='post-title-box'>
+        <text class='post-title'>{{ post.title }}</text>
+      </view>
+      <view class='post-reply-box'>
+        <text class='post-reply'>{{ post.replies }} 次回复</text>
+        <text class='post-node'>{{ post.node.title }}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view id='hot' class='common-box'>
+  <text class='common-text'>最热主题</text>
+  <view wx:for='{{hot}}' wx:for-index='idx' wx:for-item='post'>
+    <view bindtap='navTo'  data-id='{{post.id}}' class='post-box'  wx:if='{{idx < 5}}'>
+      <view class='post-member-box'>
+         <image src='https:{{post.member.avatar_mini}}' class='post-avatar'></image>
          <text class='post-member'>{{post.member.username}}</text>
       </view>
       <view class='post-title-box'>
