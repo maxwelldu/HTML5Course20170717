@@ -1,1 +1,24 @@
-post
+<view class='post-box'>
+  <text class='post-title'>{{ post.title }}</text>
+  <view class='post-info'>
+    <text class='post-username' bindtap='navTo' data-username='{{ post.member.username }}'>{{ post.member.username }}</text>
+    <text>{{ post.created }}</text>
+  </view>
+  <view class='post-content'>
+    <text>{{ post.content }}</text>
+  </view>
+  <view class='post-reply'>
+    <text>{{ post.replies }}条回复</text>
+    <text>{{ post.node.title }}</text>
+  </view>
+</view>
+
+<view class='comment-box'>
+  <view wx:for='{{ comments }}' class='comment'>
+    <view class='comment-info'>
+      <text>{{ item.member.username }}</text>
+      <text>#{{ index+1 }}</text>
+    </view>
+    <text class='comment-content'>{{ item.content }}</text>
+  </view>
+</view>

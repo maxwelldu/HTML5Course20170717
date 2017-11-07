@@ -1,0 +1,20 @@
+<view class='info-box'>
+  <image src='https:{{ nodeinfo.avatar_normal }}' class='node-image'></image>
+  <text>{{ nodeinfo.title }}</text>
+</view>
+
+<view wx:for='{{ nodepost }}' wx:for-index='idx' wx:for-item='post'>
+    <view bindtap='navTo' data-id='{{ post.id }}' class='post-box'>
+      <view class='post-member-box'>
+         <image src='https:{{ post.member.avatar_mini }}' class='post-avatar'></image>
+         <text class='post-member'>{{ post.member.username }}</text>
+      </view>
+      <view class='post-title-box'>
+        <text class='post-title'>{{ post.title }}</text>
+      </view>
+      <view class='post-reply-box'>
+        <text class='post-reply'>{{ post.replies }} 次回复</text>
+        <text class='post-node'>{{ post.node.title }}</text>
+      </view>
+    </view>
+  </view>

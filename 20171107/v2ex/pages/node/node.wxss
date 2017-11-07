@@ -1,0 +1,38 @@
+.common-box {
+  display: flex;
+  flex-direction: column;
+}
+.common-box .common-title {
+  color: #4ABC6A;
+  font-size: 17px;
+  padding: 20px;
+  font-weight: bold;
+}
+.nodes-box {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+.nodes-box .node-box {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 33%;
+  margin-bottom: 1em;
+}
+.nodes-box .node-box .node-image {
+  width: 48px;
+  height: 48px;
+}
+.nodes-box .node-box .node-title {
+  font-size: 14px;
+  color: #353535;
+  text-align: center;
+  margin-top: 10px;
+}
+.nodes-box .node-box .node-number {
+  font-size: 13px;
+  text-align: center;
+  color: #888;
+}

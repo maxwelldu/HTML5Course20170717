@@ -1,0 +1,10 @@
+<view class="common-box">
+  <text class="common-title">节点列表</text>
+  <view class="nodes-box">
+    <view wx:for='{{nodes}}' class="node-box" id="{{ item.id }}" bindtap="navTo">
+      <image src="../../images/node.png" class="node-image" />
+      <text class="node-title">{{ item.title }}</text>
+      <text class="node-number">{{ item.topics }}</text>
+    </view>
+  </view>
+</view>

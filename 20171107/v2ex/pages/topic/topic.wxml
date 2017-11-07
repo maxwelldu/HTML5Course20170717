@@ -1,0 +1,40 @@
+<view class="body">
+  <view class="nav bc_white">
+    <view class="{{selected?'red':'default'}}" bindtap="selected">最新帖子</view>
+    <view class="{{selected1?'red':'default'}}" bindtap="selected1">最热帖子</view>
+  </view>
+  <view class="{{selected?'show':'hidden'}}">
+    <view wx:for="{{new}}" wx:for-index="idx" wx:for-item="post">
+      <view class="postBox" data-id="{{post.id}}" bindtap="navTo">
+        <view class="postMemberBox">
+            <image src="https:{{post.member.avatar_mini}}"  class="postAvatar" />
+            <text  class="postMember">{{post.member.username}}</text>
+          </view>
+          <view class="postTitleBox">
+            <text class="postTitle">{{ post.title }}</text>
+          </view>
+          <view class="postReplyBox">
+          <text class="postReply">{{ post.replies }} 次回复</text>
+          <text class="postNode">{{post.node.title}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="{{selected1?'show':'hidden'}}">
+    <view wx:for="{{hot}}" wx:for-index="idx" wx:for-item="post">
+      <view class="postBox" id="{{post.id}}" catchtap="navTo">
+      <view class="postMemberBox">
+        <image src="https:{{post.member.avatar_mini}}"  class="postAvatar" />
+        <text  class="postMember">{{post.member.username}}</text>
+      </view>
+      <view class="postTitleBox">
+        <text class="postTitle">{{ post.title }}</text>
+      </view>
+      <view class="postReplyBox">
+        <text class="postReply">{{ post.replies }} 次回复</text>
+        <text class="postNode">{{post.node.title}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+</view>

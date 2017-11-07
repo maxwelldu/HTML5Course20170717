@@ -1,0 +1,50 @@
+.post-box {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+.post-box .post-title {
+  font-size: 20px;
+}
+.post-box .post-info {
+  font-size: 14px;
+  color: #888;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.post-box .post-info .post-username {
+  margin-right: 20px;
+}
+.post-box .post-content {
+  font-size: 17px;
+  color: #353535;
+}
+
+.post-reply {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #888;
+  margin-top: 10px;
+}
+
+.comment-box {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+.comment-box .comment {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+.comment-box .comment-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #888;
+}
+.comment-box .comment .comment-content {
+  font-size: 18px;
+  color: #353535;
+}
