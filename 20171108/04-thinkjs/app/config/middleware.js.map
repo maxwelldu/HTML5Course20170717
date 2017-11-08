@@ -1,0 +1,31 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\src\\config\\middleware.js"
+    ],
+    "names": [
+        "path",
+        "require",
+        "isDev",
+        "think",
+        "env",
+        "module",
+        "exports",
+        "handle",
+        "options",
+        "logRequest",
+        "sendResponseTime",
+        "enable",
+        "root",
+        "join",
+        "ROOT_PATH",
+        "publicPath",
+        "isCli",
+        "debug"
+    ],
+    "mappings": "AAAA,MAAMA,OAAOC,QAAQ,MAAR,CAAb;AACA,MAAMC,QAAQC,MAAMC,GAAN,KAAc,aAA5B;;AAEAC,OAAOC,OAAP,GAAiB,CACf;AACEC,UAAQ,MADV;AAEEC,WAAS;AACPC,gBAAYP,KADL;AAEPQ,sBAAkBR;AAFX;AAFX,CADe,EAQf;AACEK,UAAQ,UADV;AAEEI,UAAQT,KAFV;AAGEM,WAAS;AACPI,UAAMZ,KAAKa,IAAL,CAAUV,MAAMW,SAAhB,EAA2B,KAA3B,CADC;AAEPC,gBAAY;AAFL;AAHX,CARe,EAgBf;AACER,UAAQ,OADV;AAEEI,UAAQ,CAACR,MAAMa,KAFjB;AAGER,WAAS;AACPS,WAAOf;AADA;AAHX,CAhBe,EAuBf;AACEK,UAAQ,SADV;AAEEC,WAAS;AAFX,CAvBe,EA2Bf;AACED,UAAQ,QADV;AAEEC,WAAS;AAFX,CA3Be,EA+Bf,OA/Be,EAgCf,YAhCe,CAAjB",
+    "file": "..\\..\\src\\config\\middleware.js",
+    "sourcesContent": [
+        "const path = require('path');\nconst isDev = think.env === 'development';\n\nmodule.exports = [\n  {\n    handle: 'meta',\n    options: {\n      logRequest: isDev,\n      sendResponseTime: isDev\n    }\n  },\n  {\n    handle: 'resource',\n    enable: isDev,\n    options: {\n      root: path.join(think.ROOT_PATH, 'www'),\n      publicPath: /^\\/(static|favicon\\.ico)/\n    }\n  },\n  {\n    handle: 'trace',\n    enable: !think.isCli,\n    options: {\n      debug: isDev\n    }\n  },\n  {\n    handle: 'payload',\n    options: {}\n  },\n  {\n    handle: 'router',\n    options: {}\n  },\n  'logic',\n  'controller'\n];\n"
+    ]
+}

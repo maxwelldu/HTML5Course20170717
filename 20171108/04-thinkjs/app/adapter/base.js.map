@@ -1,0 +1,15 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\src\\adapter\\base.js"
+    ],
+    "names": [
+        "module",
+        "exports"
+    ],
+    "mappings": "AAAAA,OAAOC,OAAP,GAAiB,MAAM,EAAvB",
+    "file": "..\\..\\src\\adapter\\base.js",
+    "sourcesContent": [
+        "module.exports = class {\n\n};\n"
+    ]
+}

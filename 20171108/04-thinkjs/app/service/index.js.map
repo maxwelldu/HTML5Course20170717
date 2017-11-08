@@ -1,0 +1,17 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\src\\service\\index.js"
+    ],
+    "names": [
+        "module",
+        "exports",
+        "think",
+        "Service"
+    ],
+    "mappings": "AAAAA,OAAOC,OAAP,GAAiB,cAAcC,MAAMC,OAApB,CAA4B,EAA7C",
+    "file": "..\\..\\src\\service\\index.js",
+    "sourcesContent": [
+        "module.exports = class extends think.Service {\n\n};\n"
+    ]
+}

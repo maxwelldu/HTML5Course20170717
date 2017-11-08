@@ -1,0 +1,19 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\src\\middleware\\base.js"
+    ],
+    "names": [
+        "module",
+        "exports",
+        "options",
+        "app",
+        "ctx",
+        "next"
+    ],
+    "mappings": "AAAAA,OAAOC,OAAP,GAAiB,CAACC,OAAD,EAAUC,GAAV,KAAkB;AACjC,SAAO,CAACC,GAAD,EAAMC,IAAN,KAAe;AACpB,WAAOA,MAAP;AACD,GAFD;AAGD,CAJD",
+    "file": "..\\..\\src\\middleware\\base.js",
+    "sourcesContent": [
+        "module.exports = (options, app) => {\n  return (ctx, next) => {\n    return next();\n  };\n};\n"
+    ]
+}

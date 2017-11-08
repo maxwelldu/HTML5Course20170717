@@ -1,0 +1,17 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\src\\controller\\restIndex.js"
+    ],
+    "names": [
+        "BaseRest",
+        "require",
+        "module",
+        "exports"
+    ],
+    "mappings": "AAAA,MAAMA,WAAWC,QAAQ,WAAR,CAAjB;;AAEAC,OAAOC,OAAP,GAAiB,cAAcH,QAAd,CAAuB,EAAxC",
+    "file": "..\\..\\src\\controller\\restIndex.js",
+    "sourcesContent": [
+        "const BaseRest = require('./rest.js');\n\nmodule.exports = class extends BaseRest {\n\n};\n"
+    ]
+}

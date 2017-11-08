@@ -1,0 +1,16 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\src\\config\\config.js"
+    ],
+    "names": [
+        "module",
+        "exports",
+        "workers"
+    ],
+    "mappings": "AAAA;AACAA,OAAOC,OAAP,GAAiB;AACfC,WAAS;AADM,CAAjB",
+    "file": "..\\..\\src\\config\\config.js",
+    "sourcesContent": [
+        "// default config\nmodule.exports = {\n  workers: 1\n};\n"
+    ]
+}

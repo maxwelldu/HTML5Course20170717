@@ -1,0 +1,15 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\src\\config\\router.js"
+    ],
+    "names": [
+        "module",
+        "exports"
+    ],
+    "mappings": "AAAAA,OAAOC,OAAP,GAAiB,EAAjB",
+    "file": "..\\..\\src\\config\\router.js",
+    "sourcesContent": [
+        "module.exports = [\n\n];\n"
+    ]
+}

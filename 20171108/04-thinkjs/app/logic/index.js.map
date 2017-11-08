@@ -1,0 +1,18 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\src\\logic\\index.js"
+    ],
+    "names": [
+        "module",
+        "exports",
+        "think",
+        "Logic",
+        "indexAction"
+    ],
+    "mappings": "AAAAA,OAAOC,OAAP,GAAiB,cAAcC,MAAMC,KAApB,CAA0B;AACzCC,gBAAc,CAEb;AAHwC,CAA3C",
+    "file": "..\\..\\src\\logic\\index.js",
+    "sourcesContent": [
+        "module.exports = class extends think.Logic {\n  indexAction() {\n\n  }\n};\n"
+    ]
+}
