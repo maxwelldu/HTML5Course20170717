@@ -37,7 +37,7 @@
    <footer class="footer" v-show="showList">
     <span class="todo-count"><strong>{{ activeCount }}</strong> 项未完成</span>
     <ul class="filters">
-     <li> 
+     <li>
        <a
        :class="{selected: visibility === 'all'}"
        href="#/"
@@ -58,7 +58,7 @@
        @click="visibility = 'completed'">已完成</a>
      </li>
     </ul>
-    <button class="clear-completed">清空已完成</button>
+    <button class="clear-completed" @click="clearCompleted" v-show="completedCount > 0">清空已完成</button>
    </footer>
   </section>
 
@@ -95,13 +95,15 @@
   		}
   	};
 
+    var visibility = location.hash.substr(location.hash.indexOf('/')+1);
+    visibility = visibility === '' ? 'all' : visibility
     // 新建一个Vue的实例对象
     var todoapp = new Vue({
       // 挂载
       el: '.todoapp',
       // 数据初始化
       data: {
-        visibility: 'all',
+        visibility: visibility,
         // 正在编辑的任务索引
         editingIndex: -1,
         // 新的备忘录
@@ -161,6 +163,10 @@
           if (todo.text.trim().length < 1) {
             this.deleteTodo(todo)
           }
+        },
+        // 清空已完成的任务列表
+        clearCompleted() {
+          this.todoList = filters.active(this.todoList)
         }
       },
       // 计算属性
@@ -172,6 +178,10 @@
         // 未完成的任务数量
         activeCount() {
           return filters.active(this.todoList).length;
+        },
+        // 已完成的任务数量
+        completedCount() {
+          return filters.completed(this.todoList).length;
         },
         // 是否所有任务都完成
         allDone: {

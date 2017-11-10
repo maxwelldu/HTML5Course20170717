@@ -316,3 +316,30 @@ computed: {
   :class="{completed: todo.checked, editing: index === editingIndex}"
   v-for="(todo,index) in filteredTodoList" :key="'todo-'+index"
   >
+添加一个变量，得到hash值：
+var visibility = location.hash.substr(location.hash.indexOf('/')+1);
+visibility = visibility === '' ? 'all' : visibility
+设置visibility属性的值为当前的这个变量：
+data: {
+  visibility: visibility,
+  ...
+}
+点击清空已完成功能：
+添加一个已完成的任务数量计算属性：
+computed: {
+  ...
+  // 已完成的任务数量
+  completedCount() {
+    return filters.completed(this.todoList).length;
+  }
+}
+添加一个清空已完成的方法：
+methods: {
+  ...
+  // 清空已完成的任务列表
+  clearCompleted() {
+    this.todoList = filters.active(this.todoList)
+  }
+}
+DOM元素绑定事件，以及v-show:
+<button class="clear-completed" @click="clearCompleted" v-show="completedCount > 0">清空已完成</button>
