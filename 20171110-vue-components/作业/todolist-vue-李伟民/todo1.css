@@ -1,0 +1,123 @@
+.todoa {
+    margin: 130px 0 40px 0;
+    position: absolute;
+    width: 550px;
+    left: 400px;
+}
+
+h1 {
+    position: relative;
+    top: -100px;
+    width: 100%;
+    font-size: 100px;
+    font-weight: 100;
+    text-align: center;
+    color: rgba(175, 47, 47, 0.15);
+}
+
+.new-todo {
+    padding: 16px 16px 16px 60px;
+    background-color: rgba(0, 0, 0, 0.003);
+    position: relative;
+    margin: 0;
+    width: 400px;
+    font-size: 24px;
+    left: 35px;
+    top: -200px;
+}
+
+#m {
+    position: relative;
+    border-top: 1px solid #e6e6e6;
+    top: -201px;
+}
+
+.toggle-all {
+    position: absolute;
+    width: 60px;
+    height: 34px;
+    text-align: center;
+    margin: 5px 3px 3px 4px;
+    top: -53px;
+    left: 32px;
+}
+
+li {
+    position: relative;
+    font-size: 24px;
+    list-style: none;
+    height: 40px;
+    width: 470px;
+   
+    height: 58px;
+}
+
+
+
+#anniu {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+#anniu:hover{
+    color: red;
+}
+#toggle {
+    position: absolute;
+    width: 60px;
+    height: 34px;
+    text-align: center;
+    margin: 5px 3px 3px 4px;
+    top: -10px;
+    left: -7px;
+    z-index: 1;
+}
+
+#juti {
+   
+    background-color: rgba(0, 0, 0, 0.003);
+    position: relative;
+    margin: 0;
+    width: 380px;
+    font-size: 23px;
+    top: -4px;
+    left: 55px;
+  display: inline-block;
+}
+
+.footer {
+    color: #777;
+    padding: 10px 15px;
+    height: 20px;
+    text-align: center;
+    border-top: 1px solid #e6e6e6;
+}
+
+.todo-count {
+    float: left;
+    text-align: left;
+}
+
+.filters {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.yanse {
+    color: rgb(230, 230, 230);
+}
+
+#cc {
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+}
+.huodong:hover{
+    background-color: yellow;
+   
+}
+.huodong{
+     cursor: pointer;
+}

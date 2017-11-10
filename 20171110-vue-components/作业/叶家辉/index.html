@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <script src="vue.js"></script>
+    <div id="todo" class="todo">
+        <div :class="task.length? 'text-box show-text-box-bg': 'text-box'">
+            <input class="input-text" type="text" placeholder="What needs to be down?" @keydown.13="sendTask">
+        </div>
+        <ul class="task-list">
+            <li class="task" v-for="(item,index) in task" :key="'list'+index" :data-index="index">
+                <div :class="item.isFinished? 'select selected' : 'select'" @click="selectedTask"></div>
+                <input :class="item.isFinished? 'content-finished content' : 'content'" :contenteditable="true" @keyup.13="updateTask" :value="item.content">
+                <div class="delete" @click="deleteTask"></div>
+            </li>
+        </ul>
+        <div :class="task.length? 'todo-footer': 'hidden'">
+            <div class="left-item">
+                {{ task.length }}&nbsp;item&nbsp;left
+            </div>
+            <ul class="all-active-completed">
+                <li class="All" @click="showAllTask">All</li>
+                <li class="Active" @click="showActiveTask">Active</li>
+                <li class="Completed" @click="showCompleteTask">Completed</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#todo',
+            data: {
+                task: [{
+                        isFinished: false,
+                        content: '111',
+                    },
+                    {
+                        isFinished: true,
+                        content: '222',
+                    },
+                    {
+                        isFinished: false,
+                        content: '333',
+                    }
+                ],
+                /*
+                 这里创建了一个源任务，是什么意思呢,上面我有一个task任务数组，当数组中的任意一个地方发生改变时，vue会自动给
+                 我们渲染页面，这样会有一个问题,就是当我们点击active跳转到正在执行的任务页面时，此时task按照我下面的写法task
+                 里面只会有正在执行的任务，如果现在我有点了all显示全部任务，那么是不可能显示全的, 因此这里我将所有任务备份了
+                 一份。但是这样就有不好的地方，就是只要我去更新，添加数据那么就要同时操作两个数组。本来我还有另一种想法就是在
+                 newArr这个方法中的this.task = newArr;这句话之前备份一下数据，但是后来考虑了一下，如果要是在备份以后有添加数据
+                  那这条数据就会丢失。
+                */
+                originTask: [{
+                    isFinished: false,
+                    content: '111',
+                },
+                {
+                    isFinished: true,
+                    content: '222',
+                },
+                {
+                    isFinished: false,
+                    content: '333',
+                }
+            ]
+            },
+            methods: {
+                sendTask(e) {
+                    let content = e.target.value;
+                    let isFinished = false;
+                    // e.preventDefault();
+                    if(!String(content)) {
+                        alert("请输入内容");
+                        return ;
+                    }
+                    this.task.push({
+                        isFinished,
+                        content
+                    });
+                    this.originTask.push({
+                        isFinished,
+                        content
+                    })
+                    e.target.value = '';
+                },
+                updateTask(e) {
+                    let content = e.target.value;
+                    let i = e.target.parentNode.dataset.index;
+                    this.task[i]['content'] = content;
+                    this.originTask[i]['content'] = content;
+                    e.target.blur();
+                },
+                deleteTask(e) {
+                    let i = e.target.parentNode.dataset.index;
+                    this.task = this.task.slice(0, i).concat(this.task.slice(++i));
+                    this.originTask = this.originTask.slice(0, i).concat(this.originTask.slice(++i));
+                },
+                selectedTask(e) {
+                    let i = e.target.parentNode.dataset.index;
+                    this.task[i]['isFinished'] = !this.task[i]['isFinished'];
+                    this.originTask[i]['isFinished'] = !this.originTask[i]['isFinished'];
+                },
+                selectedAllTask(e) {
+                    for (var i = 0; i < this.task.length; i++) {
+                        this.task[i]['isFinished'] = 'true';
+                    }
+                },
+                showActiveTask(e) {
+                    newArr.call(this,'active');
+                },
+                showCompleteTask(e) {
+                    newArr.call(this,'completed');
+                },
+                showAllTask(e) {
+                    // this.task = this.originTask;
+                    this.task = [];
+                    this.task = [...this.originTask];
+                    console.log(this.task);
+                    // console.log(this.task === this.originTask);
+                }
+            }
+        });
+
+        // 通过判断输入的是不是active获取到正在执行的任务的数组或已完成的任务的数组
+        function newArr(str) {
+            let flag;
+            let newArr = [];
+            if (str === 'active') {
+                flag = false;
+            } else if (str === 'completed') {
+                flag = true;
+            } else {
+                throw new Error('参数传递错误');
+            }
+            for (var i = 0; i < this.originTask.length; i++) {
+                if (flag === this.originTask[i]['isFinished']) {
+                    newArr.push(this.originTask[i]);
+                }
+            }
+            this.task = newArr;
+        }
+    </script>
+</body>
+
+</html>

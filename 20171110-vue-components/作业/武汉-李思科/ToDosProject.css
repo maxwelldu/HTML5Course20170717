@@ -1,0 +1,84 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+#app {
+  width: 300px;
+  line-height: 10px;
+  margin: 0 auto;
+  border: 1px solid skyblue;
+}
+
+#app input[name=header] {
+  width: 295px;
+  height: 50px;
+  border: 0;
+  padding-left: 5px;
+}
+
+#app ul li, #app ul li .ipt {
+  width: 100%;
+  height: 50px;
+}
+
+#app ul li .ipt {
+  width: 300px;
+  border-bottom: 1px solid #ccc;
+}
+
+#app ul li .ipt input[name=xuanze] {
+
+  width: 60px;
+  margin: 19px 0;
+  float: left;
+}
+
+#app ul li .ipt p {
+  width: 180px;
+  line-height: 50px;
+  float: left;
+  overflow: hidden;
+  height: 50px;
+}
+
+#app ul li .ipt span {
+  width: 60px;
+  /* border: 1px solid red; */
+  line-height: 50px;
+  text-align: right;
+  float: left;
+}
+
+#app ul li .ipt span input {
+  width: 20px;
+  height: 20px;
+}
+
+.foot {
+  width: 100%;
+  height: 26px;
+  border: 1px solid skyblue;
+  line-height: 26px;
+  display: flex;
+}
+
+.foot .nums {
+  flex: 1
+}
+
+.foot .fish, .foot .nofish {
+  flex: 1;
+  text-align: right;
+}
+
+input[name=xiugaikuang] {
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid #ccc;
+  display: none;
+}

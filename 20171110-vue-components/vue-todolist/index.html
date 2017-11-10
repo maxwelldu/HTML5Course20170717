@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./node_modules/todomvc-app-css/index.css">
+</head>
+<body>
+  <section class="todoapp">
+   <header class="header">
+     <!-- 最简单的是本地的localStorage加上响应式做成一个本地的备忘录 -->
+     <!-- 升级一下可以加上注册登录把数据同步到数据库中，通过API -->
+     <!-- 再升级可以尝试做企业应用，通过socket.io实现 -->
+     <!-- 再升级做成收费版 -->
+    <h1>云麋鹿</h1>
+    <input class="new-todo" placeholder="你接下来需要完成什么?" autofocus="" v-model="newTodo" @keyup.enter.trim="addTodo"/>
+   </header>
+   <section class="main" v-show="showList">
+    <input class="toggle-all" id="toggle-all" type="checkbox" v-model="allDone" />
+    <label for="toggle-all">一键完成所有任务</label>
+    <ul class="todo-list">
+     <li
+       :class="{completed: todo.checked, editing: index === editingIndex}"
+       v-for="(todo,index) in filteredTodoList" :key="'todo-'+index"
+       >
+      <div class="view">
+       <input class="toggle" type="checkbox" v-model="todo.checked"/>
+       <label @dblclick="editTodo(index)">{{ todo.text }}</label>
+       <button class="destroy" @click="deleteTodo(todo)"></button>
+     </div>
+     <input class="edit" type="text" v-model="todo.text" v-focus="index === editingIndex" @blur="saveTodo(todo)" @keyup.enter="saveTodo(todo)"/>
+     </li>
+    </ul>
+   </section>
+   <footer class="footer" v-show="showList">
+    <span class="todo-count"><strong>{{ activeCount }}</strong> 项未完成</span>
+    <ul class="filters">
+     <li> 
+       <a
+       :class="{selected: visibility === 'all'}"
+       href="#/"
+       @click="visibility='all'"
+       >所有</a>
+     </li>
+     <li>
+       <a
+       :class="{selected: visibility === 'active'}"
+       href="#/active"
+       @click="visibility = 'active'"
+       >未完成</a>
+     </li>
+     <li>
+       <a
+       :class="{selected: visibility === 'completed'}"
+       href="#/completed"
+       @click="visibility = 'completed'">已完成</a>
+     </li>
+    </ul>
+    <button class="clear-completed">清空已完成</button>
+   </footer>
+  </section>
+
+  <script src="./node_modules/vue/dist/vue.js" charset="utf-8"></script>
+  <script src="./node_modules/underscore/underscore-min.js" charset="utf-8"></script>
+  <script src="./js/store.js" charset="utf-8"></script>
+  <script>
+    // 注册一个全局自定义指令 v-focus
+    Vue.directive('focus', {
+      // 当绑定元素插入到 DOM 中。
+      inserted(el) {
+        // 聚焦元素
+        el.focus()
+      },
+      // 当绑定元素更新的时候
+      update(el) {
+        el.focus();
+      }
+    });
+    // 一个普通的过滤的对象, 用来过滤任务列表
+    var filters = {
+  		all: function (todos) {
+  			return todos;
+  		},
+  		active: function (todos) {
+  			return todos.filter(function (todo) {
+  				return !todo.checked;
+  			});
+  		},
+  		completed: function (todos) {
+  			return todos.filter(function (todo) {
+  				return todo.checked;
+  			});
+  		}
+  	};
+
+    // 新建一个Vue的实例对象
+    var todoapp = new Vue({
+      // 挂载
+      el: '.todoapp',
+      // 数据初始化
+      data: {
+        visibility: 'all',
+        // 正在编辑的任务索引
+        editingIndex: -1,
+        // 新的备忘录
+        newTodo: '',
+        // 备忘录数组
+        todoList: todoStorage.fetch()
+          // [
+          // 一个任务就是一个对象，text表示任务的名称，checked为true表示已完成，false表示未完成
+          // {
+          //   text: '学Vue',
+          //   checked: true
+          // },
+          // {
+          //   text: '学React',
+          //   checked: false
+          // }
+          // ]
+      },
+      // 观察属性变化
+      watch: {
+        // 深度观察todoList
+			  todoList: {
+				  deep: true,
+				  handler: todoStorage.save
+			  }
+		  },
+      // 方法
+      methods: {
+        // 添加任务的方法
+        addTodo() {
+          // 去除前后的空格
+          this.newTodo = this.newTodo.trim();
+          //如果内容为空则拦截
+          if (this.newTodo.length < 1) {
+            return;
+          }
+          // 添加任务到数组中,默认是未完成
+          this.todoList.unshift({
+            text: this.newTodo,
+            checked: false
+          });
+          // 清空新任务的内容
+          this.newTodo = ''
+        },
+        // 删除任务
+        deleteTodo(todo) {
+          this.todoList = _.without(this.todoList, todo)
+        },
+        // 编辑任务
+        editTodo(index) {
+          // 设置一下当前正在编辑的索引
+          this.editingIndex = index
+        },
+        // 保存任务，因为是动态绑定的，不需要再保存，只需要把input框隐藏即可
+        saveTodo(todo) {
+          this.editingIndex = -1
+          if (todo.text.trim().length < 1) {
+            this.deleteTodo(todo)
+          }
+        }
+      },
+      // 计算属性
+      computed: {
+        // 显示列表，如果任务条数大于1则显示
+        showList() {
+          return this.todoList.length > 0;
+        },
+        // 未完成的任务数量
+        activeCount() {
+          return filters.active(this.todoList).length;
+        },
+        // 是否所有任务都完成
+        allDone: {
+          get() {
+            // 未完成的数量为0表示全部完成,全部完成返回true
+            return this.activeCount === 0;
+          },
+          set(value) { // value值是checkbox是否选中的值
+            this.todoList.forEach(todo => {
+              todo.checked = value
+            });
+          }
+        },
+        // 过滤任务列表
+        filteredTodoList: function () {
+  				return filters[this.visibility](this.todoList);
+  			}
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="todo1.css">
+    <script src='vue.js'></script>
+</head>
+
+<body>
+    <section class='todoa'>
+        <header class='header'>
+            <h1>
+                todos
+            </h1>
+            <input id="n" type="text" class="new-todo" v-model="news" placeholder="What needs to be done?" @keyup.enter="add">
+        </header>
+        <section class="main" id='m'>
+            <input type="checkbox" class="toggle-all" id='ta'>
+            <ul class="todo-list" id='t'>
+                <li v-for="item in filter">
+                    <input type="checkbox" id="toggle" v-model="item.completed">
+                    <span id="juti" @dblclick="edit($event)" @keydown.enter.prevent="save($event,item)" @blur="save($event,item)">{{item.name}}</span>
+                    <span id="anniu" class="anniu1" @click=deleted(item)>X</span>
+                </li>
+            </ul>
+            <footer class="footer">
+                <span class="todo-count" id='d'>{{activeCount}} items left</span>
+                <div class="filters" id='selector'>
+                    <span @click="All" class="huodong">All</span>
+                    <span @click="Active" class="huodong">Active</span>
+                    <span @click="Completed" class="huodong">Completed</span>
+                </div>
+                <div class="clear" id='cc' @click="Clear">Clear completed</div>
+            </footer>
+        </section>
+    </section>
+    <script>
+        var app = new Vue({
+            el: ".todoa",
+            data: {
+                news: "",
+                state: "all",
+                todoList: []
+            },
+            methods: {
+                add() {
+                    if (this.news === '') {
+                        return
+                    }
+                    this.todoList.unshift({ name: this.news, completed: false })
+                    this.news = ''
+                },
+
+                edit(event) {
+                    event.target.contentEditable = true
+                    event.target.focus()
+                },
+                save(event, item) {
+                    var target = event.target || event.srcElement
+                    if (target.innerText === '') {
+                        var index = this.todoList.indexOf(item)
+                        this.todoList.splice(index, 1)
+                        if (index == this.todoList.length) {
+                            return
+                        }
+                        target.innerText = this.todoList[index].name
+                    } else {
+                        item.name = target.innerText
+                        target.contentEditable = false
+                        target.blur()
+                    }
+
+                },
+                deleted(item) {
+                    var index = this.todoList.indexOf(item)
+                    this.todoList.splice(index, 1)
+                },
+                All() {
+                    this.state = 'all'
+                },
+                Active() {
+                    this.state = 'active'
+                },
+                Completed() {
+                    this.state = 'completed'
+                },
+                Clear() {
+                    this.todoList = []
+                }
+            },
+            computed: {
+                activeCount() {
+                    return this.todoList.filter(function (item) {
+                        return item.completed === false
+                    }).length
+                },
+                filter() {
+                    switch (this.state) {
+                        case 'all':
+                            return this.todoList
+                            break
+                        case 'active':
+                            return this.todoList.filter(function (item) {
+                                return item.completed === false
+                            })
+                            break
+                        case 'completed':
+                            return this.todoList.filter(function (item) {
+                                return item.completed === true
+                            })
+                            break
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: url(../images/bg.jpg) no-repeat;
+    background-size: 1600px;
+    background-position: center;
+    overflow: hidden;
+}
+
+.container {
+    width: 1080px;
+    height: 600px;
+    margin: 0 auto;
+}
+
+.apple {
+    width: 104px;
+    height: 120px;
+    background-image: url(../images/apple.png);
+    background-size: cover;
+    position: absolute;
+    text-align: center;
+    font: 50px/130px microsoft yahei;
+    color: #feed40;
+    overflow: hidden;
+}
+
+.mainMenu {
+    width: 600px;
+    position: fixed;
+    top: 200px;
+    left: 50%;
+    margin-left: -300px;
+    background: #feed40;
+    border: 5px solid #c8b61c;
+    border-radius: 40px;
+    overflow: hidden;
+    z-index: 666;
+}
+
+.mainMenu .title {
+    width: 343px;
+    height: 158px;
+    margin: 25px auto;
+    background: url(../images/dola.png);
+}
+
+.mainMenu .start {
+    width: 263px;
+    height: 61px;
+    margin: 0 auto;
+    background: url(../images/start.png);
+    cursor: pointer;
+}
+
+.mainMenu .start:hover {
+    background: url(../images/start_hover.png);
+}
+
+.endMenu {
+    width: 600px;
+    position: fixed;
+    top: 200px;
+    left: 50%;
+    margin-left: -300px;
+    background: #feed40;
+    border: 5px solid #c8b61c;
+    border-radius: 40px;
+    overflow: hidden;
+    z-index: 666;
+}
+
+.endMenu .introScore {
+    width: 289px;
+    height: 56px;
+    background: url(../images/score_1.png);
+    margin: 30px auto 10px;
+}
+
+.endMenu .totalScore {
+    text-align: center;
+    font: 80px microsoft yahei;
+    color: #487a92;
+}
+
+.endMenu .share {
+    width: 295px;
+    height: 50px;
+    background: url(../images/share.png);    
+    margin: 0 auto;
+}
+
+.endMenu .playAgain {
+    width: 140px;
+    height: 45px;
+    font: 30px microsoft yahei;
+    font-weight: bolder;
+    color: #bbb500;
+    text-align: center;
+    margin: 40px auto 0;
+    border-radius: 10px;
+    user-select: none;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.endMenu .playAgain:hover{
+    color: #fff;
+    background: #bbb500;
+}
+
+.blackBg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.3);
+    z-index: 1;
+}
+
+.scoreBoard {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 80px;
+    height: 120px;
+    background: #feed40;
+    border: 3px solid #c8b61c;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #c8b61c;
+    text-align: center;
+}
+
+.scoreBoard .title{
+    width: 60px;
+    height: 28px;
+    background: url(../images/score_0.png);
+    margin: 22px auto;
+}

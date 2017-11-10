@@ -1,0 +1,120 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+    background: #eee;
+}
+.todo{
+    width: 400px;
+    height: 1000px;
+    background: #fff;
+    margin: 100px auto 0;
+}
+
+.text-box{
+    width: 100%;
+    height: 60px;
+    border-bottom:2px solid #ccc;
+    box-sizing: border-box;
+    padding-left: 50px;
+}
+
+.show-text-box-bg{
+    background:url('./images/downArrow.png') no-repeat  12px center
+}
+
+.input-text{
+    height: 100%;
+    width: 100%;
+    line-height: 60px;
+    border:none;
+    outline: none;
+    font-size: 24px;
+}
+
+.task-list{
+    width:100%;
+}
+
+.task{
+    display: flex;
+    border-bottom: 1px solid #ccc;
+}
+.task:hover div.delete{
+    visibility: visible;
+}
+
+.task .select{
+    flex: 1;  
+    height: 60px;
+    background: url('./images/circle.png') no-repeat 7px center;
+    background-size: 60%;
+}
+.task .selected{
+    background: url('./images/circle-checked.png') no-repeat 7px center;
+    background-size: 60%;
+}
+.task .content{
+    display: block;
+    flex: 6;
+    box-sizing: border-box;
+    padding-left: 10px;
+    height: 59px;
+    font-size: 22px;
+    line-height: 60px;
+    border: none;
+}
+.task .content-finished{
+    font-size: 16px;
+    text-decoration: line-through;
+    color: #aaa;
+}
+.task .delete{
+    flex: 1;
+    height: 60px;
+    background: url('./images/close.png') no-repeat 13px center;
+    background-size: 45%;
+    visibility: hidden;
+}
+
+.task .delete-hover{
+    background: url('./images/close-sel.png') no-repeat 13px center;
+    background-size: 45%;
+}
+
+.todo-footer{
+    display: flex;
+    color: #aaa;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.left-item{
+    flex: 1;
+    padding-left:10px;
+}
+.all-active-completed{
+    flex: 2;
+    display: flex;
+}
+.all-active-completed > li{
+    height: 20px;
+    line-height: 20px;
+    list-style: none;
+    margin-top: 10px;
+    padding:0 5px;
+    border: 1px solid rgb(173, 173, 170);
+    border-radius: 3px;
+}
+.all-active-completed > li + li{
+    margin-left: 10px;
+}
+
+.hidden{
+    display:none;
+}

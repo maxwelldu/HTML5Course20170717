@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="ToDosProject.css">
+</head>
+
+<body>
+  <div id="app">
+    <input @keydown.enter='enter($event)' type="text" placeholder="what are you doing" name="header">
+    <ul>
+      <li v-for="(text,index) in msg" v-if='seen' class="iptbox">
+        <div class="ipt" v-show="edn">
+          <input type="checkbox" name="xuanze" value="">
+          <p v-on:dblclick='dblclick($event)'>
+            {{text}}
+          </p>
+          <span>
+              {{index+1}}楼
+                  <input v-bind:class="index" type="button" name="" value="x" @click='remove($event)'>
+              </span>
+        </div>
+        <input type="text" name="xiugaikuang" @keyup.enter='en($event)' />
+      </li>
+    </ul>
+    <div class="foot" v-show="edn">
+      <span class="nums">{{num}}  length</span>
+      <span class="fish">  已完成的 </span>
+      <span class="nofish">  未完成的  </span>
+    </div>
+  </div>
+
+  <script src="vue.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    var oToDos = new Vue({
+      el: "#app",
+      data: {
+        msg: [],
+        num: 0,
+        isDisabled: true,
+        seen: true,
+        edn: false
+
+      },
+      methods: {
+        enter(event) {
+          if (event.target.value === '') {
+            return
+          } else {
+            this.msg.push(event.target.value)
+            event.target.value = '';
+            this.num = (document.querySelectorAll('.iptbox').length) + 1;
+            this.edn = true
+          }
+        },
+        remove(event) {
+          var a = parseInt(event.target.parentNode.innerHTML) - 1;
+          // console.log(this.msg);
+          //利用splice删除对应的文本
+          this.msg.splice(a, 1);
+          this.num = (document.querySelectorAll('.iptbox').length) - 1;
+          if (this.num === 0) {
+            this.edn = false
+          }
+        },
+        dblclick(event) {
+          event.target.parentNode.style.display = 'none';
+          var test = event.target.innerHTML;
+          event.target.parentNode.parentNode.childNodes[2].style.display = 'block';
+          event.target.parentNode.parentNode.childNodes[2].value = test;
+        },
+        en(event) {
+          var test = event.target.value;
+          event.target.style.display = 'none';
+          console.log(event.target.parentNode.childNodes[0].childNodes[2].innerHTML);
+          event.target.parentNode.childNodes[0].style.display = 'block';
+          event.target.parentNode.childNodes[0].childNodes[2].innerHTML =test;
+
+
+
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>

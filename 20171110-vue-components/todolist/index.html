@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./node_modules/todomvc-app-css/index.css">
+</head>
+<body>
+  <pre>
+    Vue的TODOLIST
+    1.回车要添加任务（验证内容是否为空）y
+    2.可以点击复选框完成任务 y
+    3.点击删除按钮删除任务 y
+    4.点击任务区修改任务的内容，按回车保存
+    5.点击所有，活动，忆完成能够显示对应的任务列表
+    6.清空任务可以将任务全部删除
+  </pre>
+<section class="todoapp">
+	<header class="header">
+		<h1>todos</h1>
+		<input v-model="newTodo" @keyup.enter="addTodo" class="new-todo" placeholder="What needs to be done?" autofocus="">
+	</header>
+	<section class="main">
+		<input class="toggle-all" id="toggle-all" type="checkbox">
+		<label for="toggle-all">Mark all as complete</label>
+		<ul class="todo-list">
+      <li :class="item.checked ? 'completed' : ''"  v-for="(item, index) in todoList" :key="'item-' + index">
+  			<div class="view">
+  				<input class="toggle" type="checkbox" :checked="item.checked" @click="finishOrNot(item)">
+  				<label>{{ item.text }}</label>
+  				<button class="destroy"></button>
+  			</div>
+			  <input class="edit" value="2">
+      </li>
+    </ul>
+	</section>
+	<footer class="footer">
+  	<span class="todo-count"><strong>0</strong> items left</span>
+  	<ul class="filters">
+  		<li>
+  			<a class="selected" href="#/">All</a>
+  		</li>
+  		<li>
+  			<a href="#/active">Active</a>
+  		</li>
+  		<li>
+  			<a href="#/completed">Completed</a>
+  		</li>
+  	</ul>
+  	<button class="clear-completed">Clear completed</button>
+	</footer>
+</section>
+<script src="./node_modules/vue/dist/vue.min.js" charset="utf-8"></script>
+<script>
+  var todoapp = new Vue({
+    el: '.todoapp',
+    data: {
+      // 新任务
+      newTodo: '',
+      // 任务列表
+      todoList: []
+    },
+    methods: {
+      // 添加任务
+      addTodo() {
+        if (this.newTodo.trim().length < 1) {
+          return;
+        }
+        this.todoList.unshift({
+          text: this.newTodo.trim(),
+          checked: false
+        })
+        this.newTodo = ''
+        // console.log(this.newTodo);
+      },
+      // 是否完成当前任务
+      finishOrNot(item) {
+        // 把checked属性在true和false之间切换
+        item.checked = !item.checked
+      }
+    }
+  })
+</script>
+</body>
+</html>
