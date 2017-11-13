@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <child :pa="pa" :pb="pb" :pc="pc" :pd="pd" :pe="pe" :pf="pf"></child>
+  </div>
+  <script src="vue.js" charset="utf-8"></script>
+  <script>
+    var Child = {
+      template: '<div>{{ pa }} {{ pb }} {{ pc }} {{ pd }} {{ pe }} {{ pf }}</div>',
+      props: {
+        pa: Number,
+        pb: [String, Number],
+        pc: {
+          type: Number,
+          required: true
+        },
+        pd: {
+          type: Number,
+          default: 100
+        },
+        pe: {
+          type: Object,
+          default: function() {
+            return {
+              hello: 'world'
+            }
+          }
+        },
+        pf: {
+          type: Number,
+          validator: function(v) {
+            return v > 100
+          }
+        }
+      }
+    }
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        pa: 2,
+        pb: "a",
+        pc: 2,
+        pd: 50,
+        pe: {},
+        pf: 150
+      },
+      components: {
+        Child
+      }
+    })
+  </script>
+</body>
+</html>

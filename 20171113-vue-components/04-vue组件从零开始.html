@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .app-head { width: 100%; height: 100px; background: red; }
+    .app-main { width: 80%; height: 500px; background: green; margin-top: 8px; float: left}
+    .app-side { width: 18%; height: 500px; background: blue; margin-top: 8px; margin-left: 2%; float: left}
+    .app-main-unit {
+      width: 100%;
+      height: 100px;
+      border: 1px solid red;
+      box-sizing: border-box;
+      margin-top: 10px;
+    }
+    .app-side-unit {
+      height: 100px;
+      border: 10px solid green;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <app-head></app-head>
+    <div>
+      <app-main></app-main>
+      <app-side></app-side>
+    </div>
+  </div>
+  <script src="vue.js" charset="utf-8"></script>
+  <script>
+    // 声明一个组件的配置对象
+    var AppHead = {
+      template: '<div class="app-head"></div>'
+    }
+    var AppMainUnit = {
+      template: '<div class="app-main-unit"></div>'
+    }
+    var AppMain = {
+      template: '<div class="app-main"><app-main-unit></app-main-unit><app-main-unit></app-main-unit></div>',
+      components: {
+        AppMainUnit
+      }
+    }
+    var AppSideUnit = {
+      template: '<div class="app-side-unit"></div>'
+    }
+    var AppSide = {
+      template: '<div class="app-side"><app-side-unit></app-side-unit><app-side-unit></app-side-unit><app-side-unit></app-side-unit></div>',
+      components: {
+        AppSideUnit
+      }
+    }
+    var vm = new Vue({
+      el: '#app',
+      components: {
+        // 把AppHead作为根组件的子组件进行注册
+        AppHead,
+        AppMain,
+        AppSide
+      }
+    });
+  </script>
+</body>
+</html>

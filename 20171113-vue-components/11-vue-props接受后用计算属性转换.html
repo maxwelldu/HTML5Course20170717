@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <child :size="parentSize"></child>
+  </div>
+  <script src="vue.js" charset="utf-8"></script>
+  <script>
+    var Child = {
+      template: '<div>{{ size }} {{ normalSize }}</div>',
+      props: ['size'],
+      computed: {
+        normalSize() {
+          return this.size.trim().toLowerCase();
+        }
+      }
+    }
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        parentSize: ' THREE '
+      },
+      components: {
+        Child
+      }
+    })
+  </script>
+</body>
+</html>

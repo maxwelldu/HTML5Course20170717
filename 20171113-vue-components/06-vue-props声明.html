@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <child message="hello" :my-message="parentMessage"></child>
+    <child message="hi"></child> <input type="text" v-model="parentMessage">
+  </div> 写完了实现一下传递一个数组过来，然后遍历显示
+  <script src="vue.js" charset="utf-8"></script>
+  <script>
+    var Child = {
+      template: '<span>{{ message }} {{ myMessage }}</span>',
+      //声明当前组件内部能够接受一个message的属性, 如果是驼峰式命名，在传递参数的时候使用小写
+      props: ['message', 'myMessage']
+    }
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        parentMessage: 'h'
+      },
+      components: {
+        Child
+      }
+    })
+  </script>
+</body>
+</html>

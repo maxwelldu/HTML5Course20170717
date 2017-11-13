@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .main {
+      width: 80%;
+      float: left;
+      min-height: 500px;
+      border: 1px solid red;
+    }
+    .side {
+      width: 18%;
+      float: left;
+      min-height: 500px;
+      border: 1px solid green;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <app-head></app-head>
+    <div>
+      <div class="main">
+        <app-main></app-main>
+      </div>
+      <div class="side">
+        <app-side></app-side>
+      </div>
+    </div>
+  </div>
+  <script src="vue.js" charset="utf-8"></script>
+  <script>
+    // 头部组件
+    var AppHead = {
+      template: `<div>app head</div>`
+    }
+    // 主窗口单元组件
+    var AppMainUnit = {
+      template: `<div>app main unit</div>`
+    }
+    // 主窗口组件
+    var AppMain = {
+      template: `<div>app main <app-main-unit></app-main-unit><app-main-unit></app-main-unit></div>`,
+      components: {
+        AppMainUnit
+      }
+    }
+    // 侧边栏单元组件
+    var AppSideUnit = {
+      template: '<div>app side unit</div>'
+    }
+    // 侧边栏组件
+    var AppSide = {
+      template: '<div>app<app-side-unit></app-side-unit><app-side-unit></app-side-unit><app-side-unit></app-side-unit></div>',
+      components: {
+        AppSideUnit
+      }
+    }
+    // 根组件
+    var vm = new Vue({
+      el: '#app',
+      components: {
+        AppHead,
+        AppMain,
+        AppSide
+      }
+    });
+    // 驼峰变烤串 AppHead <app-head></app-head>
+  </script>
+</body>
+</html>
