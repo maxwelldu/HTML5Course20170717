@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    {{ total }}
+    <counter @add-total="addTotal"></counter>
+    <counter></counter>
+    <counter></counter>
+  </div>
+  <script src="./vue.js" charset="utf-8"></script>
+  <script>
+    var Counter = {
+      template: `<button @click="addCounter">{{ counter }}</button>`,
+      data() {
+        return {
+          counter: 0
+        }
+      },
+      methods: {
+        addCounter() {
+          this.counter++
+          this.$emit('add-total', {amount: 10})
+        }
+      }
+    }
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        total: 0
+      },
+      components: {
+        Counter
+      },
+      methods: {
+        addTotal(payload) {
+          this.total += payload.amount
+        }
+      }
+    })
+  </script>
+</body>
+</html>

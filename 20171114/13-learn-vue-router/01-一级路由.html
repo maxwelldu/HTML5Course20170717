@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    a {
+      text-decoration: none;
+      padding: 10px;
+      background: gray;
+      color: white;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .router-link-active {
+      background: red;
+    }
+    main {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <router-link to="/news">新闻管理</router-link>
+    <router-link to="/shop">商城管理</router-link>
+    <main>
+      <router-view></router-view>
+    </main>
+  </div>
+  <script src="./node_modules/vue/dist/vue.js" charset="utf-8"></script>
+  <script src="./node_modules/vue-router/dist/vue-router.js" charset="utf-8"></script>
+  <script>
+    var NewsComponent = { template: '<div>新闻</div>' }
+    var ShopComponent = { template: '<div>商城</div>' }
+    var NotFoundComponent = { template: '<div>404</div>' }
+    var routes = [
+      {
+        path: '/',
+        redirect: '/news'
+      },
+      {
+        path: '/news',
+        component: NewsComponent
+      },
+      {
+        path: '/shop',
+        component: ShopComponent
+      },
+      {
+        path: '*',
+        component: NotFoundComponent
+      }
+    ]
+    var router = new VueRouter({
+      routes
+    })
+    var app = new Vue({
+      router
+    }).$mount('#app')
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    {{ total }}
+    <child @add-parent-total="addTotal"></child>
+    <child @add-parent-total="addTotal"></child>
+    <child></child>
+  </div>
+  <script src="vue.js" charset="utf-8"></script>
+  <script>
+    var Child = {
+      template: '<button @click="addCounter">{{ counter }}</button>',
+      data() {
+        return {
+          counter: 0
+        }
+      },
+      methods: {
+        addCounter() {
+          this.counter++;
+          this.$emit('add-parent-total');
+        }
+      }
+    }
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        total: 0
+      },
+      components: {
+        Child
+      },
+      methods: {
+        addTotal() {
+          this.total++
+        }
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html, body {
+      height: 100%;
+    }
+    .dcj-modal {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+    }
+    .dcj-modal .dcj-modal-container {
+      position: absolute;
+      background: white;
+      border: 1px dashed green;
+      width: 300px;
+      min-height: 200px;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+    }
+    .dcj-modal .dcj-modal-container .dcj-modal-header {
+      position: relative;
+      line-height: 50px;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+    }
+    .dcj-modal .dcj-modal-container .dcj-modal-header button {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .dcj-modal .dcj-modal-container .dcj-modal-body {
+      padding: 8px;
+    }
+    .dcj-modal .dcj-modal-container .dcj-modal-footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      line-height: 30px;
+      border-top: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <button @click="openModal">注册</button>
+    <button @click="openModal">登录</button>
+    <modal v-show="showModal" @close-modal="closeModal"></modal>
+  </div>
+  <script src="vue.js" charset="utf-8"></script>
+  <script>
+    var Modal = {
+      template: `<div class="dcj-modal" @click.self="closeSelf">
+        <div class="dcj-modal-container">
+          <div class="dcj-modal-header">
+            title
+            <button @click="closeSelf">关闭</button>
+          </div>
+          <div class="dcj-modal-body">
+            body
+          </div>
+          <div class="dcj-modal-footer">
+            footer
+          </div>
+        </div>
+      </div>`,
+      methods: {
+        closeSelf() {
+          this.$emit('close-modal');
+        }
+      }
+    }
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        showModal: false
+      },
+      methods: {
+        openModal() {
+          this.showModal = true
+        },
+        closeModal() {
+          this.showModal = false
+        }
+      },
+      components: {
+        Modal
+      }
+    })
+  </script>
+</body>
+</html>

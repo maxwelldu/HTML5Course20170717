@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <app-head></app-head>
+    <app-body></app-body>
+  </div>
+  <script src="vue.js" charset="utf-8"></script>
+  <script>
+    var bus = new Vue()
+    var AppHead = {
+      template: '<div><button @click="add">添加</button></div>',
+      methods: {
+        add() {
+          // 触发组件 A 中的事件
+          bus.$emit('change', 1)
+        }
+      }
+    }
+    var AppBody = {
+      template: '<div>{{ counter }}</div>',
+      data() {
+        return {
+          counter: 0
+        }
+      },
+      created() {
+        // 在组件 B 创建的钩子中监听事件
+        bus.$on('change', count => {
+          this.counter += count
+        })
+
+      }
+    }
+    var vm = new Vue({
+      el: '#app',
+      components: {
+        AppHead,
+        AppBody
+      }
+    })
+  </script>
+</body>
+</html>

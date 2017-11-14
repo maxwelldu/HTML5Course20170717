@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    li {
+      float: left;
+      list-style: none;
+      padding: 10px;
+      border: 1px dashed #ccc;
+      margin: 5px;
+      cursor: pointer;
+    }
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <router-link
+      v-for="(cat,index) in cats"
+      :key="'cat'+index"
+      :to="'/cat/' + cat.cat_id"
+      tag="li"
+      >
+      {{ cat.cat_name }}
+      </router-link>
+    </ul>
+    <router-view></router-view>
+  </div>
+  <script src="./node_modules/vue/dist/vue.js" charset="utf-8"></script>
+  <script src="./node_modules/vue-router/dist/vue-router.js" charset="utf-8"></script>
+  <script src="./node_modules/axios/dist/axios.js" charset="utf-8"></script>
+  <script>
+    var Goods = {
+      template: `<div>
+        <ul>
+          <li v-for="(good, index) in goods" :key="'goods' + index">
+            <img :src="good.goods_thumb" :alt="good.goods_name" :title="good.goods_name"/>
+            {{ good.goods_name }}
+            {{ good.price }}
+          </li>
+        </ul>
+      </div>`,
+      watch: {
+        $route (to, from) {
+          console.log(to.params.id);
+          axios.get('http://h6.duchengjiu.top/shop/api_goods.php?cat_id='+to.params.id).then(res => {
+            console.log(res.data.data)
+            this.goods = res.data.data
+          })
+        }
+      },
+      data() {
+        return {
+          goods: []
+        }
+      }
+    }
+    var router = new VueRouter({
+      routes: [
+        { path: '/cat/:id', component: Goods }
+      ]
+    });
+    var vm = new Vue({
+      el: '#app',
+      router,
+      data: {
+        cats: []
+      },
+      created() {
+        axios.get('http://h6.duchengjiu.top/shop/api_cat.php').then(res => {
+          console.log(res)
+          this.cats = res.data.data
+        })
+      }
+    });
+  </script>
+</body>
+</html>
