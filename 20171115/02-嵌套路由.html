@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    a {
+      text-decoration: none;
+      padding: 10px;
+      background: gray;
+      color: white;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .router-link-active {
+      background: red;
+    }
+    div {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <router-link to="/news">新闻管理</router-link>
+    <router-link to="/shop">商城管理</router-link>
+    <main>
+      <router-view></router-view>
+    </main>
+  </div>
+  <script src="./node_modules/vue/dist/vue.js" charset="utf-8"></script>
+  <script src="./node_modules/vue-router/dist/vue-router.js" charset="utf-8"></script>
+  <script>
+    var NewsComponent = { template: `<div>新闻
+      <router-link to="/news/add">添加新闻</router-link>
+      <router-link to="/news/search">搜索新闻</router-link>
+      <router-view></router-view>
+      </div>` }
+    var NewsAddComponent = { template: '<div><input type="text" placeholder="请输入新闻标题"/> <input type="submit" value="添加新闻" /></div>' }
+    var NewsSearchComponent = {
+      template: `
+        <div>
+          <table>
+            <tr>
+              <th>新闻ID</th>
+              <th>新闻标题</th>
+              <th>操作</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>aaa</td>
+              <td><button>删除</button></td>
+            </tr>
+          </table>
+        </div>
+      `
+    }
+    var ShopComponent = { template: '<div>商城</div>' }
+    var NotFoundComponent = { template: '<div>404</div>' }
+    var routes = [
+      {
+        path: '/',
+        redirect: '/news'
+      },
+      {
+        path: '/news',
+        component: NewsComponent,
+        children: [
+          {
+            path: '',
+            redirect: 'add'
+          },
+          {
+            path: 'add',
+            component: NewsAddComponent
+          },
+          {
+            path: 'search',
+            component: NewsSearchComponent
+          },
+          {
+            path: '*',
+            component: NotFoundComponent
+          }
+        ]
+      },
+      {
+        path: '/shop',
+        component: ShopComponent
+      },
+      {
+        path: '*',
+        component: NotFoundComponent
+      }
+    ]
+    var router = new VueRouter({
+      routes
+    })
+    var app = new Vue({
+      router
+    }).$mount('#app')
+  </script>
+
+</body>
+</html>
