@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .even {
+      color: red;
+    }
+    .odd {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <p :class="evenOrOdd">{{ counter }}</p>
+    <button @click="add">+</button>
+    <button @click="decrement">-</button>
+  </div>
+  <script src="vue.js" charset="utf-8"></script>
+  <script src="vuex.js" charset="utf-8"></script>
+  <script>
+    const store = new Vuex.Store({
+      // 有哪些状态
+      state: {
+        count: 3
+      },
+      // 相当于state的计算属性
+      getters: {
+        evenOrOdd: state => {
+          return state.count % 2 === 0 ? 'even' : 'odd'
+        }
+      },
+      actions: {
+        incrementAction (store, amount) {
+          store.commit('increment', amount)
+        },
+        decrement ({ commit }) {
+          commit('decrement')
+        }
+      },
+      // 改变，可以通过调用这个改变的方法来修改state的值
+      mutations: {
+        increment (state, amount) { // 这里面的方法的第一个就是state,我们可以直接修改
+          state.count += amount
+        },
+        decrement (state) {
+          state.count--
+        }
+      }
+    })
+    var app = new Vue({
+      el: '#app',
+      computed: {
+        counter () {
+          return store.state.count
+        },
+        evenOrOdd () {
+          return store.getters.evenOrOdd
+        }
+      },
+      methods: {
+        add () {
+          store.dispatch('incrementAction', 5)
+        },
+        decrement () {
+          store.dispatch('decrement')
+        }
+      }
+    })
+  </script>
+</body>
+</html>

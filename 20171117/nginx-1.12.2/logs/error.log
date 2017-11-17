@@ -1,0 +1,9 @@
+2017/11/17 10:47:43 [error] 6312#67988: *1 CreateFile() "D:\HTML5Course20170717\20171117\nginx-1.12.2/html/douyuapi/RoomApi/live" failed (3: The system cannot find the path specified), client: 127.0.0.1, server: localhost, request: "GET /douyuapi/RoomApi/live?offset=1&limit=20 HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2017/11/17 10:47:43 [error] 6312#67988: *1 CreateFile() "D:\HTML5Course20170717\20171117\nginx-1.12.2/html/douyuapi/RoomApi/live" failed (3: The system cannot find the path specified), client: 127.0.0.1, server: localhost, request: "GET /douyuapi/RoomApi/live?offset=0&limit=20 HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2017/11/17 10:47:44 [error] 6312#67988: *2 CreateFile() "D:\HTML5Course20170717\20171117\nginx-1.12.2/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2017/11/17 10:55:45 [emerg] 86056#84040: unexpected "}" in D:\HTML5Course20170717\20171117\nginx-1.12.2/conf/nginx.conf:49
+2017/11/17 10:55:45 [alert] 25896#26436: worker process 86056 exited with code 1
+2017/11/17 10:55:45 [alert] 25896#26436: could not respawn worker
+2017/11/17 10:55:51 [emerg] 86300#40588: unexpected "}" in D:\HTML5Course20170717\20171117\nginx-1.12.2/conf/nginx.conf:49
+2017/11/17 10:57:21 [emerg] 75904#80116: unexpected "}" in D:\HTML5Course20170717\20171117\nginx-1.12.2/conf/nginx.conf:49
+2017/11/17 10:57:44 [emerg] 86020#86992: unknown directive "proxy_pass:" in D:\HTML5Course20170717\20171117\nginx-1.12.2/conf/nginx.conf:48

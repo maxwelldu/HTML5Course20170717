@@ -1,6 +1,12 @@
 <template>
   <div>
-    <router-link :to="'/' + cat.cat_id" v-for="(cat, index) in cats" :key="'cat' + index">{{ cat.cat_name }}</router-link>
+
+    <div class="">
+      <ul>
+      <router-link tag="li" :to="'/' + cat.cat_id" v-for="(cat, index) in cats" :key="'cat' + index">{{ cat.cat_name }}</router-link>
+      </ul>
+    </div>
+
     <router-view />
   </div>
 </template>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .ok { border: 1px solid green; }
+    .no { border: 1px solid red; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div
+    :class="obj.status?'ok':'no'"
+    @click="obj.status = !obj.status"
+    >{{ obj.title }} {{ obj.status }}</div>
+  </div>
+  <script src="vue.js" charset="utf-8"></script>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        obj: {}
+      },
+      created () {
+        this.obj = {title:'abc', desc:'def'}
+        // this.obj.status = false
+        // Vue.set(this.obj, 'status', false)
+        this.$set(this.obj, 'status', false)
+      }
+    })
+  </script>
+</body>
+</html>
