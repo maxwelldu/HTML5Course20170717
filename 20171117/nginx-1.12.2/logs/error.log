@@ -7,3 +7,4 @@
 2017/11/17 10:55:51 [emerg] 86300#40588: unexpected "}" in D:\HTML5Course20170717\20171117\nginx-1.12.2/conf/nginx.conf:49
 2017/11/17 10:57:21 [emerg] 75904#80116: unexpected "}" in D:\HTML5Course20170717\20171117\nginx-1.12.2/conf/nginx.conf:49
 2017/11/17 10:57:44 [emerg] 86020#86992: unknown directive "proxy_pass:" in D:\HTML5Course20170717\20171117\nginx-1.12.2/conf/nginx.conf:48
+2017/11/20 13:07:03 [error] 66760#86652: *53 CreateFile() "D:\HTML5Course20170717\20171117\nginx-1.12.2/html/config2.json" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /config2.json HTTP/1.1", host: "nbj.orz520.com"
